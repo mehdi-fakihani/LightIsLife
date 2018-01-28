@@ -6,7 +6,7 @@ using UnityEngine;
 namespace LIL
 {
     /// <summary>
-    /// Store caracteristics to represents any actor of the game.
+    /// Store caracteristics to represent any actor of the game.
     /// </summary>
     [System.Serializable]
     public class ActorModel : MonoBehaviour
@@ -19,18 +19,17 @@ namespace LIL
         [SerializeField] public SkillsID[] skills = new SkillsID[0];
 
         /// <summary>
-        /// Creates an actor. TODO GameObject
+        /// Creates an actor from this model with an associated controller.
         /// </summary>
         /// <param name="position"></param>
         /// <param name="rotation"></param>
         /// <param name="controller"></param>
         /// <returns></returns>
-        public GameObject create(Vector3 position, Quaternion rotation, IActorController controller)
+        public Actor create(Vector3 position, Quaternion rotation, IActorController controller)
         {
             var obj = Instantiate(prefab, position, rotation);
-            var actor = obj.GetComponent<Actor>();
-            Assert.IsNotNull(actor, "The prefab created from an actor model" +
-                                    " must have an 'Actor' script component");
+            var actor = obj.AddComponent<Actor>();
+
             // Initialize the actor
             actor.model = this;
             actor.controller = controller;
@@ -45,7 +44,7 @@ namespace LIL
                 actor.skills.Add(model.create(actor));
             }
             controller.register(actor);
-            return obj;
+            return actor;
         }
 
         void Awake()
