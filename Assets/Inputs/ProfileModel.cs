@@ -29,8 +29,6 @@ namespace LIL.Inputs
         
         void Awake()
         {
-            // TODO Check if all keys correspond to the device
-
             keys.Add(PlayerAction.Up,     up);
             keys.Add(PlayerAction.Down,   down);
             keys.Add(PlayerAction.Left,   left);
@@ -40,6 +38,12 @@ namespace LIL.Inputs
             keys.Add(PlayerAction.Skill2, skill2);
             keys.Add(PlayerAction.Skill3, skill3);
             keys.Add(PlayerAction.Skill4, skill4);
+            
+            foreach (var key in keys.Values)
+            {
+                Assert.AreEqual(device, KeyGroup.DeviceOf(key),
+                    "The keys of a profile must correspond to it's device");
+            }
 
             Profile.Models.Add(id, this);
         }
@@ -56,8 +60,10 @@ namespace LIL.Inputs
             if (device == Device.Keyboard) Assert.Zero(deviceNum);
             
             var axises = keys.Values
-                .Where(AxisInfo.CanComesFrom)
-                .ToDictionary(key => key, key => AxisInfo.From(key, deviceNum));
+                .Where(KeyGroup.IsFromAxis)
+                .ToDictionary(
+                    key => key,
+                    key => AxisInfo.From(key, deviceNum));
             
             foreach (var axis in axises.Values)
             {

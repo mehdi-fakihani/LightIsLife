@@ -18,26 +18,17 @@ namespace LIL.Inputs
         public bool positiveValue;
 
         private AxisInfo() { }
-
-        /// <summary>
-        /// Indicates if the key comes from an axis.
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public static bool CanComesFrom(Key key)
-        {
-            return (int) key >= 1000;
-        }
-
+        
         /// <summary>
         /// Retrieves axis info from a key and the device's number used.
+        /// This function must be updated when new axes are added in Unity.
         /// </summary>
         /// <param name="key"></param>
         /// <param name="deviceNum"></param>
         /// <returns></returns>
         public static AxisInfo From(Key key, int deviceNum)
         {
-            Assert.IsTrue(CanComesFrom(key),
+            Assert.IsTrue(KeyGroup.IsFromAxis(key),
                 "the given key (" + key + ") does not represents an axis");
 
             var info = new AxisInfo();

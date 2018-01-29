@@ -32,7 +32,7 @@ namespace LIL.Inputs
         public bool getKeyUp(PlayerAction action)
         {
             var key = keys[action];
-            return AxisInfo.CanComesFrom(key)
+            return KeyGroup.IsFromAxis(key)
                 ? getAxis(key).isUp
                 : Input.GetKeyUp((KeyCode) (key + keyShift));
         }
@@ -45,7 +45,7 @@ namespace LIL.Inputs
         public bool getKeyDown(PlayerAction action)
         {
             var key = keys[action];
-            return AxisInfo.CanComesFrom(key)
+            return KeyGroup.IsFromAxis(key)
                 ? getAxis(key).isDown
                 : Input.GetKeyDown((KeyCode)(key + keyShift));
         }
@@ -58,7 +58,7 @@ namespace LIL.Inputs
         public bool getKey(PlayerAction action)
         {
             var key = keys[action];
-            return AxisInfo.CanComesFrom(key)
+            return KeyGroup.IsFromAxis(key)
                 ? getAxis(key).isPressed
                 : Input.GetKey((KeyCode)(key + keyShift));
         }
