@@ -7,9 +7,15 @@ namespace LIL.Sandbox
 {
     public class SimplePlayerController : IActorController
     {
+        private readonly Inputs.Profile profile;
         private Actor hero;
         private Skill baseAttack;
         private Skill fireball;
+
+        public SimplePlayerController(Inputs.Profile profile)
+        {
+            this.profile = profile;
+        }
 
         public void register(Actor actor)
         {
@@ -44,34 +50,26 @@ namespace LIL.Sandbox
             var transform = hero.gameObject.transform;
             float shift = hero.speed() * secs;
 
-            if (Input.GetKey(KeyCode.Z))
-            {
+            if (profile.getKey(PlayerAction.Up))
                 transform.position += Vector3.forward * shift;
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
+            
+            if (profile.getKey(PlayerAction.Down))
                 transform.position -= Vector3.forward * shift;
-            }
-            if (Input.GetKey(KeyCode.Q))
-            {
+            
+            if (profile.getKey(PlayerAction.Left))
                 transform.position += Vector3.left * shift;
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
+            
+            if (profile.getKey(PlayerAction.Right))
                 transform.position -= Vector3.left * shift;
-            }
         }
 
         private void checkSkillInputs()
         {
-            if (Input.GetKeyDown(KeyCode.T))
-            {
+            if (profile.getKeyDown(PlayerAction.Attack))
                 baseAttack.tryCast();
-            }
-            if (Input.GetKeyDown(KeyCode.Y))
-            {
+            
+            if (profile.getKeyDown(PlayerAction.Skill1))
                 fireball.tryCast();
-            }
         }
     }
 }
