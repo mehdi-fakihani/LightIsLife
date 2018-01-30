@@ -52,6 +52,41 @@ namespace LIL.Inputs
                     info.name += "LeftJoystickLeft";
                     info.positiveValue = false;
                     break;
+
+                case Key.GamepadRightJoystickUp:
+                    info.name += "RightJoystickUp";
+                    info.positiveValue = true;
+                    break;
+                case Key.GamepadRightJoystickDown:
+                    info.name += "RightJoystickUp";
+                    info.positiveValue = false;
+                    break;
+                case Key.GamepadRightJoystickLeft:
+                    info.name += "RightJoystickLeft";
+                    info.positiveValue = true;
+                    break;
+                case Key.GamepadRightJoystickRight:
+                    info.name += "RightJoystickLeft";
+                    info.positiveValue = false;
+                    break;
+
+                case Key.GamepadPadUp:
+                    info.name += "PadUp";
+                    info.positiveValue = true;
+                    break;
+                case Key.GamepadPadDown:
+                    info.name += "PadUp";
+                    info.positiveValue = false;
+                    break;
+                case Key.GamepadPadLeft:
+                    info.name += "PadLeft";
+                    info.positiveValue = true;
+                    break;
+                case Key.GamepadPadRight:
+                    info.name += "PadLeft";
+                    info.positiveValue = false;
+                    break;
+
                 case Key.GamepadL2:
                     info.name += "Triggers";
                     info.positiveValue = true;

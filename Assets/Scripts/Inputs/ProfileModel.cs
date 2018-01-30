@@ -29,6 +29,21 @@ namespace LIL.Inputs
         
         void Awake()
         {
+            // Check that all keys are different
+
+            var keysList = new HashSet<Key>();
+            Assert.IsTrue(keysList.Add(up));
+            Assert.IsTrue(keysList.Add(down));
+            Assert.IsTrue(keysList.Add(left));
+            Assert.IsTrue(keysList.Add(right));
+            Assert.IsTrue(keysList.Add(attack));
+            Assert.IsTrue(keysList.Add(skill1));
+            Assert.IsTrue(keysList.Add(skill2));
+            Assert.IsTrue(keysList.Add(skill3));
+            Assert.IsTrue(keysList.Add(skill4));
+
+            // Reference keys with their actions
+
             keys.Add(PlayerAction.Up,     up);
             keys.Add(PlayerAction.Down,   down);
             keys.Add(PlayerAction.Left,   left);
@@ -38,6 +53,8 @@ namespace LIL.Inputs
             keys.Add(PlayerAction.Skill2, skill2);
             keys.Add(PlayerAction.Skill3, skill3);
             keys.Add(PlayerAction.Skill4, skill4);
+
+            // Check that the keys correspond to the device used
             
             foreach (var key in keys.Values)
             {
