@@ -72,7 +72,7 @@ namespace LIL {
         {
             this.model = model;
             this.manager = manager;
-            currentCD = model.cooldown * model.chargesCount;
+            currentCD = 0f;
         }
     }
 }

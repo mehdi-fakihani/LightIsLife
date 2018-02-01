@@ -12,7 +12,7 @@ namespace LIL
         
         void Start()
         {
-            profile = new Profile(ProfilsID.KeyboardLeft, 0);
+            profile = new Profile(ProfilsID.XBoxGamepad, 0);
             var skillManager = GetComponent<SkillManager>();
             fireball = skillManager.addSkill("fireball");
         }
@@ -21,7 +21,7 @@ namespace LIL
         {
             var trans = gameObject.transform;
             
-            if (profile.getKeyDown(PlayerAction.Skill1))
+            if (profile.getKeyDown(PlayerAction.Attack))
             {
                 bool success = fireball.tryCast();
                 Debug.Log("cast success ? " + success);
