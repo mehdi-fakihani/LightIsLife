@@ -13,7 +13,7 @@ public class PlayerHealth : MonoBehaviour
 
 
     Animator anim;                                              // Reference to the Animator component.
-    TestMove playerMovement;                              // Reference to the player's movement.
+    PlayerMovement playerMovement;                              // Reference to the player's movement.
     //PlayerShooting playerShooting;                              // Reference to the PlayerShooting script.
     bool isDead;                                                // Whether the player is dead.
     bool damaged;                                               // True when the player gets damaged.
@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour
     {
         // Setting up the references.
         anim = GetComponent<Animator>();
-        playerMovement = GetComponent<TestMove>();
+        playerMovement = GetComponent<PlayerMovement>();
         //playerShooting = GetComponentInChildren<PlayerShooting>();
 
         // Set the initial health of the player.

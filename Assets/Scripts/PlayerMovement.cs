@@ -3,36 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
-    
-    public float speed = 6.0f;
-    public float gravity = -9.8f;
 
-    private CharacterController _charController;
+    public float movementSpeed = 6f;
+
     Animator anim;
-
 
     void Start()
     {
-        _charController = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-        float deltaX = Input.GetAxis("Horizontal") * speed;
-        float deltaZ = Input.GetAxis("Vertical") * speed;
+        ControllPlayer();
+    }
 
-        Vector3 movement = new Vector3(deltaX, 0, deltaZ);
+
+    void ControllPlayer()
+    {
+        float moveHorizontal = Input.GetAxisRaw("Horizontal");
+        float moveVertical = Input.GetAxisRaw("Vertical");
+
+        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         transform.rotation = Quaternion.LookRotation(movement);
-        movement = Vector3.ClampMagnitude(movement, speed);
 
-        //movement.y = gravity;
 
-        movement *= Time.deltaTime;
-        movement = transform.TransformDirection(movement);
-        _charController.Move(movement);
+        transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
 
-        Animating(deltaX, deltaZ);
+        Animating(moveHorizontal, moveVertical);
+
     }
 
     void Animating(float h, float v)
