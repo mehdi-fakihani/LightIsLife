@@ -24,7 +24,6 @@ public class EnemyAttack : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTriggerEnter");
         // If the entering collider is the player...
         if (other.gameObject == player)
         {
