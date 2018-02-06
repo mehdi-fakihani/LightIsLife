@@ -24,7 +24,7 @@ namespace LIL.Inputs
         [SerializeField] public Key skill3;
         [SerializeField] public Key skill4;
 
-        private readonly Dictionary<PlayerAction, Key> keys
+        public readonly Dictionary<PlayerAction, Key> keys
             = new Dictionary<PlayerAction, Key>();
         
         void Awake()
@@ -63,30 +63,6 @@ namespace LIL.Inputs
             }
 
             Profile.Models.Add(id, this);
-        }
-        
-        /// <summary>
-        /// Creates a player profile with he device number indicated.
-        /// This number must be zero for the keyboard (only one keyboard available).
-        /// </summary>
-        /// <param name="deviceNum"></param>
-        /// <returns></returns>
-        public Profile create(int deviceNum)
-        {
-            // There is only one keyboard available
-            if (device == Device.Keyboard) Assert.Zero(deviceNum);
-            
-            var axises = keys.Values
-                .Where(KeyGroup.IsFromAxis)
-                .ToDictionary(
-                    key => key,
-                    key => AxisInfo.From(key, deviceNum));
-            
-            foreach (var axis in axises.Values)
-            {
-                Recorder.RecordAxis(axis);
-            }
-            return new Profile(keys, axises, deviceNum);
         }
     }
 }

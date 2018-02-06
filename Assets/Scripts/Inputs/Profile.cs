@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ namespace LIL.Inputs
         {
             return Recorder.StatusOf(axises[key]);
         }
-
+        
         /// <summary>
         /// Indicates if the given action button has just been released.
         /// </summary>
@@ -63,18 +64,25 @@ namespace LIL.Inputs
                 : Input.GetKey((KeyCode)(key + keyShift));
         }
 
-        /// <summary>
-        /// Used by ProfileModel to create a new player profile.
-        /// </summary>
-        /// <param name="model"></param>
-        /// <param name="keys"></param>
-        /// <param name="axises"></param>
-        /// <param name="deviceNum"></param>
-        public Profile(Dictionary<PlayerAction, Key> keys, Dictionary<Key, AxisInfo> axises, int deviceNum)
+        public Profile(ProfilsID id, int deviceNum)
         {
-            this.keys   = keys;
-            this.axises = axises;
-            keyShift    = deviceNum * ((int) KeyCode.Joystick2Button0 - (int) KeyCode.Joystick1Button0);
+            var model = Models[id];
+            
+            // There is only one keyboard available
+            if (model.device == Device.Keyboard) Assert.Zero(deviceNum);
+
+            keys = model.keys;
+            axises = model.keys.Values
+                .Where(KeyGroup.IsFromAxis)
+                .ToDictionary(
+                    key => key,
+                    key => AxisInfo.From(key, deviceNum));
+
+            foreach (var axis in axises.Values)
+            {
+                Recorder.RecordAxis(axis);
+            }
+            keyShift = deviceNum * ((int)KeyCode.Joystick2Button0 - (int)KeyCode.Joystick1Button0);
         }
     }
 }
