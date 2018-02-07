@@ -37,7 +37,7 @@ namespace LIL.Skills
             //(It contains all the info for the skills and is responsable for the save and load)
 
             // Get the damage caused by the fireball from the GeneralData script
-            //damageAttack = GeneralData.GetCurrentWeapon().damage;
+            damageAttack = GeneralData.GetSkillByName("Fireball").damage;
         }
 
 
@@ -56,7 +56,7 @@ namespace LIL.Skills
                 enemyHealth.takeDammage(damageAttack);
 
                 // Apply effects of the fireball on the enemy
-                //effects.addEffect(new Effects.Silence(GeneralData.getEffect("Silence")));
+                effects.addEffect(new Effects.Silence(GeneralData.getEffect("Silence").effect));
 
 
             }

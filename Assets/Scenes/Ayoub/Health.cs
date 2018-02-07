@@ -11,7 +11,7 @@ using UnityEngine.UI;
 //
 //  Desc:   The class responsible for the health 
 //
-//  Attachment : This class is used in the "Player" GameObject
+//  Attachment : This class is used in the characters' (both player and enemy) GameObject
 //
 //  Last modification :
 //      Aub AH - 04/02/2018 : Init version
@@ -31,10 +31,10 @@ public class Health : MonoBehaviour
 	
 	// Private :
 	
-	private Animator animator;					// The players' Animator
-    private AudioSource audioSource;			// The players' AudioSource 
-    private float currentHealth;				// The current health of the player
-	private bool dead;							// Player dead or not
+	private Animator animator;					// The Animator
+    private AudioSource audioSource;			// The AudioSource 
+    private float currentHealth;                // The current health of the character
+    private bool dead;							// Check if dead or not
 	private bool endGameReached;				// End Game reached
 
 
@@ -50,16 +50,16 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
         healthSlider.value = 1;					// It's a ratio (0 <-> 1)
 
-        // Get the Animator of the player
+        // Get the Animator of the character
         animator = GetComponent<Animator>();
-        // Get the AudioSource of the player
+        // Get the AudioSource of the character
         audioSource = GetComponent<AudioSource>();
 		
     }
 
 
     //---------------------------------------------------------
-    // This method is called when the player is hurt
+    // This method is called when the character is hurt
     //---------------------------------------------------------
     public void takeDammage(float amount) {
         
@@ -70,7 +70,7 @@ public class Health : MonoBehaviour
             if (currentHealth < 0) currentHealth = 0;
             healthSlider.value = currentHealth / (float) maxHealth;
 
-            if (currentHealth == 0) playerDead();
+            if (currentHealth == 0) playDead();
             else {
 				animator.SetTrigger(hurtAnimation);
 				if (!audioSource.isPlaying) audioSource.PlayOneShot(soundHurt);
@@ -82,10 +82,10 @@ public class Health : MonoBehaviour
 
 
     //---------------------------------------------------------
-    // This method is called when the player is dead
+    // This method is called when the character is dead
     // /!\ This mehtod is not complet /!\
     //---------------------------------------------------------
-    public void playerDead() {
+    public void playDead() {
         
 		dead = true;
 
@@ -95,9 +95,14 @@ public class Health : MonoBehaviour
 		// Play death sound
         audioSource.PlayOneShot(soundDead);
 
-        //Pause le jeu
-        Time.timeScale = 0;
-        //gameOver.ShowPanel(false);
+        // Check if it is the player who is dead, if yes end game
+        if (this.gameObject.CompareTag("Player"))
+        {
+            //Pause le jeu
+            Time.timeScale = 0;
+            //gameOver.ShowPanel(false);
+        }
+
     }
 
 
