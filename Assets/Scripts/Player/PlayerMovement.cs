@@ -15,22 +15,14 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update()
     {
-        ControllPlayer();
-    }
-
-
-    void ControllPlayer()
-    {
         float moveHorizontal = Input.GetAxisRaw("Horizontal");
         float moveVertical = Input.GetAxisRaw("Vertical");
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        movement = Vector3.ClampMagnitude(movement, 1) * movementSpeed;
         transform.rotation = Quaternion.LookRotation(movement);
 
-
-        transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
-
-        Animating(moveHorizontal, moveVertical);
+        transform.Translate(movement * Time.deltaTime, Space.World);
 
     }
 

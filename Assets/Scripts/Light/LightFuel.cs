@@ -5,9 +5,9 @@ using UnityEngine;
 public class LightFuel : MonoBehaviour {
 
     public Light lightObject;
-    public float lightDurability = 20.0f;
-    public float lightIntensity = 1.5f;
-    
+    public float lightDurability = 15.0f;
+    public float lightFullRange = 100f;
+
     private float timer;
 
 	// Use this for initialization
@@ -19,11 +19,16 @@ public class LightFuel : MonoBehaviour {
 	void Update () {
         timer -= Time.deltaTime;
         timer = Mathf.Clamp(timer, 0, lightDurability);
-		lightObject.intensity = lightIntensity * timer / lightDurability;
+		lightObject.range = GetLightRange();
     }
 
     public void FillLight(float fuelFactor)
     {
         timer += lightDurability * fuelFactor;
+    }
+
+    public float GetLightRange()
+    {
+        return lightFullRange* timer / lightDurability;
     }
 }
