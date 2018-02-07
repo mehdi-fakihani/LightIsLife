@@ -64,7 +64,7 @@ namespace LIL.Skills
 
             // The fireball is destroyed the collision
 
-            Destroy(gameObject);
+            Destroy(gameObject,50);
         }
 
     }

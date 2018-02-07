@@ -58,6 +58,7 @@ namespace LIL.Skills
             {
                 // The fireballs' ejection pos
                 Vector3 EjectPos = player.transform.position + player.transform.forward * ejection;
+                EjectPos.y += 1;
 
                 // Play the attacks' animation
                 playerAnimator.SetTrigger("fireball");
