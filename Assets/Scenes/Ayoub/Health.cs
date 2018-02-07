@@ -68,11 +68,12 @@ public class Health : MonoBehaviour
             //Health
             currentHealth -= amount;
             if (currentHealth < 0) currentHealth = 0;
-            healthSlider.value = currentHealth / (float) maxHealth;
+
+            if (healthSlider != null) healthSlider.value = currentHealth / (float)maxHealth;
 
             if (currentHealth == 0) playDead();
             else {
-				animator.SetTrigger(hurtAnimation);
+				animator.SetTrigger("hurt");
 				if (!audioSource.isPlaying) audioSource.PlayOneShot(soundHurt);
             }
             
@@ -90,7 +91,7 @@ public class Health : MonoBehaviour
 		dead = true;
 
         // Play death animation
-        animator.SetTrigger(deadAnimation);
+        animator.SetTrigger("death");
         
 		// Play death sound
         audioSource.PlayOneShot(soundDead);

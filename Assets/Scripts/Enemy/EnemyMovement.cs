@@ -21,7 +21,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        if (anim.GetBool("Move"))
+        if (anim.GetBool("walk"))
         {
             nav.SetDestination(player.position);
             moveCancelled = false;

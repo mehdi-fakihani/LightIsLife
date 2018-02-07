@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System;
 
 public class EnemyAttack : MonoBehaviour
 {
@@ -11,13 +11,15 @@ public class EnemyAttack : MonoBehaviour
     Animator anim;                              // Reference to the animator component.
     GameObject player;                          // Reference to the player GameObject.
     bool playerInRange;                         // Whether player is within the trigger collider and can be attacked.
+    Health playerHealth;
     float timer;                                // Timer for counting up to the next attack.
 
 
-    void Awake()
+    void Start()
     {
         // Setting up the references.
         player = GameObject.FindGameObjectWithTag("Player");
+        playerHealth = player.GetComponent<Health>();
         anim = GetComponent<Animator>();
     }
 
@@ -54,13 +56,13 @@ public class EnemyAttack : MonoBehaviour
         {
             // ... attack.
             Attack();
-            anim.SetBool("Move", false);
+            anim.SetBool("walk", false);
         }
 
         if (!playerInRange)
         {
-            anim.SetBool("Attack", false);
-            anim.SetBool("Move", true);
+            
+            anim.SetBool("walk", true);
         }
 
     }
@@ -70,6 +72,8 @@ public class EnemyAttack : MonoBehaviour
     {
         // Reset the timer.
         timer = 0f;
-        anim.SetBool("Attack", true);
+        playerHealth.takeDammage(attackDamage);
+        Console.WriteLine("Health of the player after the attack : "+ playerHealth.getCurrentHealth());
+        anim.SetTrigger("attack");
     }
 }
