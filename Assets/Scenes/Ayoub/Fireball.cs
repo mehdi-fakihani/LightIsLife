@@ -56,7 +56,7 @@ namespace LIL.Skills
                 enemyHealth.takeDammage(damageAttack);
 
                 // Apply effects of the fireball on the enemy
-                effects.addEffect(new Effects.Silence(GeneralData.getEffect("Silence").effect));
+                effects.addEffect(new Effects.Silence(GeneralData.GetEffectByName("Silence").effect));
 
 
             }

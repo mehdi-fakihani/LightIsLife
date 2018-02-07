@@ -50,7 +50,7 @@ public class GeneralData : MonoBehaviour
     [System.Serializable]
     public class Effect : Item
     {
-        public double effect;
+        public float effect;
     }
 
     // TUTO FOR LATER
@@ -168,8 +168,8 @@ public class GeneralData : MonoBehaviour
     public static void initEffectsList()
     {
         effects = new List<Effect>(){
-                new Effect { name = "Silence", isUsed = true, description = "The Silence effect description here", effect = 1.0}
-                ,new Effect { name = "Delayed", isUsed = false, description = "The delayed effect description here", effect = 1.0 }
+                new Effect { name = "Silence", isUsed = true, description = "The Silence effect description here", effect = 1.0f}
+                ,new Effect { name = "Delayed", isUsed = false, description = "The delayed effect description here", effect = 1.0f }
             };
     }
 
