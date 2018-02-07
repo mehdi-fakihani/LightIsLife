@@ -43,6 +43,7 @@ namespace LIL.Skills
 
         public void OnCollisionEnter(Collision other)
         {
+            Debug.Log("the Gameobject tag is : " + gameObject.tag);
             // Checks if the fireball has hit an enemy
             if (other.gameObject.CompareTag("Enemy"))
             {
@@ -61,7 +62,8 @@ namespace LIL.Skills
 
             }
 
-            // The fireball is destroyed the collision 
+            // The fireball is destroyed the collision
+
             Destroy(gameObject);
         }
 

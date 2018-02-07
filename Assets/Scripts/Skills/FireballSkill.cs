@@ -32,7 +32,7 @@ namespace LIL.Skills
         public float range;                     // The range of the ball
         public int damageAttack;                // The fireball damage
         public float castTime;                  // Time of the cast
-        public string animationToPlay;          // The name of the animation that we need to play
+        public int ejection;                    // ejection factor
 
         // Private : 
         private Animator playerAnimator;        // The Animator of the player
@@ -57,10 +57,10 @@ namespace LIL.Skills
             effects.addEffect(new Effects.Delayed(castTime, () =>
             {
                 // The fireballs' ejection pos
-                Vector3 EjectPos = player.transform.position + player.transform.forward * 2;
+                Vector3 EjectPos = player.transform.position + player.transform.forward * ejection;
 
                 // Play the attacks' animation
-                playerAnimator.SetTrigger(animationToPlay);
+                playerAnimator.SetTrigger("fireball");
 
                 // Play The attacks' sound
                 audioSource.PlayOneShot(fireball_Sound, 0.3f);

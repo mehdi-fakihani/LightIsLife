@@ -14,7 +14,7 @@ namespace LIL
     /// </summary>
     public class SkillManager : MonoBehaviour
     {
-        [SerializeField] private readonly string[] skillIds = new string[0];
+        [SerializeField] private string[] skillIds = new string[0];
 
         private readonly Dictionary<string, Skill> skills
             = new Dictionary<string, Skill>();
@@ -96,7 +96,7 @@ namespace LIL
             return silenceTokens == 0;
         }
 
-        void Awake()
+        void Start()
         {
             foreach (string skillId in skillIds)
             {

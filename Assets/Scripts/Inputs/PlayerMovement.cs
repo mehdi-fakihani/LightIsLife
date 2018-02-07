@@ -13,10 +13,14 @@ namespace LIL
         Animator anim;
         private float moveHorizontal;
         private float moveVertical;
+        Skill fireball;
         public ProfilsID input;
+        private Profile profile;
 
         void Start()
         {
+            fireball = GetComponent<SkillManager>().getSkill("Fireball");
+            profile = new Profile(input, 0);
             anim = GetComponent<Animator>();
         }
 
@@ -41,21 +45,23 @@ namespace LIL
             transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
 
             Animating(moveHorizontal, moveVertical);*/
-             Profile keyboard = new Profile(input, 0);
-             Debug.Log(keyboard);
-            if (keyboard.getKey(PlayerAction.Up))
+
+            if (profile.getKeyDown(PlayerAction.Skill1)) fireball.tryCast();
+
+
+            if (profile.getKey(PlayerAction.Up))
             {
                 moveVertical = 1.0f;
             }
-            if (keyboard.getKey(PlayerAction.Down))
+            if (profile.getKey(PlayerAction.Down))
             {
                 moveVertical = -1.0f;
             }
-            if (keyboard.getKey(PlayerAction.Left))
+            if (profile.getKey(PlayerAction.Left))
             {
                 moveHorizontal = -1.0f;
             }
-            if (keyboard.getKey(PlayerAction.Right))
+            if (profile.getKey(PlayerAction.Right))
             {
                 moveHorizontal = 1.0f;
             }
@@ -72,7 +78,7 @@ namespace LIL
             bool walking = h != 0f || v != 0f;
 
             // Tell the animator whether or not the player is walking.
-            anim.SetBool("IsWalking", walking);
+            anim.SetBool("walk", walking);
         }
     }
 }
