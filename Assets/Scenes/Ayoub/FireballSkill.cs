@@ -53,8 +53,8 @@ namespace LIL.Skills
 
             // Adding the effects of the attack on the attacker : 
 
-            effects.addEffect(new Effects.Silence(castTime));
-            effects.addEffect(new Effects.Delayed(castTime, () =>
+            //effects.addEffect(new Effects.Silence(castTime));
+            /*effects.addEffect(new Effects.Delayed(castTime, () =>
             {
                 // The fireballs' ejection pos
                 Vector3 EjectPos = player.transform.position + player.transform.forward * 2;
@@ -74,7 +74,7 @@ namespace LIL.Skills
                 // Destroy the fireball
                 Destroy(fireball, range);
 
-            }));
+            }));*/
         }
     }
 
