@@ -14,6 +14,8 @@ namespace LIL
     /// </summary>
     public class SkillManager : MonoBehaviour
     {
+        [SerializeField] private readonly string[] skillIds = new string[0];
+
         private readonly Dictionary<string, Skill> skills
             = new Dictionary<string, Skill>();
 
@@ -53,6 +55,23 @@ namespace LIL
         }
 
         /// <summary>
+        /// Removes the given skill.
+        /// </summary>
+        /// <param name="skillId"></param>
+        public void removeSkill(Skill skill)
+        {
+            skills.Remove(skill.model.id);
+        }
+        /// <summary>
+        /// Removes the skill with the given id.
+        /// </summary>
+        /// <param name="skillId"></param>
+        public void removeSkill(string skillId)
+        {
+            skills.Remove(skillId);
+        }
+
+        /// <summary>
         /// Silences the object until endSilence() is called on it.
         /// </summary>
         public void beginSilence()
@@ -75,6 +94,14 @@ namespace LIL
         public bool canCast()
         {
             return silenceTokens == 0;
+        }
+
+        void Awake()
+        {
+            foreach (string skillId in skillIds)
+            {
+                addSkill(skillId);
+            }
         }
         
         void Update()
