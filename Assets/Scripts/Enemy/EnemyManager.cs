@@ -2,6 +2,7 @@
 
 public class EnemyManager : MonoBehaviour
 {
+
     public Health health;                   // Reference to the player's heatlh.
     public GameObject enemy;                // The enemy prefab to be spawned.
     public float spawnTime = 3f;            // How long between each spawn.
@@ -17,6 +18,7 @@ public class EnemyManager : MonoBehaviour
 
     void Spawn()
     {
+
         /*// If the player has no health left...
         if (health.currentHealth <= 0f)
         {

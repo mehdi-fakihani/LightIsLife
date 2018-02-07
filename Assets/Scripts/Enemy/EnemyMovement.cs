@@ -4,11 +4,11 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    Transform player;               
-    NavMeshAgent nav;              
+    Transform player;               // Reference to the player's position.
+    NavMeshAgent nav;               // Reference to the nav mesh agent.
     Animator anim;
-
     bool moveCancelled = false;
+
 
     void Awake()
     {
