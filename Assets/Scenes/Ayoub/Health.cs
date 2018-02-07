@@ -27,7 +27,6 @@ public class Health : MonoBehaviour
 	public int maxHealth=100;					// Max health
 	public Slider healthSlider;					// The Slider of the players' health
 	//public GameOverScript gameOver;				// GameOver script that is launched when the player is dead
-	public string hurtAnimation, deadAnimation;	// The name of the animations to play
 	
 	// Private :
 	

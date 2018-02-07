@@ -516,8 +516,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8c95a7d00714c4a9aa05cbbf96e30c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundDead: {fileID: 0}
-  soundHurt: {fileID: 0}
+  soundDead: {fileID: 8300000, guid: fd0e47d71526ac64b80e965a9b88860c, type: 3}
+  soundHurt: {fileID: 8300000, guid: e1c96ce55e402fc46a82fc90dc7303e1, type: 3}
   maxHealth: 100
   healthSlider: {fileID: 124111714}
   hurtAnimation: 
