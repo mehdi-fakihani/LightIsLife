@@ -2,6 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+
+    How to create a skill :
+
+        1. If no skill model can be reused, create a class which inherits from ISkillModel.
+        It must implements void cast(SkillManager).
+
+        2. Instanciate the skill model as a component of a game object. The game object is not
+        important, but it must not be destroyed during the game (to keep the skill model alive).
+
+        3. Set the ID, the cooldown and the number of charges of the skill model.
+
+        4. Add a skill manager to the skill's owner.
+
+        5a. To set the initial skills of a game object :
+            In the skill ID list of the new manager, add the ID set to the model.
+
+        5b. To modify the skills of a game object in game :
+            
+            // Get the owner's skill manager
+            var manager = owner.GetComponent<SkillManager>();
+            
+            // Add a skill
+            Skill newSkill = manager.addSkill(SkillsID.NiceSkill);
+
+            // Remove a skill
+            manager.removeSkill(SkillsID.NiceSkill);
+
+    How to use a skill :
+        
+            // Get the owner's skill manager
+            var manager = owner.GetComponent<SkillManager>();
+            
+            // Get the skill
+            Skill niceSkill = manager.getSkill(SkillsID.NiceSkill);
+
+            // Try to cast the skill
+            bool success = niceSkill.tryCast();
+        
+*/
+
 namespace LIL {
     /// <summary>
     /// Instance of a skill model created like that :
@@ -12,8 +53,8 @@ namespace LIL {
         /// <summary>
         /// Used by SkillManager.
         /// </summary>
-        public static readonly Dictionary<string, ISkillModel> Models
-            = new Dictionary<string, ISkillModel>();
+        public static readonly Dictionary<SkillsID, ISkillModel> Models
+            = new Dictionary<SkillsID, ISkillModel>();
 
         public readonly SkillManager manager;
         public readonly ISkillModel model;
@@ -63,6 +104,14 @@ namespace LIL {
             currentCD += model.cooldown;
             model.cast(manager);
             return true;
+        }
+        
+        /// <summary>
+        /// Returns the skill unique ID.
+        /// </summary>
+        public SkillsID id()
+        {
+            return model.id;
         }
 
         /// <summary>

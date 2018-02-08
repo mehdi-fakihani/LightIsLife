@@ -14,10 +14,10 @@ namespace LIL
     /// </summary>
     public class SkillManager : MonoBehaviour
     {
-        [SerializeField] private string[] skillIds = new string[0];
+        [SerializeField] private SkillsID[] skillIds = new SkillsID[0];
 
-        private readonly Dictionary<string, Skill> skills
-            = new Dictionary<string, Skill>();
+        private readonly Dictionary<SkillsID, Skill> skills
+            = new Dictionary<SkillsID, Skill>();
 
         private int silenceTokens = 0;
 
@@ -32,7 +32,7 @@ namespace LIL
         /// <summary>
         /// Returns the skill corresponding to the id, or null if it is not found.
         /// </summary>
-        [CanBeNull] public Skill getSkill(string skillId)
+        [CanBeNull] public Skill getSkill(SkillsID skillId)
         {
             Skill skill;
             skills.TryGetValue(skillId, out skill);
@@ -42,7 +42,7 @@ namespace LIL
         /// <summary>
         /// Creates then add a skill of the id specified to the manager, then returns it.
         /// </summary>
-        public Skill addSkill(string skillId)
+        public Skill addSkill(SkillsID skillId)
         {
             ISkillModel model;
             bool hasId = Skill.Models.TryGetValue(skillId, out model);
@@ -66,7 +66,7 @@ namespace LIL
         /// Removes the skill with the given id.
         /// </summary>
         /// <param name="skillId"></param>
-        public void removeSkill(string skillId)
+        public void removeSkill(SkillsID skillId)
         {
             skills.Remove(skillId);
         }
@@ -98,9 +98,9 @@ namespace LIL
 
         void Start()
         {
-            foreach (string skillId in skillIds)
+            foreach (var id in skillIds)
             {
-                addSkill(skillId);
+                addSkill(id);
             }
         }
         

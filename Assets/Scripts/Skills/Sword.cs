@@ -48,7 +48,7 @@ namespace LIL
             // Get the damage caused by the fireball from the GeneralData script
             damageAttack = GeneralData.GetSkillByName("Sword").damage;
             player = GameObject.FindGameObjectWithTag("Player");
-            swordSkill = player.GetComponent<SkillManager>().getSkill("Sword");
+            swordSkill = player.GetComponent<SkillManager>().getSkill(SkillsID.HeroAttack);
             profile = new Profile(input, 0);
             currentAttackTime = 0;
             canAttack = false;

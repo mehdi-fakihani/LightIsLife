@@ -14,7 +14,7 @@ namespace LIL
         {
             profile = new Profile(ProfilsID.XBoxGamepad, 0);
             var skillManager = GetComponent<SkillManager>();
-            fireball = skillManager.addSkill("fireball");
+            fireball = skillManager.addSkill(SkillsID.Fireball);
         }
         
         void Update()

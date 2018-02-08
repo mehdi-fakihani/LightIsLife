@@ -20,7 +20,7 @@ namespace LIL
 
         void Start()
         {
-            fireball = GetComponent<SkillManager>().getSkill("Fireball");
+            fireball = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
             profile = new Profile(input, 0);
             anim = GetComponent<Animator>();
         }

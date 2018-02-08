@@ -2,6 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+
+    How to create an effect :
+
+        Create a class with inerits from IEffect. You must then implement :
+            - float duration();
+            - void apply();
+            - void update(float secs);
+            - void expires(bool onDeath);
+    
+    How to use an effect :
+
+        // Get the effect manager
+        var manager = target.GetComponent<EffectManager>();
+
+        // Creates the effect
+        var effect = new MyEffect(...);
+
+        // Add it to the manager
+        manager.addEffect(effect);
+        
+*/
+
 namespace LIL
 {
     /// <summary>
