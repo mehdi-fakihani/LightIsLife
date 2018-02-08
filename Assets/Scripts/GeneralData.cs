@@ -144,7 +144,7 @@ public class GeneralData : MonoBehaviour
     public static void initSkillsList()
     {
         skills = new List<Skill>(){
-                new Skill { name = "Fireball", isUsed = true, description = "The Fireball description here", damage = 1, level =1 }
+                new Skill { name = "Fireball", isUsed = true, description = "The Fireball description here", damage = 3, level =1 }
                 ,new Skill { name = "Sword", isUsed = false, description = "The Sword description here", damage = 3, level =1 }
             };
     }

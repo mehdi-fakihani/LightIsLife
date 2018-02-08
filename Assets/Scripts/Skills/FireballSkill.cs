@@ -21,7 +21,7 @@ using UnityEngine;
 //------------------------------------------------------------------------
 
 
-namespace LIL.Skills
+namespace LIL
 {
     public class FireballSkill : ISkillModel
     {
@@ -56,15 +56,16 @@ namespace LIL.Skills
             effects.addEffect(new Effects.Silence(castTime));
             effects.addEffect(new Effects.Delayed(castTime, () =>
             {
-                // The fireballs' ejection pos
-                Vector3 EjectPos = player.transform.position + player.transform.forward * ejection;
-                EjectPos.y += 1;
-
                 // Play the attacks' animation
                 playerAnimator.SetTrigger("fireball");
 
                 // Play The attacks' sound
                 audioSource.PlayOneShot(fireball_Sound, 0.3f);
+
+                // The fireballs' ejection pos
+                Vector3 EjectPos = player.transform.position + player.transform.forward * ejection;
+                EjectPos.y += 1;
+
 
                 // Instantiating the fireball Gameobject
                 fireball = Instantiate(fireball_Prefab, EjectPos, player.transform.rotation) as GameObject;

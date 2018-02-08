@@ -2,44 +2,50 @@
 using System.Collections;
 using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour
+namespace LIL
 {
-    public float minSpeed = 3.5f;
-    public float maxSpeed = 7f;
-
-    private Transform player;               // Reference to the player's position.
-    private NavMeshAgent nav;               // Reference to the nav mesh agent.
-    private Animator anim;
-    private LightFuel torchLight;
-    private bool moveCancelled = false;
-
-
-    void Awake()
+    public class EnemyMovement : MonoBehaviour
     {
-        // Set up the references.
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        torchLight = player.GetComponent<LightFuel>();
-        anim = GetComponent<Animator>();
-        nav = GetComponent<NavMeshAgent>();
-    }
+        public float minSpeed = 3.5f;
+        public float maxSpeed = 7f;
+
+        private Transform player;               // Reference to the player's position.
+        private NavMeshAgent nav;               // Reference to the nav mesh agent.
+        private Animator anim;
+        private LightFuel torchLight;
+        private bool moveCancelled = false;
 
 
-    void Update()
-    {
-        float distance = Vector3.Distance(player.position, transform.position);
-        nav.speed = minSpeed + (maxSpeed - minSpeed)
-                             * Mathf.Clamp(distance / torchLight.GetLightRange(), 0, 1);
-        if (anim.GetBool("walk"))
+        void Start()
         {
-            nav.SetDestination(player.position);
-            moveCancelled = false;
+            // Set up the references.
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+            torchLight = player.GetComponent<LightFuel>();
+            anim = GetComponent<Animator>();
+            nav = GetComponent<NavMeshAgent>();
         }
-        else
+
+
+        void Update()
         {
-            if (!moveCancelled)
+            if (GetComponent<HealthEnemy>().getCurrentHealth() > 0)
             {
-                nav.SetDestination(transform.position);
-                moveCancelled = true;
+                float distance = Vector3.Distance(player.position, transform.position);
+                nav.speed = minSpeed + (maxSpeed - minSpeed)
+                                     * Mathf.Clamp(distance / torchLight.GetLightRange(), 0, 1);
+                if (anim.GetBool("walk"))
+                {
+                    nav.SetDestination(player.position);
+                    moveCancelled = false;
+                }
+                else
+                {
+                    if (!moveCancelled)
+                    {
+                        nav.SetDestination(transform.position);
+                        moveCancelled = true;
+                    }
+                }
             }
         }
     }

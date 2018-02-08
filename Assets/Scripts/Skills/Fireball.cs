@@ -19,7 +19,7 @@ using UnityEngine;
 //
 //------------------------------------------------------------------------
 
-namespace LIL.Skills
+namespace LIL
 {
 
     public class Fireball : MonoBehaviour {
@@ -29,7 +29,7 @@ namespace LIL.Skills
         private int damageAttack;           // This var is for the damage that will be caused by the fireball
         private GameObject enemy;           // Enemys' GameObject
         private EffectManager effects;      // Enemys' EffectManager
-        private Health enemyHealth;         // Enemys' Health System
+        private HealthEnemy enemyHealth;         // Enemys' Health System
 
         void Start()
         {
@@ -43,7 +43,6 @@ namespace LIL.Skills
 
         public void OnCollisionEnter(Collision other)
         {
-            Debug.Log("the Gameobject tag is : " + gameObject.tag);
             // Checks if the fireball has hit an enemy
             if (other.gameObject.CompareTag("Enemy"))
             {
@@ -51,7 +50,7 @@ namespace LIL.Skills
 
                 enemy = other.gameObject;
                 effects = enemy.GetComponent<EffectManager>();
-                enemyHealth = enemy.GetComponent<Health>();
+                enemyHealth = enemy.GetComponent<HealthEnemy>();
 
                 // Cause damage to the enemy
                 enemyHealth.takeDammage(damageAttack);
@@ -64,7 +63,7 @@ namespace LIL.Skills
 
             // The fireball is destroyed the collision
 
-            Destroy(gameObject,50);
+            Destroy(gameObject);
         }
 
     }
