@@ -13,7 +13,7 @@ using UnityEngine;
 //
 //  Creation :  01/02/2018
 //
-//  Last modification : Aub Ah - 01/02/2018
+//  Last modification : Sidney - 12/02/2018
 //
 //------------------------------------------------------------------------
 
@@ -45,7 +45,14 @@ namespace LIL
 
             // Adding the effects of the attack on the attacker : 
 
-            effects.addEffect(new Effects.Delayed(castTime, () =>
+            // Added by Sidney
+            effects.addEffect(new Effects.Silence(castTime));
+            effects.addEffect(new Effects.Slow(castTime, 0.33f));
+
+            /* Modified by Sidney : Do not delay the attack (the animation time already delays
+             * the attack).
+             * 
+            effects.addEffect(new Effects.Delayed(castTime, () =>*/
             {
                 // Play the attacks' animation
                 playerAnimator.SetTrigger("sword");
@@ -53,7 +60,7 @@ namespace LIL
                 // Play The attacks' sound
                 audioSource.PlayOneShot(sword_Sound, 0.3f);
 
-            }));
+            }//));
         }
     }
 

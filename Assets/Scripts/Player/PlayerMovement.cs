@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace LIL
 {
+    [RequireComponent(typeof(MovementManager))]
     public class PlayerMovement : MonoBehaviour
     {
 
@@ -18,20 +19,22 @@ namespace LIL
         public ProfilsID input;
         public Profile profile;
 
+        // Added by Sidney
+        private MovementManager movementManager;
+
         void Start()
         {
             fireball = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
             profile = new Profile(input, 0);
             anim = GetComponent<Animator>();
+            movementManager = GetComponent<MovementManager>();
         }
 
         void Update()
         {
             ControllPlayer();
         }
-
-
-
+        
         void ControllPlayer()
         {
             moveVertical = 0.0f;
@@ -39,22 +42,26 @@ namespace LIL
          
             if (profile.getKeyDown(PlayerAction.Skill1)) fireball.tryCast();
 
+            // Added by Sidney
+            if (movementManager.isImmobilized()) return;
+            
             if (profile.getKey(PlayerAction.Up))
             {
-                moveVertical = 1.0f;
+                moveVertical += 1.0f;
             }
             if (profile.getKey(PlayerAction.Down))
             {
-                moveVertical = -1.0f;
+                moveVertical -= 1.0f;
             }
             if (profile.getKey(PlayerAction.Left))
             {
-                moveHorizontal = -1.0f;
+                moveHorizontal -= 1.0f;
             }
             if (profile.getKey(PlayerAction.Right))
             {
-                moveHorizontal = 1.0f;
+                moveHorizontal += 1.0f;
             }
+
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
             movement.Normalize();
 
@@ -63,7 +70,9 @@ namespace LIL
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15F);
             }
 
-            transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
+            // Added by Sidney
+            float modifier = movementManager.getSpeedRatio();
+            transform.Translate(movement * movementSpeed * Time.deltaTime * modifier, Space.World);
             Animating(moveHorizontal, moveVertical);
         }
 

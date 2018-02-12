@@ -12,6 +12,7 @@ namespace LIL
     /// Component which handles the skills of a game object.
     /// They can be created or retrieved with their id, set in skill models.
     /// </summary>
+    [RequireComponent(typeof(EffectManager))]
     public class SkillManager : MonoBehaviour
     {
         [SerializeField] private SkillsID[] skillIds = new SkillsID[0];
