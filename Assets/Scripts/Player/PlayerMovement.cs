@@ -22,12 +22,16 @@ namespace LIL
         // Added by Sidney
         private MovementManager movementManager;
 
+        // Added by Julien
+        private Vector3 lastMove;
+
         void Start()
         {
             fireball = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
             profile = new Profile(input, 0);
             anim = GetComponent<Animator>();
             movementManager = GetComponent<MovementManager>();
+            lastMove = Vector3.zero;
         }
 
         void Update()
@@ -67,7 +71,16 @@ namespace LIL
 
             if (movement != Vector3.zero)
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15F);
+                // smooth rotation only if movement is not opposed to last movement
+                if(lastMove + movement != Vector3.zero)
+                {
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15F);
+                }
+                else
+                {
+                    transform.rotation = Quaternion.LookRotation(movement);
+                }
+                this.lastMove = movement;
             }
 
             // Added by Sidney
