@@ -12,6 +12,7 @@ namespace LIL.Effects
     {
         private float time;
         private float slowRatio;
+        private MovementManager movement;
 
         public Slow(float time, float slowRatio)
         {
@@ -25,12 +26,13 @@ namespace LIL.Effects
 
         protected override void apply()
         {
-            manager.GetComponent<MovementManager>().beginSlow(slowRatio);
+            movement = manager.gameObject.GetComponent<MovementManager>();
+            movement.beginSlow(slowRatio);
         }
 
         public override void expire(bool onDeath)
         {
-            manager.GetComponent<MovementManager>().endSlow(slowRatio);
+            movement.endSlow(slowRatio);
         }
     }
 }

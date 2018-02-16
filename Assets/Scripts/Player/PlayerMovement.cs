@@ -21,10 +21,15 @@ namespace LIL
 
         // Added by Sidney
         private MovementManager movementManager;
+        Skill icyBlast;
 
         void Start()
         {
             fireball = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
+
+            // Added by Sidney
+            icyBlast = GetComponent<SkillManager>().getSkill(SkillsID.IcyBlast);
+
             profile = new Profile(input, 0);
             anim = GetComponent<Animator>();
             movementManager = GetComponent<MovementManager>();
@@ -41,6 +46,9 @@ namespace LIL
             moveHorizontal = 0.0f;
          
             if (profile.getKeyDown(PlayerAction.Skill1)) fireball.tryCast();
+
+            // Added by Sidney
+            if (profile.getKeyDown(PlayerAction.Skill3)) icyBlast.tryCast();
 
             // Added by Sidney
             if (movementManager.isImmobilized()) return;

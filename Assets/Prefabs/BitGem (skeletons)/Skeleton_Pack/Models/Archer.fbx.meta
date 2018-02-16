@@ -1,0 +1,182 @@
+fileFormatVersion: 2
+guid: 4ec5a7852654542e5bd544234e40c259
+timeCreated: 1497280746
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Archer_bow1_AuxSHJnt
+    100004: Archer_Head_JawEndSHJnt
+    100006: Archer_Head_JawSHJnt
+    100008: Archer_Head_TopSHJnt
+    100010: Archer_l_Arm_ClavicleSHJnt
+    100012: Archer_l_Arm_ElbowSHJnt
+    100014: Archer_l_Arm_ShoulderSHJnt
+    100016: Archer_l_Arm_WristSHJnt
+    100018: Archer_l_Finger_01_01SHJnt
+    100020: Archer_l_Finger_01_02SHJnt
+    100022: Archer_l_Finger_02_01SHJnt
+    100024: Archer_l_Finger_02_02SHJnt
+    100026: Archer_l_Leg_AnkleSHJnt
+    100028: Archer_l_Leg_BallSHJnt
+    100030: Archer_l_Leg_HipSHJnt
+    100032: Archer_l_Leg_KneeSHJnt
+    100034: Archer_l_Leg_ToeSHJnt
+    100036: Archer_l_Thumb_01_01SHJnt
+    100038: Archer_l_Thumb_01_02SHJnt
+    100040: Archer_MAINSHJnt
+    100042: Archer_Neck_01SHJnt
+    100044: Archer_Neck_TopSHJnt
+    100046: Archer_r_Arm_ClavicleSHJnt
+    100048: Archer_r_Arm_ElbowSHJnt
+    100050: Archer_r_Arm_ShoulderSHJnt
+    100052: Archer_r_Arm_WristSHJnt
+    100054: Archer_r_Finger_01_01SHJnt
+    100056: Archer_r_Finger_01_02SHJnt
+    100058: Archer_r_Finger_02_01SHJnt
+    100060: Archer_r_Finger_02_02SHJnt
+    100062: Archer_r_Leg_AnkleSHJnt
+    100064: Archer_r_Leg_BallSHJnt
+    100066: Archer_r_Leg_HipSHJnt
+    100068: Archer_r_Leg_KneeSHJnt
+    100070: Archer_r_Leg_ToeSHJnt
+    100072: Archer_r_Thumb_01_01SHJnt
+    100074: Archer_r_Thumb_01_02SHJnt
+    100076: Archer_ROOTSHJnt
+    100078: Archer_Spine_01SHJnt
+    100080: Archer_Spine_TopSHJnt
+    100082: Archer_string1_AuxSHJnt
+    100084: armor
+    100086: arrow
+    100088: bow
+    100090: eyes
+    100092: Skeletonl_base
+    400000: //RootNode
+    400002: Archer_bow1_AuxSHJnt
+    400004: Archer_Head_JawEndSHJnt
+    400006: Archer_Head_JawSHJnt
+    400008: Archer_Head_TopSHJnt
+    400010: Archer_l_Arm_ClavicleSHJnt
+    400012: Archer_l_Arm_ElbowSHJnt
+    400014: Archer_l_Arm_ShoulderSHJnt
+    400016: Archer_l_Arm_WristSHJnt
+    400018: Archer_l_Finger_01_01SHJnt
+    400020: Archer_l_Finger_01_02SHJnt
+    400022: Archer_l_Finger_02_01SHJnt
+    400024: Archer_l_Finger_02_02SHJnt
+    400026: Archer_l_Leg_AnkleSHJnt
+    400028: Archer_l_Leg_BallSHJnt
+    400030: Archer_l_Leg_HipSHJnt
+    400032: Archer_l_Leg_KneeSHJnt
+    400034: Archer_l_Leg_ToeSHJnt
+    400036: Archer_l_Thumb_01_01SHJnt
+    400038: Archer_l_Thumb_01_02SHJnt
+    400040: Archer_MAINSHJnt
+    400042: Archer_Neck_01SHJnt
+    400044: Archer_Neck_TopSHJnt
+    400046: Archer_r_Arm_ClavicleSHJnt
+    400048: Archer_r_Arm_ElbowSHJnt
+    400050: Archer_r_Arm_ShoulderSHJnt
+    400052: Archer_r_Arm_WristSHJnt
+    400054: Archer_r_Finger_01_01SHJnt
+    400056: Archer_r_Finger_01_02SHJnt
+    400058: Archer_r_Finger_02_01SHJnt
+    400060: Archer_r_Finger_02_02SHJnt
+    400062: Archer_r_Leg_AnkleSHJnt
+    400064: Archer_r_Leg_BallSHJnt
+    400066: Archer_r_Leg_HipSHJnt
+    400068: Archer_r_Leg_KneeSHJnt
+    400070: Archer_r_Leg_ToeSHJnt
+    400072: Archer_r_Thumb_01_01SHJnt
+    400074: Archer_r_Thumb_01_02SHJnt
+    400076: Archer_ROOTSHJnt
+    400078: Archer_Spine_01SHJnt
+    400080: Archer_Spine_TopSHJnt
+    400082: Archer_string1_AuxSHJnt
+    400084: armor
+    400086: arrow
+    400088: bow
+    400090: eyes
+    400092: Skeletonl_base
+    4300000: Skeletonl_base
+    4300002: eyes
+    4300004: armor
+    4300006: arrow
+    4300008: bow
+    9500000: //RootNode
+    13700000: armor
+    13700002: arrow
+    13700004: bow
+    13700006: eyes
+    13700008: Skeletonl_base
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

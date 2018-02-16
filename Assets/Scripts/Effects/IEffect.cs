@@ -82,6 +82,15 @@ namespace LIL
         }
 
         /// <summary>
+        /// Set the remaining time of the effect.
+        /// </summary>
+        /// <param name="secs"></param>
+        public void setTime(float secs)
+        {
+            remainingTime = secs;
+        }
+
+        /// <summary>
         /// Used by EffectManager.
         /// </summary>
         public void initialize(EffectManager manager)

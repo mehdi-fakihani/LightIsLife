@@ -20,6 +20,14 @@ namespace LIL
             = new List<IEffect>();
 
         /// <summary>
+        /// Returns the current effects.
+        /// </summary>
+        public IEnumerable<IEffect> getEffects()
+        {
+            return effects;
+        }
+
+        /// <summary>
         /// Returns an effect of the type asked, or null if no one is currently in the manager.
         /// </summary>
         [CanBeNull]

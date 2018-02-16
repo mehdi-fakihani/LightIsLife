@@ -1,0 +1,182 @@
+fileFormatVersion: 2
+guid: 0038fff79a0e242a3a4a3451980ee0b3
+timeCreated: 1504009201
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: armor
+    100002: eyes
+    100004: helmet
+    100006: shield
+    100008: Skeletonl_base
+    100010: sword
+    100012: //RootNode
+    100014: Warrior_Head_JawEndSHJnt
+    100016: Warrior_Head_JawSHJnt
+    100018: Warrior_Head_TopSHJnt
+    100020: Warrior_l_Arm_ClavicleSHJnt
+    100022: Warrior_l_Arm_ElbowSHJnt
+    100024: Warrior_l_Arm_ShoulderSHJnt
+    100026: Warrior_l_Arm_WristSHJnt
+    100028: Warrior_l_Finger_01_01SHJnt
+    100030: Warrior_l_Finger_01_02SHJnt
+    100032: Warrior_l_Finger_02_01SHJnt
+    100034: Warrior_l_Finger_02_02SHJnt
+    100036: Warrior_l_Leg_AnkleSHJnt
+    100038: Warrior_l_Leg_BallSHJnt
+    100040: Warrior_l_Leg_HipSHJnt
+    100042: Warrior_l_Leg_KneeSHJnt
+    100044: Warrior_l_Leg_ToeSHJnt
+    100046: Warrior_l_Thumb_01_01SHJnt
+    100048: Warrior_l_Thumb_01_02SHJnt
+    100050: Warrior_MAINSHJnt
+    100052: Warrior_Neck_01SHJnt
+    100054: Warrior_Neck_TopSHJnt
+    100056: Warrior_r_Arm_ClavicleSHJnt
+    100058: Warrior_r_Arm_ElbowSHJnt
+    100060: Warrior_r_Arm_ShoulderSHJnt
+    100062: Warrior_r_Arm_WristSHJnt
+    100064: Warrior_r_Finger_01_01SHJnt
+    100066: Warrior_r_Finger_01_02SHJnt
+    100068: Warrior_r_Finger_02_01SHJnt
+    100070: Warrior_r_Finger_02_02SHJnt
+    100072: Warrior_r_Leg_AnkleSHJnt
+    100074: Warrior_r_Leg_BallSHJnt
+    100076: Warrior_r_Leg_HipSHJnt
+    100078: Warrior_r_Leg_KneeSHJnt
+    100080: Warrior_r_Leg_ToeSHJnt
+    100082: Warrior_r_Thumb_01_01SHJnt
+    100084: Warrior_r_Thumb_01_02SHJnt
+    100086: Warrior_ROOTSHJnt
+    100088: Warrior_Spine_01SHJnt
+    100090: Warrior_Spine_TopSHJnt
+    400000: armor
+    400002: eyes
+    400004: helmet
+    400006: shield
+    400008: Skeletonl_base
+    400010: sword
+    400012: //RootNode
+    400014: Warrior_Head_JawEndSHJnt
+    400016: Warrior_Head_JawSHJnt
+    400018: Warrior_Head_TopSHJnt
+    400020: Warrior_l_Arm_ClavicleSHJnt
+    400022: Warrior_l_Arm_ElbowSHJnt
+    400024: Warrior_l_Arm_ShoulderSHJnt
+    400026: Warrior_l_Arm_WristSHJnt
+    400028: Warrior_l_Finger_01_01SHJnt
+    400030: Warrior_l_Finger_01_02SHJnt
+    400032: Warrior_l_Finger_02_01SHJnt
+    400034: Warrior_l_Finger_02_02SHJnt
+    400036: Warrior_l_Leg_AnkleSHJnt
+    400038: Warrior_l_Leg_BallSHJnt
+    400040: Warrior_l_Leg_HipSHJnt
+    400042: Warrior_l_Leg_KneeSHJnt
+    400044: Warrior_l_Leg_ToeSHJnt
+    400046: Warrior_l_Thumb_01_01SHJnt
+    400048: Warrior_l_Thumb_01_02SHJnt
+    400050: Warrior_MAINSHJnt
+    400052: Warrior_Neck_01SHJnt
+    400054: Warrior_Neck_TopSHJnt
+    400056: Warrior_r_Arm_ClavicleSHJnt
+    400058: Warrior_r_Arm_ElbowSHJnt
+    400060: Warrior_r_Arm_ShoulderSHJnt
+    400062: Warrior_r_Arm_WristSHJnt
+    400064: Warrior_r_Finger_01_01SHJnt
+    400066: Warrior_r_Finger_01_02SHJnt
+    400068: Warrior_r_Finger_02_01SHJnt
+    400070: Warrior_r_Finger_02_02SHJnt
+    400072: Warrior_r_Leg_AnkleSHJnt
+    400074: Warrior_r_Leg_BallSHJnt
+    400076: Warrior_r_Leg_HipSHJnt
+    400078: Warrior_r_Leg_KneeSHJnt
+    400080: Warrior_r_Leg_ToeSHJnt
+    400082: Warrior_r_Thumb_01_01SHJnt
+    400084: Warrior_r_Thumb_01_02SHJnt
+    400086: Warrior_ROOTSHJnt
+    400088: Warrior_Spine_01SHJnt
+    400090: Warrior_Spine_TopSHJnt
+    4300000: Skeletonl_base
+    4300002: sword
+    4300004: shield
+    4300006: eyes
+    4300008: armor
+    4300010: helmet
+    9500000: //RootNode
+    13700000: armor
+    13700002: eyes
+    13700004: helmet
+    13700006: shield
+    13700008: Skeletonl_base
+    13700010: sword
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
