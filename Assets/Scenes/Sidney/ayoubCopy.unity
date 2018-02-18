@@ -2444,13 +2444,14 @@ MonoBehaviour:
   id: 6
   cooldown: 1
   chargesCount: 10
-  damages: 1
-  missilesCount: 20
+  damages: 3
+  missilesCount: 10
   speed: 700
-  range: 3
-  castTime: 0.5
+  range: 4
+  castTime: 0.8
   castSlow: 0.3
   castAngle: 0.5
+  castDelayRatio: 0.5
   impactTime: 3
   impactSlow: 0.3
   prefab: {fileID: 1842841934180388, guid: 6aa33e41dd3e91240bd087216de7ec2f, type: 2}

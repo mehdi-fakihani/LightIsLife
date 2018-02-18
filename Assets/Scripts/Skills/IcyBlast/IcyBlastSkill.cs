@@ -18,6 +18,7 @@ namespace LIL
         [SerializeField] private float castTime;
         [SerializeField] private float castSlow;
         [SerializeField] private float castAngle;
+        [SerializeField] private float castDelayRatio;
         [SerializeField] private float impactTime;
         [SerializeField] private float impactSlow;
         [SerializeField] private GameObject prefab;
@@ -44,24 +45,22 @@ namespace LIL
             effects.addEffect(new Effects.Silence(castTime));
             int count = missilesCount;
 
+            yield return new WaitForSeconds(castTime * castDelayRatio);
+
             for (int i = 0; i < count; ++i)
             {
-                float p = (count - (i % 2 == 0 ? i : -i)) / (float) count;
+                float angle = castAngle * (i % 2 == 0 ? i : -i) / count;
+                var orientation = (new Quaternion(0, angle, 0, 1) * player.transform.forward).normalized;
 
-                var position = player.transform.position + player.transform.forward * 1.5f;
+                var position = player.transform.position + orientation * 1.5f;
                 position.y += 1;
 
-                var forward = player.transform.forward;
-                var right = player.transform.right;
-                var orientation = missilesCount * (p * forward + (1 - p) * castAngle * right);
-                orientation.Normalize();
-
-                var blast = Instantiate(prefab, position, player.transform.rotation);
+                var blast = Instantiate(prefab, position, player.transform.rotation * new Quaternion(0, angle, 0, 1));
                 blast.GetComponent<IcyBlast>().setup(damages, impactTime, impactSlow);
                 blast.GetComponent<Rigidbody>().AddForce(orientation * speed);
                 Destroy(blast, 100f * range / speed);
                 
-                yield return new WaitForSeconds(castTime / missilesCount);
+                yield return new WaitForSeconds(castTime * (1 - castDelayRatio) / missilesCount);
             }
         }
     }
