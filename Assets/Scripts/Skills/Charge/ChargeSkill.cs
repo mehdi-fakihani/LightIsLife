@@ -5,9 +5,9 @@ using UnityEngine;
 namespace LIL
 {
     /// <summary>
-    /// Model for the icy blast skill.
-    /// It launches many little missiles in front of the caster at short range.
-    /// The missiles causes damages and slow the enemies being hit.
+    /// Model for the charge skill.
+    /// It makes the caster run in a straight line, causing damage and stunning the first enemy
+    /// encoutered.
     /// </summary>
     public class ChargeSkill : ISkillModel
     {

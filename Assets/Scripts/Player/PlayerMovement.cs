@@ -23,6 +23,7 @@ namespace LIL
         private MovementManager movementManager;
         Skill charge;
         Skill icyBlast;
+        Skill bladesDance;
 
         // Added by Julien
         private Vector3 lastMove;
@@ -32,8 +33,9 @@ namespace LIL
             fireball = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
 
             // Added by Sidney
-            charge   = GetComponent<SkillManager>().getSkill(SkillsID.Charge);
-            icyBlast = GetComponent<SkillManager>().getSkill(SkillsID.IcyBlast);
+            charge      = GetComponent<SkillManager>().getSkill(SkillsID.Charge);
+            icyBlast    = GetComponent<SkillManager>().getSkill(SkillsID.IcyBlast);
+            bladesDance = GetComponent<SkillManager>().getSkill(SkillsID.BladesDance);
 
             profile = new Profile(input, 0);
             anim = GetComponent<Animator>();
@@ -51,7 +53,8 @@ namespace LIL
             moveVertical = 0.0f;
             moveHorizontal = 0.0f;
          
-            if (profile.getKeyDown(PlayerAction.Skill1)) fireball.tryCast();
+            // Modified by Sidney
+            if (profile.getKeyDown(PlayerAction.Skill1)) bladesDance.tryCast();
 
             // Added by Sidney
             if (profile.getKeyDown(PlayerAction.Skill4)) charge.tryCast();

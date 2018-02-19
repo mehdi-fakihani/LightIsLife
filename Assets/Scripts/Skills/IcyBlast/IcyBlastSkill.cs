@@ -47,15 +47,17 @@ namespace LIL
 
             yield return new WaitForSeconds(castTime * castDelayRatio);
 
+            var forward  = player.transform.forward;
+            var rotation = player.transform.rotation;
             for (int i = 0; i < count; ++i)
             {
                 float angle = castAngle * (i % 2 == 0 ? i : -i) / count;
-                var orientation = (new Quaternion(0, angle, 0, 1) * player.transform.forward).normalized;
+                var orientation = (new Quaternion(0, angle, 0, 1) * forward).normalized;
 
                 var position = player.transform.position + orientation * 1.5f;
                 position.y += 1;
 
-                var blast = Instantiate(prefab, position, player.transform.rotation * new Quaternion(0, angle, 0, 1));
+                var blast = Instantiate(prefab, position, rotation * new Quaternion(0, angle, 0, 1));
                 blast.GetComponent<IcyBlast>().setup(damages, impactTime, impactSlow);
                 blast.GetComponent<Rigidbody>().AddForce(orientation * speed);
                 Destroy(blast, 100f * range / speed);

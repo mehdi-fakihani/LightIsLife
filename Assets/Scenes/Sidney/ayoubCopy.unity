@@ -236,7 +236,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4889495656927214, guid: 40a75cb8746106149809f15feca8b472, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 40a75cb8746106149809f15feca8b472, type: 2}
@@ -378,7 +378,6 @@ GameObject:
   - component: {fileID: 412238377}
   - component: {fileID: 412238380}
   - component: {fileID: 412238379}
-  - component: {fileID: 412238378}
   m_Layer: 0
   m_Name: shadow
   m_TagString: Untagged
@@ -400,21 +399,6 @@ Transform:
   m_Father: {fileID: 1593422933}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &412238378
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 64238049334749230, guid: 629fe30384d203348928748e62536b66,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 412238376}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &412238379
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -763,7 +747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a140e5ed91a2c42bcb54710c2caf60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillIds: 00000000030000000600000008000000
+  skillIds: 0000000003000000060000000800000002000000
 --- !u!114 &667444703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -926,7 +910,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &823487606
 GameObject:
@@ -1166,7 +1150,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4805390036735026, guid: b8488c386666eb545a06277a921fb809, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1310467030978178, guid: b8488c386666eb545a06277a921fb809, type: 2}
       propertyPath: m_TagString
@@ -1355,7 +1339,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 64.688, y: -40.543003, z: 0}
 --- !u!114 &1406597785
 MonoBehaviour:
@@ -1442,7 +1426,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4576324364223066, guid: 1df67e9ebe9a42847970b5654f56e161, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114686916493862970, guid: 1df67e9ebe9a42847970b5654f56e161,
         type: 2}
@@ -1463,6 +1447,7 @@ GameObject:
   - component: {fileID: 1513516902}
   - component: {fileID: 1513516904}
   - component: {fileID: 1513516905}
+  - component: {fileID: 1513516907}
   - component: {fileID: 1513516906}
   m_Layer: 0
   m_Name: Skills
@@ -1562,12 +1547,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 8
   cooldown: 1
-  chargesCount: 1
+  chargesCount: 10
   damages: 5
-  stunTime: 99
+  stunTime: 1
   speed: 1600
   range: 12
   castTime: 0.3
+  castSound: {fileID: 0}
+--- !u!114 &1513516907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1513516901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f6e4da6af2474145a54c5abb170aa8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 2
+  cooldown: 1
+  chargesCount: 10
+  damages: 50
+  range: 3
+  castTime: 0
+  impactWidth: 1
   castSound: {fileID: 0}
 --- !u!114 &1593422929
 MonoBehaviour:
@@ -1583,7 +1587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundDead: {fileID: 8300000, guid: fd0e47d71526ac64b80e965a9b88860c, type: 3}
   soundHurt: {fileID: 8300000, guid: e1c96ce55e402fc46a82fc90dc7303e1, type: 3}
-  maxHealth: 100
+  maxHealth: 1000
   healthSlider: {fileID: 848241980}
 --- !u!4 &1593422933
 Transform:
@@ -1920,7 +1924,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4576324364223066, guid: 1df67e9ebe9a42847970b5654f56e161, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114686916493862970, guid: 1df67e9ebe9a42847970b5654f56e161,
         type: 2}
