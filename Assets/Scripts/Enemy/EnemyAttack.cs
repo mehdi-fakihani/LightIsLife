@@ -54,7 +54,11 @@ namespace LIL
             timer += Time.deltaTime;
 
             // If the timer exceeds the time between attacks, the player is in range and this enemy is alive...
-            if (timer >= timeBetweenAttacks && playerInRange && GetComponent<HealthEnemy>().isAlive())
+            if (timer >= timeBetweenAttacks &&
+                playerInRange &&
+                GetComponent<HealthEnemy>().isAlive() &&
+                // Added by Sidney
+                GetComponent<SkillManager>().canCast())
             {
                 // ... attack.
                 Attack();

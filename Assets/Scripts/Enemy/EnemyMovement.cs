@@ -37,6 +37,7 @@ namespace LIL
 
                 // Added by Sidney
                 nav.speed *= GetComponent<MovementManager>().getSpeedRatio();
+                if (GetComponent<MovementManager>().isImmobilized()) nav.speed = 0;
 
                 if (anim.GetBool("walk"))
                 {
