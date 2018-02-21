@@ -1,1 +1,1 @@
-# LightIsLife
+# LightIsLife [![Build Status](https://travis-ci.org/mehdi-fakihani/LightIsLife.svg?branch=master)](https://travis-ci.org/mehdi-fakihani/LightIsLife)
