@@ -1,9 +1,9 @@
 #! /bin/sh
 
-project="Light is life"
+project="LightIsLife"
 
 echo "Attempting to build $project for Windows"
-/Applications/Unity/Unity.app/Contents/MacOS/Unity 
+travis_wait 50 /Applications/Unity/Unity.app/Contents/MacOS/Unity
   -batchmode 
   -nographics 
   -silent-crashes 
@@ -13,7 +13,7 @@ echo "Attempting to build $project for Windows"
   -quit
 
 echo "Attempting to build $project for OS X"
-/Applications/Unity/Unity.app/Contents/MacOS/Unity 
+travis_wait 50 /Applications/Unity/Unity.app/Contents/MacOS/Unity 
   -batchmode 
   -nographics 
   -silent-crashes 
@@ -23,7 +23,7 @@ echo "Attempting to build $project for OS X"
   -quit
 
 echo "Attempting to build $project for Linux"
-/Applications/Unity/Unity.app/Contents/MacOS/Unity 
+travis_wait 50 /Applications/Unity/Unity.app/Contents/MacOS/Unity 
   -batchmode 
   -nographics 
   -silent-crashes 
