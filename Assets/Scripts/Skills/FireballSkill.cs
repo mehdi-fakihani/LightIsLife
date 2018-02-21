@@ -16,7 +16,7 @@ using UnityEngine;
 //
 //  Creation :  01/02/2018
 //
-//  Last modification : Aub Ah - 01/02/2018
+//  Last modification : Sidney - 12/02/2018
 //
 //------------------------------------------------------------------------
 
@@ -52,6 +52,9 @@ namespace LIL
 
 
             // Adding the effects of the attack on the attacker : 
+
+            // Added by Sidney
+            effects.addEffect(new Effects.Immobilize(castTime));
 
             effects.addEffect(new Effects.Silence(castTime));
             effects.addEffect(new Effects.Delayed(castTime, () =>

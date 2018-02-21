@@ -31,8 +31,14 @@ namespace LIL
             if (GetComponent<HealthEnemy>().getCurrentHealth() > 0)
             {
                 float distance = Vector3.Distance(player.position, transform.position);
+
                 nav.speed = minSpeed + (maxSpeed - minSpeed)
                                      * Mathf.Clamp(distance / torchLight.GetLightRange(), 0, 1);
+
+                // Added by Sidney
+                nav.speed *= GetComponent<MovementManager>().getSpeedRatio();
+                if (GetComponent<MovementManager>().isImmobilized()) nav.speed = 0;
+
                 if (anim.GetBool("walk"))
                 {
                     nav.SetDestination(player.position);

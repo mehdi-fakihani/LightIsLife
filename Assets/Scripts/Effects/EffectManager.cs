@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace LIL
@@ -8,12 +11,39 @@ namespace LIL
     /// Component handling effects on a game object.
     /// Usage : effectManager.addEffect(new MyEffect());
     /// </summary>
+    [RequireComponent(typeof(MovementManager))]
     public class EffectManager : MonoBehaviour
     {
         private readonly List<IEffect> effects
             = new List<IEffect>();
         private readonly List<IEffect> finishedEffets
             = new List<IEffect>();
+
+        /// <summary>
+        /// Returns the current effects.
+        /// </summary>
+        public IEnumerable<IEffect> getEffects()
+        {
+            return effects;
+        }
+
+        /// <summary>
+        /// Returns an effect of the type asked, or null if no one is currently in the manager.
+        /// </summary>
+        [CanBeNull]
+        public T getEffect<T>() where T : IEffect
+        {
+            return (T) effects.FirstOrDefault(e => e.GetType() == typeof(T));
+        }
+
+        /// <summary>
+        /// Expire then remove an effect from the manager.
+        /// </summary>
+        public void expireEffect(IEffect effect)
+        {
+            effect.expire(false);
+            effects.Remove(effect);
+        }
         
         /// <summary>
         /// Add a new effect to the game object.
