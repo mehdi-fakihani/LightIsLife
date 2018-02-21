@@ -3,7 +3,7 @@
 project="LightIsLife"
 
 echo "Attempting to build $project for Windows"
-travis_wait 50 /Applications/Unity/Unity.app/Contents/MacOS/Unity
+/Applications/Unity/Unity.app/Contents/MacOS/Unity
   -batchmode 
   -nographics 
   -silent-crashes 
@@ -13,7 +13,7 @@ travis_wait 50 /Applications/Unity/Unity.app/Contents/MacOS/Unity
   -quit
 
 echo "Attempting to build $project for OS X"
-travis_wait 50 /Applications/Unity/Unity.app/Contents/MacOS/Unity 
+/Applications/Unity/Unity.app/Contents/MacOS/Unity 
   -batchmode 
   -nographics 
   -silent-crashes 
@@ -23,7 +23,7 @@ travis_wait 50 /Applications/Unity/Unity.app/Contents/MacOS/Unity
   -quit
 
 echo "Attempting to build $project for Linux"
-travis_wait 50 /Applications/Unity/Unity.app/Contents/MacOS/Unity 
+/Applications/Unity/Unity.app/Contents/MacOS/Unity 
   -batchmode 
   -nographics 
   -silent-crashes 

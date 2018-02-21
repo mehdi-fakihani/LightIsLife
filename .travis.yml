@@ -17,5 +17,5 @@ install :
 
 script :
 #Builds the game
-- ./Scripts/build.sh
+- travis_wait 50 ./Scripts/build.sh
 #TODO : Add a script to run the tests
