@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1549707419752634}
+  m_IsPrefabParent: 1
+--- !u!1 &1549707419752634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4755443819696260}
+  - component: {fileID: 114928936503808214}
+  - component: {fileID: 114456266724978474}
+  - component: {fileID: 114874559153972178}
+  - component: {fileID: 114023645296182834}
+  - component: {fileID: 114476686942978288}
+  m_Layer: 0
+  m_Name: Skills
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4755443819696260
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549707419752634}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -25.179264, y: -4.941387, z: 2.4017978}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114023645296182834
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549707419752634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f6e4da6af2474145a54c5abb170aa8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 2
+  cooldown: 1
+  chargesCount: 10
+  damages: 50
+  range: 3
+  castTime: 0
+  impactWidth: 1
+  castSound: {fileID: 0}
+--- !u!114 &114456266724978474
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549707419752634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4a79e080624eb49bfe8fdc7fc67e0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  cooldown: 0
+  chargesCount: 1
+  sword_Sound: {fileID: 0}
+  damageAttack: 10
+  castTime: 0.5
+--- !u!114 &114476686942978288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549707419752634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ff1403d6de67c49b6ac3ee3017ef0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 8
+  cooldown: 1
+  chargesCount: 10
+  damages: 5
+  stunTime: 1
+  speed: 1600
+  range: 12
+  castTime: 0.3
+  castSound: {fileID: 0}
+--- !u!114 &114874559153972178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549707419752634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 892f5204051393e4b8b73228d4994bae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 6
+  cooldown: 1
+  chargesCount: 10
+  damages: 3
+  missilesCount: 10
+  speed: 1200
+  range: 4
+  castTime: 0.8
+  castSlow: 0.3
+  castAngle: 0.5
+  castDelayRatio: 0.5
+  impactTime: 3
+  impactSlow: 0.3
+  prefab: {fileID: 1842841934180388, guid: 6aa33e41dd3e91240bd087216de7ec2f, type: 2}
+  castSound: {fileID: 0}
+--- !u!114 &114928936503808214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549707419752634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434810e7316308748b28f8a9444ea3f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 3
+  cooldown: 2
+  chargesCount: 2
+  fireball_Sound: {fileID: 8300000, guid: e1d4e264ceb124045ae9a91715ff29ad, type: 3}
+  fireball_Prefab: {fileID: 1081694656024706, guid: eada4cfec848587428aa79ad0ae5dddf,
+    type: 2}
+  strength: 800
+  range: 0.8
+  damageAttack: 10
+  castTime: 0.5
+  ejection: 2
