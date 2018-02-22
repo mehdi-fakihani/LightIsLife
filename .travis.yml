@@ -1,0 +1,21 @@
+language : generic
+
+os : osx
+
+before_install:
+#Setup rights to run be able to run the scripts
+- chmod a+x ./Scripts/install.sh
+- chmod a+x ./Scripts/build.sh
+#Setup Git LFS for MacOS
+- brew install git-lfs
+- echo -e "machine github.com\n  login $GITHUB_TOKEN" >> ~/.netrc
+- git lfs pull
+
+install :
+#Installs Unity for MacOS
+- ./Scripts/install.sh
+
+script :
+#Builds the game
+- travis_wait 50 ./Scripts/build.sh
+#TODO : Add a script to run the tests
