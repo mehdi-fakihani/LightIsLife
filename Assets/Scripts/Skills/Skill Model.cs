@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
+//using NUnit.Framework;
 using UnityEngine;
 
 namespace LIL
@@ -23,7 +23,7 @@ namespace LIL
         void Awake()
         {
             if (cooldown <= 0f) cooldown = 0.01f;
-            Assert.IsFalse(Skill.Models.ContainsKey(id), "Skill key '" + id + "' is duplicated");
+            //Assert.IsFalse(Skill.Models.ContainsKey(id), "Skill key '" + id + "' is duplicated");
             Skill.Models.Add(id, this);
         }
     }

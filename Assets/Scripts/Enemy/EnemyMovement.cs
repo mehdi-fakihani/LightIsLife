@@ -10,16 +10,24 @@ namespace LIL
         public float maxSpeed = 7f;
 
         private Transform player;               // Reference to the player's position.
+        private Transform player2;
         private NavMeshAgent nav;               // Reference to the nav mesh agent.
         private Animator anim;
         private LightFuel torchLight;
         private bool moveCancelled = false;
+        private bool multi;
+        private float distance;
 
 
         void Start()
         {
             // Set up the references.
-            player = GameObject.FindGameObjectWithTag("Player").transform;
+            multi = SceneManager.getMulti();
+            player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
+            if (multi == true)
+            {
+                player2 = GameObject.FindGameObjectsWithTag("Player")[1].transform;
+            }
             torchLight = player.GetComponent<LightFuel>();
             anim = GetComponent<Animator>();
             nav = GetComponent<NavMeshAgent>();
@@ -30,8 +38,16 @@ namespace LIL
         {
             if (GetComponent<HealthEnemy>().getCurrentHealth() > 0)
             {
-                float distance = Vector3.Distance(player.position, transform.position);
-
+                float distance1 = Vector3.Distance(player.position, transform.position);
+                if (multi == true)
+                {
+                    float distance2 = Vector3.Distance(player2.position, transform.position);
+                    distance = Mathf.Min(distance1, distance2);
+                }
+                else
+                {
+                    distance = distance1;
+                }
                 nav.speed = minSpeed + (maxSpeed - minSpeed)
                                      * Mathf.Clamp(distance / torchLight.GetLightRange(), 0, 1);
 
@@ -41,7 +57,14 @@ namespace LIL
 
                 if (anim.GetBool("walk"))
                 {
-                    nav.SetDestination(player.position);
+                    if (distance == distance1)
+                    {
+                        nav.SetDestination(player.position);
+                    }
+                    else
+                    {
+                        nav.SetDestination(player2.position);
+                    }
                     moveCancelled = false;
                 }
                 else

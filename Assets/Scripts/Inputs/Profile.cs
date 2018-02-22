@@ -69,7 +69,7 @@ namespace LIL.Inputs
             var model = Models[id];
             
             // There is only one keyboard available
-            if (model.device == Device.Keyboard) Assert.Zero(deviceNum);
+          if (model.device == Device.Keyboard) Assert.Zero(deviceNum);
 
             keys = model.keys;
             axises = model.keys.Values

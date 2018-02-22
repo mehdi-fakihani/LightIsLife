@@ -18,34 +18,59 @@ namespace LIL
         Skill fireball;
         public ProfilsID input;
         public Profile profile;
-
+        [SerializeField] private GameObject otherPlayertorch;
+        private Light otherlight;
+        [SerializeField] private GameObject Playertorch;
+        [SerializeField] private Transform player;
+        [SerializeField] private GameObject secondPlayer;
+        private Light light;
+        private CameraController cam;
+        SceneManager scenemanager;
         // Added by Sidney
         private MovementManager movementManager;
         Skill charge;
         Skill icyBlast;
         Skill bladesDance;
+        private bool multi;
+        private bool multiplayer = false;
 
         // Added by Julien
         private Vector3 lastMove;
 
         void Start()
         {
+           // torch = torch.GetComponent<Light>();
             fireball = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
-
+            
+            light = Playertorch.GetComponent<Light>();
+            cam = GameObject.Find("Main Camera").GetComponent<CameraController>();
             // Added by Sidney
             charge      = GetComponent<SkillManager>().getSkill(SkillsID.Charge);
             icyBlast    = GetComponent<SkillManager>().getSkill(SkillsID.IcyBlast);
             bladesDance = GetComponent<SkillManager>().getSkill(SkillsID.BladesDance);
-
             profile = new Profile(input, 0);
             anim = GetComponent<Animator>();
             movementManager = GetComponent<MovementManager>();
+            scenemanager = GetComponent<SceneManager>();
             lastMove = Vector3.zero;
+            bool multi = SceneManager.getMulti();
+            Debug.Log(multi);
+            if (multi == false)
+            {
+                secondPlayer.SetActive(false);
+                
+            }
+            if (multi == true)
+            {
+                otherlight = otherPlayertorch.GetComponent<Light>();
+                multiplayer = true;
+            }
         }
 
         void Update()
         {
             ControllPlayer();
+            Debug.Log(multiplayer);
         }
         
         void ControllPlayer()
@@ -60,9 +85,17 @@ namespace LIL
             if (profile.getKeyDown(PlayerAction.Skill4)) charge.tryCast();
             if (profile.getKeyDown(PlayerAction.Skill3)) icyBlast.tryCast();
 
+            if (multiplayer == true)
+            {
+                Debug.Log("test");
+                if (profile.getKeyDown(PlayerAction.ChangeTorch) && light.intensity != 0)
+                {
+                    otherlight.intensity = light.intensity;
+                    light.intensity = 0;
+                }
+            }
             // Added by Sidney
             if (movementManager.isImmobilized()) return;
-            
             if (profile.getKey(PlayerAction.Up))
             {
                 moveVertical += 1.0f;
@@ -101,6 +134,11 @@ namespace LIL
             float modifier = movementManager.getSpeedRatio();
             transform.Translate(movement * movementSpeed * Time.deltaTime * modifier, Space.World);
             Animating(moveHorizontal, moveVertical);
+
+            if (CameraFollow())
+            {
+                cam.target = player;
+            }
         }
 
         void Animating(float h, float v)
@@ -111,5 +149,19 @@ namespace LIL
             // Tell the animator whether or not the player is walking.
             anim.SetBool("walk", walking);
         }
+
+        bool CameraFollow()
+        {
+            if (light.intensity !=0 )
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
+
+   
 }

@@ -11,17 +11,27 @@ namespace LIL
 
 
         Animator anim;                              // Reference to the animator component.
-        GameObject player;                          // Reference to the player GameObject.
+        GameObject player;
+        GameObject player2;     // Reference to the player GameObject.
         bool playerInRange;                         // Whether player is within the trigger collider and can be attacked.
+        bool player2InRange;
         HealthPlayer playerHealth;
+        HealthPlayer playerHealth2;
         float timer;                                // Timer for counting up to the next attack.
+        private bool multi;
 
 
         void Start()
         {
             // Setting up the references.
-            player = GameObject.FindGameObjectWithTag("Player");
+            multi = SceneManager.getMulti();
+            player = GameObject.FindGameObjectsWithTag("Player")[0];
             playerHealth = player.GetComponent<HealthPlayer>();
+            if (multi == true)
+            {
+                player2 = GameObject.FindGameObjectsWithTag("Player")[1];
+                playerHealth2 = player2.GetComponent<HealthPlayer>();
+            }
             anim = GetComponent<Animator>();
         }
 
@@ -34,6 +44,13 @@ namespace LIL
                 // ... the player is in range.
                 playerInRange = true;
             }
+            if (multi == true)
+            {
+            if (other.gameObject == player2)
+                {
+                    player2InRange = true;
+                }
+            }
         }
 
 
@@ -44,6 +61,13 @@ namespace LIL
             {
                 // ... the player is no longer in range.
                 playerInRange = false;
+            }
+            if (multi == true)
+            {
+                if (other.gameObject == player2)
+                {
+                    player2InRange = false;
+                }
             }
         }
 
@@ -61,7 +85,7 @@ namespace LIL
                 GetComponent<SkillManager>().canCast())
             {
                 // ... attack.
-                Attack();
+                Attack(playerHealth);
                 anim.SetBool("walk", false);
             }
 
@@ -71,14 +95,34 @@ namespace LIL
                 anim.SetBool("walk", true);
             }
 
+            if (multi == true)
+            {
+                if (timer >= timeBetweenAttacks &&
+               player2InRange &&
+               GetComponent<HealthEnemy>().isAlive() &&
+               // Added by Sidney
+               GetComponent<SkillManager>().canCast())
+                {
+                    // ... attack.
+                    Attack(playerHealth2);
+                    anim.SetBool("walk", false);
+                }
+
+                if (!player2InRange)
+                {
+
+                    anim.SetBool("walk", true);
+                }
+            }
+
         }
 
 
-        void Attack()
+        void Attack(HealthPlayer health)
         {
             // Reset the timer.
             timer = 0f;
-            playerHealth.takeDammage(attackDamage);
+            health.takeDammage(attackDamage);
             anim.SetTrigger("attack");
         }
     }
