@@ -1692,6 +1692,8 @@ GameObject:
   - component: {fileID: 1513516903}
   - component: {fileID: 1513516902}
   - component: {fileID: 1513516904}
+  - component: {fileID: 1513516906}
+  - component: {fileID: 1513516905}
   m_Layer: 0
   m_Name: Skills
   m_TagString: Untagged
@@ -1751,6 +1753,52 @@ MonoBehaviour:
   sword_Sound: {fileID: 0}
   damageAttack: 10
   castTime: 0.5
+--- !u!114 &1513516905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1513516901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ff1403d6de67c49b6ac3ee3017ef0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  cooldown: 0
+  chargesCount: 0
+  damages: 0
+  stunTime: 0
+  speed: 0
+  range: 0
+  castTime: 0
+  castSound: {fileID: 0}
+--- !u!114 &1513516906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1513516901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 892f5204051393e4b8b73228d4994bae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  cooldown: 0
+  chargesCount: 0
+  damages: 0
+  missilesCount: 0
+  speed: 0
+  range: 0
+  castTime: 0
+  castSlow: 0
+  castAngle: 0
+  castDelayRatio: 0
+  impactTime: 0
+  impactSlow: 0
+  prefab: {fileID: 1842841934180388, guid: 6aa33e41dd3e91240bd087216de7ec2f, type: 2}
+  castSound: {fileID: 0}
 --- !u!114 &1593422929
 MonoBehaviour:
   m_ObjectHideFlags: 0

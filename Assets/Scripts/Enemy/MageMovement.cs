@@ -11,6 +11,7 @@ namespace LIL
         public float maxSpeed = 7f;
         public float range = 15f;
         public float rangeFactor = 0.75f;
+        public float spellRadius = 0.5f;
         // don't throw spell at max range but maxRange * rangeFactor
         // so the spell will be harder to dodge
 
@@ -53,7 +54,7 @@ namespace LIL
                 bool inRange = false;
                 Vector3 movement = player.position - transform.position;
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, movement, out hit, range))
+                if (Physics.SphereCast(transform.position, spellRadius, movement, out hit, range))
                 {
                     GameObject hitObject = hit.transform.gameObject;
                     inRange = hitObject.CompareTag("Player") && distance < range * rangeFactor;
