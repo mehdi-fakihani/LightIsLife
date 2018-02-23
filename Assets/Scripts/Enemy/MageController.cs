@@ -64,6 +64,7 @@ namespace LIL
                                     * Mathf.Clamp(distance / torchLight.GetLightRange(), 0, 1);
 
             nav.speed *= GetComponent<MovementManager>().getSpeedRatio();
+            if (GetComponent<MovementManager>().isImmobilized()) nav.speed = 0f;
 
             //check if in fire range
             bool inRange = false;

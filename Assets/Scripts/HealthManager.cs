@@ -68,6 +68,8 @@ namespace LIL
         {
             alive = false;
             life = 0f;
+            var effects = GetComponent<EffectManager>();
+            if (effects) effects.onDeath();
             deathCallback.Invoke();
         }
 
@@ -80,17 +82,10 @@ namespace LIL
             if (isInvulnerable() || !isAlive()) return;
 
             life -= damages / protectionRatio;
-            
             if (life > 0f)
-            {
                 hurtCallback.Invoke();
-            }
             else
-            {
-                alive = false;
-                life = 0f;
-                deathCallback.Invoke();
-            }
+                kill();
         }
 
         /// <summary>

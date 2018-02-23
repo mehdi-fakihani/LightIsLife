@@ -50,7 +50,7 @@ namespace LIL
             effects.addEffect(new Effects.Immobilize(castTime));
 
             effects.addEffect(new Effects.Silence(castTime));
-            effects.addEffect(new Effects.Delayed(castTime, () =>
+            effects.addEffect(new Effects.Delayed(castTime, false, () =>
             {
                 // Play the attacks' animation
                 casterAnimator.SetTrigger("fireball");

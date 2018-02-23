@@ -30,15 +30,16 @@ namespace LIL
             
             caster.GetComponent<EffectManager>().addEffect(new Effects.Slow(castTime, 0.9f));
             caster.GetComponent<EffectManager>().addEffect(new Effects.Silence(castTime));
-            caster.GetComponent<EffectManager>().addEffect(new Effects.Delayed(castTime, () =>
+            caster.GetComponent<EffectManager>().addEffect(new Effects.Delayed(castTime, false, () =>
             {
                 var destination = caster.transform.position + caster.transform.forward * range;
+                var recoil = caster.transform.forward * 1.5f;
 
                 var hits = Physics.SphereCastAll(
-                    caster.transform.position + new Vector3(0, 1.5f, 0),
+                    caster.transform.position + new Vector3(0, 1.5f, 0) - recoil,
                     impactWidth,
                     caster.transform.forward,
-                    range);
+                    range + recoil.sqrMagnitude);
                 
                 var decors = new List<RaycastHit>();
                 var actors = new List<GameObject>();
@@ -48,6 +49,7 @@ namespace LIL
 
                     if (obj == caster) continue;
                     if (obj.transform.IsChildOf(caster.transform)) continue;
+                    if (Vector3.Dot(hit.point, obj.transform.position) < 0.2f) continue;
 
                     if (obj.isNeutral())
                         decors.Add(hit);
@@ -75,7 +77,7 @@ namespace LIL
                             impact = decor.point;
                         }
                     }
-                    destination = impact - caster.transform.forward * 1.5f;
+                    destination = impact - caster.transform.forward * 1f;
                 }
                 // Caster's destination is behind the farthest actor
                 else

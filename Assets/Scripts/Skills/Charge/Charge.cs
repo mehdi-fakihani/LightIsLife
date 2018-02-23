@@ -15,12 +15,14 @@ namespace LIL
         private float speed;
         private float timeMax;
         private float timeElasped;
+        private float invulnerabilityTime;
 
-        public void setup(float damages, float stunTime, float speed, float range)
+        public void setup(float damages, float stunTime, float speed, float range, float invulnerabilityTime)
         {
             this.damages = damages;
             this.stunTime = stunTime;
             this.speed = speed;
+            this.invulnerabilityTime = invulnerabilityTime;
             timeMax = 100f * range / speed;
             timeElasped = 0f;
         }
@@ -29,6 +31,11 @@ namespace LIL
         {
             GetComponent<MovementManager>().endImmobilization();
             GetComponent<SkillManager   >().endSilence();
+            GetComponent<HealthManager  >().endInvulnerability();
+
+            var effect = new Effects.Invulnerability(invulnerabilityTime);
+            GetComponent<EffectManager>().addEffect(effect);
+
             Destroy(this);
         }
 
@@ -63,8 +70,12 @@ namespace LIL
 
         void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.isEnemyWith(gameObject))
-                impact(collision.gameObject);
+            var entity = collision.gameObject;
+
+            if (entity.isMissile()) return;
+
+            if (entity.isEnemyWith(gameObject))
+                impact(entity);
 
             finish();
         }

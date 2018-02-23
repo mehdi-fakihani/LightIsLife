@@ -51,6 +51,8 @@ namespace LIL
             var rotation = caster.transform.rotation;
             for (int i = 0; i < count; ++i)
             {
+                if (!caster.GetComponent<HealthManager>().isAlive()) break;
+
                 float angle = castAngle * (i % 2 == 0 ? i : -i) / count;
                 var orientation = (new Quaternion(0, angle, 0, 1) * forward).normalized;
 

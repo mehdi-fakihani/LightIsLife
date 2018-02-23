@@ -145,6 +145,7 @@ namespace LIL
                                     * Mathf.Clamp(distance / torchLight.GetLightRange(), 0, 1);
 
             nav.speed *= GetComponent<MovementManager>().getSpeedRatio();
+            if (GetComponent<MovementManager>().isImmobilized()) nav.speed = 0f;
 
             Vector3 movement = player.position - transform.position;
             //if in range

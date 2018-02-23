@@ -35,6 +35,14 @@ namespace LIL
         }
 
         /// <summary>
+        /// Indicates if the game object is a missile (craeted by a skill).
+        /// </summary>
+        public static bool isMissile(this GameObject current)
+        {
+            return current.CompareTag("Missile");
+        }
+
+        /// <summary>
         /// Indicates if one of the game object is a player and the other a monster.
         /// </summary>
         public static bool isEnemyWith(this GameObject current, GameObject other)

@@ -1879,6 +1879,11 @@ Prefab:
       propertyPath: castTime
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 114476686942978288, guid: e258e4679c31cf04d841447926f497cc,
+        type: 2}
+      propertyPath: postInvulnerabilityTime
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e258e4679c31cf04d841447926f497cc, type: 2}
   m_IsPrefabParent: 0

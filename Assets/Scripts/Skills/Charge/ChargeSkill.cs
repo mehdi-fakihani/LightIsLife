@@ -13,6 +13,7 @@ namespace LIL
     {
         [SerializeField] private float damages;
         [SerializeField] private float stunTime;
+        [SerializeField] private float postInvulnerabilityTime;
         [SerializeField] private float speed;
         [SerializeField] private float range;
         [SerializeField] private float castTime;
@@ -25,16 +26,17 @@ namespace LIL
             if (castSound != null)
             {
                 var audioSource = caster.GetComponent<AudioSource>();
-                audioSource.PlayOneShot(castSound, 0.3f);
+                audioSource.PlayOneShot(castSound);
             }
 
             caster.GetComponent<MovementManager>().beginImmobilization();
-            caster.GetComponent<SkillManager>().beginSilence();
+            caster.GetComponent<SkillManager   >().beginSilence();
+            caster.GetComponent<HealthManager  >().beginInvulnerability();
 
-            caster.GetComponent<EffectManager>().addEffect(new Effects.Delayed(castTime, () =>
+            caster.GetComponent<EffectManager>().addEffect(new Effects.Delayed(castTime, true, () =>
             {
                 var charge = caster.AddComponent<Charge>();
-                charge.setup(damages, stunTime, speed, range);
+                charge.setup(damages, stunTime, speed, range, postInvulnerabilityTime);
             }));
         }
     }
