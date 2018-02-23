@@ -21,8 +21,7 @@ namespace LIL.UI
         // Update is called once per frame
         void Update()
         {
-            slider.value = health.getInitialLife() / health.getLife();
-            Debug.Log("life percent = " + slider.value);
+            slider.value = health.getLife() / health.getInitialLife();
         }
     }
 }

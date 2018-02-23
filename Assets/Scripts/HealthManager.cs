@@ -49,7 +49,7 @@ namespace LIL
         /// </summary>
         public float getLife()
         {
-            return initialLife;
+            return life;
         }
 
         /// <summary>
