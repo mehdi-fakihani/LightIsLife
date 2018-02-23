@@ -66,7 +66,6 @@ namespace LIL
                 {
                     var impact = destination;
                     float distance = (caster.transform.position - impact).magnitude;
-                    Debug.Log("hit " + decors.Count + " decors");
                     foreach (var decor in decors)
                     {
                         float newDistance = (caster.transform.position - decor.point).magnitude;

@@ -13,16 +13,16 @@ namespace LIL
         Animator anim;                              // Reference to the animator component.
         GameObject player;                          // Reference to the player GameObject.
         bool playerInRange;                         // Whether player is within the trigger collider and can be attacked.
-        HealthPlayer playerHealth;
+        HealthManager playerHealth;
         float timer;                                // Timer for counting up to the next attack.
 
-        private int currentAttackDamage;
+        private float currentAttackDamage;
 
         void Start()
         {
             // Setting up the references.
             player = GameObject.FindGameObjectWithTag("Player");
-            playerHealth = player.GetComponent<HealthPlayer>();
+            playerHealth = player.GetComponent<HealthManager>();
             anim = GetComponent<Animator>();
             currentAttackDamage = baseAttackDamage;
         }
@@ -56,7 +56,7 @@ namespace LIL
             timer += Time.deltaTime;
 
             // If the timer exceeds the time between attacks, the player is in range and this enemy is alive...
-            if (timer >= timeBetweenAttacks && playerInRange && GetComponent<HealthEnemy>().isAlive())
+            if (timer >= timeBetweenAttacks && playerInRange && GetComponent<HealthManager>().isAlive())
             {
                 // ... attack.
                 Attack();
@@ -76,13 +76,13 @@ namespace LIL
         {
             // Reset the timer.
             timer = 0f;
-            playerHealth.takeDammage(baseAttackDamage);
+            playerHealth.harm(currentAttackDamage);
             anim.SetTrigger("attack");
         }
 
         public void increaseDamage(float ratio)
         {
-            currentAttackDamage += (int) Mathf.Round(baseAttackDamage * ratio);
+            currentAttackDamage += baseAttackDamage * ratio;
         }
 
     }

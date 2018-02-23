@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,8 +26,8 @@ namespace LIL
     public class Fireball : MonoBehaviour {
 
         // Private :
-        private float damages;              // This var is for the damage that will be caused by the fireball
-        private GameObject caster;          // Game object which casted the fireball
+        [NonSerialized] public float damages;              // This var is for the damage that will be caused by the fireball
+        [NonSerialized] public GameObject caster;          // Game object which casted the fireball
 
         void Start()
         {
@@ -37,7 +38,7 @@ namespace LIL
             // ----> Commented by Sidney (value set by the spell model in setup) <------
             // damageAttack = GeneralData.GetSkillByName("Fireball").damage;
         }
-
+        
         public void setup(GameObject caster, float damages)
         {
             this.caster = caster;
