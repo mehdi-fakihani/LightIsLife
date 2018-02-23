@@ -24,6 +24,7 @@ namespace LIL
 
         /// <summary>
         /// Applies a slow on the game object. It must be temporary and reverted with "endSlow(value)".
+        /// Exemple : beginSlow(1f / 3f) will divide by 3 it's speed.
         /// </summary>
         public void beginSlow(float ratio)
         {

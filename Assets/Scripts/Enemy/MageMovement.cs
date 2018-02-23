@@ -22,7 +22,7 @@ namespace LIL
         private Animator anim;
         private LightFuel torchLight;
         private bool moveCancelled = false;
-        private int currentDamage;
+        private float currentDamage;
 
         void Start()
         {

@@ -7,13 +7,13 @@ namespace LIL
     public class EnemyAttack : MonoBehaviour
     {
         public float timeBetweenAttacks = 0.5f;     // The time in seconds between each attack.
-        public int attackDamage = 10;               // The amount of health taken away per attack.
+        public float attackDamage = 10f;            // The amount of health taken away per attack.
 
 
         Animator anim;                              // Reference to the animator component.
         GameObject player;                          // Reference to the player GameObject.
         bool playerInRange;                         // Whether player is within the trigger collider and can be attacked.
-        HealthPlayer playerHealth;
+        HealthManager playerHealth;
         float timer;                                // Timer for counting up to the next attack.
 
 
@@ -21,7 +21,7 @@ namespace LIL
         {
             // Setting up the references.
             player = GameObject.FindGameObjectWithTag("Player");
-            playerHealth = player.GetComponent<HealthPlayer>();
+            playerHealth = player.GetComponent<HealthManager>();
             anim = GetComponent<Animator>();
         }
 
@@ -56,7 +56,7 @@ namespace LIL
             // If the timer exceeds the time between attacks, the player is in range and this enemy is alive...
             if (timer >= timeBetweenAttacks &&
                 playerInRange &&
-                GetComponent<HealthEnemy>().isAlive() &&
+                GetComponent<HealthManager>().isAlive() &&
                 // Added by Sidney
                 GetComponent<SkillManager>().canCast())
             {
@@ -78,7 +78,7 @@ namespace LIL
         {
             // Reset the timer.
             timer = 0f;
-            playerHealth.takeDammage(attackDamage);
+            playerHealth.harm(attackDamage);
             anim.SetTrigger("attack");
         }
     }

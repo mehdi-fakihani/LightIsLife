@@ -83,7 +83,7 @@ namespace LIL
         // This method is called when the character is dead
         // /!\ This mehtod is not complet /!\
         //---------------------------------------------------------
-        public void playDead()
+        public void playDead() // COPIED IN ENEMY MOVEMENT - To get death behavior (Sidney)
         {
 
             dead = true;

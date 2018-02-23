@@ -12,7 +12,7 @@ namespace LIL
     /// </summary>
     public class BladesDanceSkill : ISkillModel
     {
-        [SerializeField] private int damages;
+        [SerializeField] private float damages;
         [SerializeField] private float range;
         [SerializeField] private float castTime;
         [SerializeField] private float impactWidth;
@@ -20,24 +20,24 @@ namespace LIL
 
         public override void cast(SkillManager manager)
         {
-            var player = manager.gameObject;
+            var caster = manager.gameObject;
 
             if (castSound != null)
             {
-                var audioSource = player.GetComponent<AudioSource>();
+                var audioSource = caster.GetComponent<AudioSource>();
                 audioSource.PlayOneShot(castSound, 0.3f);
             }
             
-            player.GetComponent<EffectManager>().addEffect(new Effects.Slow(castTime, 0.9f));
-            player.GetComponent<EffectManager>().addEffect(new Effects.Silence(castTime));
-            player.GetComponent<EffectManager>().addEffect(new Effects.Delayed(castTime, () =>
+            caster.GetComponent<EffectManager>().addEffect(new Effects.Slow(castTime, 0.9f));
+            caster.GetComponent<EffectManager>().addEffect(new Effects.Silence(castTime));
+            caster.GetComponent<EffectManager>().addEffect(new Effects.Delayed(castTime, () =>
             {
-                var destination = player.transform.position + player.transform.forward * range;
+                var destination = caster.transform.position + caster.transform.forward * range;
 
                 var hits = Physics.SphereCastAll(
-                    player.transform.position + new Vector3(0, 1.5f, 0),
+                    caster.transform.position + new Vector3(0, 1.5f, 0),
                     impactWidth,
-                    player.transform.forward,
+                    caster.transform.forward,
                     range);
                 
                 var decors = new List<RaycastHit>();
@@ -46,64 +46,65 @@ namespace LIL
                 {
                     var obj = hit.transform.gameObject;
 
-                    if (obj == player) continue;
-                    if (obj.transform.IsChildOf(player.transform)) continue;
+                    if (obj == caster) continue;
+                    if (obj.transform.IsChildOf(caster.transform)) continue;
 
-                    if (obj.CompareTag("Player") || obj.CompareTag("Enemy"))
-                         actors.Add(obj);
-                    else decors.Add(hit);
+                    if (obj.isNeutral())
+                        decors.Add(hit);
+                    else
+                        actors.Add(obj);
                 }
 
-                // Player's destination is at the spell max range
+                // Caster's destination is at the spell max range
                 if (decors.Count == 0 && actors.Count == 0) 
                 {
-                    player.transform.position = destination;
+                    caster.transform.position = destination;
                     return;
                 }
-                // Players's destination is before touching the closest decor
+                // Caster's destination is before touching the closest decor
                 if (decors.Count != 0) 
                 {
                     var impact = destination;
-                    float distance = (player.transform.position - impact).magnitude;
+                    float distance = (caster.transform.position - impact).magnitude;
                     Debug.Log("hit " + decors.Count + " decors");
                     foreach (var decor in decors)
                     {
-                        float newDistance = (player.transform.position - decor.point).magnitude;
+                        float newDistance = (caster.transform.position - decor.point).magnitude;
                         if (newDistance < distance)
                         {
                             distance = newDistance;
                             impact = decor.point;
                         }
                     }
-                    destination = impact - player.transform.forward * 1.5f;
+                    destination = impact - caster.transform.forward * 1.5f;
                 }
-                // Player's destination is behind the farthest actor
+                // Caster's destination is behind the farthest actor
                 else
                 {
-                    var impact = player.transform.position;
-                    float distance = (player.transform.position - impact).magnitude;
+                    var impact = caster.transform.position;
+                    float distance = (caster.transform.position - impact).magnitude;
                     foreach (var actor in actors)
                     {
-                        float newDistance = (player.transform.position - actor.transform.position).magnitude;
+                        float newDistance = (caster.transform.position - actor.transform.position).magnitude;
                         if (newDistance > distance)
                         {
                             distance = newDistance;
                             impact = actor.transform.position;
                         }
                     }
-                    var newDestination = impact + player.transform.forward * 1.5f;
+                    var newDestination = impact + caster.transform.forward * 1.5f;
                     destination = newDestination.magnitude > destination.magnitude
                         ? newDestination
                         : destination;
                 }
 
-                destination.y = player.transform.position.y;
-                player.transform.position = destination;
+                destination.y = caster.transform.position.y;
+                caster.transform.position = destination;
 
-                foreach (var actor in actors.Where(actor => actor.CompareTag("Enemy")))
+                foreach (var actor in actors.Where(actor => actor.isEnemyWith(caster)))
                 {
-                    var health = actor.GetComponent<HealthEnemy>();
-                    if (health) health.takeDammage(damages);
+                    var health = actor.GetComponent<HealthManager>();
+                    if (health) health.harm(damages);
                 }
             }));
         }

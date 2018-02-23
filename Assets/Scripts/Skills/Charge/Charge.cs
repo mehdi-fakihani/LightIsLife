@@ -4,15 +4,19 @@ using UnityEngine;
 
 namespace LIL
 {
+    /// <summary>
+    /// The temporary component on the charge skill's user.
+    /// It block and make him move on a line, and apply charge effects on the first enemy touched.
+    /// </summary>
     public class Charge : MonoBehaviour
     {
-        private int damages;
+        private float damages;
         private float stunTime;
         private float speed;
         private float timeMax;
         private float timeElasped;
 
-        public void setup(int damages, float stunTime, float speed, float range)
+        public void setup(float damages, float stunTime, float speed, float range)
         {
             this.damages = damages;
             this.stunTime = stunTime;
@@ -30,16 +34,15 @@ namespace LIL
 
         private void impact(GameObject enemy)
         {
-            var health = enemy.GetComponent<HealthEnemy>();
+            var health = enemy.GetComponent<HealthManager>();
             if (health)
             {
-                health.takeDammage(damages);
+                health.harm(damages);
             }
 
             var effects = enemy.GetComponent<EffectManager>();
             if (effects)
             {
-                Debug.Log("stunned");
                 effects.addEffect(new Effects.Immobilize(stunTime));
                 effects.addEffect(new Effects.Silence(stunTime));
             }
@@ -60,7 +63,7 @@ namespace LIL
 
         void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.CompareTag("Enemy"))
+            if (collision.gameObject.isEnemyWith(gameObject))
                 impact(collision.gameObject);
 
             finish();

@@ -30,25 +30,18 @@ namespace LIL
         public GameObject fireball_Prefab;      // The prefab that must be generated
         public float strength;                  // The strength of the ball firing
         public float range;                     // The range of the ball
-        public int damageAttack;                // The fireball damage
+        public float damageAttack;              // The fireball damage
         public float castTime;                  // Time of the cast
         public int ejection;                    // ejection factor
-
-        // Private : 
-        private Animator playerAnimator;        // The Animator of the player
-        private AudioSource audioSource;        // The AudioSource of the player
-        private GameObject player;              // Players' GameObject
-        private GameObject fireball;            // fireballs' GameObject
-        EffectManager effects;                  // Players' EffectManager
-
+        
         public override void cast(SkillManager skillManager)
         {
             // Initialization :
 
-            player = skillManager.gameObject;
-            playerAnimator = player.GetComponent<Animator>();
-            audioSource = player.GetComponent<AudioSource>();
-            effects = skillManager.GetComponent<EffectManager>();
+            var caster = skillManager.gameObject;
+            var casterAnimator = caster.GetComponent<Animator>();
+            var audioSource = caster.GetComponent<AudioSource>();
+            var effects = skillManager.GetComponent<EffectManager>();
 
 
             // Adding the effects of the attack on the attacker : 
@@ -60,21 +53,22 @@ namespace LIL
             effects.addEffect(new Effects.Delayed(castTime, () =>
             {
                 // Play the attacks' animation
-                playerAnimator.SetTrigger("fireball");
+                casterAnimator.SetTrigger("fireball");
 
                 // Play The attacks' sound
                 audioSource.PlayOneShot(fireball_Sound, 0.3f);
 
                 // The fireballs' ejection pos
-                Vector3 EjectPos = player.transform.position + player.transform.forward * ejection;
+                Vector3 EjectPos = caster.transform.position + caster.transform.forward * ejection;
                 EjectPos.y += 1;
 
 
                 // Instantiating the fireball Gameobject
-                fireball = Instantiate(fireball_Prefab, EjectPos, player.transform.rotation) as GameObject;
+                var fireball = Instantiate(fireball_Prefab, EjectPos, caster.transform.rotation);
+                fireball.GetComponent<Fireball>().setup(caster, damageAttack);
 
                 // Appliquer une force 
-                fireball.GetComponent<Rigidbody>().AddForce(player.transform.forward * strength);
+                fireball.GetComponent<Rigidbody>().AddForce(caster.transform.forward * strength);
 
                 // Destroy the fireball
                 Destroy(fireball, range);
