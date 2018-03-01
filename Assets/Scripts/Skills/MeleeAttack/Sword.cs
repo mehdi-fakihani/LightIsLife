@@ -15,7 +15,7 @@ using LIL.Inputs;
 //
 //  Creation :  01/02/2018
 //
-//  Last modification : Aub Ah - 01/02/2018
+//  Last modification : Sidney - 22/02/2018
 //
 //------------------------------------------------------------------------
 
@@ -30,7 +30,6 @@ namespace LIL
         private int damageAttack;               // This var is for the damage that will be caused by the fireball
         private GameObject enemy;               // Enemys' GameObject
         private EffectManager effects;          // Enemys' EffectManager
-        private HealthEnemy enemyHealth;        // Enemys' Health System
         Skill swordSkill;
         public ProfilsID input;
         private Profile profile;
@@ -81,9 +80,9 @@ namespace LIL
                 canAttack = false;
                 enemy = other.gameObject;
                 effects = enemy.GetComponent<EffectManager>();
-                enemyHealth = enemy.GetComponent<HealthEnemy>();
+                var health = enemy.GetComponent<HealthManager>();
                 // Cause damage to the enemy
-                enemyHealth.takeDammage(damageAttack);      
+                health.harm(damageAttack);      
                 // Apply effects of the fireball on the enemy
                 effects.addEffect(new Effects.Silence(GeneralData.GetEffectByName("Silence").effect));
             }

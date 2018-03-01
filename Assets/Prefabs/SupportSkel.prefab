@@ -478,7 +478,7 @@ GameObject:
   - component: {fileID: 114593832622938498}
   - component: {fileID: 114909507871422862}
   - component: {fileID: 114389931852148066}
-  - component: {fileID: 114784486535487018}
+  - component: {fileID: 114877860167309712}
   m_Layer: 0
   m_Name: SupportSkel
   m_TagString: Enemy
@@ -1383,7 +1383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 945b24687d564234396b27df0a24f06b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114784486535487018
+--- !u!114 &114877860167309712
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1391,12 +1391,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1641355719220448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc70044bf3052cc478e1f4c5a6c47827, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f4ded81839c4fa42a43dd7ec8ae8730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundDead: {fileID: 8300000, guid: fd0e47d71526ac64b80e965a9b88860c, type: 3}
-  soundHurt: {fileID: 8300000, guid: e1c96ce55e402fc46a82fc90dc7303e1, type: 3}
-  maxHealth: 5
+  initialLife: 5
+  soundHurt: {fileID: 0}
+  soundDeath: {fileID: 0}
 --- !u!114 &114909507871422862
 MonoBehaviour:
   m_ObjectHideFlags: 1
