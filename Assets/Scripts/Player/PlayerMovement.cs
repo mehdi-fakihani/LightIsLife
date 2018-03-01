@@ -55,6 +55,7 @@ namespace LIL
          
             // Modified by Sidney
             if (profile.getKeyDown(PlayerAction.Skill1)) bladesDance.tryCast();
+            if (profile.getKeyDown(PlayerAction.Skill2)) fireball.tryCast();
 
             // Added by Sidney
             if (profile.getKeyDown(PlayerAction.Skill4)) charge.tryCast();
