@@ -1,6 +1,6 @@
 #! /bin/sh
 
-project="LightIsLife"
+project="Light is life"
 
 echo "Attempting to build $project for Windows"
 /Applications/Unity/Unity.app/Contents/MacOS/Unity
@@ -8,7 +8,7 @@ echo "Attempting to build $project for Windows"
   -nographics 
   -silent-crashes 
   -logFile $(pwd)/unity.log 
-  -projectPath $(pwd) 
+  -projectPath $TRAVIS_BUILD_DIR 
   -buildWindowsPlayer "$(pwd)/Build/windows/$project.exe" 
   -quit
 
@@ -18,7 +18,7 @@ echo "Attempting to build $project for OS X"
   -nographics 
   -silent-crashes 
   -logFile $(pwd)/unity.log 
-  -projectPath $(pwd) 
+  -projectPath $TRAVIS_BUILD_DIR 
   -buildOSXUniversalPlayer "$(pwd)/Build/osx/$project.app" 
   -quit
 
@@ -28,7 +28,7 @@ echo "Attempting to build $project for Linux"
   -nographics 
   -silent-crashes 
   -logFile $(pwd)/unity.log 
-  -projectPath $(pwd) 
+  -projectPath $TRAVIS_BUILD_DIR 
   -buildLinuxUniversalPlayer "$(pwd)/Build/linux/$project.exe" 
   -quit
 
