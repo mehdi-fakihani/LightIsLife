@@ -10,8 +10,8 @@ namespace LIL.Effects
     /// </summary>
     public class Slow : IEffect
     {
-        private float time;
-        private float slowRatio;
+        private readonly float time;
+        private readonly float slowRatio;
         private MovementManager movement;
 
         public Slow(float time, float slowRatio)

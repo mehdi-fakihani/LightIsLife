@@ -11,8 +11,9 @@ namespace LIL
     /// </summary>
     public class ChargeSkill : ISkillModel
     {
-        [SerializeField] private int damages;
+        [SerializeField] private float damages;
         [SerializeField] private float stunTime;
+        [SerializeField] private float postInvulnerabilityTime;
         [SerializeField] private float speed;
         [SerializeField] private float range;
         [SerializeField] private float castTime;
@@ -20,21 +21,22 @@ namespace LIL
 
         public override void cast(SkillManager manager)
         {
-            var player = manager.gameObject;
+            var caster = manager.gameObject;
 
             if (castSound != null)
             {
-                var audioSource = player.GetComponent<AudioSource>();
-                audioSource.PlayOneShot(castSound, 0.3f);
+                var audioSource = caster.GetComponent<AudioSource>();
+                audioSource.PlayOneShot(castSound);
             }
 
-            player.GetComponent<MovementManager>().beginImmobilization();
-            player.GetComponent<SkillManager>().beginSilence();
+            caster.GetComponent<MovementManager>().beginImmobilization();
+            caster.GetComponent<SkillManager   >().beginSilence();
+            caster.GetComponent<HealthManager  >().beginInvulnerability();
 
-            player.GetComponent<EffectManager>().addEffect(new Effects.Delayed(castTime, () =>
+            caster.GetComponent<EffectManager>().addEffect(new Effects.Delayed(castTime, true, () =>
             {
-                var charge = player.AddComponent<Charge>();
-                charge.setup(damages, stunTime, speed, range);
+                var charge = caster.AddComponent<Charge>();
+                charge.setup(damages, stunTime, speed, range, postInvulnerabilityTime);
             }));
         }
     }

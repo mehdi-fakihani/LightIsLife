@@ -31,13 +31,13 @@ namespace LIL
 
         IEnumerator casting(SkillManager manager)
         {
-            var player = manager.gameObject;
-            var effects = player.GetComponent<EffectManager>();
+            var caster = manager.gameObject;
+            var effects = caster.GetComponent<EffectManager>();
             //var animator = player.GetComponent<Animator>();
 
             if (castSound != null)
             {
-                var audioSource = player.GetComponent<AudioSource>();
+                var audioSource = caster.GetComponent<AudioSource>();
                 audioSource.PlayOneShot(castSound, 0.3f);
             }
 
@@ -47,18 +47,20 @@ namespace LIL
 
             yield return new WaitForSeconds(castTime * castDelayRatio);
 
-            var forward  = player.transform.forward;
-            var rotation = player.transform.rotation;
+            var forward  = caster.transform.forward;
+            var rotation = caster.transform.rotation;
             for (int i = 0; i < count; ++i)
             {
+                if (!caster.GetComponent<HealthManager>().isAlive()) break;
+
                 float angle = castAngle * (i % 2 == 0 ? i : -i) / count;
                 var orientation = (new Quaternion(0, angle, 0, 1) * forward).normalized;
 
-                var position = player.transform.position + orientation * 1.5f;
+                var position = caster.transform.position + orientation * 1.5f;
                 position.y += 1;
 
                 var blast = Instantiate(prefab, position, rotation * new Quaternion(0, angle, 0, 1));
-                blast.GetComponent<IcyBlast>().setup(damages, impactTime, impactSlow);
+                blast.GetComponent<IcyBlast>().setup(caster, damages, impactTime, impactSlow);
                 blast.GetComponent<Rigidbody>().AddForce(orientation * speed);
                 Destroy(blast, 100f * range / speed);
                 

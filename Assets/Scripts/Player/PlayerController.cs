@@ -8,39 +8,58 @@ using UnityEngine;
 namespace LIL
 {
     [RequireComponent(typeof(MovementManager))]
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
+        [SerializeField] private ProfilsID input;
+        [SerializeField] private float movementSpeed = 6f;
+        [SerializeField] private AudioClip hurtSound;
+        [SerializeField] private AudioClip deathSound;
 
-        public float movementSpeed = 6f;
-        Animator anim;
+        private Animator animator;
+        private AudioSource audioSource;
         private float moveHorizontal;
         private float moveVertical;
-        Skill fireball;
-        public ProfilsID input;
-        public Profile profile;
-
-        // Added by Sidney
+        private Profile profile;
+        
         private MovementManager movementManager;
-        Skill charge;
-        Skill icyBlast;
-        Skill bladesDance;
+
+        private Skill fireball;
+        private Skill charge;
+        private Skill icyBlast;
+        private Skill bladesDance;
 
         // Added by Julien
         private Vector3 lastMove;
 
         void Start()
         {
-            fireball = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
-
-            // Added by Sidney
+            fireball    = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
             charge      = GetComponent<SkillManager>().getSkill(SkillsID.Charge);
             icyBlast    = GetComponent<SkillManager>().getSkill(SkillsID.IcyBlast);
             bladesDance = GetComponent<SkillManager>().getSkill(SkillsID.BladesDance);
 
             profile = new Profile(input, 0);
-            anim = GetComponent<Animator>();
+            animator = GetComponent<Animator>();
             movementManager = GetComponent<MovementManager>();
+            audioSource = GetComponent<AudioSource>();
             lastMove = Vector3.zero;
+
+            // Added by Sidney (set hurt and death reactions)
+            var health = GetComponent<HealthManager>();
+            health.setHurtCallback(() =>
+            {
+                animator.SetTrigger("hurt");
+                if (!audioSource.isPlaying) audioSource.PlayOneShot(hurtSound);
+            });
+            health.setDeathCallback(() =>
+            {
+                // Play death animation
+                animator.SetTrigger("death");
+                // Play death sound
+                audioSource.PlayOneShot(deathSound);
+                // End the game
+                Time.timeScale = 0;
+            });
         }
 
         void Update()
@@ -63,22 +82,10 @@ namespace LIL
             // Added by Sidney
             if (movementManager.isImmobilized()) return;
             
-            if (profile.getKey(PlayerAction.Up))
-            {
-                moveVertical += 1.0f;
-            }
-            if (profile.getKey(PlayerAction.Down))
-            {
-                moveVertical -= 1.0f;
-            }
-            if (profile.getKey(PlayerAction.Left))
-            {
-                moveHorizontal -= 1.0f;
-            }
-            if (profile.getKey(PlayerAction.Right))
-            {
-                moveHorizontal += 1.0f;
-            }
+            if (profile.getKey(PlayerAction.Up))    moveVertical += 1.0f;
+            if (profile.getKey(PlayerAction.Down))  moveVertical -= 1.0f;
+            if (profile.getKey(PlayerAction.Left))  moveHorizontal -= 1.0f;
+            if (profile.getKey(PlayerAction.Right)) moveHorizontal += 1.0f;
 
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
             movement.Normalize();
@@ -109,7 +116,7 @@ namespace LIL
             bool walking = h != 0f || v != 0f;
 
             // Tell the animator whether or not the player is walking.
-            anim.SetBool("walk", walking);
+            animator.SetBool("walk", walking);
         }
     }
 }
