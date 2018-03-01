@@ -7,16 +7,20 @@ namespace LIL
     public class EnemyAttack : MonoBehaviour
     {
         public float timeBetweenAttacks = 0.5f;     // The time in seconds between each attack.
-        public int attackDamage = 10;               // The amount of health taken away per attack.
+        public float attackDamage = 10f;            // The amount of health taken away per attack.
 
 
         Animator anim;                              // Reference to the animator component.
         GameObject player;
         GameObject player2;     // Reference to the player GameObject.
         bool playerInRange;                         // Whether player is within the trigger collider and can be attacked.
+<<<<<<< HEAD
         bool player2InRange;
         HealthPlayer playerHealth;
         HealthPlayer playerHealth2;
+=======
+        HealthManager playerHealth;
+>>>>>>> a3a95e74ed99c9b6b1bbdf6bedc5318e54f78b38
         float timer;                                // Timer for counting up to the next attack.
         private bool multi;
 
@@ -24,6 +28,7 @@ namespace LIL
         void Start()
         {
             // Setting up the references.
+<<<<<<< HEAD
             multi = SceneManager.getMulti();
             player = GameObject.FindGameObjectsWithTag("Player")[0];
             playerHealth = player.GetComponent<HealthPlayer>();
@@ -32,6 +37,10 @@ namespace LIL
                 player2 = GameObject.FindGameObjectsWithTag("Player")[1];
                 playerHealth2 = player2.GetComponent<HealthPlayer>();
             }
+=======
+            player = GameObject.FindGameObjectWithTag("Player");
+            playerHealth = player.GetComponent<HealthManager>();
+>>>>>>> a3a95e74ed99c9b6b1bbdf6bedc5318e54f78b38
             anim = GetComponent<Animator>();
         }
 
@@ -80,7 +89,7 @@ namespace LIL
             // If the timer exceeds the time between attacks, the player is in range and this enemy is alive...
             if (timer >= timeBetweenAttacks &&
                 playerInRange &&
-                GetComponent<HealthEnemy>().isAlive() &&
+                GetComponent<HealthManager>().isAlive() &&
                 // Added by Sidney
                 GetComponent<SkillManager>().canCast())
             {
@@ -122,7 +131,11 @@ namespace LIL
         {
             // Reset the timer.
             timer = 0f;
+<<<<<<< HEAD
             health.takeDammage(attackDamage);
+=======
+            playerHealth.harm(attackDamage);
+>>>>>>> a3a95e74ed99c9b6b1bbdf6bedc5318e54f78b38
             anim.SetTrigger("attack");
         }
     }

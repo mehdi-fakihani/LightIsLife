@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ using UnityEngine;
 //
 //  Creation :  01/02/2018
 //
-//  Last modification : Aub Ah - 01/02/2018
+//  Last modification : Sidney - 22/02/2018
 //
 //------------------------------------------------------------------------
 
@@ -25,11 +26,8 @@ namespace LIL
     public class Fireball : MonoBehaviour {
 
         // Private :
-        private GameObject fireball;        // Fireballs' GameObject
-        private int damageAttack;           // This var is for the damage that will be caused by the fireball
-        private GameObject enemy;           // Enemys' GameObject
-        private EffectManager effects;      // Enemys' EffectManager
-        private HealthEnemy enemyHealth;         // Enemys' Health System
+        [NonSerialized] public float damages;              // This var is for the damage that will be caused by the fireball
+        [NonSerialized] public GameObject caster;          // Game object which casted the fireball
 
         void Start()
         {
@@ -37,28 +35,33 @@ namespace LIL
             //(It contains all the info for the skills and is responsable for the save and load)
 
             // Get the damage caused by the fireball from the GeneralData script
-            damageAttack = GeneralData.GetSkillByName("Fireball").damage;
+            // ----> Commented by Sidney (value set by the spell model in setup) <------
+            // damageAttack = GeneralData.GetSkillByName("Fireball").damage;
+        }
+        
+        public void setup(GameObject caster, float damages)
+        {
+            this.caster = caster;
+            this.damages = damages;
         }
 
 
-        public void OnCollisionEnter(Collision other)
+        void OnCollisionEnter(Collision other)
         {
-            // Checks if the fireball has hit an enemy
-            if (other.gameObject.CompareTag("Enemy"))
-            {
-                // Initialization :
+            var entity = other.gameObject;
 
-                enemy = other.gameObject;
-                effects = enemy.GetComponent<EffectManager>();
-                enemyHealth = enemy.GetComponent<HealthEnemy>();
+            // Checks if the fireball has hit an enemy
+            if (entity.isEnemyWith(caster))
+            {
+                //var effects = entity.GetComponent<EffectManager>();
+                var health = entity.GetComponent<HealthManager>();
 
                 // Cause damage to the enemy
-                enemyHealth.takeDammage(damageAttack);
+                health.harm(damages);
 
                 // Apply effects of the fireball on the enemy
-                effects.addEffect(new Effects.Silence(GeneralData.GetEffectByName("Silence").effect));
-
-
+                // effects.addEffect(new Effects.Silence(GeneralData.GetEffectByName("Silence").effect));
+                // Commented by Sidney (why the fireball silences the enemy ?)
             }
 
             // The fireball is destroyed the collision

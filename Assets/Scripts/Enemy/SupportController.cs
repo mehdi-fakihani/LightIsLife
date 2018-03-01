@@ -6,7 +6,7 @@ using UnityEngine.AI;
 namespace LIL
 {
     [RequireComponent (typeof (SphereCollider))]
-    public class SupportMovement : MonoBehaviour
+    public class SupportController : MonoBehaviour
     {
         public float minSpeed = 3.5f;
         public float maxSpeed = 7f;
@@ -18,7 +18,7 @@ namespace LIL
 
         private Transform player;               // Reference to the player's position.
         private NavMeshAgent nav;               // Reference to the nav mesh agent.
-        private Animator anim;
+        private Animator animator;
         private LightFuel torchLight;
         private bool moveCancelled = false;
      
@@ -36,11 +36,23 @@ namespace LIL
             // Set up the references.
             player = GameObject.FindGameObjectWithTag("Player").transform;
             torchLight = player.GetComponent<LightFuel>();
-            anim = GetComponent<Animator>();
-            anim.SetBool("walk", true);
+            animator = GetComponent<Animator>();
+            animator.SetBool("walk", true);
             nav = GetComponent<NavMeshAgent>();
             moveCancelled = false;
             GetComponent<SphereCollider>().radius = range;
+
+            // Set hurt and death reactions
+            var health = GetComponent<HealthManager>();
+            health.setHurtCallback(() =>
+            {
+                animator.SetTrigger("hurt");
+            });
+            health.setDeathCallback(() =>
+            {
+                animator.SetTrigger("death");
+                Destroy(gameObject, 1.5f);
+            });
         }
 
         private void OnTriggerEnter(Collider other)
@@ -89,7 +101,7 @@ namespace LIL
                 return EnemyType.Warrior;
             }
 
-            MageMovement mm = enemy.GetComponent<MageMovement>();
+            MageController mm = enemy.GetComponent<MageController>();
             // if enemy is a mage type
             if (mm != null)
             {
@@ -125,37 +137,36 @@ namespace LIL
         void Update()
         {
             //check if not dead
-            if (GetComponent<HealthEnemy>().getCurrentHealth() > 0)
+            if (!GetComponent<HealthManager>().isAlive()) return;
+
+            float distance = Vector3.Distance(player.position, transform.position);
+
+            nav.speed = minSpeed + (maxSpeed - minSpeed)
+                                    * Mathf.Clamp(distance / torchLight.GetLightRange(), 0, 1);
+
+            nav.speed *= GetComponent<MovementManager>().getSpeedRatio();
+            if (GetComponent<MovementManager>().isImmobilized()) nav.speed = 0f;
+
+            Vector3 movement = player.position - transform.position;
+            //if in range
+            if (Vector3.Magnitude(movement) < range)
             {
-                float distance = Vector3.Distance(player.position, transform.position);
-
-                nav.speed = minSpeed + (maxSpeed - minSpeed)
-                                     * Mathf.Clamp(distance / torchLight.GetLightRange(), 0, 1);
-
-                nav.speed *= GetComponent<MovementManager>().getSpeedRatio();
-
-                Vector3 movement = player.position - transform.position;
-                //if in range
-                if (Vector3.Magnitude(movement) < range)
+                //stop walking
+                animator.SetBool("walk", false);
+                if (!moveCancelled)
                 {
-                    //stop walking
-                    anim.SetBool("walk", false);
-                    if (!moveCancelled)
-                    {
-                        nav.SetDestination(transform.position);
-                        moveCancelled = true;
-                    }
-
-                    //turn toward player
-                    transform.rotation = Quaternion.LookRotation(movement);
-                }
-                else
-                {
-                    anim.SetBool("walk", true);
-                    moveCancelled = false;
-                    nav.SetDestination(player.position);
+                    nav.SetDestination(transform.position);
+                    moveCancelled = true;
                 }
 
+                //turn toward player
+                transform.rotation = Quaternion.LookRotation(movement);
+            }
+            else
+            {
+                animator.SetBool("walk", true);
+                moveCancelled = false;
+                nav.SetDestination(player.position);
             }
         }
     }

@@ -6,15 +6,20 @@ using UnityEngine;
 
 namespace LIL
 {
-
+    /// <summary>
+    /// Missile script for the icy blast skill.
+    /// Harm, and apply and actualize the slow effect on enemies touched.
+    /// </summary>
     public class IcyBlast : MonoBehaviour
     {
+        private GameObject caster;
         private int damages;
         private float slowTime;
         private float slowRatio;
 
-        public void setup(int damages, float slowTime, float slowRatio)
+        public void setup(GameObject caster, int damages, float slowTime, float slowRatio)
         {
+            this.caster = caster;
             this.damages = damages;
             this.slowTime = slowTime;
             this.slowRatio = slowRatio;
@@ -22,15 +27,16 @@ namespace LIL
         
         void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.GetComponent<IcyBlast>() != null) return;
+            var entity = other.gameObject;
 
-            if (other.gameObject.CompareTag("Enemy"))
+            if (entity.GetComponent<IcyBlast>() != null) return;
+
+            if (entity.isEnemyWith(caster))
             {
-                var enemy = other.gameObject;
-                var health = enemy.GetComponent<HealthEnemy>();
-                var effects = enemy.GetComponent<EffectManager>();
+                var health = entity.GetComponent<HealthManager>();
+                var effects = entity.GetComponent<EffectManager>();
                 
-                health.takeDammage(damages);
+                health.harm(damages);
                 var effect = effects.getEffect<Effects.IcyBlastImpact>();
                 if (effect == null)
                 {
