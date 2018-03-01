@@ -31,6 +31,7 @@ namespace LIL
         Skill charge;
         Skill icyBlast;
         Skill bladesDance;
+        Skill attack;
         private bool multi;
         private bool multiplayer = false;
 
@@ -48,6 +49,7 @@ namespace LIL
             charge      = GetComponent<SkillManager>().getSkill(SkillsID.Charge);
             icyBlast    = GetComponent<SkillManager>().getSkill(SkillsID.IcyBlast);
             bladesDance = GetComponent<SkillManager>().getSkill(SkillsID.BladesDance);
+            attack = GetComponent<SkillManager>().getSkill(SkillsID.HeroAttack);
             profile = new Profile(input, 0);
             anim = GetComponent<Animator>();
             movementManager = GetComponent<MovementManager>();
@@ -70,7 +72,7 @@ namespace LIL
         void Update()
         {
             ControllPlayer();
-            Debug.Log(multiplayer);
+            //Debug.Log(multiplayer);
         }
         
         void ControllPlayer()
@@ -84,10 +86,11 @@ namespace LIL
             // Added by Sidney
             if (profile.getKeyDown(PlayerAction.Skill4)) charge.tryCast();
             if (profile.getKeyDown(PlayerAction.Skill3)) icyBlast.tryCast();
+            if (profile.getKeyDown(PlayerAction.Skill2)) attack.tryCast();
 
             if (multiplayer == true)
             {
-                Debug.Log("test");
+                //Debug.Log("test");
                 if (profile.getKeyDown(PlayerAction.ChangeTorch) && light.intensity != 0)
                 {
                     otherlight.intensity = light.intensity;
