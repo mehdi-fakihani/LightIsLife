@@ -1,36 +1,34 @@
 #! /bin/sh
 
-project="LightIsLife"
+project="Light is life"
+echo "Project path : " $TRAVIS_BUILD_DIR
 
 echo "Attempting to build $project for Windows"
-/Applications/Unity/Unity.app/Contents/MacOS/Unity
+sudo /Applications/Unity/Unity.app/Contents/MacOS/Unity
   -batchmode 
   -nographics 
-  -silent-crashes 
   -logFile $(pwd)/unity.log 
-  -projectPath $(pwd) 
-  -buildWindowsPlayer "$(pwd)/Build/windows/$project.exe" 
-  -quit
+  -projectPath $TRAVIS_BUILD_DIR 
+  -buildWindowsPlayer "$(pwd)/Build/windows/$project.exe"
+  -stackTraceLogType Full
 
 echo "Attempting to build $project for OS X"
-/Applications/Unity/Unity.app/Contents/MacOS/Unity 
+sudo /Applications/Unity/Unity.app/Contents/MacOS/Unity 
   -batchmode 
   -nographics 
-  -silent-crashes 
   -logFile $(pwd)/unity.log 
-  -projectPath $(pwd) 
-  -buildOSXUniversalPlayer "$(pwd)/Build/osx/$project.app" 
-  -quit
+  -projectPath $TRAVIS_BUILD_DIR 
+  -buildOSXUniversalPlayer "$(pwd)/Build/osx/$project.app"
+  -stackTraceLogType Full
 
 echo "Attempting to build $project for Linux"
-/Applications/Unity/Unity.app/Contents/MacOS/Unity 
+sudo /Applications/Unity/Unity.app/Contents/MacOS/Unity 
   -batchmode 
-  -nographics 
-  -silent-crashes 
+  -nographics
   -logFile $(pwd)/unity.log 
-  -projectPath $(pwd) 
-  -buildLinuxUniversalPlayer "$(pwd)/Build/linux/$project.exe" 
-  -quit
+  -projectPath $TRAVIS_BUILD_DIR 
+  -buildLinuxUniversalPlayer "$(pwd)/Build/linux/$project.exe"
+  -stackTraceLogType Full
 
 echo 'Logs from build'
 cat $(pwd)/unity.log
