@@ -27,7 +27,7 @@ namespace LIL
             player = GameObject.FindGameObjectsWithTag("Player")[0];
             player2 = GameObject.FindGameObjectsWithTag("Player")[1];
             playerHealth = player.GetComponent<HealthManager>();
-            playerHealth2 = player.GetComponent<HealthManager>();
+            playerHealth2 = player2.GetComponent<HealthManager>();
             anim = GetComponent<Animator>();
             currentAttackDamage = baseAttackDamage;
         }

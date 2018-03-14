@@ -20,6 +20,7 @@ namespace LIL
         Skill fireball;
 
         private Transform player;               // Reference to the player's position.
+        private Transform player2;
         private NavMeshAgent nav;               // Reference to the nav mesh agent.
         private Animator animator;
         private LightFuel torchLight;
@@ -30,7 +31,8 @@ namespace LIL
         void Start()
         {
             // Set up the references.
-            player = GameObject.FindGameObjectWithTag("Player").transform;
+            player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
+            player2 = GameObject.FindGameObjectsWithTag("Player")[1].transform;
             torchLight = player.GetComponent<LightFuel>();
             animator = GetComponent<Animator>();
             nav = GetComponent<NavMeshAgent>();
@@ -58,7 +60,9 @@ namespace LIL
             //check if not dead
             if (!GetComponent<HealthManager>().isAlive()) return;
             
-            float distance = Vector3.Distance(player.position, transform.position);
+            float distance1 = Vector3.Distance(player.position, transform.position);
+            float distance2 = Vector3.Distance(player2.position, transform.position);
+            float distance = Mathf.Min(distance1, distance2);
 
             nav.speed = minSpeed + (maxSpeed - minSpeed)
                                     * Mathf.Clamp(distance / torchLight.GetLightRange(), 0, 1);
@@ -68,9 +72,9 @@ namespace LIL
 
             //check if in fire range
             bool inRange = false;
-            Vector3 movement = player.position - transform.position;
+            Vector3 movement1 = player.position - transform.position;
             RaycastHit hit;
-            if (Physics.SphereCast(transform.position, spellRadius, movement, out hit, range))
+            if (Physics.SphereCast(transform.position, spellRadius, movement1, out hit, range))
             {
                 GameObject hitObject = hit.transform.gameObject;
                 inRange = hitObject.CompareTag("Player") && distance < range * rangeFactor;
@@ -88,7 +92,7 @@ namespace LIL
                 }
 
                 //turn toward player
-                transform.rotation = Quaternion.LookRotation(movement);
+                transform.rotation = Quaternion.LookRotation(movement1);
 
                 //start shooting
                 if (!fireball.tryCast()) return;
