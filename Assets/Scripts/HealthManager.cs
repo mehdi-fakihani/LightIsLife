@@ -128,7 +128,6 @@ namespace LIL
         {
             return invulnerableTokens != 0;
         }
-
         void Awake()
         {
             life = initialLife;

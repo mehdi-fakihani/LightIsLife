@@ -230,7 +230,7 @@ Prefab:
     - target: {fileID: 114985135003320322, guid: 40a75cb8746106149809f15feca8b472,
         type: 2}
       propertyPath: skill2
-      value: 351
+      value: 355
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 40a75cb8746106149809f15feca8b472, type: 2}
@@ -593,6 +593,23 @@ Transform:
   m_Father: {fileID: 1184735517}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &603222247 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1462658096667420, guid: 629fe30384d203348928748e62536b66,
+    type: 2}
+  m_PrefabInternal: {fileID: 849688413}
+--- !u!114 &603222248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 603222247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f4ded81839c4fa42a43dd7ec8ae8730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialLife: 1000
 --- !u!1001 &678990188
 Prefab:
   m_ObjectHideFlags: 0
@@ -998,7 +1015,8 @@ Prefab:
       propertyPath: lightDurability
       value: 70
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114316935481457432, guid: 629fe30384d203348928748e62536b66, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 629fe30384d203348928748e62536b66, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &854723358
@@ -1220,6 +1238,7 @@ GameObject:
   - component: {fileID: 1087563046}
   - component: {fileID: 1087563045}
   - component: {fileID: 1087563044}
+  - component: {fileID: 1087563055}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player
@@ -1320,8 +1339,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7224536d749835a41a492b4dfec60e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 6
   input: 2
+  movementSpeed: 6
+  hurtSound: {fileID: 0}
+  deathSound: {fileID: 0}
   otherPlayertorch: {fileID: 346556731}
   Playertorch: {fileID: 1241512965}
   player: {fileID: 1087563054}
@@ -1348,7 +1369,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1087563043}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d8c95a7d00714c4a9aa05cbbf96e30c, type: 3}
   m_Name: 
@@ -1459,6 +1480,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1087563055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1087563043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f4ded81839c4fa42a43dd7ec8ae8730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialLife: 100
 --- !u!1 &1129195955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1625,6 +1658,23 @@ Transform:
   m_Father: {fileID: 549434511}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1383493930 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1131769311307074, guid: 8844f6fcb6034b84083174ab621bbb33,
+    type: 2}
+  m_PrefabInternal: {fileID: 2132226296}
+--- !u!114 &1383493932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1383493930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be5b27bdaed97114a9822e73e88b294b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 603222247}
 --- !u!1 &1406597780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1946,6 +1996,7 @@ MonoBehaviour:
   chargesCount: 10
   damages: 5
   stunTime: 1
+  postInvulnerabilityTime: 0
   speed: 1600
   range: 12
   castTime: 0.3

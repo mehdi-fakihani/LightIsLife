@@ -14,13 +14,11 @@ namespace LIL
         GameObject player;
         GameObject player2;     // Reference to the player GameObject.
         bool playerInRange;                         // Whether player is within the trigger collider and can be attacked.
-<<<<<<< HEAD
         bool player2InRange;
-        HealthPlayer playerHealth;
-        HealthPlayer playerHealth2;
-=======
+        //HealthPlayer playerHealth;
+        //HealthPlayer playerHealth2;
         HealthManager playerHealth;
->>>>>>> a3a95e74ed99c9b6b1bbdf6bedc5318e54f78b38
+        HealthManager playerHealth2;
         float timer;                                // Timer for counting up to the next attack.
         private bool multi;
 
@@ -28,19 +26,16 @@ namespace LIL
         void Start()
         {
             // Setting up the references.
-<<<<<<< HEAD
             multi = SceneManager.getMulti();
             player = GameObject.FindGameObjectsWithTag("Player")[0];
-            playerHealth = player.GetComponent<HealthPlayer>();
+            //playerHealth = player.GetComponent<HealthPlayer>();
             if (multi == true)
             {
                 player2 = GameObject.FindGameObjectsWithTag("Player")[1];
-                playerHealth2 = player2.GetComponent<HealthPlayer>();
+                playerHealth2 = player2.GetComponent<HealthManager>();
             }
-=======
             player = GameObject.FindGameObjectWithTag("Player");
             playerHealth = player.GetComponent<HealthManager>();
->>>>>>> a3a95e74ed99c9b6b1bbdf6bedc5318e54f78b38
             anim = GetComponent<Animator>();
         }
 
@@ -94,7 +89,7 @@ namespace LIL
                 GetComponent<SkillManager>().canCast())
             {
                 // ... attack.
-                Attack(playerHealth);
+               // Attack(playerHealth);
                 anim.SetBool("walk", false);
             }
 
@@ -113,7 +108,7 @@ namespace LIL
                GetComponent<SkillManager>().canCast())
                 {
                     // ... attack.
-                    Attack(playerHealth2);
+                 //   Attack(playerHealth2);
                     anim.SetBool("walk", false);
                 }
 
@@ -131,11 +126,8 @@ namespace LIL
         {
             // Reset the timer.
             timer = 0f;
-<<<<<<< HEAD
             health.takeDammage(attackDamage);
-=======
-            playerHealth.harm(attackDamage);
->>>>>>> a3a95e74ed99c9b6b1bbdf6bedc5318e54f78b38
+            //playerHealth.harm(attackDamage);
             anim.SetTrigger("attack");
         }
     }

@@ -12,8 +12,11 @@ namespace LIL
 
         Animator anim;                              // Reference to the animator component.
         GameObject player;                          // Reference to the player GameObject.
+        GameObject player2;
         bool playerInRange;                         // Whether player is within the trigger collider and can be attacked.
+        bool player2InRange;
         HealthManager playerHealth;
+        HealthManager playerHealth2;
         float timer;                                // Timer for counting up to the next attack.
 
         private float currentAttackDamage;
@@ -21,8 +24,10 @@ namespace LIL
         void Start()
         {
             // Setting up the references.
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = GameObject.FindGameObjectsWithTag("Player")[0];
+            player2 = GameObject.FindGameObjectsWithTag("Player")[1];
             playerHealth = player.GetComponent<HealthManager>();
+            playerHealth2 = player.GetComponent<HealthManager>();
             anim = GetComponent<Animator>();
             currentAttackDamage = baseAttackDamage;
         }
@@ -36,6 +41,10 @@ namespace LIL
                 // ... the player is in range.
                 playerInRange = true;
             }
+            else if (other.gameObject == player2)
+            {
+                player2InRange = true;
+            }
         }
 
 
@@ -46,6 +55,11 @@ namespace LIL
             {
                 // ... the player is no longer in range.
                 playerInRange = false;
+            }
+
+            if (other.gameObject == player2)
+            {
+                player2InRange = false;
             }
         }
 
@@ -59,24 +73,31 @@ namespace LIL
             if (timer >= timeBetweenAttacks && playerInRange && GetComponent<HealthManager>().isAlive())
             {
                 // ... attack.
-                Attack();
+                Attack(playerHealth);
                 anim.SetBool("walk", false);
             }
 
-            if (!playerInRange)
+            if (!playerInRange && !player2InRange)
             {
 
                 anim.SetBool("walk", true);
             }
 
+            if (timer >= timeBetweenAttacks && player2InRange && GetComponent<HealthManager>().isAlive())
+            {
+                // ... attack.
+                Attack(playerHealth2);
+                anim.SetBool("walk", false);
+            }
+
         }
 
 
-        void Attack()
+        void Attack( HealthManager health)
         {
             // Reset the timer.
             timer = 0f;
-            playerHealth.harm(currentAttackDamage);
+            health.harm(currentAttackDamage);
             anim.SetTrigger("attack");
         }
 

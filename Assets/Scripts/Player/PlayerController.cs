@@ -19,10 +19,7 @@ namespace LIL
         private AudioSource audioSource;
         private float moveHorizontal;
         private float moveVertical;
-<<<<<<< HEAD:Assets/Scripts/Player/PlayerMovement.cs
-        Skill fireball;
-        public ProfilsID input;
-        public Profile profile;
+       // public ProfilsID input;
         [SerializeField] private GameObject otherPlayertorch;
         private Light otherlight;
         [SerializeField] private GameObject Playertorch;
@@ -31,15 +28,8 @@ namespace LIL
         private Light light;
         private CameraController cam;
         SceneManager scenemanager;
-        // Added by Sidney
-        private MovementManager movementManager;
-        Skill charge;
-        Skill icyBlast;
-        Skill bladesDance;
-        Skill attack;
         private bool multi;
         private bool multiplayer = false;
-=======
         private Profile profile;
         
         private MovementManager movementManager;
@@ -48,23 +38,17 @@ namespace LIL
         private Skill charge;
         private Skill icyBlast;
         private Skill bladesDance;
->>>>>>> a3a95e74ed99c9b6b1bbdf6bedc5318e54f78b38:Assets/Scripts/Player/PlayerController.cs
+        private Skill attack;
 
         // Added by Julien
         private Vector3 lastMove;
 
         void Start()
         {
-<<<<<<< HEAD:Assets/Scripts/Player/PlayerMovement.cs
-           // torch = torch.GetComponent<Light>();
-            fireball = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
             
             light = Playertorch.GetComponent<Light>();
             cam = GameObject.Find("Main Camera").GetComponent<CameraController>();
-            // Added by Sidney
-=======
             fireball    = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
->>>>>>> a3a95e74ed99c9b6b1bbdf6bedc5318e54f78b38:Assets/Scripts/Player/PlayerController.cs
             charge      = GetComponent<SkillManager>().getSkill(SkillsID.Charge);
             icyBlast    = GetComponent<SkillManager>().getSkill(SkillsID.IcyBlast);
             bladesDance = GetComponent<SkillManager>().getSkill(SkillsID.BladesDance);
@@ -72,7 +56,6 @@ namespace LIL
             profile = new Profile(input, 0);
             animator = GetComponent<Animator>();
             movementManager = GetComponent<MovementManager>();
-<<<<<<< HEAD:Assets/Scripts/Player/PlayerMovement.cs
             scenemanager = GetComponent<SceneManager>();
             lastMove = Vector3.zero;
             bool multi = SceneManager.getMulti();
@@ -87,7 +70,7 @@ namespace LIL
                 otherlight = otherPlayertorch.GetComponent<Light>();
                 multiplayer = true;
             }
-=======
+
             audioSource = GetComponent<AudioSource>();
             lastMove = Vector3.zero;
 
@@ -107,7 +90,6 @@ namespace LIL
                 // End the game
                 Time.timeScale = 0;
             });
->>>>>>> a3a95e74ed99c9b6b1bbdf6bedc5318e54f78b38:Assets/Scripts/Player/PlayerController.cs
         }
 
         void Update()
@@ -139,31 +121,11 @@ namespace LIL
                 }
             }
             // Added by Sidney
-            if (movementManager.isImmobilized()) return;
-<<<<<<< HEAD:Assets/Scripts/Player/PlayerMovement.cs
-            if (profile.getKey(PlayerAction.Up))
-            {
-                moveVertical += 1.0f;
-            }
-            if (profile.getKey(PlayerAction.Down))
-            {
-                moveVertical -= 1.0f;
-            }
-            if (profile.getKey(PlayerAction.Left))
-            {
-                moveHorizontal -= 1.0f;
-            }
-            if (profile.getKey(PlayerAction.Right))
-            {
-                moveHorizontal += 1.0f;
-            }
-=======
-            
+            if (movementManager.isImmobilized()) return;            
             if (profile.getKey(PlayerAction.Up))    moveVertical += 1.0f;
             if (profile.getKey(PlayerAction.Down))  moveVertical -= 1.0f;
             if (profile.getKey(PlayerAction.Left))  moveHorizontal -= 1.0f;
             if (profile.getKey(PlayerAction.Right)) moveHorizontal += 1.0f;
->>>>>>> a3a95e74ed99c9b6b1bbdf6bedc5318e54f78b38:Assets/Scripts/Player/PlayerController.cs
 
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
             movement.Normalize();
