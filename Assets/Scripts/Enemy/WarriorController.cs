@@ -8,12 +8,18 @@ namespace LIL
     {
         public float minSpeed = 3.5f;
         public float maxSpeed = 7f;
+        public float timeBetweenAttacks = 0.5f;     // The time in seconds between each attack.
+        public int baseAttackDamage = 10;               // The amount of health taken away per attack.
+
 
         private Transform player;               // Reference to the player's position.
         private NavMeshAgent nav;               // Reference to the nav mesh agent.
         private Animator animator;
         private LightFuel torchLight;
-        private bool moveCancelled = false;
+        private HealthManager playerHealth;
+        private float timer;                                // Timer for counting up to the next attack.
+        private bool playerInRange;
+        private float currentAttackDamage;
 
 
         void Start()
@@ -23,6 +29,11 @@ namespace LIL
             torchLight = player.GetComponent<LightFuel>();
             animator = GetComponent<Animator>();
             nav = GetComponent<NavMeshAgent>();
+
+            playerHealth = player.GetComponent<HealthManager>();
+            currentAttackDamage = baseAttackDamage;
+            playerInRange = false;
+            timer = timeBetweenAttacks;
 
             // Set hurt and death reactions
             var health = GetComponent<HealthManager>();
@@ -35,11 +46,48 @@ namespace LIL
                 animator.SetTrigger("death");
                 Destroy(gameObject, 1.5f);
             });
+
+        }
+
+        void OnTriggerEnter(Collider other)
+        {
+            // If the entering collider is the player...
+            if (other.gameObject.CompareTag("Player"))
+            {
+                // ... the player is in range.
+                playerInRange = true;
+            }
         }
 
 
+        void OnTriggerExit(Collider other)
+        {
+            // If the exiting collider is the player...
+            if (other.gameObject.CompareTag("Player"))
+            {
+                // ... the player is no longer in range.
+                playerInRange = false;
+            }
+        }
+
+
+        void Attack()
+        {
+            // Reset the timer.
+            timer = 0f;
+            playerHealth.harm(currentAttackDamage);
+            animator.SetTrigger("attack");
+        }
+
+        public void increaseDamage(float ratio)
+        {
+            currentAttackDamage += baseAttackDamage * ratio;
+        }
+
         void Update()
         {
+            timer += Time.deltaTime;
+
             //check if not dead
             if (!GetComponent<HealthManager>().isAlive()) return;
 
@@ -53,20 +101,29 @@ namespace LIL
             if (GetComponent<MovementManager>().isImmobilized()) nav.speed = 0f;
 
             // update target position and walk animation
-            if (animator.GetBool("walk"))
+            if (playerInRange)
             {
-                nav.SetDestination(player.position);
-                moveCancelled = false;
+                //Debug.Log("in range");
+                transform.LookAt(player.position);
+                nav.isStopped = true;
+                nav.velocity = Vector3.zero;
+                animator.SetBool("walk", false);
+                if(timer > timeBetweenAttacks)
+                {
+                    Attack();
+                }
+                
             }
             else
             {
-                if (!moveCancelled)
+                if (nav.isStopped)
                 {
-                    nav.SetDestination(transform.position);
-                    moveCancelled = true;
+                    transform.LookAt(player.position);
+                    nav.isStopped = false;
                 }
+                animator.SetBool("walk", true);
+                nav.SetDestination(player.position);
             }
-            
         }
     }
 }

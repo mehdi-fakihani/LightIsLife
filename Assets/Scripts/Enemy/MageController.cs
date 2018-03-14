@@ -35,6 +35,7 @@ namespace LIL
         private StateAction currentAction;
         private int shift;                  // choose to shift left or right to shoot at player
         private float currentShiftDistance;
+        private float currentWait;
         private bool isObstacle;
         private bool isInRange;                 // try to fire
         private bool isRetreating;              // setup retreat
@@ -85,7 +86,6 @@ namespace LIL
             SetSpeed();
             // do something
             currentAction();
-            Debug.Log(currentAction.Method.Name);
         }
 
         private void GetCloser()
@@ -105,7 +105,7 @@ namespace LIL
         {
             // move  with 90 angle and try to shoot again
             Vector3 direction = player.position - transform.position;
-            MoveToward(transform.position + Quaternion.Euler(0, shift * 100, 0) * direction);
+            MoveToward(transform.position + Quaternion.Euler(0, shift * 90, 0) * direction);
             currentShiftDistance += nav.speed * Time.deltaTime;
             if(currentShiftDistance > shiftDistance)
             {
@@ -162,13 +162,21 @@ namespace LIL
                     GameObject hitObject = hit.transform.gameObject;
                     if (!hitObject.CompareTag("Player"))
                     {
-                        isObstacle = true;
+                        isObstacle = !hitObject.CompareTag("Missile");
                     }
                 }
             }
         }
 
-        private void Wait() { }
+        private void Wait() {
+            currentWait += Time.deltaTime;
+            transform.LookAt(player.position);
+
+            if (currentWait > castingTime)
+            { 
+                choosePostFireAction();
+            }
+        }
 
         private void Fire()
         {
@@ -183,6 +191,10 @@ namespace LIL
                 return;
             }
 
+            // wait casting time and make transition to TryToFire
+            currentWait = 0;
+            currentAction = this.Wait;
+
             // Added by Sidney : Get the new fireball and buff it
             var hitColliders = Physics.OverlapSphere(transform.position, 0f);
             //bool found = false;
@@ -195,16 +207,6 @@ namespace LIL
                 //found = true;
             }
             //Assert.IsTrue(found);
-
-            // wait casting time and make transition to TryToFire
-            StartCoroutine(WaitCastingTime());
-        }
-
-        IEnumerator WaitCastingTime()
-        {
-            currentAction = this.Wait;
-            yield return new WaitForSeconds(castingTime);
-            choosePostFireAction();
         }
 
         private void choosePostFireAction()
