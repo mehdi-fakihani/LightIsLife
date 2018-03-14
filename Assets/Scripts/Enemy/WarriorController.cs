@@ -43,6 +43,7 @@ namespace LIL
             //check if not dead
             if (!GetComponent<HealthManager>().isAlive()) return;
 
+            // set speed depending on player's light 
             float distance = Vector3.Distance(player.position, transform.position);
 
             nav.speed = minSpeed + (maxSpeed - minSpeed)
@@ -51,6 +52,7 @@ namespace LIL
             nav.speed *= GetComponent<MovementManager>().getSpeedRatio();
             if (GetComponent<MovementManager>().isImmobilized()) nav.speed = 0f;
 
+            // update target position and walk animation
             if (animator.GetBool("walk"))
             {
                 nav.SetDestination(player.position);
