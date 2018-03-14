@@ -3,7 +3,7 @@ language : generic
 os : osx
 
 before_install:
-#Setup rights to run be able to run the scripts
+#Setup rights to be able to run the scripts
 - chmod a+x ./Scripts/install.sh
 - chmod a+x ./Scripts/build.sh
 #Setup Git LFS for MacOS
@@ -17,5 +17,5 @@ install :
 
 script :
 #Builds the game
-- travis_wait 50 ./Scripts/build.sh
+- ./Scripts/build.sh
 #TODO : Add a script to run the tests
