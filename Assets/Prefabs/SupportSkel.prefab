@@ -1366,11 +1366,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c785c812e9c773f49a7a8dd3e22de6cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 3.5
-  maxSpeed: 7
+  minSpeed: 2
+  maxSpeed: 4
   range: 7
+  fleeingRadius: 15
+  fleeingDistance: 5
   statIncreaseRatio: 1.5
   sizeIncreaseRatio: 1.1
+  barycenterTolerance: 2
   scalingDuration: 0
 --- !u!114 &114593832622938498
 MonoBehaviour:
