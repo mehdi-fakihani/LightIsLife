@@ -57,7 +57,7 @@ namespace LIL
         void Update()
         {
             if (currentAttackTime > 0) currentAttackTime -= Time.deltaTime;
-            if (profile.getKeyDown(PlayerAction.Skill2) && currentAttackTime<=0)
+            if (profile.getKeyDown(PlayerAction.Attack) && currentAttackTime <= 0) ;
             {
                 attack = true;
                 currentAttackTime = attackTimeInterval;
@@ -66,7 +66,7 @@ namespace LIL
             if(attack)
             {
                 canAttack = true;
-                swordSkill.tryCast();
+                //swordSkill.tryCast();
                 attack = false;
             }
         }
@@ -74,9 +74,12 @@ namespace LIL
 
         public void OnTriggerStay(Collider other)
         {
+
+            
             // We test canAttack to prevent the Enemy being hit more than once in a single attack
             if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Sword_Attack") && other.gameObject.CompareTag("Enemy") && canAttack)
             {
+                Debug.Log("OK");
                 canAttack = false;
                 enemy = other.gameObject;
                 effects = enemy.GetComponent<EffectManager>();

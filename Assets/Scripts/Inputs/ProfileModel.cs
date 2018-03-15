@@ -23,7 +23,11 @@ namespace LIL.Inputs
         [SerializeField] public Key skill2;
         [SerializeField] public Key skill3;
         [SerializeField] public Key skill4;
+
         [SerializeField] public Key interaction;
+
+
+        [SerializeField] public Key changeTorch;
 
 
         public readonly Dictionary<PlayerAction, Key> keys
@@ -43,7 +47,11 @@ namespace LIL.Inputs
             Assert.IsTrue(keysList.Add(skill2));
             Assert.IsTrue(keysList.Add(skill3));
             Assert.IsTrue(keysList.Add(skill4));
+
             Assert.IsTrue(keysList.Add(interaction));
+
+            Assert.IsTrue(keysList.Add(changeTorch));
+            
 
             // Reference keys with their actions
 
@@ -56,7 +64,11 @@ namespace LIL.Inputs
             keys.Add(PlayerAction.Skill2, skill2);
             keys.Add(PlayerAction.Skill3, skill3);
             keys.Add(PlayerAction.Skill4, skill4);
+
             keys.Add(PlayerAction.Interaction, interaction);
+
+            keys.Add(PlayerAction.ChangeTorch, changeTorch);
+
 
             // Check that the keys correspond to the device used
 

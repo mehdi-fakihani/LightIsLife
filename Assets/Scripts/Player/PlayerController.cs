@@ -19,6 +19,12 @@ namespace LIL
         private AudioSource audioSource;
         private float moveHorizontal;
         private float moveVertical;
+        // public ProfilsID input;
+        private Light otherlight;
+        [SerializeField] private GameObject secondPlayer;
+        private Light light;
+        private CameraController cam;
+        private bool multiplayer = false;
         private Profile profile;
         private bool interactable;
         private bool inventoryActive;
@@ -32,7 +38,11 @@ namespace LIL
         private Skill charge;
         private Skill icyBlast;
         private Skill bladesDance;
+
         private Skill[] selectedSkills;
+
+        private Skill attack;
+        private Skill reflect;
 
 
         // Added by Julien
@@ -40,23 +50,43 @@ namespace LIL
 
         void Start()
         {
-            
+
+
             GUI = GameObject.FindGameObjectWithTag("GameUI");
             interaction = GUI.GetComponent<Interaction>();
             inventory = GUI.GetComponent<Inventory>();
             interactable = false;
             inventoryActive = false;
 
-            fireball    = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
-            charge      = GetComponent<SkillManager>().getSkill(SkillsID.Charge);
-            icyBlast    = GetComponent<SkillManager>().getSkill(SkillsID.IcyBlast);
+
+            Debug.Log("coucou");
+            profile = new Profile(input, 0);
+            Debug.Log(profile);
+            light = GetComponentInChildren<Light>();
+            cam = GameObject.Find("Main Camera").GetComponent<CameraController>();
+
+            fireball = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
+            charge = GetComponent<SkillManager>().getSkill(SkillsID.Charge);
+            icyBlast = GetComponent<SkillManager>().getSkill(SkillsID.IcyBlast);
             bladesDance = GetComponent<SkillManager>().getSkill(SkillsID.BladesDance);
+
 
             selectedSkills = new Skill[] { bladesDance, fireball, icyBlast, charge }; // Just temporarily
 
             profile = new Profile(input, 0);
+
+            attack = GetComponent<SkillManager>().getSkill(SkillsID.HeroAttack);
+            reflect = GetComponent<SkillManager>().getSkill(SkillsID.Reflect);
+
             animator = GetComponent<Animator>();
             movementManager = GetComponent<MovementManager>();
+            lastMove = Vector3.zero;
+            if (SceneManager.getMulti())
+            {
+                otherlight = secondPlayer.GetComponentInChildren<Light>();
+                multiplayer = true;
+                secondPlayer.SetActive(true);
+            }
             audioSource = GetComponent<AudioSource>();
             lastMove = Vector3.zero;
 
@@ -81,27 +111,49 @@ namespace LIL
         void Update()
         {
             ControllPlayer();
+            //Debug.Log(multiplayer);
         }
-        
+
         void ControllPlayer()
         {
             moveVertical = 0.0f;
             moveHorizontal = 0.0f;
-         
+
+            //if (profile.getKeyDown(PlayerAction.Skill2)) reflect.tryCast();
+
             // Modified by Sidney
-            if (profile.getKeyDown(PlayerAction.Skill1) && !inventoryActive ) selectedSkills[0].tryCast();
-         
+
+            if (profile.getKeyDown(PlayerAction.Skill1) && !inventoryActive) selectedSkills[0].tryCast();
+
             if (profile.getKeyDown(PlayerAction.Skill2) && !inventoryActive) selectedSkills[1].tryCast();
             // Added by Sidney
             if (profile.getKeyDown(PlayerAction.Skill4) && !inventoryActive) selectedSkills[3].tryCast();
             if (profile.getKeyDown(PlayerAction.Skill3) && !inventoryActive) selectedSkills[2].tryCast();
 
+            //Debug.Log(profile);
+            //Debug.Log(multiplayer);
+
+
+
+            if (profile.getKeyDown(PlayerAction.Attack)) attack.tryCast();
+
+
+            if (multiplayer)
+            {
+                //Debug.Log("test");
+                if (profile.getKeyDown(PlayerAction.ChangeTorch) && light.intensity != 0)
+                {
+                    otherlight.intensity = light.intensity;
+                    light.intensity = 0;
+                }
+            }
             // Added by Sidney
+
             if (movementManager.isImmobilized()) return;
-            
-            if (profile.getKey(PlayerAction.Up) && !inventoryActive)    moveVertical += 1.0f;
-            if (profile.getKey(PlayerAction.Down) && !inventoryActive)  moveVertical -= 1.0f;
-            if (profile.getKey(PlayerAction.Left) && !inventoryActive)  moveHorizontal -= 1.0f;
+
+            if (profile.getKey(PlayerAction.Up) && !inventoryActive) moveVertical += 1.0f;
+            if (profile.getKey(PlayerAction.Down) && !inventoryActive) moveVertical -= 1.0f;
+            if (profile.getKey(PlayerAction.Left) && !inventoryActive) moveHorizontal -= 1.0f;
             if (profile.getKey(PlayerAction.Right) && !inventoryActive) moveHorizontal += 1.0f;
 
 
@@ -120,6 +172,7 @@ namespace LIL
                     inventoryActive = false;
                 }
 
+
             }
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
             movement.Normalize();
@@ -127,7 +180,7 @@ namespace LIL
             if (movement != Vector3.zero)
             {
                 // smooth rotation only if movement is not opposed to last movement
-                if(lastMove + movement != Vector3.zero)
+                if (lastMove + movement != Vector3.zero)
                 {
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15F);
                 }
@@ -142,6 +195,11 @@ namespace LIL
             float modifier = movementManager.getSpeedRatio();
             transform.Translate(movement * movementSpeed * Time.deltaTime * modifier, Space.World);
             Animating(moveHorizontal, moveVertical);
+
+            if (CameraFollow())
+            {
+                cam.target = this.transform;
+            }
         }
 
         void Animating(float h, float v)
@@ -152,6 +210,7 @@ namespace LIL
             // Tell the animator whether or not the player is walking.
             animator.SetBool("walk", walking);
         }
+
 
         public ProfilsID getInput()
         {
@@ -187,7 +246,23 @@ namespace LIL
             {
                 interaction.hideInteractionMsg();
                 interactable = false;
+
+
             }
         }
+        bool CameraFollow()
+        {
+            if (light.intensity != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+
+            }
+        }
+
+
     }
 }

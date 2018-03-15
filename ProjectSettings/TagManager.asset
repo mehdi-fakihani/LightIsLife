@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Environment
   - Missile
+<<<<<<< HEAD
   - fire
   - Campfire
   - GameUI
@@ -17,6 +18,9 @@ TagManager:
   - BladesDance
   - SkillTitle
   - SkillDescription
+=======
+  - Exp
+>>>>>>> c95479519c8f73da6b278736d80751c15edcb4e5
   layers:
   - Default
   - TransparentFX

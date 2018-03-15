@@ -111,6 +111,18 @@ namespace LIL
 
         }
 
+        public bool isAlive()
+        {
+            if (dead == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
         public float getCurrentHealth()
         {

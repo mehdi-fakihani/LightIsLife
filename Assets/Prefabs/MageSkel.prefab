@@ -1065,8 +1065,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1467173474305704}
-  m_LocalRotation: {x: 0.02473817, y: 0.33360648, z: 0.06969025, w: 0.9398075}
-  m_LocalPosition: {x: -2.1350207, y: 0.47610155, z: 2.4548755}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4454081267748908}
@@ -1081,8 +1081,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1663862912405514}
-  m_LocalRotation: {x: -0, y: 0.33452246, z: -0, w: 0.9423878}
-  m_LocalPosition: {x: -2.0713985, y: 0, z: 2.5331988}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4965970935989956}
@@ -1220,8 +1220,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1839016659439434}
-  m_LocalRotation: {x: -0, y: 0.33452246, z: -0, w: 0.9423878}
-  m_LocalPosition: {x: -2.0713985, y: 0, z: 2.5331988}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4965970935989956}
@@ -1459,8 +1459,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1057356567509162}
-  m_LocalRotation: {x: -0, y: 0.33452246, z: -0, w: 0.9423878}
-  m_LocalPosition: {x: -2.0713985, y: 0, z: 2.5331988}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4965970935989956}
@@ -1526,8 +1526,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1031980982439632}
-  m_LocalRotation: {x: -0, y: 0.33452246, z: -0, w: 0.9423878}
-  m_LocalPosition: {x: -2.0713985, y: 0.044669084, z: 2.5331988}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4965970935989956}
@@ -1623,8 +1623,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1678166629219444}
-  m_LocalRotation: {x: -0, y: -0.99155605, z: -0, w: -0.12967952}
-  m_LocalPosition: {x: -1.02, y: 0, z: 10.103062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.8673296, y: 0, z: 7.682173}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4206283287925048}
@@ -1634,7 +1634,7 @@ Transform:
   - {fileID: 4336913758966488}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -194.902, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4982052584419984
 Transform:
   m_ObjectHideFlags: 1
@@ -1758,7 +1758,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114108202382954552
@@ -1770,8 +1770,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27a140e5ed91a2c42bcb54710c2caf60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   skillIds: 03000000
 --- !u!114 &114141792830907316
 MonoBehaviour:
@@ -1782,13 +1782,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c69c35924f2a00c4cbbe44f08751a67a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minSpeed: 3.5
-  maxSpeed: 7
+  m_Name:
+  m_EditorClassIdentifier:
+  minSpeed: 3
+  maxSpeed: 5
+  retreatRadius: 5
+  castingTime: 0.5
   range: 15
   rangeFactor: 0.75
-  spellRadius: 0.5
+  spellRadius: 1
+  shiftDistance: 7
 --- !u!114 &114397189201056166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1798,11 +1801,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f4ded81839c4fa42a43dd7ec8ae8730, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   initialLife: 15
-  soundHurt: {fileID: 0}
-  soundDeath: {fileID: 0}
+  expCollectable: {fileID: 1804610024410126, guid: 7637478850598954f8a3d328198f50c9,
+    type: 2}
 --- !u!114 &114541413550027386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1812,8 +1815,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 945b24687d564234396b27df0a24f06b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!114 &114870121897649404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1823,8 +1826,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12440e377f8c5894bb395a98136063a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!135 &135610987527816324
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -2137,12 +2140,12 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 5
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 2
+  m_AngularSpeed: 50
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
