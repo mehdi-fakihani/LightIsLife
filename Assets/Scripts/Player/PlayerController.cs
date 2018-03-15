@@ -21,7 +21,6 @@ namespace LIL
         private float moveVertical;
        // public ProfilsID input;
         private Light otherlight;
-        [SerializeField] private Transform player;
         [SerializeField] private GameObject secondPlayer;
         private Light light;
         private CameraController cam;
@@ -142,7 +141,7 @@ namespace LIL
 
             if (CameraFollow())
             {
-                cam.target = player;
+                cam.target = this.transform;
             }
         }
 

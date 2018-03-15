@@ -13,6 +13,7 @@ namespace LIL
     public class HealthManager : MonoBehaviour
     {
         [SerializeField] private float initialLife = 100f;
+        [SerializeField] private GameObject expCollectable;
 
         private float life;
         private float protectionRatio = 1f;
@@ -71,8 +72,11 @@ namespace LIL
             var effects = GetComponent<EffectManager>();
             if (effects) effects.onDeath();
             deathCallback.Invoke();
+            if(this.gameObject.CompareTag("Enemy"))
+            {
+                Instantiate(expCollectable, this.transform.position, this.transform.rotation);
+            }
         }
-
         /// <summary>
         /// Inflicts damages to the entity according to it's protection, if she is not invulnerable.
         /// </summary>

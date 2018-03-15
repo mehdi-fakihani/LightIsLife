@@ -59,7 +59,6 @@ namespace LIL
            if (currentAttackTime > 0) currentAttackTime -= Time.deltaTime;
             if (profile.getKeyDown(PlayerAction.Skill2) && currentAttackTime<=0)
             {
-                Debug.Log("test");
                 attack = true;
                 currentAttackTime = attackTimeInterval;
             }

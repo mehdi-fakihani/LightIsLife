@@ -1520,8 +1520,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialLife: 20
-  soundHurt: {fileID: 0}
-  soundDeath: {fileID: 0}
+  expCollectable: {fileID: 1804610024410126, guid: 7637478850598954f8a3d328198f50c9,
+    type: 2}
 --- !u!135 &135156877749501560
 SphereCollider:
   m_ObjectHideFlags: 1

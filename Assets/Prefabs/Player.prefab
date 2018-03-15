@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 114181785914771198}
   - component: {fileID: 82762442943902828}
   - component: {fileID: 114231395182562386}
+  - component: {fileID: 114338870385207358}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1025,7 +1026,6 @@ MonoBehaviour:
   movementSpeed: 6
   hurtSound: {fileID: 0}
   deathSound: {fileID: 0}
-  player: {fileID: 4541114732781730}
   secondPlayer: {fileID: 0}
 --- !u!114 &114209422444595826
 MonoBehaviour:
@@ -1053,6 +1053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialLife: 1000
+  expCollectable: {fileID: 0}
 --- !u!114 &114320355358419676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1062,6 +1063,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12440e377f8c5894bb395a98136063a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114338870385207358
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1331688577926532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbcee63c4adcac647ba9d65c30d7925d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114694156785501256
