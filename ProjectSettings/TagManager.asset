@@ -7,6 +7,16 @@ TagManager:
   - Enemy
   - Environment
   - Missile
+  - fire
+  - Campfire
+  - GameUI
+  - SkillSelected
+  - Fireball
+  - Charge
+  - IcyBlast
+  - BladesDance
+  - SkillTitle
+  - SkillDescription
   layers:
   - Default
   - TransparentFX

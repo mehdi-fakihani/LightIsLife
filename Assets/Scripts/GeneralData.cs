@@ -29,7 +29,7 @@ public class GeneralData : MonoBehaviour
 
     // Items regroup everything Skills, Effects, Tuto etc...
     [System.Serializable]
-    public class Item
+    public class Item 
     {
         public string name;
         public bool isUsed;
@@ -39,9 +39,13 @@ public class GeneralData : MonoBehaviour
 
     // Skills in addition of being items and having name, description and isUsed they have level damage and a list of effects
     [System.Serializable]
-    public class Skill : Item
+    public class Skill 
     {
-        public int level;
+        public string name;
+        public bool isUsed;
+        public string description;
+        public bool deblocked;
+        public int CapPointsToUnlock;
         public int damage;
         public List<Effect> effects;
     }
@@ -94,7 +98,7 @@ public class GeneralData : MonoBehaviour
     }
 
     // Add the experience
-    public static void AddExperience(int amount)
+    public static void IncrExperience(int amount)
     {
         curExperience += amount;
 
@@ -144,8 +148,23 @@ public class GeneralData : MonoBehaviour
     public static void initSkillsList()
     {
         skills = new List<Skill>(){
-                new Skill { name = "Fireball", isUsed = true, description = "The Fireball description here", damage = 3, level =1 }
-                ,new Skill { name = "Sword", isUsed = false, description = "The Sword description here", damage = 3, level =1 }
+            // Wizzard Skills :
+                new Skill { name = "Fireball", isUsed = false,
+                    description = "A Wizzard skill used to hit the enemy from a distance.\nQuality : Ranged attack,\n" +
+                "3 charges\nFlaw : 0.5s of immobilization", damage = 3, CapPointsToUnlock =2, deblocked = false  }
+                ,new Skill { name = "IcyBlast", isUsed = false,
+                    description = "A Wizzard skill used to slow down the enemy by throwing Icy balls in a cone.\nQuality : "+
+                "Slow down the enemy 2-3s\nCause Damage", damage = 3, CapPointsToUnlock =3,deblocked = false }
+            // Warrior Skills :
+                ,new Skill { name = "Charge", isUsed = false,
+                    description = "A Warrior skill used to surprise the enemy by moving so fast.\nQuality : "+
+                "invulnerable while attacking\nDamage and silence the enemy", damage = 3, CapPointsToUnlock =3 }
+            // Assassin Skills :
+                ,new Skill { name = "BladesDance", isUsed = false,
+                    description = "An Assassin skill used to disappear and hit the enemy.\nQuality : "+
+                "Strong damage\nUseful to escape from enemies", damage = 3, CapPointsToUnlock =3 }
+            // Basic Attack : 
+                ,new Skill { name = "Sword", isUsed = true, description = "The Sword description here", damage = 3, CapPointsToUnlock =0 }
             };
     }
 

@@ -20,23 +20,39 @@ namespace LIL
         private float moveHorizontal;
         private float moveVertical;
         private Profile profile;
-        
+        private bool interactable;
+        private bool inventoryActive;
+
         private MovementManager movementManager;
+        private GameObject GUI;
+        Interaction interaction;
+        Inventory inventory;
 
         private Skill fireball;
         private Skill charge;
         private Skill icyBlast;
         private Skill bladesDance;
+        private Skill[] selectedSkills;
+
 
         // Added by Julien
         private Vector3 lastMove;
 
         void Start()
         {
+            
+            GUI = GameObject.FindGameObjectWithTag("GameUI");
+            interaction = GUI.GetComponent<Interaction>();
+            inventory = GUI.GetComponent<Inventory>();
+            interactable = false;
+            inventoryActive = false;
+
             fireball    = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
             charge      = GetComponent<SkillManager>().getSkill(SkillsID.Charge);
             icyBlast    = GetComponent<SkillManager>().getSkill(SkillsID.IcyBlast);
             bladesDance = GetComponent<SkillManager>().getSkill(SkillsID.BladesDance);
+
+            selectedSkills = new Skill[] { bladesDance, fireball, icyBlast, charge }; // Just temporarily
 
             profile = new Profile(input, 0);
             animator = GetComponent<Animator>();
@@ -73,20 +89,38 @@ namespace LIL
             moveHorizontal = 0.0f;
          
             // Modified by Sidney
-            if (profile.getKeyDown(PlayerAction.Skill1)) bladesDance.tryCast();
-
+            if (profile.getKeyDown(PlayerAction.Skill1) && !inventoryActive ) selectedSkills[0].tryCast();
+         
+            if (profile.getKeyDown(PlayerAction.Skill2) && !inventoryActive) selectedSkills[1].tryCast();
             // Added by Sidney
-            if (profile.getKeyDown(PlayerAction.Skill4)) charge.tryCast();
-            if (profile.getKeyDown(PlayerAction.Skill3)) icyBlast.tryCast();
+            if (profile.getKeyDown(PlayerAction.Skill4) && !inventoryActive) selectedSkills[3].tryCast();
+            if (profile.getKeyDown(PlayerAction.Skill3) && !inventoryActive) selectedSkills[2].tryCast();
 
             // Added by Sidney
             if (movementManager.isImmobilized()) return;
             
-            if (profile.getKey(PlayerAction.Up))    moveVertical += 1.0f;
-            if (profile.getKey(PlayerAction.Down))  moveVertical -= 1.0f;
-            if (profile.getKey(PlayerAction.Left))  moveHorizontal -= 1.0f;
-            if (profile.getKey(PlayerAction.Right)) moveHorizontal += 1.0f;
+            if (profile.getKey(PlayerAction.Up) && !inventoryActive)    moveVertical += 1.0f;
+            if (profile.getKey(PlayerAction.Down) && !inventoryActive)  moveVertical -= 1.0f;
+            if (profile.getKey(PlayerAction.Left) && !inventoryActive)  moveHorizontal -= 1.0f;
+            if (profile.getKey(PlayerAction.Right) && !inventoryActive) moveHorizontal += 1.0f;
 
+
+            if (profile.getKeyDown(PlayerAction.Interaction) && interactable)
+            {
+                if (!inventoryActive)
+                {
+                    interaction.hideInteractionMsg();
+                    inventory.active();
+                    inventoryActive = true;
+                }
+                else
+                {
+                    interaction.displayInteractionMsg(this.input);
+                    inventory.disable();
+                    inventoryActive = false;
+                }
+
+            }
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
             movement.Normalize();
 
@@ -117,6 +151,43 @@ namespace LIL
 
             // Tell the animator whether or not the player is walking.
             animator.SetBool("walk", walking);
+        }
+
+        public ProfilsID getInput()
+        {
+            return this.input;
+        }
+
+        public Profile getProfile()
+        {
+            return this.profile;
+        }
+
+        public void setSkill(Skill skill, int index)
+        {
+            if (index < 4)
+            {
+                selectedSkills[index] = skill;
+            }
+        }
+
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.tag == "Campfire")
+            {
+                interaction.displayInteractionMsg(this.input);
+                interactable = true;
+            }
+        }
+
+        void OnTriggerExit(Collider other)
+        {
+
+            if (other.gameObject.tag == "Campfire")
+            {
+                interaction.hideInteractionMsg();
+                interactable = false;
+            }
         }
     }
 }

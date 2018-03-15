@@ -14,6 +14,16 @@ public class CameraController : MonoBehaviour
     private float zoom = 15.0f;                 // distance between the camera and the player
     private Vector3 offset;
 
+    public Texture2D cursorTexture;
+    public CursorMode cursorMode = CursorMode.Auto;
+    public Vector2 hotSpot = Vector2.zero;
+
+    private void Awake()
+    {
+        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
     void Start()
     {
         // Set the angle from which look at the target
