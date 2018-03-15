@@ -7,7 +7,11 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: skin
+<<<<<<< HEAD
+  m_Shader: {fileID: 10750, guid: 0000000000000000f000000000000000, type: 0}
+=======
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+>>>>>>> c95479519c8f73da6b278736d80751c15edcb4e5
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0

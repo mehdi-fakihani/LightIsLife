@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Remoting.Messaging;
 using JetBrains.Annotations;
-using NUnit.Framework;
+//using NUnit.Framework;
 using UnityEngine;
 
 namespace LIL
@@ -47,8 +47,8 @@ namespace LIL
         {
             ISkillModel model;
             bool hasId = Skill.Models.TryGetValue(skillId, out model);
-            Assert.IsTrue(hasId, "The skill key '" + skillId + "' does not exists");
-            Assert.IsNull(getSkill(skillId), "The skill is already stored by this manager");
+            //Assert.IsTrue(hasId, "The skill key '" + skillId + "' does not exists");
+            //Assert.IsNull(getSkill(skillId), "The skill is already stored by this manager");
 
             var skill = new Skill(model, this);
             skills.Add(skillId, skill);

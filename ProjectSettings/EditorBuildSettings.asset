@@ -4,4 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Dorian/PlayerChoice.unity
+    guid: 9cc6aa1e8d6ee7c489d1a5021b6e5b96
+  - enabled: 1
+    path: Assets/Scenes/Dorian/SceneDorian2.unity
+    guid: e9a3d70e0eff8b74688a2af08e4198a5
+  - enabled: 1
+    path: Assets/Scenes/Dorian/test.unity
+    guid: 3432d74ed148f1e4baad262828653ea5

@@ -1774,6 +1774,8 @@ GameObject:
   - component: {fileID: 114820457101728808}
   - component: {fileID: 82007732620466782}
   - component: {fileID: 136529281410186260}
+  - component: {fileID: 54234912268913980}
+  - component: {fileID: 114154547712424790}
   m_Layer: 0
   m_Name: PlayerKnight
   m_TagString: Player
@@ -6366,6 +6368,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1932417689068914}
   m_Mesh: {fileID: 4300000, guid: db4594b430fbffc4784480d4a40e5f1b, type: 3}
+--- !u!54 &54234912268913980
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491880915544872}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: Infinity
+  m_AngularDrag: Infinity
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 84
+  m_CollisionDetection: 0
 --- !u!82 &82007732620466782
 AudioSource:
   m_ObjectHideFlags: 1
@@ -6527,6 +6544,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12440e377f8c5894bb395a98136063a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114154547712424790
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491880915544872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbcee63c4adcac647ba9d65c30d7925d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114157619215302822
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6557,7 +6585,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1491880915544872}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d8c95a7d00714c4a9aa05cbbf96e30c, type: 3}
   m_Name: 
@@ -6589,10 +6617,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7224536d749835a41a492b4dfec60e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: 0
+  input: 1
   movementSpeed: 6
   hurtSound: {fileID: 0}
   deathSound: {fileID: 0}
+  secondPlayer: {fileID: 0}
 --- !u!114 &114814255197699790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6630,7 +6659,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4ded81839c4fa42a43dd7ec8ae8730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialLife: 100
+  initialLife: 1000
+  expCollectable: {fileID: 1804610024410126, guid: 7637478850598954f8a3d328198f50c9,
+    type: 2}
 --- !u!136 &136529281410186260
 CapsuleCollider:
   m_ObjectHideFlags: 1

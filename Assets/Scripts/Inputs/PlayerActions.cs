@@ -18,6 +18,8 @@ namespace LIL
         Skill1,
         Skill2,
         Skill3,
-        Skill4
+        Skill4,
+        Interaction,
+        ChangeTorch
     }
 }

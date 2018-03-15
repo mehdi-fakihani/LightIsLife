@@ -13,9 +13,14 @@ namespace LIL
 
 
         private Transform player;               // Reference to the player's position.
+        private Transform player2;
         private NavMeshAgent nav;               // Reference to the nav mesh agent.
         private Animator animator;
         private LightFuel torchLight;
+        private bool moveCancelled = false;
+        private bool multiplayer = false;
+        private float distance;
+        private float distance1;
         private HealthManager playerHealth;
         private float timer;                                // Timer for counting up to the next attack.
         private bool playerInRange;
@@ -25,7 +30,7 @@ namespace LIL
         void Start()
         {
             // Set up the references.
-            player = GameObject.FindGameObjectWithTag("Player").transform;
+            player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
             torchLight = player.GetComponent<LightFuel>();
             animator = GetComponent<Animator>();
             nav = GetComponent<NavMeshAgent>();
@@ -46,7 +51,12 @@ namespace LIL
                 animator.SetTrigger("death");
                 Destroy(gameObject, 1.5f);
             });
+            if (SceneManager.getMulti())
+            {
+                multiplayer = true;
+                player2 = GameObject.FindGameObjectsWithTag("Player")[1].transform;
 
+            }
         }
 
         void OnTriggerEnter(Collider other)
@@ -91,8 +101,19 @@ namespace LIL
             //check if not dead
             if (!GetComponent<HealthManager>().isAlive()) return;
 
+            if (multiplayer)
+            {
+                distance1 = Vector3.Distance(player.position, transform.position);
+                float distance2 = Vector3.Distance(player2.position, transform.position);
+
+                distance = Mathf.Min(distance1, distance2);
+            }
+
+            else
+            {
+                distance = Vector3.Distance(player.position, transform.position);
+            }
             // set speed depending on player's light 
-            float distance = Vector3.Distance(player.position, transform.position);
 
             nav.speed = minSpeed + (maxSpeed - minSpeed)
                                     * Mathf.Clamp(distance / torchLight.GetLightRange(), 0, 1);
@@ -103,6 +124,22 @@ namespace LIL
             // update target position and walk animation
             if (playerInRange)
             {
+                if (multiplayer)
+                {
+                    if (distance == distance1)
+                    {
+                        nav.SetDestination(player.position);
+                    }
+                    else
+                    {
+                        nav.SetDestination(player2.position);
+                    }
+                }
+                else
+                {
+                    nav.SetDestination(player.position);
+                }
+                moveCancelled = false;
                 //Debug.Log("in range");
                 transform.LookAt(player.position);
                 nav.isStopped = true;

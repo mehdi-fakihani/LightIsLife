@@ -24,12 +24,16 @@ namespace LIL
         Skill fireball;
 
         private Transform player;               // Reference to the player's position.
+        private Transform player2;
         private NavMeshAgent nav;               // Reference to the nav mesh agent.
         private Rigidbody body;
         private Animator animator;
         private LightFuel torchLight;
         private FireballSkill skillModel;
         private float currentDamage;
+        private bool multiplayer = false;
+        private float distance;
+        private float distance1;
 
         private delegate void StateAction();
         private StateAction currentAction;
@@ -43,7 +47,7 @@ namespace LIL
         void Start()
         {
             // Set up the references.
-            player = GameObject.FindGameObjectWithTag("Player").transform;
+            player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
             torchLight = player.GetComponent<LightFuel>();
             animator = GetComponent<Animator>();
             body = GetComponent<Rigidbody>();
@@ -66,6 +70,11 @@ namespace LIL
                 Destroy(gameObject, 1.5f);
             });
 
+            if(SceneManager.getMulti())
+            {
+                multiplayer = true;
+                player2 = GameObject.FindGameObjectsWithTag("Player")[1].transform;
+            }
             currentAction = this.TryToFire;
             isObstacle = false;
             isInRange = false;
@@ -118,8 +127,6 @@ namespace LIL
         {
             float distance = Vector3.Distance(player.position, transform.position);
             isRetreating = distance < retreatRadius;
-
-            // don't check range and obstacle if it has to retreat
             if (isRetreating)
             {
                 currentAction = this.Retreat;

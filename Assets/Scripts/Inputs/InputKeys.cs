@@ -40,6 +40,11 @@ namespace LIL.Inputs
         KeyboardY = KeyCode.Y,
         KeyboardZ = KeyCode.Z,
 
+        Keyboard1 = KeyCode.Alpha1,
+        Keyboard2 = KeyCode.Alpha2,
+        Keyboard3 = KeyCode.Alpha3,
+        Keyboard4 = KeyCode.Alpha4,
+
         KeyboardSpace = KeyCode.Space,
         KeyboardUp = KeyCode.UpArrow,
         KeyboardDown = KeyCode.DownArrow,

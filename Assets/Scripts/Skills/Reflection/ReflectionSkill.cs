@@ -15,10 +15,18 @@ namespace LIL
         [SerializeField] private float castTime;
         [SerializeField] private float timeReflect;
         [SerializeField] private AudioClip castSound;
+        [SerializeField] private GameObject particleAnimation;
+        [SerializeField] private GameObject particleManager;
+
 
         public override void cast(SkillManager manager)
         {
             var caster = manager.gameObject;
+
+            if (particleAnimation != null)
+            {
+                particleManager.GetComponent<ParticleManager>().addEffect(particleAnimation, caster);
+            }
 
             if (castSound != null)
             {
