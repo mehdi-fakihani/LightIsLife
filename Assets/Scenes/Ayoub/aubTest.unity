@@ -278,6 +278,21 @@ Prefab:
       propertyPath: skill4
       value: 52
       objectReference: {fileID: 0}
+    - target: {fileID: 114868835433303136, guid: 40a75cb8746106149809f15feca8b472,
+        type: 2}
+      propertyPath: changeTorch
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 114985135003320322, guid: 40a75cb8746106149809f15feca8b472,
+        type: 2}
+      propertyPath: changeTorch
+      value: 355
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551302736027142, guid: 40a75cb8746106149809f15feca8b472,
+        type: 2}
+      propertyPath: changeTorch
+      value: 120
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 40a75cb8746106149809f15feca8b472, type: 2}
   m_IsPrefabParent: 0
@@ -1196,6 +1211,7 @@ MonoBehaviour:
   movementSpeed: 6
   hurtSound: {fileID: 8300000, guid: e1c96ce55e402fc46a82fc90dc7303e1, type: 3}
   deathSound: {fileID: 8300000, guid: fd0e47d71526ac64b80e965a9b88860c, type: 3}
+  secondPlayer: {fileID: 0}
 --- !u!114 &667444701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1307,6 +1323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialLife: 100
+  expCollectable: {fileID: 0}
 --- !u!1 &669496186
 GameObject:
   m_ObjectHideFlags: 0
@@ -1901,6 +1918,10 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261117987997862, guid: 362fc4713bad19c45bc46b425aea8a56, type: 2}
+      propertyPath: m_TagString
+      value: SkillSelected
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 362fc4713bad19c45bc46b425aea8a56, type: 2}
@@ -3838,6 +3859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialLife: 100
+  expCollectable: {fileID: 0}
 --- !u!114 &2111546844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3877,8 +3899,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpeed: 3.5
   maxSpeed: 7
-  hurtSound: {fileID: 0}
-  deathSound: {fileID: 0}
 --- !u!114 &2111546847
 MonoBehaviour:
   m_ObjectHideFlags: 0

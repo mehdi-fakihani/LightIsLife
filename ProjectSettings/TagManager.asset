@@ -5,22 +5,16 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Environment
-  - Missile
-<<<<<<< HEAD
-  - fire
-  - Campfire
-  - GameUI
-  - SkillSelected
+  - Exp
   - Fireball
-  - Charge
-  - IcyBlast
   - BladesDance
+  - IcyBlast
+  - Charge
+  - SelectedSkills
+  - SkillSelected
   - SkillTitle
   - SkillDescription
-=======
-  - Exp
->>>>>>> c95479519c8f73da6b278736d80751c15edcb4e5
+  - GameUI
   layers:
   - Default
   - TransparentFX
