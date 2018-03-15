@@ -34,12 +34,16 @@ namespace LIL
         private Skill icyBlast;
         private Skill bladesDance;
         private Skill attack;
+        private Skill reflect;
 
         // Added by Julien
         private Vector3 lastMove;
 
         void Start()
         {
+            Debug.Log("coucou");
+            profile = new Profile(input, 0);
+            Debug.Log(profile);
             light = GetComponentInChildren<Light>();
             cam = GameObject.Find("Main Camera").GetComponent<CameraController>();
             fireball    = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
@@ -47,7 +51,7 @@ namespace LIL
             icyBlast    = GetComponent<SkillManager>().getSkill(SkillsID.IcyBlast);
             bladesDance = GetComponent<SkillManager>().getSkill(SkillsID.BladesDance);
             attack = GetComponent<SkillManager>().getSkill(SkillsID.HeroAttack);
-            profile = new Profile(input, 0);
+            reflect     = GetComponent<SkillManager>().getSkill(SkillsID.Reflect);
             animator = GetComponent<Animator>();
             movementManager = GetComponent<MovementManager>();
             lastMove = Vector3.zero;
@@ -55,12 +59,8 @@ namespace LIL
             {
                 otherlight = secondPlayer.GetComponentInChildren<Light>();
                 multiplayer = true;
+                secondPlayer.SetActive(true);
             }
-            else
-            {
-                secondPlayer.SetActive(false);
-            }
-
             audioSource = GetComponent<AudioSource>();
             lastMove = Vector3.zero;
 
@@ -92,14 +92,19 @@ namespace LIL
         {
             moveVertical = 0.0f;
             moveHorizontal = 0.0f;
-         
+
+            //if (profile.getKeyDown(PlayerAction.Skill2)) reflect.tryCast();
+
             // Modified by Sidney
+            //Debug.Log(profile);
+            //Debug.Log(multiplayer);
             if (profile.getKeyDown(PlayerAction.Skill1)) bladesDance.tryCast();
+            if (profile.getKeyDown(PlayerAction.Skill2)) fireball.tryCast();
 
             // Added by Sidney
             if (profile.getKeyDown(PlayerAction.Skill4)) charge.tryCast();
             if (profile.getKeyDown(PlayerAction.Skill3)) icyBlast.tryCast();
-            if (profile.getKeyDown(PlayerAction.Skill2)) attack.tryCast();
+            if (profile.getKeyDown(PlayerAction.Attack)) attack.tryCast();
 
             if (multiplayer)
             {

@@ -56,8 +56,8 @@ namespace LIL
 
         void Update()
         {
-           if (currentAttackTime > 0) currentAttackTime -= Time.deltaTime;
-            if (profile.getKeyDown(PlayerAction.Skill2) && currentAttackTime<=0)
+            if (currentAttackTime > 0) currentAttackTime -= Time.deltaTime;
+            if (profile.getKeyDown(PlayerAction.Attack) && currentAttackTime <= 0) ;
             {
                 attack = true;
                 currentAttackTime = attackTimeInterval;

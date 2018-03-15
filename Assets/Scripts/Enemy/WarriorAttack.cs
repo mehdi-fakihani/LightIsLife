@@ -115,5 +115,10 @@ namespace LIL
             currentAttackDamage += baseAttackDamage * ratio;
         }
 
+        public bool IsPlayerInRange()
+        {
+            return playerInRange;
+        }
+
     }
 }
