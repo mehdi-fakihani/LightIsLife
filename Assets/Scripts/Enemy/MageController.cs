@@ -27,12 +27,14 @@ namespace LIL
         private FireballSkill skillModel;
         private bool moveCancelled = false;
         private float currentDamage;
+        private bool multiplayer = false;
+        private float distance;
+        private float distance1;
 
         void Start()
         {
             // Set up the references.
             player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
-            player2 = GameObject.FindGameObjectsWithTag("Player")[1].transform;
             torchLight = player.GetComponent<LightFuel>();
             animator = GetComponent<Animator>();
             nav = GetComponent<NavMeshAgent>();
@@ -53,16 +55,30 @@ namespace LIL
                 animator.SetTrigger("death");
                 Destroy(gameObject, 1.5f);
             });
+
+            if(SceneManager.getMulti())
+            {
+                multiplayer = true;
+                player2 = GameObject.FindGameObjectsWithTag("Player")[1].transform;
+            }
         }
 
         void Update()
         {
             //check if not dead
             if (!GetComponent<HealthManager>().isAlive()) return;
-            
-            float distance1 = Vector3.Distance(player.position, transform.position);
-            float distance2 = Vector3.Distance(player2.position, transform.position);
-            float distance = Mathf.Min(distance1, distance2);
+
+            if (multiplayer)
+            {
+                distance1 = Vector3.Distance(player.position, transform.position);
+                float distance2 = Vector3.Distance(player2.position, transform.position);
+                distance = Mathf.Min(distance1, distance2);
+            }
+
+            else
+            {
+                distance = Vector3.Distance(player.position, transform.position);
+            }
 
             nav.speed = minSpeed + (maxSpeed - minSpeed)
                                     * Mathf.Clamp(distance / torchLight.GetLightRange(), 0, 1);

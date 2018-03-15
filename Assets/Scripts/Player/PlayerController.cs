@@ -20,15 +20,11 @@ namespace LIL
         private float moveHorizontal;
         private float moveVertical;
        // public ProfilsID input;
-        [SerializeField] private GameObject otherPlayertorch;
         private Light otherlight;
-        [SerializeField] private GameObject Playertorch;
         [SerializeField] private Transform player;
         [SerializeField] private GameObject secondPlayer;
         private Light light;
         private CameraController cam;
-        SceneManager scenemanager;
-        private bool multi;
         private bool multiplayer = false;
         private Profile profile;
         
@@ -45,8 +41,7 @@ namespace LIL
 
         void Start()
         {
-            
-            light = Playertorch.GetComponent<Light>();
+            light = GetComponentInChildren<Light>();
             cam = GameObject.Find("Main Camera").GetComponent<CameraController>();
             fireball    = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
             charge      = GetComponent<SkillManager>().getSkill(SkillsID.Charge);
@@ -56,19 +51,15 @@ namespace LIL
             profile = new Profile(input, 0);
             animator = GetComponent<Animator>();
             movementManager = GetComponent<MovementManager>();
-            scenemanager = GetComponent<SceneManager>();
             lastMove = Vector3.zero;
-            bool multi = SceneManager.getMulti();
-            Debug.Log(multi);
-            if (multi == false)
+            if (SceneManager.getMulti())
+            {
+                otherlight = secondPlayer.GetComponentInChildren<Light>();
+                multiplayer = true;
+            }
+            else
             {
                 secondPlayer.SetActive(false);
-                
-            }
-            if (multi == true)
-            {
-                otherlight = otherPlayertorch.GetComponent<Light>();
-                multiplayer = true;
             }
 
             audioSource = GetComponent<AudioSource>();
@@ -111,7 +102,7 @@ namespace LIL
             if (profile.getKeyDown(PlayerAction.Skill3)) icyBlast.tryCast();
             if (profile.getKeyDown(PlayerAction.Skill2)) attack.tryCast();
 
-            if (multiplayer == true)
+            if (multiplayer)
             {
                 //Debug.Log("test");
                 if (profile.getKeyDown(PlayerAction.ChangeTorch) && light.intensity != 0)

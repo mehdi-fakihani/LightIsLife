@@ -1025,8 +1025,6 @@ MonoBehaviour:
   movementSpeed: 6
   hurtSound: {fileID: 0}
   deathSound: {fileID: 0}
-  otherPlayertorch: {fileID: 0}
-  Playertorch: {fileID: 1475576468666984}
   player: {fileID: 4541114732781730}
   secondPlayer: {fileID: 0}
 --- !u!114 &114209422444595826

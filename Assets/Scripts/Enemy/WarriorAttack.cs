@@ -18,18 +18,22 @@ namespace LIL
         HealthManager playerHealth;
         HealthManager playerHealth2;
         float timer;                                // Timer for counting up to the next attack.
-
+        private bool multiplayer = false;
         private float currentAttackDamage;
 
         void Start()
         {
             // Setting up the references.
             player = GameObject.FindGameObjectsWithTag("Player")[0];
-            player2 = GameObject.FindGameObjectsWithTag("Player")[1];
             playerHealth = player.GetComponent<HealthManager>();
-            playerHealth2 = player2.GetComponent<HealthManager>();
             anim = GetComponent<Animator>();
             currentAttackDamage = baseAttackDamage;
+            if (SceneManager.getMulti())
+            {
+                player2 = GameObject.FindGameObjectsWithTag("Player")[1];
+                playerHealth2 = player2.GetComponent<HealthManager>();
+                multiplayer = true;
+            }
         }
 
 
@@ -57,7 +61,7 @@ namespace LIL
                 playerInRange = false;
             }
 
-            if (other.gameObject == player2)
+            if (multiplayer && other.gameObject == player2)
             {
                 player2InRange = false;
             }
@@ -77,13 +81,18 @@ namespace LIL
                 anim.SetBool("walk", false);
             }
 
-            if (!playerInRange && !player2InRange)
+            if ( multiplayer && !playerInRange && !player2InRange)
             {
 
                 anim.SetBool("walk", true);
             }
 
-            if (timer >= timeBetweenAttacks && player2InRange && GetComponent<HealthManager>().isAlive())
+            else if(!playerInRange)
+            {
+                anim.SetBool("walk", true);
+            }
+
+            if ( multiplayer && timer >= timeBetweenAttacks && player2InRange && GetComponent<HealthManager>().isAlive())
             {
                 // ... attack.
                 Attack(playerHealth2);
