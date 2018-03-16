@@ -20,10 +20,9 @@ namespace LIL
         private float moveHorizontal;
         private float moveVertical;
         // public ProfilsID input;
-        private Light otherlight;
         [SerializeField] private GameObject secondPlayer;
-        private Light light;
         private CameraController cam;
+        private SpiritController spirit;
         private bool multiplayer = false;
         private Profile profile;
         private bool interactable;
@@ -59,11 +58,11 @@ namespace LIL
             inventoryActive = false;
 
 
-            Debug.Log("coucou");
+            //Debug.Log("coucou");
             profile = new Profile(input, 0);
-            Debug.Log(profile);
-            light = GetComponentInChildren<Light>();
+            //Debug.Log(profile);
             cam = GameObject.Find("Main Camera").GetComponent<CameraController>();
+            spirit = GameObject.FindGameObjectWithTag("Spirit").GetComponent<SpiritController>();
 
             fireball = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
             charge = GetComponent<SkillManager>().getSkill(SkillsID.Charge);
@@ -83,7 +82,6 @@ namespace LIL
             lastMove = Vector3.zero;
             if (SceneManager.getMulti())
             {
-                otherlight = secondPlayer.GetComponentInChildren<Light>();
                 multiplayer = true;
                 secondPlayer.SetActive(true);
             }
@@ -136,15 +134,20 @@ namespace LIL
 
 
             if (profile.getKeyDown(PlayerAction.Attack)) attack.tryCast();
-
-
+            
             if (multiplayer)
             {
                 //Debug.Log("test");
-                if (profile.getKeyDown(PlayerAction.ChangeTorch) && light.intensity != 0)
+                if (profile.getKeyDown(PlayerAction.ChangeTorch))
                 {
-                    otherlight.intensity = light.intensity;
-                    light.intensity = 0;
+                    if (CameraFollow())
+                    {
+                        cam.target = secondPlayer.transform;
+                    }
+                    else
+                    {
+                        cam.target = transform;
+                    }
                 }
             }
             // Added by Sidney
@@ -252,7 +255,7 @@ namespace LIL
         }
         bool CameraFollow()
         {
-            if (light.intensity != 0)
+            if (spirit.GetTarget().position == transform.position)
             {
                 return true;
             }
