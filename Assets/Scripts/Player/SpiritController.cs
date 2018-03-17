@@ -43,7 +43,6 @@ public class SpiritController : MonoBehaviour {
 
     private void UpdatePath()
     {
-        Debug.Log("TP");
         timer = 0;
         currentPathIndex = 0;
         Vector3 playerToSpirit = transform.position - player.position;
@@ -79,5 +78,10 @@ public class SpiritController : MonoBehaviour {
     public Transform GetTarget()
     {
         return player;
+    }
+
+    public void SetTarget(Transform p)
+    {
+        player = p;
     }
 }

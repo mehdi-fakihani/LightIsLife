@@ -56,4 +56,9 @@ public class CameraController : MonoBehaviour
                                 zoom * Mathf.Sin(Mathf.Deg2Rad * fixedAngle));
     }
 
+    public void SetTarget(Transform t)
+    {
+        this.target = t;
+    }
+
 }
