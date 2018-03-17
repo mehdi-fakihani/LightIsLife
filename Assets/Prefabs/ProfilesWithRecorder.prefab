@@ -72,10 +72,12 @@ MonoBehaviour:
   left: 97
   right: 100
   attack: 114
-  skill1: 106
-  skill2: 109
-  skill3: 110
-  skill4: 111
+  skill1: 49
+  skill2: 50
+  skill3: 51
+  skill4: 52
+  interaction: 101
+  changeTorch: 120
 --- !u!114 &114868835433303136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -98,6 +100,8 @@ MonoBehaviour:
   skill2: 121
   skill3: 117
   skill4: 105
+  interaction: 101
+  changeTorch: 120
 --- !u!114 &114985135003320322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,3 +124,5 @@ MonoBehaviour:
   skill2: 351
   skill3: 352
   skill4: 353
+  interaction: 354
+  changeTorch: 355

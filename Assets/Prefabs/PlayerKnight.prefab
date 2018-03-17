@@ -1771,7 +1771,6 @@ GameObject:
   - component: {fileID: 114066693450055066}
   - component: {fileID: 114555758657459122}
   - component: {fileID: 114187864727671838}
-  - component: {fileID: 114820457101728808}
   - component: {fileID: 82007732620466782}
   - component: {fileID: 136529281410186260}
   - component: {fileID: 54234912268913980}
@@ -3039,23 +3038,6 @@ GameObject:
   - component: {fileID: 4904469048936634}
   m_Layer: 0
   m_Name: MiddleFinger4_R
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1931530164412594
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4359098507998190}
-  - component: {fileID: 108093929860528662}
-  - component: {fileID: 114814255197699790}
-  m_Layer: 0
-  m_Name: TorchLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4516,19 +4498,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4153295246542782}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4359098507998190
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1931530164412594}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.865, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4946844160478084}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4362455231938332
 Transform:
@@ -6213,7 +6182,6 @@ Transform:
   - {fileID: 4290927614868274}
   - {fileID: 4600948245458244}
   - {fileID: 4319058104043810}
-  - {fileID: 4359098507998190}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6497,42 +6465,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!108 &108093929860528662
-Light:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1931530164412594}
-  m_Enabled: 1
-  serializedVersion: 8
-  m_Type: 2
-  m_Color: {r: 1, g: 1, b: 0.759, a: 1}
-  m_Intensity: 1.5
-  m_Range: 10
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
 --- !u!114 &114066693450055066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6605,7 +6537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a140e5ed91a2c42bcb54710c2caf60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillIds: 0000000003000000060000000800000002000000
+  skillIds: 00000000030000000600000008000000020000000a000000
 --- !u!114 &114799959481754344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6617,37 +6549,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7224536d749835a41a492b4dfec60e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: 1
+  input: 0
   movementSpeed: 6
   hurtSound: {fileID: 0}
   deathSound: {fileID: 0}
   secondPlayer: {fileID: 0}
---- !u!114 &114814255197699790
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1931530164412594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17ac3c90bbc05bb4987a67eb2f60fd85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fuelFactor: 1
---- !u!114 &114820457101728808
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1491880915544872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce830d55a8482084c82cfae1a34c6cf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightObject: {fileID: 108093929860528662}
-  lightDurability: 15
-  lightFullRange: 100
 --- !u!114 &114828946293266306
 MonoBehaviour:
   m_ObjectHideFlags: 1

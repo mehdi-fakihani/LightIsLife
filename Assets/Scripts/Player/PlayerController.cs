@@ -11,21 +11,21 @@ namespace LIL
     [RequireComponent(typeof(MovementManager))]
     public class PlayerController : MonoBehaviour
     {
+
         [SerializeField] private ProfilsID input;
         [SerializeField] private float movementSpeed = 6f;
         [SerializeField] private AudioClip hurtSound;
         [SerializeField] private AudioClip deathSound;
+        [SerializeField] private GameObject secondPlayer;
+        public bool multiplayer = false;
 
         private Animator animator;
         private AudioSource audioSource;
         private float moveHorizontal;
         private float moveVertical;
         // public ProfilsID input;
-        private Light otherlight;
-        [SerializeField] private GameObject secondPlayer;
-        private Light light;
         private CameraController cam;
-        private bool multiplayer = false;
+        private SpiritController spirit;
         private Profile profile;
         private bool interactable;
         private bool inventoryActive;
@@ -40,7 +40,7 @@ namespace LIL
         private Skill icyBlast;
         private Skill bladesDance;
 
-        private Skill[] selectedSkills =  new Skill[] { null, null, null, null};
+        private Skill[] selectedSkills = new Skill[] { null, null, null, null };
 
         private Skill attack;
         private Skill reflect;
@@ -51,30 +51,26 @@ namespace LIL
 
         void Start()
         {
-
-
             GUI = GameObject.FindGameObjectWithTag("GameUI");
             interaction = GUI.GetComponent<Interaction>();
             inventory = GUI.GetComponent<Inventory>();
             interactable = false;
             inventoryActive = false;
 
-            
+
 
             profile = new Profile(input, 0);
-            light = GetComponentInChildren<Light>();
-            cam = GameObject.Find("Main Camera").GetComponent<CameraController>();
+            Light light = GetComponentInChildren<Light>();
 
-            /*fireball = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
-            charge = GetComponent<SkillManager>().getSkill(SkillsID.Charge);
-            icyBlast = GetComponent<SkillManager>().getSkill(SkillsID.IcyBlast);
-            bladesDance = GetComponent<SkillManager>().getSkill(SkillsID.BladesDance);*/
+            cam = GameObject.Find("Main Camera").GetComponent<CameraController>();
+            spirit = GameObject.FindGameObjectWithTag("Spirit").GetComponent<SpiritController>();
+
 
             profile = new Profile(input, 0);
 
             // set skills form DB
             setSkills();
-            
+
 
             attack = GetComponent<SkillManager>().getSkill(SkillsID.HeroAttack);
             reflect = GetComponent<SkillManager>().getSkill(SkillsID.Reflect);
@@ -82,12 +78,15 @@ namespace LIL
             animator = GetComponent<Animator>();
             movementManager = GetComponent<MovementManager>();
             lastMove = Vector3.zero;
+
+            /*
             if (SceneManager.getMulti())
             {
-                otherlight = secondPlayer.GetComponentInChildren<Light>();
                 multiplayer = true;
                 secondPlayer.SetActive(true);
             }
+            */
+
             audioSource = GetComponent<AudioSource>();
             lastMove = Vector3.zero;
 
@@ -128,23 +127,33 @@ namespace LIL
             if (profile.getKeyDown(PlayerAction.Skill2) && !inventoryActive && selectedSkills[1] != null) selectedSkills[1].tryCast();
             if (profile.getKeyDown(PlayerAction.Skill3) && !inventoryActive && selectedSkills[2] != null) selectedSkills[2].tryCast();
             if (profile.getKeyDown(PlayerAction.Skill4) && !inventoryActive && selectedSkills[3] != null) selectedSkills[3].tryCast();
-            
+
 
             //Debug.Log(profile);
             //Debug.Log(multiplayer);
 
 
 
+
             if (profile.getKeyDown(PlayerAction.Attack) && !inventoryActive) attack.tryCast();
 
+
+
+            if (profile.getKeyDown(PlayerAction.Attack)) attack.tryCast();
 
             if (multiplayer)
             {
                 //Debug.Log("test");
                 if (profile.getKeyDown(PlayerAction.ChangeTorch) && light.intensity != 0 && !inventoryActive)
                 {
-                    otherlight.intensity = light.intensity;
-                    light.intensity = 0;
+                    if (CameraFollow())
+                    {
+                        SetMainPlayer(secondPlayer);
+                    }
+                    else
+                    {
+                        SetMainPlayer(this.gameObject);
+                    }
                 }
             }
             // Added by Sidney
@@ -195,11 +204,6 @@ namespace LIL
             float modifier = movementManager.getSpeedRatio();
             transform.Translate(movement * movementSpeed * Time.deltaTime * modifier, Space.World);
             Animating(moveHorizontal, moveVertical);
-
-            if (CameraFollow())
-            {
-                cam.target = this.transform;
-            }
         }
 
         void Animating(float h, float v)
@@ -246,13 +250,12 @@ namespace LIL
             {
                 interaction.hideInteractionMsg();
                 interactable = false;
-
-
             }
         }
+
         bool CameraFollow()
         {
-            if (light.intensity != 0)
+            if (spirit.GetTarget().position == transform.position)
             {
                 return true;
             }
@@ -320,7 +323,7 @@ namespace LIL
 
         public void setSkills()
         {
-            
+
             for (int i = 0; i < 4; i++)
             {
                 if (GeneralData.GetCurrentSkills()[i] != null)
@@ -330,6 +333,12 @@ namespace LIL
             }
         }
 
+        private void SetMainPlayer(GameObject player)
+        {
+            cam.SetTarget(player.transform);
+            spirit.SetTarget(player.transform);
+
+        }
 
     }
 }
