@@ -10,18 +10,31 @@ namespace LIL
     /// </summary>
     public enum SkillsID
     {
+        // Sword Skill :
         HeroAttack,
-        ShadowDance,
-        BladesDance,
+
+        // Wizard Skills :
         Fireball,
         Levitation,
         Rollback,
         IcyBlast,
+
+        // Warrior Skills :
         Provocation,
         Charge,
-        Whirlwind,
+        Storm,
         Reflect,
 
+        // Assassin Skill :
+        ShadowDance,
+        BladesDance,
+        Poison,
+        Adrenaline,
+
+        // Enemy Skills :
         SkeletonAttack,
+
     }
+
+    
 }

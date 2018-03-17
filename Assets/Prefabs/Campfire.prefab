@@ -54,9 +54,10 @@ GameObject:
   - component: {fileID: 4137771805618408}
   - component: {fileID: 33892410220996792}
   - component: {fileID: 23515451098615248}
+  - component: {fileID: 65680812852690770}
   m_Layer: 0
   m_Name: Campfire
-  m_TagString: Untagged
+  m_TagString: Campfire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -203,6 +204,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1119286201691832}
   m_Mesh: {fileID: 4300000, guid: e83e354153bb425439c2d1490062e850, type: 3}
+--- !u!65 &65680812852690770
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1119286201691832}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.354447, y: 0.5823568, z: 4.3582735}
+  m_Center: {x: 0.15000272, y: 0, z: -0.0014805794}
 --- !u!108 &108160451405182920
 Light:
   m_ObjectHideFlags: 1

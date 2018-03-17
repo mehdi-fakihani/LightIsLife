@@ -3,6 +3,7 @@ using LIL.Inputs;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 namespace LIL
@@ -39,7 +40,7 @@ namespace LIL
         private Skill icyBlast;
         private Skill bladesDance;
 
-        private Skill[] selectedSkills;
+        private Skill[] selectedSkills =  new Skill[] { null, null, null, null};
 
         private Skill attack;
         private Skill reflect;
@@ -58,22 +59,22 @@ namespace LIL
             interactable = false;
             inventoryActive = false;
 
+            
 
-            Debug.Log("coucou");
             profile = new Profile(input, 0);
-            Debug.Log(profile);
             light = GetComponentInChildren<Light>();
             cam = GameObject.Find("Main Camera").GetComponent<CameraController>();
 
-            fireball = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
+            /*fireball = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
             charge = GetComponent<SkillManager>().getSkill(SkillsID.Charge);
             icyBlast = GetComponent<SkillManager>().getSkill(SkillsID.IcyBlast);
-            bladesDance = GetComponent<SkillManager>().getSkill(SkillsID.BladesDance);
-
-
-            selectedSkills = new Skill[] { bladesDance, fireball, icyBlast, charge }; // Just temporarily
+            bladesDance = GetComponent<SkillManager>().getSkill(SkillsID.BladesDance);*/
 
             profile = new Profile(input, 0);
+
+            // set skills form DB
+            setSkills();
+            
 
             attack = GetComponent<SkillManager>().getSkill(SkillsID.HeroAttack);
             reflect = GetComponent<SkillManager>().getSkill(SkillsID.Reflect);
@@ -123,25 +124,24 @@ namespace LIL
 
             // Modified by Sidney
 
-            if (profile.getKeyDown(PlayerAction.Skill1) && !inventoryActive) selectedSkills[0].tryCast();
-
-            if (profile.getKeyDown(PlayerAction.Skill2) && !inventoryActive) selectedSkills[1].tryCast();
-            // Added by Sidney
-            if (profile.getKeyDown(PlayerAction.Skill4) && !inventoryActive) selectedSkills[3].tryCast();
-            if (profile.getKeyDown(PlayerAction.Skill3) && !inventoryActive) selectedSkills[2].tryCast();
+            if (profile.getKeyDown(PlayerAction.Skill1) && !inventoryActive && selectedSkills[0] != null) selectedSkills[0].tryCast();
+            if (profile.getKeyDown(PlayerAction.Skill2) && !inventoryActive && selectedSkills[1] != null) selectedSkills[1].tryCast();
+            if (profile.getKeyDown(PlayerAction.Skill3) && !inventoryActive && selectedSkills[2] != null) selectedSkills[2].tryCast();
+            if (profile.getKeyDown(PlayerAction.Skill4) && !inventoryActive && selectedSkills[3] != null) selectedSkills[3].tryCast();
+            
 
             //Debug.Log(profile);
             //Debug.Log(multiplayer);
 
 
 
-            if (profile.getKeyDown(PlayerAction.Attack)) attack.tryCast();
+            if (profile.getKeyDown(PlayerAction.Attack) && !inventoryActive) attack.tryCast();
 
 
             if (multiplayer)
             {
                 //Debug.Log("test");
-                if (profile.getKeyDown(PlayerAction.ChangeTorch) && light.intensity != 0)
+                if (profile.getKeyDown(PlayerAction.ChangeTorch) && light.intensity != 0 && !inventoryActive)
                 {
                     otherlight.intensity = light.intensity;
                     light.intensity = 0;
@@ -260,6 +260,73 @@ namespace LIL
             {
                 return false;
 
+            }
+        }
+
+        public SkillsID getSkillIDByName(string name)
+        {
+            SkillsID id = SkillsID.Fireball;
+
+            switch (name)
+            {
+                // Wizard Skills :
+                case "Fireball":
+                    break;
+                case "IcyBlast":
+                    id = SkillsID.IcyBlast;
+                    break;
+                case "Rollback":
+                    id = SkillsID.Rollback;
+                    break;
+                case "Levitation":
+                    id = SkillsID.Levitation;
+                    break;
+                // Warrior Skills :
+                case "Charge":
+                    id = SkillsID.Charge;
+                    break;
+                case "Storm":
+                    id = SkillsID.Storm;
+                    break;
+                case "Provocation":
+                    id = SkillsID.Provocation;
+                    break;
+                case "Reflect":
+                    id = SkillsID.Reflect;
+                    break;
+                // Assassin Skills :
+                case "ShadowDance":
+                    id = SkillsID.ShadowDance;
+                    break;
+                case "BladesDance":
+                    id = SkillsID.BladesDance;
+                    break;
+                case "Poison":
+                    id = SkillsID.Poison;
+                    break;
+                case "Adrenaline":
+                    id = SkillsID.Adrenaline;
+                    break;
+            }
+
+            return id;
+        }
+
+        public Skill getSkillByName(string name)
+        {
+            Skill skill = GetComponent<SkillManager>().getSkill(getSkillIDByName(name));
+            return skill;
+        }
+
+        public void setSkills()
+        {
+            
+            for (int i = 0; i < 4; i++)
+            {
+                if (GeneralData.GetCurrentSkills()[i] != null)
+                {
+                    selectedSkills[i] = getSkillByName(GeneralData.GetCurrentSkills()[i].name);
+                }
             }
         }
 
