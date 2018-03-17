@@ -144,7 +144,7 @@ namespace LIL
             if (multiplayer)
             {
                 //Debug.Log("test");
-                if (profile.getKeyDown(PlayerAction.ChangeTorch) && light.intensity != 0 && !inventoryActive)
+                if (profile.getKeyDown(PlayerAction.ChangeTorch) && !inventoryActive)
                 {
                     if (CameraFollow())
                     {
