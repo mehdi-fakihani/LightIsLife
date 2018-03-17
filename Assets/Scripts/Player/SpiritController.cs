@@ -10,16 +10,13 @@ public class SpiritController : MonoBehaviour {
     public float distanceToPlayer = 1;          // Distance to keep from player
     public float refreshPathTime = 2.0f;        // Time interval between 2 path calculations
     public float verticalOndulation = 1;        // vertical ondulation movement of the spirit
-
-    private NavMeshAgent nav;
+    
     private NavMeshPath currentPath;
     private int currentPathIndex;
     private float timer;
 
 	// Use this for initialization
 	void Start () {
-        nav = GetComponent<NavMeshAgent>();
-        nav.speed = speed;
         currentPath = new NavMeshPath();
         UpdatePath();
     }
@@ -52,7 +49,7 @@ public class SpiritController : MonoBehaviour {
 
     private void MoveAlongPath()
     {
-        float distanceInOneUpdate = Time.deltaTime * nav.speed;
+        float distanceInOneUpdate = Time.deltaTime * speed;
         float distanceToNextCorner;
         Vector3 target;
         // find next target in path
@@ -67,11 +64,11 @@ public class SpiritController : MonoBehaviour {
         Vector3 direction = target - transform.position;
         if (currentPathIndex < currentPath.corners.Length)
         {
-            nav.Move(direction.normalized * distanceInOneUpdate);
+            transform.position += direction.normalized * distanceInOneUpdate;
         }
         else // if last point is too close, slow down to reach destination exactly
         {
-            nav.Move(direction.normalized * distanceToNextCorner);
+            transform.position += direction.normalized * distanceToNextCorner;
         }
     }
 
