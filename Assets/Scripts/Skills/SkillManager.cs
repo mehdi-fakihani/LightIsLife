@@ -45,6 +45,7 @@ namespace LIL
         /// </summary>
         public Skill addSkill(SkillsID skillId)
         {
+            
             ISkillModel model;
             bool hasId = Skill.Models.TryGetValue(skillId, out model);
             //Assert.IsTrue(hasId, "The skill key '" + skillId + "' does not exists");

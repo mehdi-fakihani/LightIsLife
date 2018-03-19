@@ -18,6 +18,7 @@ namespace LIL
         private Profile profile;
         private GameObject skillTitle;
         private GameObject skillDescription;
+        private GameObject skillClass;
         Transform skillSlot;
 
         public void OnDeselect(BaseEventData eventData)
@@ -30,11 +31,13 @@ namespace LIL
             selected = true;
             skillTitle.GetComponent<Text>().text = this.gameObject.name + " :" ;
             skillDescription.GetComponent<Text>().text = GeneralData.GetSkillByName(this.gameObject.name).description;
-          
+            skillClass.GetComponent<Text>().text = GeneralData.GetSkillByName(this.gameObject.name)._class.name;
+            skillClass.GetComponent<Text>().color = GeneralData.GetSkillByName(this.gameObject.name)._class.color;
+
         }
 
         // Use this for initialization
-        void Start()
+        void Awake()
         {
             pm = GameObject.FindGameObjectWithTag("Player").GetComponent<SkillManager>();
             pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -42,6 +45,29 @@ namespace LIL
             selectedSkills = GameObject.FindGameObjectWithTag("SkillSelected");
             skillTitle = GameObject.FindGameObjectWithTag("SkillTitle");
             skillDescription = GameObject.FindGameObjectWithTag("SkillDescription");
+            skillClass = GameObject.FindGameObjectWithTag("SkillClass");
+            
+            // Load the skill sprite
+            string spritePath = GeneralData.GetSkillByName(this.gameObject.name).spritePath;
+            this.gameObject.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(spritePath);
+            this.gameObject.transform.GetChild(1).GetComponent<Image>().enabled = true;
+
+            if (!GeneralData.GetSkillByName(this.gameObject.name).deblocked)
+            {
+                if (!GeneralData.isAvailable(this.gameObject.name))
+                {
+                    this.gameObject.GetComponent<Selectable>().enabled = false;
+                    this.gameObject.transform.GetChild(1).GetComponent<Image>().color = new Color32(255, 255, 255, 50);
+                }
+                else
+                {
+                    this.gameObject.transform.GetChild(1).GetComponent<Image>().color = new Color32(255, 255, 255, 150);
+                    this.gameObject.transform.GetChild(2).GetComponentInChildren<Text>().text = "" + GeneralData.GetSkillByName(this.gameObject.name).CapPointsToUnlock;
+                    this.gameObject.transform.GetChild(2).gameObject.SetActive(true);
+                }
+            }
+
+            
 
         }
 
@@ -50,74 +76,78 @@ namespace LIL
         {
             if (selected)
             {
+                
                 isUsed = false;
+                int index = -1;
 
                 for (int i = 0; i < selectedSkills.transform.childCount; i++)
                 {
                     if (selectedSkills.transform.GetChild(i).tag == this.gameObject.name)
                     {
                         isUsed = true;
+                        index = i;
                         break;
                     }
                 }
 
-                if (!isUsed)
+                if (!isUsed && GeneralData.GetSkillByName(this.gameObject.name).deblocked)
                 {
 
                     if (profile.getKeyDown(PlayerAction.Skill1))
                     {
+                        
                         skillSlot = selectedSkills.transform.GetChild(0);
                         skillSlot.tag = this.gameObject.name;
+
+                        if (!skillSlot.GetChild(1).GetComponent<Image>().enabled)
+                            skillSlot.GetChild(1).GetComponent<Image>().enabled = true;
+
                         skillSlot.GetChild(1).GetComponent<Image>().sprite = this.transform.GetChild(1).GetComponent<Image>().sprite;
-                        pc.setSkill(getSkill(this.gameObject.name), 0);
+                        pc.setSkill(pc.getSkillByName(this.gameObject.name), 0);
                     }
                     if (profile.getKeyDown(PlayerAction.Skill2))
                     {
                         skillSlot = selectedSkills.transform.GetChild(1);
                         skillSlot.tag = this.gameObject.name;
+
+                        if (!skillSlot.GetChild(1).GetComponent<Image>().enabled)
+                            skillSlot.GetChild(1).GetComponent<Image>().enabled = true;
+
                         skillSlot.GetChild(1).GetComponent<Image>().sprite = this.transform.GetChild(1).GetComponent<Image>().sprite;
-                        pc.setSkill(getSkill(this.gameObject.name), 1);
+                        pc.setSkill(pc.getSkillByName(this.gameObject.name), 1);
                     }
                     if (profile.getKeyDown(PlayerAction.Skill3))
                     {
                         skillSlot = selectedSkills.transform.GetChild(2);
                         skillSlot.tag = this.gameObject.name;
+
+                        if (!skillSlot.GetChild(1).GetComponent<Image>().enabled)
+                            skillSlot.GetChild(1).GetComponent<Image>().enabled = true;
+
                         skillSlot.GetChild(1).GetComponent<Image>().sprite = this.transform.GetChild(1).GetComponent<Image>().sprite;
-                        pc.setSkill(getSkill(this.gameObject.name), 2);
+                        pc.setSkill(pc.getSkillByName(this.gameObject.name), 2);
                     }
                     if (profile.getKeyDown(PlayerAction.Skill4))
                     {
                         skillSlot = selectedSkills.transform.GetChild(3);
                         skillSlot.tag = this.gameObject.name;
+
+                        if (!skillSlot.GetChild(1).GetComponent<Image>().enabled)
+                            skillSlot.GetChild(1).GetComponent<Image>().enabled = true;
+
                         skillSlot.GetChild(1).GetComponent<Image>().sprite = this.transform.GetChild(1).GetComponent<Image>().sprite;
-                        pc.setSkill(getSkill(this.gameObject.name), 3);
+                        pc.setSkill(pc.getSkillByName(this.gameObject.name), 3);
                     }
                 }
+                else if (profile.getKeyDown(PlayerAction.Attack))
+                {
+                    skillSlot = selectedSkills.transform.GetChild(index);
+                    skillSlot.tag = "Untagged";
+                    skillSlot.GetChild(1).GetComponent<Image>().enabled = false;
+                    skillSlot.GetChild(1).GetComponent<Image>().sprite = null;
+                    pc.setSkill(null, index);
+                }
             }
-        }
-
-
-        public Skill getSkill(string name)
-        {
-            Skill skill = null;
-
-            switch (name)
-            {
-                case "Fireball":
-                    skill = pm.getSkill(SkillsID.Fireball);
-                    break;
-                case "Charge":
-                    skill = pm.getSkill(SkillsID.Charge);
-                    break;
-                case "BladesDance":
-                    skill = pm.getSkill(SkillsID.BladesDance);
-                    break;
-                case "IcyBlast":
-                    skill = pm.getSkill(SkillsID.IcyBlast);
-                    break;
-            }
-
-            return skill;
         }
     }
 }
