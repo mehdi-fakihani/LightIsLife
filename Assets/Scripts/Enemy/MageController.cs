@@ -22,7 +22,7 @@ namespace LIL
         // so the spell will be harder to dodge
 
         Skill fireball;
-
+        private EnemyManager em;
         private Transform player;               // Reference to the player's position.
         private Transform player2;
         private NavMeshAgent nav;               // Reference to the nav mesh agent.
@@ -47,8 +47,9 @@ namespace LIL
         void Start()
         {
             // Set up the references.
+            em = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>();
             player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
-            torchLight = player.GetComponent<LightFuel>();
+            torchLight = GameObject.FindGameObjectWithTag("Spirit").GetComponent<LightFuel>();
             animator = GetComponent<Animator>();
             body = GetComponent<Rigidbody>();
             nav = GetComponent<NavMeshAgent>();
@@ -67,6 +68,7 @@ namespace LIL
             health.setDeathCallback(() =>
             {
                 animator.SetTrigger("death");
+                em.CountDeath();
                 Destroy(gameObject, 1.5f);
             });
 
