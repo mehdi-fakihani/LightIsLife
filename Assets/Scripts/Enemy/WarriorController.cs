@@ -10,9 +10,11 @@ namespace LIL
         public float maxSpeed = 7f;
         public float timeBetweenAttacks = 0.5f;     // The time in seconds between each attack.
         public int baseAttackDamage = 10;               // The amount of health taken away per attack.
-
+        public AudioClip hurtSound;
+        public AudioClip deathSound;
 
         private EnemyManager em;
+        private AudioSource source;
         private Transform player;               // Reference to the player's position.
         private Transform player2;
         private NavMeshAgent nav;               // Reference to the nav mesh agent.
@@ -31,6 +33,7 @@ namespace LIL
         void Start()
         {
             // Set up the references.
+            source = GetComponent<AudioSource>();
             em = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>();
             player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
             torchLight = GameObject.FindGameObjectWithTag("Spirit").GetComponent<LightFuel>();
@@ -47,10 +50,18 @@ namespace LIL
             health.setHurtCallback(() =>
             {
                 animator.SetTrigger("hurt");
+                if(hurtSound != null)
+                {
+                    source.PlayOneShot(hurtSound);
+                }
             });
             health.setDeathCallback(() =>
             {
                 animator.SetTrigger("death");
+                if (deathSound != null)
+                {
+                    source.PlayOneShot(deathSound);
+                }
                 em.CountDeath();
                 Destroy(gameObject, 1.5f);
             });

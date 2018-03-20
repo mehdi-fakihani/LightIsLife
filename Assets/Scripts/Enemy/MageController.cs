@@ -17,6 +17,8 @@ namespace LIL
         public float rangeFactor = 0.75f;
         public float spellRadius = 0.5f;
         public float shiftDistance = 7f;
+        public AudioClip hurtSound;
+        public AudioClip deathSound;
 
         // don't throw spell at max range but maxRange * rangeFactor
         // so the spell will be harder to dodge
@@ -35,6 +37,7 @@ namespace LIL
         private float distance;
         private float distance1;
 
+        private AudioSource source;
         private delegate void StateAction();
         private StateAction currentAction;
         private int shift;                  // choose to shift left or right to shoot at player
@@ -47,6 +50,7 @@ namespace LIL
         void Start()
         {
             // Set up the references.
+            source = GetComponent<AudioSource>();
             em = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>();
             player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
             torchLight = GameObject.FindGameObjectWithTag("Spirit").GetComponent<LightFuel>();
@@ -64,10 +68,18 @@ namespace LIL
             health.setHurtCallback(() =>
             {
                 animator.SetTrigger("hurt");
+                if (hurtSound != null)
+                {
+                    source.PlayOneShot(hurtSound);
+                }
             });
             health.setDeathCallback(() =>
             {
                 animator.SetTrigger("death");
+                if (deathSound != null)
+                {
+                    source.PlayOneShot(deathSound);
+                }
                 em.CountDeath();
                 Destroy(gameObject, 1.5f);
             });
