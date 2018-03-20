@@ -148,4 +148,4 @@ MonoBehaviour:
   range: 0.8
   damageAttack: 10
   castTime: 0.5
-  ejection: 2
+  ejection: 1.5

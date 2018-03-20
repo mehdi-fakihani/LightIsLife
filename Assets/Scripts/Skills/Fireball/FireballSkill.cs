@@ -32,7 +32,7 @@ namespace LIL
         public float range;                     // The range of the ball
         public float damageAttack;              // The fireball damage
         public float castTime;                  // Time of the cast
-        public int ejection;                    // ejection factor
+        public float ejection;                    // ejection factor
         
         public override void cast(SkillManager skillManager)
         {

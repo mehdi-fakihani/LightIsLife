@@ -137,10 +137,6 @@ namespace LIL
 
             if (profile.getKeyDown(PlayerAction.Attack) && !inventoryActive) attack.tryCast();
 
-
-
-            if (profile.getKeyDown(PlayerAction.Attack)) attack.tryCast();
-
             if (multiplayer)
             {
                 //Debug.Log("test");

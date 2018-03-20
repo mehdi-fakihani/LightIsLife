@@ -862,6 +862,11 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 889650127}
+    - target: {fileID: 114428388904268652, guid: 6bb123caeb9a13745a39e8a9229eed70,
+        type: 2}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6bb123caeb9a13745a39e8a9229eed70, type: 2}
   m_IsPrefabParent: 0
@@ -981,6 +986,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1491880915544872, guid: db6f1c49c7a53f14a928f20e7a8a0335,
     type: 2}
   m_PrefabInternal: {fileID: 1338942539}
+--- !u!114 &889650125 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114449242980955562, guid: db6f1c49c7a53f14a928f20e7a8a0335,
+    type: 2}
+  m_PrefabInternal: {fileID: 1338942539}
+  m_Script: {fileID: 11500000, guid: 5d8c95a7d00714c4a9aa05cbbf96e30c, type: 3}
 --- !u!4 &889650127 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4946844160478084, guid: db6f1c49c7a53f14a928f20e7a8a0335,
@@ -2008,7 +2019,7 @@ MonoBehaviour:
   range: 0.8
   damageAttack: 10
   castTime: 0.5
-  ejection: 2
+  ejection: 1.5
 --- !u!4 &1513516903
 Transform:
   m_ObjectHideFlags: 0
@@ -2430,7 +2441,7 @@ Prefab:
         type: 2}
       propertyPath: health
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 889650125}
     - target: {fileID: 114220126129728916, guid: 1f645dbfee80a0c42962747517ac99d7,
         type: 2}
       propertyPath: spawnPoints.Array.data[0]
