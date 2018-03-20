@@ -6537,7 +6537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a140e5ed91a2c42bcb54710c2caf60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillIds: 00000000030000000600000008000000020000000a000000
+  skillIds: 000000000100000006000000040000000a00000008000000
 --- !u!114 &114799959481754344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6549,11 +6549,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7224536d749835a41a492b4dfec60e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: 0
+  input: 1
   movementSpeed: 6
   hurtSound: {fileID: 0}
   deathSound: {fileID: 0}
   secondPlayer: {fileID: 0}
+  multiplayer: 0
 --- !u!114 &114828946293266306
 MonoBehaviour:
   m_ObjectHideFlags: 1
