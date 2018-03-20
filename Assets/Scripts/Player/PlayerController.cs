@@ -167,12 +167,15 @@ namespace LIL
                 if (!inventoryActive)
                 {
                     interaction.hideInteractionMsg();
+                    animator.SetTrigger("inventoryTrigger");
+                    animator.SetBool("inventory", true);
                     inventory.active();
                     inventoryActive = true;
                 }
                 else
                 {
                     interaction.displayInteractionMsg(this.input);
+                    animator.SetBool("inventory", false);
                     inventory.disable();
                     inventoryActive = false;
                 }

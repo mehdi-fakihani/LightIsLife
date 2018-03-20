@@ -10,21 +10,29 @@ namespace LIL
     {
 
         private PlayerController pc;
+        private Profile profile;
         private string removeSelectedSkill = "";
         private string close;
+        private string howTo;
         private string[] skillKeys;
         private string[] browseKeys;
+        private bool howToDisplayed = false;
+        
 
         // Use this for initialization
         void Start()
         {
 
             pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+            profile = pc.getProfile();
             var model = Profile.Models[pc.getInput()];
             close = model.keys[PlayerAction.Interaction].ToString();
             if (close.StartsWith("Keyboard"))
             {
                 close = close.Substring(8);
+
+                howTo = model.keys[PlayerAction.ChangeTorch].ToString();
+                howTo = howTo.Substring(8);
 
                 skillKeys = new string[] { model.keys[PlayerAction.Skill1].ToString().Substring(8),
                     model.keys[PlayerAction.Skill2].ToString().Substring(8),
@@ -43,6 +51,9 @@ namespace LIL
             {
                 close = close.Substring(7);
 
+                howTo = model.keys[PlayerAction.ChangeTorch].ToString();
+                howTo = howTo.Substring(7);
+
                 skillKeys = new string[] { model.keys[PlayerAction.Skill1].ToString().Substring(7),
                     model.keys[PlayerAction.Skill2].ToString().Substring(7),
                 model.keys[PlayerAction.Skill3].ToString().Substring(7),
@@ -56,18 +67,17 @@ namespace LIL
                 removeSelectedSkill = model.keys[PlayerAction.Attack].ToString().Substring(7);
             }
 
-            this.gameObject.transform.GetChild(0).GetComponent<Text>().text = "How to :";
-            this.gameObject.transform.GetChild(2).GetComponent<Text>().text = "To browse skill : "+ browseKeys[0]+","+ browseKeys[1]+","+
-                browseKeys[2]+","+ browseKeys[3]+"\n"+
-            "To select a skill : " + skillKeys[0] + "," + skillKeys[1] + "," +
-                skillKeys[2] + "," + skillKeys[3]+"\n"+
-            "To remove a selected skill : " + removeSelectedSkill + "\n"+"To close the interface : " + close + "\n";
+            // Display the how to description
+            setHowToDescription();
 
 
             // Set already selected skills sprites
-            
+
             GeneralData.Skill[] selectedSkills = GeneralData.GetCurrentSkills();
-            Transform selectedSkillsPanel = GameObject.FindGameObjectWithTag("SkillSelected").transform;
+
+            // SKillsSelected (4th child of the inventory)
+            Transform selectedSkillsPanel = this.transform.parent.transform.GetChild(3);
+
             for (int i = 0; i < 4; i++)
             {
                 if (selectedSkills[i] != null)
@@ -80,6 +90,50 @@ namespace LIL
                 }
             }
 
+        }
+
+        void Update()
+        {
+            if(howToDisplayed && (profile.getKeyDown(PlayerAction.Up) || profile.getKeyDown(PlayerAction.Down) ||
+                profile.getKeyDown(PlayerAction.Left) || profile.getKeyDown(PlayerAction.Right)))
+            {
+                this.transform.parent.transform.GetChild(4).GetChild(0).GetChild(0).GetComponent<Selectable>().Select();
+                howToDisplayed = false;
+            }
+            else if(!howToDisplayed && profile.getKeyDown(PlayerAction.ChangeTorch))
+            {
+                setHowToDescription();
+            }
+        }
+
+        public void setHowToDescription()
+        {
+            // Title :
+            this.gameObject.transform.GetChild(0).GetComponent<Text>().text = "How to :";
+
+            // Class :
+            this.gameObject.transform.GetChild(1).GetComponent<Text>().text = "";
+
+            // Description :
+            this.gameObject.transform.GetChild(2).GetComponent<Text>().text = "To browse skill : " + browseKeys[0] + "," + browseKeys[1] + "," +
+                browseKeys[2] + "," + browseKeys[3] + "\n" +
+            "To select a skill : " + skillKeys[0] + "," + skillKeys[1] + "," +
+                skillKeys[2] + "," + skillKeys[3] + "\n" +
+            "To remove a selected skill : " + removeSelectedSkill + "\n" +
+            "To check How To again : " + howTo + "\n" +
+            "To close the interface : " + close + "\n";
+
+            howToDisplayed = true;
+        }
+
+        public bool isHowToDisplayed()
+        {
+            return this.howToDisplayed;
+        }
+
+        public void disableHowTo()
+        {
+            this.howToDisplayed = false;
         }
     }
 }
