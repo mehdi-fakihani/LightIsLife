@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114686916493862970}
   m_Layer: 0
   m_Name: LightSource
-  m_TagString: Untagged
+  m_TagString: LightSource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,7 +89,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ac3c90bbc05bb4987a67eb2f60fd85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   fuelFactor: 1
 --- !u!135 &135105451250880690
 SphereCollider:

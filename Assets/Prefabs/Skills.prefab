@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f6e4da6af2474145a54c5abb170aa8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 2
+  id: 10
   cooldown: 1
   chargesCount: 10
   damages: 50
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ff1403d6de67c49b6ac3ee3017ef0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 8
+  id: 6
   cooldown: 1
   chargesCount: 10
   damages: 5
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 892f5204051393e4b8b73228d4994bae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 6
+  id: 4
   cooldown: 1
   chargesCount: 10
   damages: 3
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434810e7316308748b28f8a9444ea3f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 3
+  id: 1
   cooldown: 2
   chargesCount: 2
   fireball_Sound: {fileID: 8300000, guid: e1d4e264ceb124045ae9a91715ff29ad, type: 3}
@@ -148,4 +148,4 @@ MonoBehaviour:
   range: 0.8
   damageAttack: 10
   castTime: 0.5
-  ejection: 2
+  ejection: 1.5

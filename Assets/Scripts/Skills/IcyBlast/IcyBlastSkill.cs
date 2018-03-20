@@ -33,7 +33,7 @@ namespace LIL
         {
             var caster = manager.gameObject;
             var effects = caster.GetComponent<EffectManager>();
-            //var animator = player.GetComponent<Animator>();
+            var casterAnimator = caster.GetComponent<Animator>();
 
             if (castSound != null)
             {
@@ -44,6 +44,9 @@ namespace LIL
             effects.addEffect(new Effects.Slow(castTime, castSlow));
             effects.addEffect(new Effects.Silence(castTime));
             int count = missilesCount;
+
+            // Play the attacks' animation
+            casterAnimator.SetTrigger("icyBlast");
 
             yield return new WaitForSeconds(castTime * castDelayRatio);
 

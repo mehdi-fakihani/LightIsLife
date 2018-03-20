@@ -28,6 +28,8 @@ TagManager:
   - Adrenaline
   - Rollback
   - Reflect
+  - Spirit
+  - LightSource
   layers:
   - Default
   - TransparentFX

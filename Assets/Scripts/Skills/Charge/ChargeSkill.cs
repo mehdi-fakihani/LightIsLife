@@ -19,15 +19,20 @@ namespace LIL
         [SerializeField] private float castTime;
         [SerializeField] private AudioClip castSound;
 
+
         public override void cast(SkillManager manager)
         {
             var caster = manager.gameObject;
+            var casterAnimator = caster.GetComponent<Animator>();
 
             if (castSound != null)
             {
                 var audioSource = caster.GetComponent<AudioSource>();
                 audioSource.PlayOneShot(castSound);
             }
+
+            // Play the attacks' animation
+            casterAnimator.SetTrigger("charge");
 
             caster.GetComponent<MovementManager>().beginImmobilization();
             caster.GetComponent<SkillManager   >().beginSilence();

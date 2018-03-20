@@ -1758,7 +1758,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage:
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114108202382954552
@@ -1770,9 +1770,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27a140e5ed91a2c42bcb54710c2caf60, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  skillIds: 03000000
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillIds: 01000000
 --- !u!114 &114141792830907316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1782,8 +1782,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c69c35924f2a00c4cbbe44f08751a67a, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   minSpeed: 3
   maxSpeed: 5
   retreatRadius: 5
@@ -1801,8 +1801,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f4ded81839c4fa42a43dd7ec8ae8730, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   initialLife: 15
   expCollectable: {fileID: 1804610024410126, guid: 7637478850598954f8a3d328198f50c9,
     type: 2}
@@ -1815,8 +1815,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 945b24687d564234396b27df0a24f06b, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114870121897649404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1826,8 +1826,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12440e377f8c5894bb395a98136063a6, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135610987527816324
 SphereCollider:
   m_ObjectHideFlags: 1

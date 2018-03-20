@@ -16,6 +16,7 @@ namespace LIL
         private PlayerController pc;
         private SkillManager pm;
         private Profile profile;
+        private Transform inventory;
         private GameObject skillTitle;
         private GameObject skillDescription;
         private GameObject skillClass;
@@ -42,11 +43,13 @@ namespace LIL
             pm = GameObject.FindGameObjectWithTag("Player").GetComponent<SkillManager>();
             pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
             profile = pc.getProfile();
-            selectedSkills = GameObject.FindGameObjectWithTag("SkillSelected");
-            skillTitle = GameObject.FindGameObjectWithTag("SkillTitle");
-            skillDescription = GameObject.FindGameObjectWithTag("SkillDescription");
-            skillClass = GameObject.FindGameObjectWithTag("SkillClass");
-            
+
+            inventory = this.transform.parent.parent.parent;                            // Get the Inventory
+            selectedSkills = inventory.GetChild(3).gameObject;                          // Get the SkillsSelected GameObject
+            skillTitle = inventory.GetChild(2).GetChild(0).gameObject;                  // Get the SkillTitle GameObject
+            skillClass = inventory.GetChild(2).GetChild(1).gameObject;                  // Get the SkillClass GameObject
+            skillDescription = inventory.GetChild(2).GetChild(2).gameObject;            // Get the SkillDescription GameObject
+
             // Load the skill sprite
             string spritePath = GeneralData.GetSkillByName(this.gameObject.name).spritePath;
             this.gameObject.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(spritePath);
@@ -66,9 +69,6 @@ namespace LIL
                     this.gameObject.transform.GetChild(2).gameObject.SetActive(true);
                 }
             }
-
-            
-
         }
 
         // Update is called once per frame

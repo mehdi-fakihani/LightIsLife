@@ -12,13 +12,13 @@ namespace LIL
 
         public void active()
         {
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             inventory.SetActive(true);
         }
 
         public void disable()
         {
-            Time.timeScale = 1;
+            //Time.timeScale = 1;
             inventory.SetActive(false);
         }
         

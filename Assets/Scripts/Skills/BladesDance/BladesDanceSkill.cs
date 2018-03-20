@@ -21,13 +21,17 @@ namespace LIL
         public override void cast(SkillManager manager)
         {
             var caster = manager.gameObject;
+            var casterAnimator = caster.GetComponent<Animator>();
 
             if (castSound != null)
             {
                 var audioSource = caster.GetComponent<AudioSource>();
                 audioSource.PlayOneShot(castSound, 0.3f);
             }
-            
+
+            // Play the attacks' animation
+            casterAnimator.SetTrigger("bladesDance");
+
             caster.GetComponent<EffectManager>().addEffect(new Effects.Slow(castTime, 0.9f));
             caster.GetComponent<EffectManager>().addEffect(new Effects.Silence(castTime));
             caster.GetComponent<EffectManager>().addEffect(new Effects.Delayed(castTime, false, () =>

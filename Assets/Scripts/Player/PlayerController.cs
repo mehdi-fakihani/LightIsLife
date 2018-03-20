@@ -137,10 +137,6 @@ namespace LIL
 
             if (profile.getKeyDown(PlayerAction.Attack) && !inventoryActive) attack.tryCast();
 
-
-
-            if (profile.getKeyDown(PlayerAction.Attack)) attack.tryCast();
-
             if (multiplayer)
             {
                 //Debug.Log("test");
@@ -171,12 +167,15 @@ namespace LIL
                 if (!inventoryActive)
                 {
                     interaction.hideInteractionMsg();
+                    animator.SetTrigger("inventoryTrigger");
+                    animator.SetBool("inventory", true);
                     inventory.active();
                     inventoryActive = true;
                 }
                 else
                 {
                     interaction.displayInteractionMsg(this.input);
+                    animator.SetBool("inventory", false);
                     inventory.disable();
                     inventoryActive = false;
                 }
