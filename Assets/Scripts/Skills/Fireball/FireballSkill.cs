@@ -43,21 +43,21 @@ namespace LIL
             var audioSource = caster.GetComponent<AudioSource>();
             var effects = skillManager.GetComponent<EffectManager>();
 
+            // Play The attacks' sound
+            if (fireball_Sound != null)
+            {
+                audioSource.PlayOneShot(fireball_Sound, 0.3f);
+            }
+
+            // Play the attacks' animation
+            casterAnimator.SetTrigger("fireball");
 
             // Adding the effects of the attack on the attacker : 
-
-            // Added by Sidney
             effects.addEffect(new Effects.Immobilize(castTime));
 
             effects.addEffect(new Effects.Silence(castTime));
             effects.addEffect(new Effects.Delayed(castTime, false, () =>
             {
-                // Play the attacks' animation
-                casterAnimator.SetTrigger("fireball");
-
-                // Play The attacks' sound
-                audioSource.PlayOneShot(fireball_Sound, 0.3f);
-
                 // The fireballs' ejection pos
                 Vector3 EjectPos = caster.transform.position + caster.transform.forward * ejection;
                 EjectPos.y += 1;
