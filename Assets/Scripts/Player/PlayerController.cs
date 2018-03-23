@@ -44,6 +44,7 @@ namespace LIL
 
         private Skill attack;
         private Skill reflect;
+        private int playerNum = 1;
 
 
         // Added by Julien
@@ -51,13 +52,19 @@ namespace LIL
 
         void Start()
         {
+            
             GUI = GameObject.FindGameObjectWithTag("GameUI");
             interaction = GUI.GetComponent<Interaction>();
             inventory = GUI.GetComponent<Inventory>();
             interactable = false;
             inventoryActive = false;
 
+            playerNum = this.transform.name[this.transform.name.Length - 1];
+            playerNum -= 48;
 
+            // Load the previous position
+            float[] pos = GeneralData.getPlayerbyNum(playerNum).pos;
+            this.transform.position = new Vector3(pos[0], pos[1], pos[2]);
 
             profile = new Profile(input, 0);
             Light light = GetComponentInChildren<Light>();
@@ -140,7 +147,7 @@ namespace LIL
             if (multiplayer)
             {
                 //Debug.Log("test");
-                if (profile.getKeyDown(PlayerAction.ChangeTorch) && !inventoryActive)
+                if (profile.getKeyDown(PlayerAction.ChangeTorch) && !inventoryActive && !secondPlayer.GetComponent<PlayerController>().inventoryActive)
                 {
                     if (CameraFollow())
                     {
@@ -164,23 +171,25 @@ namespace LIL
 
             if (profile.getKeyDown(PlayerAction.Interaction) && interactable)
             {
-                if (!inventoryActive)
-                {
-                    interaction.hideInteractionMsg();
-                    animator.SetTrigger("inventoryTrigger");
-                    animator.SetBool("inventory", true);
-                    inventory.active();
-                    inventoryActive = true;
-                }
+                if(!CameraFollow()) interaction.displayInteractionMsg(this.input, "Use the spirit's power !");
                 else
                 {
-                    interaction.displayInteractionMsg(this.input);
-                    animator.SetBool("inventory", false);
-                    inventory.disable();
-                    inventoryActive = false;
+                    if (!inventoryActive)
+                    {
+                        interaction.hideInteractionMsg();
+                        animator.SetTrigger("inventoryTrigger");
+                        animator.SetBool("inventory", true);
+                        inventory.active(playerNum);
+                        inventoryActive = true;
+                    }
+                    else
+                    {
+                        animator.SetBool("inventory", false);
+                        inventory.disable(playerNum, new float[] { this.transform.position.x, this.transform.position.y, this.transform.position.z });
+                        inventoryActive = false;
+                        interaction.displayInteractionMsg(this.input, "Game saved !");
+                    }
                 }
-
-
             }
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
             movement.Normalize();
@@ -322,17 +331,18 @@ namespace LIL
 
         public void setSkills()
         {
-            selectedSkills[0] = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
-            selectedSkills[1] = GetComponent<SkillManager>().getSkill(SkillsID.BladesDance);
-            selectedSkills[2] = GetComponent<SkillManager>().getSkill(SkillsID.IcyBlast);
-            /*
+            GeneralData.Player player;
+
+            if (this.gameObject.name[this.gameObject.name.Length - 1] == '2')   player = GeneralData.getPlayerbyNum(2);
+            else player = GeneralData.getPlayerbyNum(1);
+
             for (int i = 0; i < 4; i++)
             {
-                if (GeneralData.GetCurrentSkills()[i] != null)
+                if (player.usedSkills[i] != null)
                 {
-                    selectedSkills[i] = getSkillByName(GeneralData.GetCurrentSkills()[i].name);
+                    selectedSkills[i] = getSkillByName(player.usedSkills[i].name);
                 }
-            }*/
+            }
         }
 
         private void SetMainPlayer(GameObject player)

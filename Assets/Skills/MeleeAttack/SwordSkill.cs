@@ -47,14 +47,14 @@ namespace LIL
              * the attack).
              * 
             effects.addEffect(new Effects.Delayed(castTime, () =>*/
-            {
+            
                 // Play the attacks' animation
                 casterAnimator.SetTrigger("sword");
 
                 // Play The attacks' sound
                 audioSource.PlayOneShot(sword_Sound, 0.3f);
 
-            }//));
+            //));
         }
     }
 

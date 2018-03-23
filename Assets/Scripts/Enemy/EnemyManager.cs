@@ -4,28 +4,57 @@ namespace LIL
 {
     public class EnemyManager : MonoBehaviour
     {
-        public GameObject warrior;              // The enemy prefab to be spawned.
-        public GameObject mage;
-        public GameObject support;
+        public GameObject warrior;                // The enemy prefab to be spawned.
+        public GameObject mage;                   // optional in case we want to spawn mage
+        public GameObject support;                // optional in case we want to spawn support
         public float spawnTime = 3f;            // How long between each spawn.
+        public int nbEnemies = 10;
         public Transform[] spawnPoints;         // An array of the spawn points this enemy can spawn from.
         public AmbientMusic soundController;
 
-        private int enemyCount;
+        private Collider trigger;
+        private int nbSpawned;
+        private int nbDead;
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                // Start fight music if not already started
+                soundController.StartFightMusic();
+
+                // Call the Spawn function after a delay of the spawnTime and then continue to call after the same amount of time.
+                InvokeRepeating("Spawn", 0, spawnTime);
+                trigger.enabled = false;
+            }
+        }
+
+        public void ActivateSpawnTrigger()
+        {
+            // do not activate the trigger when all enemies have not been spawned yet
+            if (IsAllSpawned())
+            {
+                InitializeSpawner();
+            }
+        }
 
         void Start()
         {
-            // Call the Spawn function after a delay of the spawnTime and then continue to call after the same amount of time.
-            InvokeRepeating("Spawn", spawnTime, spawnTime);
+            trigger = GetComponent<Collider>();
+            InitializeSpawner();
+        }
 
-            // Start game with 0 enemies
-            enemyCount = 0;
+        private void InitializeSpawner()
+        {
+            // Start game with 0 enemies and spawning inactive
+            nbSpawned = 0;
+            nbDead = 0;
+            trigger.enabled = true;
         }
 
         void Spawn()
         {
-            // Start fight music if not already started
-            soundController.StartFightMusic();
+            ++nbSpawned;
 
             // Find a random index between zero and one less than the number of spawn points.
             int spawnPointIndex = Random.Range(0, spawnPoints.Length);
@@ -33,7 +62,11 @@ namespace LIL
             // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
             Instantiate(ChooseEnemy(), spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
 
-            enemyCount++;
+            // if all enemies have been spawned, stop spawn invoke
+            if (IsAllSpawned())
+            {
+                CancelInvoke();
+            }
         }
 
         private GameObject ChooseEnemy()
@@ -42,20 +75,37 @@ namespace LIL
             switch (enemyType)
             {
                 case 0:
-                    return support;
+                    if(support != null)
+                    {
+                        return support;
+                    }
+                    break;
                 case 1:
-                    return mage;
-                default:
-                    return warrior;
+                    if(mage != null)
+                    {
+                        return mage;
+                    }
+                    break;
             }
+            return warrior;
         }
 
         public void CountDeath()
         {
-            if(--enemyCount == 0)
+            if (++nbDead == nbEnemies)
             {
-                soundController.EndFightMusic();
+                CancelInvoke();
+                // if all enemies are spawned and dead, stop fight music
+                if(IsAllSpawned())
+                {
+                    soundController.EndFightMusic();
+                }
             }
+        }
+
+        public bool IsAllSpawned()
+        {
+            return nbSpawned == nbEnemies;
         }
     }
 }

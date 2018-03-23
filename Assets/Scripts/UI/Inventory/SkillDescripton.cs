@@ -17,13 +17,26 @@ namespace LIL
         private string[] skillKeys;
         private string[] browseKeys;
         private bool howToDisplayed = false;
+        int playerNum=1;
         
 
         // Use this for initialization
         void Start()
         {
+            playerNum = this.transform.parent.name[this.transform.parent.name.Length - 1];
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            GameObject player = players[0];
 
-            pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+            foreach (GameObject _player in players)
+            {
+                if (_player.name[_player.name.Length - 1] == (char)playerNum)
+                {
+                    player = _player;
+                    break;
+                }
+            }
+ 
+            pc = player.GetComponent<PlayerController>();
             profile = pc.getProfile();
             var model = Profile.Models[pc.getInput()];
             close = model.keys[PlayerAction.Interaction].ToString();
@@ -72,11 +85,10 @@ namespace LIL
 
 
             // Set already selected skills sprites
-
-            GeneralData.Skill[] selectedSkills = GeneralData.GetCurrentSkills();
+            GeneralData.Skill[] selectedSkills = GeneralData.GetCurrentSkills(playerNum-48);
 
             // SKillsSelected (4th child of the inventory)
-            Transform selectedSkillsPanel = this.transform.parent.transform.GetChild(3);
+            Transform selectedSkillsPanel = this.transform.parent.GetChild(3);
 
             for (int i = 0; i < 4; i++)
             {
@@ -109,13 +121,13 @@ namespace LIL
         public void setHowToDescription()
         {
             // Title :
-            this.gameObject.transform.GetChild(0).GetComponent<Text>().text = "How to :";
+            this.transform.GetChild(0).GetComponent<Text>().text = "How to :";
 
             // Class :
-            this.gameObject.transform.GetChild(1).GetComponent<Text>().text = "";
+            this.transform.GetChild(1).GetComponent<Text>().text = "";
 
             // Description :
-            this.gameObject.transform.GetChild(2).GetComponent<Text>().text = "To browse skill : " + browseKeys[0] + "," + browseKeys[1] + "," +
+            this.transform.GetChild(2).GetComponent<Text>().text = "To browse skill : " + browseKeys[0] + "," + browseKeys[1] + "," +
                 browseKeys[2] + "," + browseKeys[3] + "\n" +
             "To select a skill : " + skillKeys[0] + "," + skillKeys[1] + "," +
                 skillKeys[2] + "," + skillKeys[3] + "\n" +
