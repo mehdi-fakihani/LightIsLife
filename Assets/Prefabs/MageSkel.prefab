@@ -1792,6 +1792,8 @@ MonoBehaviour:
   rangeFactor: 0.75
   spellRadius: 1
   shiftDistance: 7
+  hurtSound: {fileID: 8300000, guid: a0af0766297f419449c67e03bdb845b5, type: 3}
+  deathSound: {fileID: 8300000, guid: 060cb5ce4fb505840b091e54c8180407, type: 3}
 --- !u!114 &114397189201056166
 MonoBehaviour:
   m_ObjectHideFlags: 1

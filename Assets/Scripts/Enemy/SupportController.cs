@@ -16,9 +16,13 @@ namespace LIL
         public float statIncreaseRatio = 1.5f;   // multiply enemy stat by ratio
         public float sizeIncreaseRatio = 1.5f;   // % of enemy size to add (+100%)
         public float barycenterTolerance = 3f;
-        
+        public AudioClip hurtSound;
+        public AudioClip deathSound;
+
         [SerializeField] private float scalingDuration = 0; //seconds to increase size
 
+        private AudioSource source;
+        private EnemyManager em;
         private Transform player;               // Reference to the player's position.
         private NavMeshAgent nav;               // Reference to the nav mesh agent.
         private Animator animator;
@@ -42,8 +46,10 @@ namespace LIL
         void Start()
         {
             // Set up the references.
+            source = GetComponent<AudioSource>();
+            em = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>();
             player = GameObject.FindGameObjectWithTag("Player").transform;
-            torchLight = player.GetComponent<LightFuel>();
+            torchLight = GameObject.FindGameObjectWithTag("Spirit").GetComponent<LightFuel>();
             animator = GetComponent<Animator>();
             animator.SetBool("walk", true);
             nav = GetComponent<NavMeshAgent>();
@@ -55,10 +61,19 @@ namespace LIL
             health.setHurtCallback(() =>
             {
                 animator.SetTrigger("hurt");
+                if (hurtSound != null)
+                {
+                    source.PlayOneShot(hurtSound);
+                }
             });
             health.setDeathCallback(() =>
             {
                 animator.SetTrigger("death");
+                if (deathSound != null)
+                {
+                    source.PlayOneShot(deathSound);
+                }
+                em.CountDeath();
                 Destroy(gameObject, 1.5f);
             });
 
