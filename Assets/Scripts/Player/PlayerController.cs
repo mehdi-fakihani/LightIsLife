@@ -268,7 +268,7 @@ namespace LIL
         public SkillsID getSkillIDByName(string name)
         {
             SkillsID id = SkillsID.Fireball;
-
+            
             switch (name)
             {
                 // Wizard Skills :
@@ -322,14 +322,17 @@ namespace LIL
 
         public void setSkills()
         {
-
+            selectedSkills[0] = GetComponent<SkillManager>().getSkill(SkillsID.Fireball);
+            selectedSkills[1] = GetComponent<SkillManager>().getSkill(SkillsID.BladesDance);
+            selectedSkills[2] = GetComponent<SkillManager>().getSkill(SkillsID.IcyBlast);
+            /*
             for (int i = 0; i < 4; i++)
             {
                 if (GeneralData.GetCurrentSkills()[i] != null)
                 {
                     selectedSkills[i] = getSkillByName(GeneralData.GetCurrentSkills()[i].name);
                 }
-            }
+            }*/
         }
 
         private void SetMainPlayer(GameObject player)

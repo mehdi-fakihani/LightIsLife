@@ -28,6 +28,7 @@ namespace LIL
         // Public :
         public AudioClip fireball_Sound;        // The audio that must be played when the attack is launched
         public GameObject fireball_Prefab;      // The prefab that must be generated
+        public GameObject fireball_Impact;      // The prefab impact created on the impact
         public float strength;                  // The strength of the ball firing
         public float range;                     // The range of the ball
         public float damageAttack;              // The fireball damage
@@ -61,18 +62,17 @@ namespace LIL
                 // The fireballs' ejection pos
                 Vector3 EjectPos = caster.transform.position + caster.transform.forward * ejection;
                 EjectPos.y += 1;
-
-
-                // Instantiating the fireball Gameobject
+                
+                // Instantiating the fireball Gameobject with it's script
                 var fireball = Instantiate(fireball_Prefab, EjectPos, caster.transform.rotation);
-                fireball.GetComponent<Fireball>().setup(caster, damageAttack);
+                var script = fireball.AddComponent<Fireball>();
+                script.setup(caster, damageAttack, fireball_Impact);
 
                 // Appliquer une force 
                 fireball.GetComponent<Rigidbody>().AddForce(caster.transform.forward * strength);
 
                 // Destroy the fireball
                 Destroy(fireball, range);
-
             }));
         }
     }

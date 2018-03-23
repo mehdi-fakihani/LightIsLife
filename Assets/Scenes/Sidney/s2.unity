@@ -758,8 +758,8 @@ MonoBehaviour:
   movementSpeed: 6
   hurtSound: {fileID: 8300000, guid: e1c96ce55e402fc46a82fc90dc7303e1, type: 3}
   deathSound: {fileID: 8300000, guid: fd0e47d71526ac64b80e965a9b88860c, type: 3}
-  player: {fileID: 1593422933}
   secondPlayer: {fileID: 0}
+  multiplayer: 0
 --- !u!114 &667444701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -772,9 +772,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce830d55a8482084c82cfae1a34c6cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightObject: {fileID: 346556733}
   lightDurability: 20
   lightFullRange: 100
+  lightMinRange: 50
 --- !u!114 &667444702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -871,6 +871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialLife: 100
+  expCollectable: {fileID: 0}
 --- !u!1 &689755347
 GameObject:
   m_ObjectHideFlags: 0
@@ -1732,6 +1733,9 @@ MonoBehaviour:
   zoomMax: 20
   angle: 60
   fixedAngle: -20
+  cursorTexture: {fileID: 0}
+  cursorMode: 0
+  hotSpot: {x: 0, y: 0}
 --- !u!1 &1437742294
 GameObject:
   m_ObjectHideFlags: 0
@@ -1847,6 +1851,7 @@ MonoBehaviour:
   fireball_Sound: {fileID: 8300000, guid: e1d4e264ceb124045ae9a91715ff29ad, type: 3}
   fireball_Prefab: {fileID: 1081694656024706, guid: eada4cfec848587428aa79ad0ae5dddf,
     type: 2}
+  fireball_Impact: {fileID: 100002, guid: e9391f622091e1449bdef4ef15af4948, type: 2}
   strength: 800
   range: 0.8
   damageAttack: 10

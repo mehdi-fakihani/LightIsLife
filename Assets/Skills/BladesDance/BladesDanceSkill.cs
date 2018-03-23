@@ -16,6 +16,8 @@ namespace LIL
         [SerializeField] private float range;
         [SerializeField] private float castTime;
         [SerializeField] private float impactWidth;
+        [SerializeField] private GameObject castEffect;
+        [SerializeField] private GameObject impactEffect;
         [SerializeField] private AudioClip castSound;
 
         public override void cast(SkillManager manager)
@@ -28,6 +30,9 @@ namespace LIL
                 var audioSource = caster.GetComponent<AudioSource>();
                 audioSource.PlayOneShot(castSound, 0.3f);
             }
+
+            var cast = Instantiate(castEffect, caster.transform.position, Quaternion.identity);
+            Destroy(cast, 1.5f);
 
             // Play the attacks' animation
             casterAnimator.SetTrigger("bladesDance");
@@ -110,6 +115,8 @@ namespace LIL
                 {
                     var health = actor.GetComponent<HealthManager>();
                     if (health) health.harm(damages);
+                    var impact = Instantiate(impactEffect, caster.transform.position, Quaternion.identity);
+                    Destroy(impact, 1f);
                 }
             }));
         }

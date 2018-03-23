@@ -28,6 +28,7 @@ namespace LIL
         // Private :
         [NonSerialized] public float damages;              // This var is for the damage that will be caused by the fireball
         [NonSerialized] public GameObject caster;          // Game object which casted the fireball
+        [NonSerialized] public GameObject impact;          // Impact effect passed by FireballSkill
 
         void Start()
         {
@@ -39,10 +40,11 @@ namespace LIL
             // damageAttack = GeneralData.GetSkillByName("Fireball").damage;
         }
         
-        public void setup(GameObject caster, float damages)
+        public void setup(GameObject caster, float damages, GameObject impact)
         {
-            this.caster = caster;
+            this.caster  = caster;
             this.damages = damages;
+            this.impact  = impact;
         }
 
 
@@ -63,9 +65,12 @@ namespace LIL
                 // effects.addEffect(new Effects.Silence(GeneralData.GetEffectByName("Silence").effect));
                 // Commented by Sidney (why the fireball silences the enemy ?)
             }
+            
+            // Create the impact
+            var effect = Instantiate(impact, transform.position, Quaternion.identity);
+            Destroy(effect, 1f);
 
-            // The fireball is destroyed the collision
-
+            // Destroy the fireball
             Destroy(gameObject);
         }
 

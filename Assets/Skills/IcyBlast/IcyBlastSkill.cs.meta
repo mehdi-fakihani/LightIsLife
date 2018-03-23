@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 892f5204051393e4b8b73228d4994bae
+timeCreated: 1521828673
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - prefab: {fileID: 1842841934180388, guid: 6aa33e41dd3e91240bd087216de7ec2f, type: 2}
+  - slowEffect: {fileID: 1197207587393232, guid: 5a9b34385c0385f42a859902c9e11b88,
+      type: 2}
+  - castSound: {fileID: 8300000, guid: 487825f040c56cf4380a15e010e710dc, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

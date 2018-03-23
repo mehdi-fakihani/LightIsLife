@@ -4,7 +4,7 @@ namespace LIL
 {
     public class EnemyManager : MonoBehaviour
     {
-        public GameObject warrior;                // The enemy prefab to be spawned.
+        public GameObject warrior;              // The enemy prefab to be spawned.
         public GameObject mage;
         public GameObject support;
         public float spawnTime = 3f;            // How long between each spawn.

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 434810e7316308748b28f8a9444ea3f3
+timeCreated: 1521820853
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - fireball_Sound: {fileID: 8300000, guid: e1d4e264ceb124045ae9a91715ff29ad, type: 3}
+  - fireball_Prefab: {fileID: 1081694656024706, guid: eada4cfec848587428aa79ad0ae5dddf,
+      type: 2}
+  - fireball_Impact: {fileID: 1964529731537848, guid: 7061c4597aee2e043b7457ee20b649eb,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
