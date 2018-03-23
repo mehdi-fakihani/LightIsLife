@@ -45,7 +45,7 @@ namespace LIL
             //(It contains all the info for the skills and is responsable for the save and load)
 
             // Get the damage caused by the fireball from the GeneralData script
-            damageAttack = GeneralData.GetSkillByName("Sword").damage;
+            damageAttack = GeneralData.GetSkillByName("Sword",1).damage;
             player = GameObject.FindGameObjectWithTag("Player");
             swordSkill = player.GetComponent<SkillManager>().getSkill(SkillsID.HeroAttack);
             profile = new Profile(input, 0);
@@ -57,7 +57,7 @@ namespace LIL
         void Update()
         {
             if (currentAttackTime > 0) currentAttackTime -= Time.deltaTime;
-            if (profile.getKeyDown(PlayerAction.Attack) && currentAttackTime <= 0) ;
+            if (profile.getKeyDown(PlayerAction.Attack) && currentAttackTime <= 0)
             {
                 attack = true;
                 currentAttackTime = attackTimeInterval;
@@ -86,8 +86,7 @@ namespace LIL
                 var health = enemy.GetComponent<HealthManager>();
                 // Cause damage to the enemy
                 health.harm(damageAttack);      
-                // Apply effects of the fireball on the enemy
-                effects.addEffect(new Effects.Silence(GeneralData.GetEffectByName("Silence").effect));
+                
             }
 
         }

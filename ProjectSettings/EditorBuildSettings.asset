@@ -14,3 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dorian/test.unity
     guid: 3432d74ed148f1e4baad262828653ea5
+  - enabled: 1
+    path: Assets/Scenes/Ayoub/MainMenu.unity
+    guid: 547131a708eab9d4bb5732d796ed8962
+  - enabled: 1
+    path: Assets/Scenes/Ayoub/aubTest.unity
+    guid: ebf44da0f90ba0342834d9866cd60117

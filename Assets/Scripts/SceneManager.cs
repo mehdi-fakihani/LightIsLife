@@ -9,7 +9,7 @@ public class SceneManager : MonoBehaviour {
     public void ChangeScene(bool multiplayer)
     {
         SceneManager.multiplayer = multiplayer;
-        Application.LoadLevel("test");
+        Application.LoadLevel("aubTest");
     }
 
     public static bool getMulti()

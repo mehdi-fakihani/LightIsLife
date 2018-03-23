@@ -23,13 +23,26 @@ namespace LIL
             if (key.StartsWith("Gamepad")) key = key.Substring(7);
 
             interactionPanel.SetActive(true);
-            interactionPanel.GetComponentInChildren<Text>().text = "press " + key + " to use";
+            interactionPanel.GetComponentInChildren<Text>().text = "Press " + key + " to use";
+        }
+
+        public void displayInteractionMsg(ProfilsID input, string msg)
+        {
+            StartCoroutine(ShowMessage(msg, 2, input));
         }
 
         public void hideInteractionMsg()
         {
             interactionPanel.SetActive(false);
             interactionPanel.GetComponentInChildren<Text>().text = "";
+        }
+
+        IEnumerator ShowMessage(string message, float delay, ProfilsID input)
+        {
+            interactionPanel.GetComponentInChildren<Text>().text = message;
+            interactionPanel.SetActive(true);
+            yield return new WaitForSeconds(delay);
+            displayInteractionMsg(input);
         }
     }
 }
