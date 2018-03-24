@@ -9,21 +9,21 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1153060572012476}
+  m_RootGameObject: {fileID: 1382733029967924}
   m_IsPrefabParent: 1
---- !u!1 &1153060572012476
+--- !u!1 &1382733029967924
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4107973670544088}
-  - component: {fileID: 114232296646111818}
-  - component: {fileID: 114213719187390926}
-  - component: {fileID: 114407861680101874}
-  - component: {fileID: 114768742655596670}
-  - component: {fileID: 114728242271145260}
+  - component: {fileID: 4331169839980232}
+  - component: {fileID: 114928702653129472}
+  - component: {fileID: 114156387040599582}
+  - component: {fileID: 114711119544951540}
+  - component: {fileID: 114365239372871976}
+  - component: {fileID: 114131633206133390}
   m_Layer: 0
   m_Name: Skills
   m_TagString: Untagged
@@ -31,12 +31,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4107973670544088
+--- !u!4 &4331169839980232
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1153060572012476}
+  m_GameObject: {fileID: 1382733029967924}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -25.179264, y: -4.941387, z: 2.4017978}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -44,12 +44,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114213719187390926
+--- !u!114 &114131633206133390
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1153060572012476}
+  m_GameObject: {fileID: 1382733029967924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ff1403d6de67c49b6ac3ee3017ef0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 6
+  cooldown: 1
+  chargesCount: 10
+  damages: 5
+  stunTime: 1
+  postInvulnerabilityTime: 0
+  speed: 1600
+  range: 12
+  castTime: 0.3
+  castSound: {fileID: 0}
+--- !u!114 &114156387040599582
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1382733029967924}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d4a79e080624eb49bfe8fdc7fc67e0a, type: 3}
@@ -61,34 +82,34 @@ MonoBehaviour:
   sword_Sound: {fileID: 0}
   damageAttack: 10
   castTime: 0.5
---- !u!114 &114232296646111818
+--- !u!114 &114365239372871976
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1153060572012476}
+  m_GameObject: {fileID: 1382733029967924}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 434810e7316308748b28f8a9444ea3f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f6e4da6af2474145a54c5abb170aa8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
-  cooldown: 2
-  chargesCount: 2
-  fireball_Sound: {fileID: 8300000, guid: e1d4e264ceb124045ae9a91715ff29ad, type: 3}
-  fireball_Prefab: {fileID: 1081694656024706, guid: eada4cfec848587428aa79ad0ae5dddf,
+  id: 10
+  cooldown: 1
+  chargesCount: 10
+  damages: 10
+  range: 3
+  castTime: 0
+  impactWidth: 1
+  castEffect: {fileID: 1551265745075496, guid: 05d7a12451c0aa342b60476cab2f48b4, type: 2}
+  impactEffect: {fileID: 1840895727837626, guid: 8091a1157c2b85845b54fa0477cb2ef0,
     type: 2}
-  strength: 800
-  range: 0.8
-  damageAttack: 10
-  castTime: 0.5
-  ejection: 1.5
---- !u!114 &114407861680101874
+  castSound: {fileID: 0}
+--- !u!114 &114711119544951540
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1153060572012476}
+  m_GameObject: {fileID: 1382733029967924}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 892f5204051393e4b8b73228d4994bae, type: 3}
@@ -108,44 +129,29 @@ MonoBehaviour:
   impactTime: 3
   impactSlow: 0.3
   prefab: {fileID: 1842841934180388, guid: 6aa33e41dd3e91240bd087216de7ec2f, type: 2}
-  castSound: {fileID: 0}
---- !u!114 &114728242271145260
+  slowEffect: {fileID: 1197207587393232, guid: 5a9b34385c0385f42a859902c9e11b88, type: 2}
+  castSound: {fileID: 8300000, guid: 487825f040c56cf4380a15e010e710dc, type: 3}
+--- !u!114 &114928702653129472
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1153060572012476}
+  m_GameObject: {fileID: 1382733029967924}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24ff1403d6de67c49b6ac3ee3017ef0e, type: 3}
+  m_Script: {fileID: 11500000, guid: 434810e7316308748b28f8a9444ea3f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 6
-  cooldown: 1
-  chargesCount: 10
-  damages: 5
-  stunTime: 1
-  postInvulnerabilityTime: 0
-  speed: 1600
-  range: 12
-  castTime: 0.3
-  castSound: {fileID: 0}
---- !u!114 &114768742655596670
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1153060572012476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f6e4da6af2474145a54c5abb170aa8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 10
-  cooldown: 1
-  chargesCount: 10
-  damages: 10
-  range: 3
-  castTime: 0
-  impactWidth: 1
-  castSound: {fileID: 0}
+  id: 1
+  cooldown: 2
+  chargesCount: 2
+  fireball_Sound: {fileID: 8300000, guid: e1d4e264ceb124045ae9a91715ff29ad, type: 3}
+  fireball_Prefab: {fileID: 1081694656024706, guid: eada4cfec848587428aa79ad0ae5dddf,
+    type: 2}
+  fireball_Impact: {fileID: 1964529731537848, guid: 7061c4597aee2e043b7457ee20b649eb,
+    type: 2}
+  strength: 800
+  range: 0.8
+  damageAttack: 10
+  castTime: 0.5
+  ejection: 1.5

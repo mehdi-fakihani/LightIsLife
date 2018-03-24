@@ -126,7 +126,6 @@ namespace LIL
             moveVertical = 0.0f;
             moveHorizontal = 0.0f;
 
-            //if (profile.getKeyDown(PlayerAction.Skill2)) reflect.tryCast();
 
             // Modified by Sidney
 
@@ -277,7 +276,7 @@ namespace LIL
         public SkillsID getSkillIDByName(string name)
         {
             SkillsID id = SkillsID.Fireball;
-
+            
             switch (name)
             {
                 // Wizard Skills :
