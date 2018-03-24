@@ -126,7 +126,6 @@ namespace LIL
             moveVertical = 0.0f;
             moveHorizontal = 0.0f;
 
-            //if (profile.getKeyDown(PlayerAction.Skill2)) reflect.tryCast();
 
             // Modified by Sidney
 
