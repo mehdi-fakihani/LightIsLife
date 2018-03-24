@@ -22,6 +22,7 @@ namespace LIL
         [SerializeField] private float impactTime;
         [SerializeField] private float impactSlow;
         [SerializeField] private GameObject prefab;
+        [SerializeField] private GameObject slowEffect;
         [SerializeField] private AudioClip castSound;
 
         public override void cast(SkillManager manager)
@@ -63,7 +64,8 @@ namespace LIL
                 position.y += 1;
 
                 var blast = Instantiate(prefab, position, rotation * new Quaternion(0, angle, 0, 1));
-                blast.GetComponent<IcyBlast>().setup(caster, damages, impactTime, impactSlow);
+                var script = blast.AddComponent<IcyBlast>();
+                script.setup(caster, damages, impactTime, impactSlow, slowEffect);
                 blast.GetComponent<Rigidbody>().AddForce(orientation * speed);
                 Destroy(blast, 100f * range / speed);
                 

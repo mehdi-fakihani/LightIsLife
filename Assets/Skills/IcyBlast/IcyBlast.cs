@@ -16,13 +16,15 @@ namespace LIL
         private int damages;
         private float slowTime;
         private float slowRatio;
+        private GameObject slowEffect;
 
-        public void setup(GameObject caster, int damages, float slowTime, float slowRatio)
+        public void setup(GameObject caster, int damages, float slowTime, float slowRatio, GameObject slowEffect)
         {
             this.caster = caster;
             this.damages = damages;
             this.slowTime = slowTime;
             this.slowRatio = slowRatio;
+            this.slowEffect = slowEffect;
         }
         
         void OnCollisionEnter(Collision other)
@@ -40,7 +42,7 @@ namespace LIL
                 var effect = effects.getEffect<Effects.IcyBlastImpact>();
                 if (effect == null)
                 {
-                    effects.addEffect(new Effects.IcyBlastImpact(slowTime, slowRatio));
+                    effects.addEffect(new Effects.IcyBlastImpact(slowTime, slowRatio, slowEffect));
                 }
                 else
                 {

@@ -5,8 +5,8 @@ using UnityEngine;
 namespace LIL
 {
     /// <summary>
-    /// The temporary component on the charge skill's user.
-    /// It block and make him move on a line, and apply charge effects on the first enemy touched.
+    /// The temporary component on the reflection skill's user.
+    /// It makes the user invulnerable.
     /// </summary>
     public class Reflection : MonoBehaviour
     {

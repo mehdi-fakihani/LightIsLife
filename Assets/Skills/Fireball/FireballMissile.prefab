@@ -20,10 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4646417679822532}
   - component: {fileID: 135409162131971970}
-  - component: {fileID: 114111656197616366}
   - component: {fileID: 54445760067873340}
   m_Layer: 0
-  m_Name: Fireball 1
+  m_Name: FireballMissile
   m_TagString: Missile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,17 +149,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114111656197616366
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1081694656024706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02956bb20533f63459d15f5d3b82c68a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &135409162131971970
 SphereCollider:
   m_ObjectHideFlags: 1

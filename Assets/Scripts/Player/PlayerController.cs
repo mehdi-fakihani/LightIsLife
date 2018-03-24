@@ -276,7 +276,7 @@ namespace LIL
         public SkillsID getSkillIDByName(string name)
         {
             SkillsID id = SkillsID.Fireball;
-
+            
             switch (name)
             {
                 // Wizard Skills :
