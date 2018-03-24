@@ -11,13 +11,13 @@ namespace LIL
     /// </summary>
     public class ChargeSkill : ISkillModel
     {
-        [SerializeField] private float damages;
-        [SerializeField] private float stunTime;
-        [SerializeField] private float postInvulnerabilityTime;
-        [SerializeField] private float speed;
-        [SerializeField] private float range;
-        [SerializeField] private float castTime;
-        [SerializeField] private AudioClip castSound;
+        public float damages;
+        public float stunTime;
+        public float postInvulnerabilityTime;
+        public float speed;
+        public float range;
+        public float castTime;
+        public AudioClip castSound;
 
 
         public override void cast(SkillManager manager)

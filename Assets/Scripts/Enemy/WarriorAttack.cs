@@ -117,7 +117,7 @@ namespace LIL
 
         public bool IsPlayerInRange()
         {
-            return playerInRange;
+            return playerInRange || player2InRange;
         }
 
     }
