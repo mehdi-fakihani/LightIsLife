@@ -65,6 +65,11 @@ namespace LIL
             }
             effects.Clear();
         }
+
+        void OnDestroy()
+        {
+            onDeath();
+        }
         
         void Update()
         {
