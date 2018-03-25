@@ -12,7 +12,7 @@ public class LoadGame : MonoBehaviour {
         {
             GeneralData.fileName = this.gameObject.GetComponentInChildren<Text>().text + ".sav";
             GeneralData.Load(GeneralData.fileName);
-            SceneManager.LoadScene("aubTest");
+            SceneManager.LoadScene(GeneralData.sceneName);
         }
     }
 }
