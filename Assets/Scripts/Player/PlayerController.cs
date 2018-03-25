@@ -59,6 +59,7 @@ namespace LIL
             interactable = false;
             inventoryActive = false;
 
+            // get the last digit of the player name (1 / 2)
             playerNum = this.transform.name[this.transform.name.Length - 1];
             playerNum -= 48;
 
@@ -306,6 +307,8 @@ namespace LIL
                     selectedSkills[i] = getSkillByName(player.usedSkills[i].name);
                 }
             }
+
+            //selectedSkills[0] = GetComponent<SkillManager>().getSkill(SkillsID.IcyBlast);
         }
 
         private void SetMainPlayer(GameObject player)

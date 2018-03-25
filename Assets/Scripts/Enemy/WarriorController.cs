@@ -34,7 +34,6 @@ namespace LIL
         {
             // Set up the references.
             source = GetComponent<AudioSource>();
-            em = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>();
             player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
             torchLight = GameObject.FindGameObjectWithTag("Spirit").GetComponent<LightFuel>();
             animator = GetComponent<Animator>();
@@ -45,6 +44,12 @@ namespace LIL
             playerInRange = false;
             timer = timeBetweenAttacks;
 
+            GameObject emObject = GameObject.FindGameObjectWithTag("EnemyManager");
+            if (emObject != null)
+            {
+                em = emObject.GetComponent<EnemyManager>();
+            }
+            
             // Set hurt and death reactions
             var health = GetComponent<HealthManager>();
             health.setHurtCallback(() =>
@@ -62,7 +67,10 @@ namespace LIL
                 {
                     source.PlayOneShot(deathSound);
                 }
-                em.CountDeath();
+                if(em != null)
+                {
+                    em.CountDeath();
+                }
                 Destroy(gameObject, 1.5f);
             });
             if (SceneManager.getMulti())
@@ -97,7 +105,7 @@ namespace LIL
 
         void Attack()
         {
-            // Reset the timer.
+            // Reset the timer
             timer = 0f;
             playerHealth.harm(currentAttackDamage);
             animator.SetTrigger("attack");

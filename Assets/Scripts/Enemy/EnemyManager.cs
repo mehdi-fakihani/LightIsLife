@@ -16,6 +16,7 @@ namespace LIL
         private int nbSpawned;
         private int nbDead;
 
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Player"))

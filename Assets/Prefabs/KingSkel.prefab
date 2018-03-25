@@ -580,13 +580,16 @@ GameObject:
   - component: {fileID: 4830743510351408}
   - component: {fileID: 95221924779410370}
   - component: {fileID: 82991307567660730}
-  - component: {fileID: 114455006793353066}
   - component: {fileID: 136969620922333398}
   - component: {fileID: 114504376658078240}
   - component: {fileID: 114373661862332522}
   - component: {fileID: 114565388675857470}
   - component: {fileID: 114463300662659572}
   - component: {fileID: 195138252959880262}
+  - component: {fileID: 135358457050796052}
+  - component: {fileID: 114709833398418674}
+  - component: {fileID: 114404636398357836}
+  - component: {fileID: 114262395759499106}
   m_Layer: 0
   m_Name: KingSkel
   m_TagString: Enemy
@@ -1578,6 +1581,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114262395759499106
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1768532235363184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a140e5ed91a2c42bcb54710c2caf60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillIds: 06000000
 --- !u!114 &114373661862332522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1589,7 +1604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12440e377f8c5894bb395a98136063a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114455006793353066
+--- !u!114 &114404636398357836
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1597,15 +1612,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1768532235363184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6140192b8120cbe458c6a47228f6b3dd, type: 3}
+  m_Script: {fileID: 11500000, guid: e28292d35fd392e499cb791ae711cb0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 3.5
-  maxSpeed: 7
-  timeBetweenAttacks: 0.5
+  timeBetweenAttacks: 1
   baseAttackDamage: 10
-  hurtSound: {fileID: 0}
-  deathSound: {fileID: 0}
 --- !u!114 &114463300662659572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1642,6 +1653,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 945b24687d564234396b27df0a24f06b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114709833398418674
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1768532235363184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a2e29fd09ebe8b40907d708e722eb00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  attackRange: 2
+  chargeRange: 12
+  poisonPrefab: {fileID: 1949938782973134, guid: ab634514578c45a4b92b4966bbff62e9,
+    type: 2}
+  poisonAoeRange: 10
+  poisonDamage: 10
+  poisonActivationTime: 1.5
+  poisonFrequence: 2
+  invocation: {fileID: 1179956212631258, guid: 811bb88b3b0dca947896b3cb73b07e87, type: 2}
+  invocationRange: 2
+  nbEnemiesToInvoc: 4
+  nbInvocations: 4
+--- !u!135 &135358457050796052
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1768532235363184}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.15
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!136 &136969620922333398
 CapsuleCollider:
   m_ObjectHideFlags: 1
