@@ -19,6 +19,9 @@ public class AmbientMusic : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         sources = GetComponentsInChildren<AudioSource>();
+
+        foreach(AudioSource source in sources)  source.volume = PlayerPrefs.GetFloat("MusicVolume");
+
         sources[ambientId].loop = true;
         sources[fightId].loop = false;
         sources[ambientId].clip = ambientMusic;
@@ -31,6 +34,7 @@ public class AmbientMusic : MonoBehaviour {
     {
         if (!isFighting)
         {
+            if(sources == null || sources.Length == 0) sources = GetComponentsInChildren<AudioSource>();
             StartCoroutine(AmbientToFight(sources[ambientId], sources[fightId], fadingTime));
         }
     }

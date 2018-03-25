@@ -13,8 +13,8 @@ namespace LIL.Inputs
     /// </summary>
     public class Profile
     {
-        public static readonly Dictionary<ProfilsID, ProfileModel> Models
-            = new Dictionary<ProfilsID, ProfileModel>();
+        public static readonly Dictionary<int, ProfileModel> Models
+            = new Dictionary<int, ProfileModel>();
 
         private readonly int keyShift;
         private readonly Dictionary<PlayerAction, Key> keys;
@@ -64,9 +64,9 @@ namespace LIL.Inputs
                 : Input.GetKey((KeyCode)(key + keyShift));
         }
 
-        public Profile(ProfilsID id, int deviceNum)
+        public Profile(int playerNum, int deviceNum)
         {
-            var model = Models[id];
+            var model = Models[playerNum];
             
             // There is only one keyboard available
           if (model.device == Device.Keyboard) Assert.Zero(deviceNum);

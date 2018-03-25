@@ -13,6 +13,7 @@ namespace LIL
         private Profile profile;
         private string removeSelectedSkill = "";
         private string close;
+        private string deblock;
         private string howTo;
         private string[] skillKeys;
         private string[] browseKeys;
@@ -35,14 +36,16 @@ namespace LIL
                     break;
                 }
             }
- 
+            playerNum -= 48;
             pc = player.GetComponent<PlayerController>();
             profile = pc.getProfile();
-            var model = Profile.Models[pc.getInput()];
+            var model = Profile.Models[playerNum];
             close = model.keys[PlayerAction.Interaction].ToString();
             if (close.StartsWith("Keyboard"))
             {
                 close = close.Substring(8);
+
+                deblock = model.keys[PlayerAction.Submit].ToString().Substring(8);
 
                 howTo = model.keys[PlayerAction.ChangeTorch].ToString();
                 howTo = howTo.Substring(8);
@@ -64,6 +67,7 @@ namespace LIL
             {
                 close = close.Substring(7);
 
+                deblock = model.keys[PlayerAction.Submit].ToString().Substring(7);
                 howTo = model.keys[PlayerAction.ChangeTorch].ToString();
                 howTo = howTo.Substring(7);
 
@@ -72,6 +76,7 @@ namespace LIL
                 model.keys[PlayerAction.Skill3].ToString().Substring(7),
                     model.keys[PlayerAction.Skill4].ToString().Substring(7) };
 
+                Debug.Log("left key : "+model.keys[PlayerAction.Left].ToString());
                 browseKeys = new string[] { model.keys[PlayerAction.Left].ToString().Substring(7),
                     model.keys[PlayerAction.Up].ToString().Substring(7),
                 model.keys[PlayerAction.Down].ToString().Substring(7),
@@ -85,7 +90,7 @@ namespace LIL
 
 
             // Set already selected skills sprites
-            GeneralData.Skill[] selectedSkills = GeneralData.GetCurrentSkills(playerNum-48);
+            GeneralData.Skill[] selectedSkills = GeneralData.GetCurrentSkills(playerNum);
 
             // SKillsSelected (4th child of the inventory)
             Transform selectedSkillsPanel = this.transform.parent.GetChild(3);
@@ -132,6 +137,7 @@ namespace LIL
             "To select a skill : " + skillKeys[0] + "," + skillKeys[1] + "," +
                 skillKeys[2] + "," + skillKeys[3] + "\n" +
             "To remove a selected skill : " + removeSelectedSkill + "\n" +
+            "TO deblock a skill : "+deblock + "\n" +
             "To check How To again : " + howTo + "\n" +
             "To close the interface : " + close + "\n";
 

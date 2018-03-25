@@ -22,6 +22,9 @@ namespace LIL
         Interaction,
         ChangeTorch,
         CameraLeft,
-        CameraRight
+        CameraRight,
+        Submit,
+        Pause
+
     }
 }

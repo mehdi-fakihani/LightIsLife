@@ -1,5 +1,6 @@
 ﻿
 using LIL.Inputs;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace LIL
     public class PlayerController : MonoBehaviour
     {
 
-        [SerializeField] private ProfilsID input;
+        private ProfilsID input;
         [SerializeField] private float movementSpeed = 6f;
         [SerializeField] private AudioClip hurtSound;
         [SerializeField] private AudioClip deathSound;
@@ -53,8 +54,7 @@ namespace LIL
         private Vector3 lastMove;
 
         void Start()
-        {
-            
+        { 
             GUI = GameObject.FindGameObjectWithTag("GameUI");
             interaction = GUI.GetComponent<Interaction>();
             inventory = GUI.GetComponent<Inventory>();
@@ -65,18 +65,20 @@ namespace LIL
             playerNum = this.transform.name[this.transform.name.Length - 1];
             playerNum -= 48;
 
+            // Set Input system
+            if (playerNum == 1) input = GeneralData.inputPlayer1;
+            else if (playerNum == 2) input = GeneralData.inputPlayer2;
+
             // Load the previous position
             float[] pos = GeneralData.getPlayerbyNum(playerNum).pos;
             this.transform.position = new Vector3(pos[0], pos[1], pos[2]);
 
-            profile = new Profile(input, 0);
+            profile = new Profile(playerNum, 0);
             Light light = GetComponentInChildren<Light>();
 
             cam = GameObject.Find("Main Camera").GetComponent<CameraController>();
             spirit = GameObject.FindGameObjectWithTag("Spirit").GetComponent<SpiritController>();
 
-
-            profile = new Profile(input, 0);
 
             // set skills form DB
             setSkills();
@@ -89,15 +91,22 @@ namespace LIL
             movementManager = GetComponent<MovementManager>();
             lastMove = Vector3.zero;
 
-            /*
-            if (SceneManager.getMulti())
+
+            if (GeneralData.multiplayer)
             {
                 multiplayer = true;
-                secondPlayer.SetActive(true);
+                if(playerNum == 1)  secondPlayer.SetActive(true);
+                else if(playerNum == 2)
+                {
+                    //secondPlayer = GameObject.Find(this.transform.name.Substring(0, transform.name.Length-1)+"1");
+                }
+
             }
-            */
+            
 
             audioSource = GetComponent<AudioSource>();
+            audioSource.volume = PlayerPrefs.GetFloat("SFXVolume");
+
             lastMove = Vector3.zero;
 
             // Added by Sidney (set hurt and death reactions)
@@ -121,7 +130,6 @@ namespace LIL
         void Update()
         {
             ControllPlayer();
-            //Debug.Log(multiplayer);
         }
 
         void ControllPlayer()
@@ -177,7 +185,7 @@ namespace LIL
 
             if (profile.getKeyDown(PlayerAction.Interaction) && interactable)
             {
-                if(!CameraFollow()) interaction.displayInteractionMsg(this.input, "Use the spirit's power !");
+                if(!CameraFollow()) interaction.displayInteractionMsg("Use the spirit's power !");
                 else
                 {
                     if (!inventoryActive)
@@ -193,7 +201,7 @@ namespace LIL
                         animator.SetBool("inventory", false);
                         inventory.disable(playerNum, new float[] { this.transform.position.x, this.transform.position.y, this.transform.position.z });
                         inventoryActive = false;
-                        interaction.displayInteractionMsg(this.input, "Game saved !");
+                        interaction.displayInteractionMsg("Game saved !");
                     }
                 }
             }
@@ -252,7 +260,7 @@ namespace LIL
         {
             if (other.gameObject.tag == "Campfire")
             {
-                interaction.displayInteractionMsg(this.input);
+                interaction.displayInteractionMsg(playerNum);
                 interactable = true;
             }
         }
@@ -282,51 +290,7 @@ namespace LIL
 
         public SkillsID getSkillIDByName(string name)
         {
-            SkillsID id = SkillsID.Fireball;
-            
-            switch (name)
-            {
-                // Wizard Skills :
-                case "Fireball":
-                    break;
-                case "IcyBlast":
-                    id = SkillsID.IcyBlast;
-                    break;
-                case "Rollback":
-                    id = SkillsID.Rollback;
-                    break;
-                case "Levitation":
-                    id = SkillsID.Levitation;
-                    break;
-                // Warrior Skills :
-                case "Charge":
-                    id = SkillsID.Charge;
-                    break;
-                case "Storm":
-                    id = SkillsID.Storm;
-                    break;
-                case "Provocation":
-                    id = SkillsID.Provocation;
-                    break;
-                case "Reflect":
-                    id = SkillsID.Reflect;
-                    break;
-                // Assassin Skills :
-                case "ShadowDance":
-                    id = SkillsID.ShadowDance;
-                    break;
-                case "BladesDance":
-                    id = SkillsID.BladesDance;
-                    break;
-                case "Poison":
-                    id = SkillsID.Poison;
-                    break;
-                case "Adrenaline":
-                    id = SkillsID.Adrenaline;
-                    break;
-            }
-
-            return id;
+            return (SkillsID)Enum.Parse(typeof(SkillsID), name);
         }
 
         public Skill getSkillByName(string name)
@@ -358,6 +322,11 @@ namespace LIL
             cam.SetTarget(player.transform);
             spirit.SetTarget(player.transform);
 
+        }
+
+        public int getPlayerNum()
+        {
+            return playerNum;
         }
 
     }

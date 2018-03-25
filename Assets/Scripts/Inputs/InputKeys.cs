@@ -40,10 +40,30 @@ namespace LIL.Inputs
         KeyboardY = KeyCode.Y,
         KeyboardZ = KeyCode.Z,
 
+        Keyboard0 = KeyCode.Alpha0,
         Keyboard1 = KeyCode.Alpha1,
         Keyboard2 = KeyCode.Alpha2,
         Keyboard3 = KeyCode.Alpha3,
         Keyboard4 = KeyCode.Alpha4,
+        Keyboard5 = KeyCode.Alpha5,
+        Keyboard6 = KeyCode.Alpha6,
+        Keyboard7 = KeyCode.Alpha7,
+        Keyboard8 = KeyCode.Alpha8,
+        Keyboard9 = KeyCode.Alpha9,
+
+        KeyboardNUM0 = KeyCode.Keypad0,
+        KeyboardNUM1 = KeyCode.Keypad1,
+        KeyboardNUM2 = KeyCode.Keypad2,
+        KeyboardNUM3 = KeyCode.Keypad3,
+        KeyboardNUM4 = KeyCode.Keypad4,
+        KeyboardNUM5 = KeyCode.Keypad5,
+        KeyboardNUM6 = KeyCode.Keypad6,
+        KeyboardNUM7 = KeyCode.Keypad7,
+        KeyboardNUM8 = KeyCode.Keypad8,
+        KeyboardNUM9 = KeyCode.Keypad9,
+
+        KeyboardESC = KeyCode.Escape,
+        
 
         KeyboardSpace = KeyCode.Space,
         KeyboardUp = KeyCode.UpArrow,
@@ -64,7 +84,7 @@ namespace LIL.Inputs
         GamepadStart = KeyCode.Joystick1Button7,
         GamepadLeftJoystick = KeyCode.Joystick1Button8,
         GamepadRightJoystick = KeyCode.Joystick1Button9,
-
+       
         // Gamepad axis
 
         GamepadLeftJoystickUp = 1000, // Threshold used in AxisInfo
