@@ -292,7 +292,10 @@ Prefab:
       propertyPath: skill4
       value: 104
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114868835433303136, guid: 40a75cb8746106149809f15feca8b472, type: 2}
+    - {fileID: 114985135003320322, guid: 40a75cb8746106149809f15feca8b472, type: 2}
+    - {fileID: 114551302736027142, guid: 40a75cb8746106149809f15feca8b472, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 40a75cb8746106149809f15feca8b472, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &77151795
