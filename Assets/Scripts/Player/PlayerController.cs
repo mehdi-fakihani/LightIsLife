@@ -343,6 +343,8 @@ namespace LIL
                     selectedSkills[i] = getSkillByName(player.usedSkills[i].name);
                 }
             }
+
+            //selectedSkills[0] = GetComponent<SkillManager>().getSkill(SkillsID.IcyBlast);
         }
 
         private void SetMainPlayer(GameObject player)

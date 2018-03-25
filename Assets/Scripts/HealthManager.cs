@@ -72,9 +72,9 @@ namespace LIL
             var effects = GetComponent<EffectManager>();
             if (effects) effects.onDeath();
             deathCallback.Invoke();
-            if(this.gameObject.CompareTag("Enemy"))
+            if(CompareTag("Enemy"))
             {
-                Instantiate(expCollectable, this.transform.position, this.transform.rotation);
+                Instantiate(expCollectable, transform.position, transform.rotation);
             }
         }
         /// <summary>
