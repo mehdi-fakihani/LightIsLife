@@ -31,13 +31,13 @@ namespace LIL
         private GameObject enemy;               // Enemys' GameObject
         private EffectManager effects;          // Enemys' EffectManager
         Skill swordSkill;
-        public ProfilsID input;
         private Profile profile;
         private bool attack = false;
-        public float attackTimeInterval = 0.3f;
+        private float attackTimeInterval = 0.3f;
         private float currentAttackTime;
         private bool canAttack;
         private Animator playerAnimator;        // Players' Animator
+        private int playerNum;
 
         void Start()
         {
@@ -45,10 +45,12 @@ namespace LIL
             //(It contains all the info for the skills and is responsable for the save and load)
 
             // Get the damage caused by the fireball from the GeneralData script
-            damageAttack = GeneralData.GetSkillByName("Sword",1).damage;
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = this.transform.parent.parent.parent.parent.parent.parent.parent.parent.parent.parent.gameObject;
+            playerNum = player.GetComponent<PlayerController>().getPlayerNum();
+            damageAttack = GeneralData.GetSkillByName("Sword", playerNum).damage;
+            attackTimeInterval = GeneralData.GetSkillByName("Sword", playerNum).cooldown;
             swordSkill = player.GetComponent<SkillManager>().getSkill(SkillsID.HeroAttack);
-            profile = new Profile(input, 0);
+            profile = new Profile(playerNum,0);
             currentAttackTime = 0;
             canAttack = false;
             playerAnimator = this.GetComponentInParent<Animator>();

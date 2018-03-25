@@ -27,7 +27,7 @@ namespace LIL
             if (playerNum == 2) inventory_2.SetActive(false);
             else inventory_1.SetActive(false);
 
-            GeneralData.Save();
+            GeneralData.Save(GeneralData.fileName);
             pos = GeneralData.getPlayerbyNum(playerNum).pos;
             //Time.timeScale = 1;
         }

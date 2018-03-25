@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour {
     [SerializeField] GameObject SecondPlayerHealthUI;
     // Use this for initialization
     void Start () {
-		if (SceneManager.getMulti())
+		if (GeneralData.multiplayer)
         {
             SecondPlayerExpUI.SetActive(true);
             SecondPlayerHealthUI.SetActive(true);

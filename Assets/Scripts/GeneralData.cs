@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Linq;
+using LIL.Inputs;
 
 
 //------------------------------------------------------------------------
@@ -23,7 +25,47 @@ using System.IO;
 public class GeneralData : MonoBehaviour
 {
 
+    /*-----------*/
+    /* All datas */
+    /*-----------*/
+    private static List<Player> players;
+    public static Game game;
+    private static List<Skill> skills1;
+    private static List<Skill> skills2;
+    public static bool multiplayer;
+    private static Skill[] usedSkills1 = new Skill[] { null, null, null, null };
+    private static Skill[] usedSkills2 = new Skill[] { null, null, null, null };
+    //private static List<Tuto> tutos;
+    private static int curExperience1;
+    private static int curCapacityPoints1;
+    private static int curExperience2;
+    private static int curCapacityPoints2;
+    public static string fileName;
+    public static string path = Application.persistentDataPath + "/Saves";
+    public static ProfilsID inputPlayer1, inputPlayer2;
+    public static ProfileModel azertyProfileModel, qwertyProfileModel, controllerProfileModel;
+
+    /*-------------------*/
+    /* STRUCTURES / Enum */
+    /*-------------------*/
+
+    // Game
     [System.Serializable]
+    public class Game
+    {
+        public List<Player> players;
+        public bool multiplayer;
+
+        public Game(bool _multiplayer, List<Player> _players)
+        {
+            multiplayer = _multiplayer;
+            players = _players;
+        }
+
+    }
+
+        // Player
+        [System.Serializable]
     public class Player
     {
         public int playerNum;
@@ -45,20 +87,7 @@ public class GeneralData : MonoBehaviour
 
     }
 
-    /*-------------------*/
-    /* STRUCTURES / Enum */
-    /*-------------------*/
-
-    // Items regroup everything Skills, Effects, Tuto etc...
-    [System.Serializable]
-    public class Item
-    {
-        public string name;
-        public bool isUsed;
-        public string description;
-    }
-
-    // Class 
+    // Skill's Class 
     [System.Serializable]
     public class SkillClass
     {
@@ -72,7 +101,7 @@ public class GeneralData : MonoBehaviour
     }
 
 
-    // Skills in addition of being items and having name, description and isUsed they have level damage and a list of effects
+    // Skill
     [System.Serializable]
     public class Skill
     {
@@ -84,17 +113,11 @@ public class GeneralData : MonoBehaviour
         public int CapPointsToUnlock;
         public int damage;
         public List<Skill> dependency;
-        public List<Effect> effects;
         public string spritePath;
+        public float cooldown;
 
     }
 
-    // Effects in addtion Items' variables they have an effect
-    [System.Serializable]
-    public class Effect : Item
-    {
-        public float effect;
-    }
 
     // TUTO FOR LATER
     /*[System.Serializable]
@@ -107,34 +130,27 @@ public class GeneralData : MonoBehaviour
     }*/
 
 
-    /*-----------*/
-    /* All datas */
-    /*-----------*/
-    private static List<Player> players;
-    private static List<Skill> skills1;
-    private static List<Skill> skills2;
-    private static List<Effect> effects;
-    public static bool multiplayer;
-    private static Skill[] usedSkills1 = new Skill[] { null, null, null, null };
-    private static Skill[] usedSkills2 = new Skill[] { null, null, null, null };
-    //private static List<Tuto> tutos;
-    private static int curExperience1;
-    private static int curCapacityPoints1;
-    private static int curExperience2;
-    private static int curCapacityPoints2;
+
 
     //Magic Trick to load data at the creation of the static class
     //-------------------------------------------------------------
-    private static int staticClassInit = StaticClassInit();
+    /*private static int staticClassInit = StaticClassInit();
  
 
     private static int StaticClassInit()
     {
-        Load();
+        Load(fileName);
 
         return 0;
-    }
+    }*/
     //-------------------------------------------------------------
+
+    //------------------------------------  Game  -----------------------------------
+    public static void initGame()
+    {
+        initPlayersList();
+        game = new Game(multiplayer, players);
+    }
 
     //------------------------------------  Player  -----------------------------------
     public static void initPlayersList()
@@ -145,20 +161,20 @@ public class GeneralData : MonoBehaviour
         
         players.Add(player1);
 
-        multiplayer = true;
+        
         if (multiplayer)
         {
             List<Skill> skills2 = initSkillsList();
             Player player2 = new Player(2, skills2, new Skill[] { null, null, null, null }, 0, 10, new float[] { 5f, 0f, 0f });
-            Debug.Log("Num : " + player2.playerNum + " Skills size : " + player2.skills.Count + " usedskills size : " + player2.usedSkills.Length +
-            " experience : " + player2.experience + " capacitypoints : " + player2.capacityPoints + " pos : " + player2.pos.ToString());
+            
             players.Add(player2);
 
         }
     }
+
     public static Player getPlayerbyNum(int playerNum)
     {
-        return players.Find(p => p.playerNum == playerNum);
+        return game.players.Find(p => p.playerNum == playerNum);
     }
 
 
@@ -194,7 +210,7 @@ public class GeneralData : MonoBehaviour
     public static void IncrExperience(int amount, int playerNum)
     {
         getPlayerbyNum(playerNum).experience += amount;
-        Save();
+        Save(fileName);
     }
 
 
@@ -210,7 +226,7 @@ public class GeneralData : MonoBehaviour
     public static void UpdateCapacitypoints(int amount, int playerNum)
     {
         getPlayerbyNum(playerNum).capacityPoints += amount;
-        Save();
+        Save(fileName);
     }
 
 
@@ -244,11 +260,7 @@ public class GeneralData : MonoBehaviour
         return index;
     }
 
-    // Select skill
-    public void Selectskill(int playerNum, string skillName)
-    {
-       // List<Player>
-    }
+    
 
     // Check if the skill is available (all dependencies are good)
     public static bool isAvailable(string name, int playerNum)
@@ -278,8 +290,7 @@ public class GeneralData : MonoBehaviour
 
         getPlayerbyNum(playerNum).usedSkills[pos].isUsed = false;
         getPlayerbyNum(playerNum).usedSkills[pos] = skill;
-
-        Save();
+        Save(fileName);
     }
 
 
@@ -365,7 +376,7 @@ public class GeneralData : MonoBehaviour
                 BladesDance, ShadowDance, Poison, Adrenaline,
             // Basic Attack : 
                 new Skill { name = "Sword", isUsed = true,
-                    description = "The Sword description here", damage = 3, CapPointsToUnlock =0 }
+                    description = "The Sword description here", damage = 3, CapPointsToUnlock =0, cooldown=0.3f }
             };
 
         return skills;
@@ -378,50 +389,96 @@ public class GeneralData : MonoBehaviour
 
         if (GetCapacityPoints(playerNum) >= skill.CapPointsToUnlock)
         {
-            Debug.Log(playerNum + " : " + skillName + " deblocked ");
             int index = GetSkillIndexByName(skillName, playerNum);
             UpdateCapacitypoints(-skill.CapPointsToUnlock, playerNum);
-            Debug.Log(2 + " : " + skillName + " is deblocked " + getPlayerbyNum(2).skills[GetSkillIndexByName(skillName, 2)].deblocked.ToString());
             getPlayerbyNum(playerNum).skills[index].deblocked = true;
-            Debug.Log(2 + " : " + skillName + " is deblocked " + getPlayerbyNum(2).skills[GetSkillIndexByName(skillName, 2)].deblocked.ToString());
         }
 
-        Save();
+        Save(fileName);
     }
 
 
-    // ---------------------------------  Save Data  ---------------------------------
+    // ---------------------------------  Save Game  ---------------------------------
 
 
-    public static void Save()
+    public static void Save(string fineName)
     {
-
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file;
 
-        file = File.Create(Application.persistentDataPath + "/game.sav");
-        bf.Serialize(file, players);
+        if (!Directory.Exists(path))
+            Directory.CreateDirectory(path);
+
+        file = File.Open(path + "/" + fileName, FileMode.OpenOrCreate, FileAccess.Write);
+        bf.Serialize(file, game);
         file.Close();
     }
 
 
-    //---------------------------------------------------------------------------------------
-    // Load GeneralData
-    //---------------------------------------------------------------------------------------
-    public static void Load()
+    // ---------------------------------  Load Game  ---------------------------------
+    public static void Load(string fileName)
     {
 
-        if (File.Exists(Application.persistentDataPath + "/game.sav"))
+        if (File.Exists(path + "/" + fileName))
         {
-
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/game.sav", FileMode.Open);
-            players = (List<Player>)bf.Deserialize(file);
+            FileStream file = File.Open(path + "/" + fileName, FileMode.Open);
+            game = (Game) bf.Deserialize(file);
+            multiplayer = game.multiplayer;
             file.Close();
             //IF there is not data, default values
-        }
-        else initPlayersList();
 
-        Save();
+            Save(fileName);
+        }
+
+       
     }
+
+    public static List<string> FilesToLoad()
+    {
+        if (!Directory.Exists(path))
+            Directory.CreateDirectory(path);
+        DirectoryInfo info = new DirectoryInfo(path + "/");
+        FileInfo[] files = info.GetFiles("*.sav").OrderBy(p => p.CreationTime).ToArray();
+        List<string> filesName = new List<string>();
+        int i = 0;
+        foreach (FileInfo file in files)
+        {
+            i++;
+            filesName.Add(file.Name);
+        }
+        return filesName;
+    }
+
+    public static string LastGamePlayed()
+    {
+        if (!Directory.Exists(path))
+            Directory.CreateDirectory(path);
+
+        DirectoryInfo info = new DirectoryInfo(path + "/");
+        FileInfo[] files = info.GetFiles("*.sav").OrderBy(p => p.LastWriteTime).ToArray();
+
+        string fileToLoad = "Unkown";
+
+        if (files != null && files.Length != 0)
+            fileToLoad = files[files.Length - 1].Name;
+
+        return fileToLoad;
+    }
+
+    // ---------------------------------  New Game  ---------------------------------
+    public static void New()
+    {
+        if (!Directory.Exists(path))
+            Directory.CreateDirectory(path);
+
+        DirectoryInfo info = new DirectoryInfo(path + "/");
+        FileInfo[] files = info.GetFiles("*.sav").ToArray();
+        fileName = "Game" + (files.Length + 1) + ".sav";
+        initGame();
+    }
+
+   
+
+
 }
