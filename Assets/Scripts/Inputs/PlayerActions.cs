@@ -20,6 +20,8 @@ namespace LIL
         Skill3,
         Skill4,
         Interaction,
-        ChangeTorch
+        ChangeTorch,
+        CameraLeft,
+        CameraRight
     }
 }

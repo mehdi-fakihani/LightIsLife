@@ -18,11 +18,13 @@ namespace LIL
         [SerializeField] private AudioClip deathSound;
         [SerializeField] private GameObject secondPlayer;
         public bool multiplayer = false;
+        public float moveCamera;
 
         private Animator animator;
         private AudioSource audioSource;
         private float moveHorizontal;
         private float moveVertical;
+
         // public ProfilsID input;
         private CameraController cam;
         private SpiritController spirit;
@@ -167,6 +169,10 @@ namespace LIL
             if (profile.getKey(PlayerAction.Down) && !inventoryActive) moveVertical -= 1.0f;
             if (profile.getKey(PlayerAction.Left) && !inventoryActive) moveHorizontal -= 1.0f;
             if (profile.getKey(PlayerAction.Right) && !inventoryActive) moveHorizontal += 1.0f;
+
+
+            if (profile.getKey(PlayerAction.CameraLeft) && !inventoryActive) moveCamera += 1.0f;
+            if (profile.getKey(PlayerAction.CameraRight) && !inventoryActive) moveCamera -= 1.0f;
 
 
             if (profile.getKeyDown(PlayerAction.Interaction) && interactable)

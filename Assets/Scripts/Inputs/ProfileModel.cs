@@ -29,6 +29,9 @@ namespace LIL.Inputs
 
         [SerializeField] public Key changeTorch;
 
+        [SerializeField] public Key cameraRight;
+        [SerializeField] public Key cameraLeft;
+
 
         public readonly Dictionary<PlayerAction, Key> keys
             = new Dictionary<PlayerAction, Key>();
@@ -68,6 +71,9 @@ namespace LIL.Inputs
             keys.Add(PlayerAction.Interaction, interaction);
 
             keys.Add(PlayerAction.ChangeTorch, changeTorch);
+
+            keys.Add(PlayerAction.CameraLeft, cameraLeft);
+            keys.Add(PlayerAction.CameraRight, cameraRight);
 
 
             // Check that the keys correspond to the device used
