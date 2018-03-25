@@ -54,6 +54,7 @@ namespace LIL
             path = new NavMeshPath();
             players = GameObject.FindGameObjectsWithTag("Player");
             attacker = GetComponent<WarriorAttack>();
+            animator = GetComponent<Animator>();
             GetComponent<SphereCollider>().radius = attackRange;
             charge = GetComponent<SkillManager>().getSkill(SkillsID.Charge);
             chargeModel = charge.model as ChargeSkill;
@@ -63,11 +64,11 @@ namespace LIL
 
             // Set hurt and death reactions
             HealthManager health = GetComponent<HealthManager>();
-            healthRatioId = nbInvocations + 1;
+            healthRatioId = nbInvocations;
             health.setHurtCallback(() =>
             {
                 animator.SetTrigger("hurt");
-                if(health.getLife() <= healthRatioId * health.getInitialLife() / (nbInvocations + 2))
+                if(health.getLife() <= healthRatioId * health.getInitialLife() / (nbInvocations + 1))
                 {
                     InvocationSpell();
                     --healthRatioId;
