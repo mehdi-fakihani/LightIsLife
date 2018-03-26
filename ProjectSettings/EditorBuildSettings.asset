@@ -20,3 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ayoub/aubTest.unity
     guid: ebf44da0f90ba0342834d9866cd60117
+  - enabled: 1
+    path: Assets/Scenes/Julien/sceneJulien.unity
+    guid: dbddbc36b74bda54982dfcde1cd6de7f
+  - enabled: 1
+    path: Assets/Scenes/Synchro/Sprint4/MainMenu.unity
+    guid: 8a3061325cfcd6142a04fc9ee006287c
+  - enabled: 1
+    path: Assets/Scenes/Synchro/Sprint4/sprint4.unity
+    guid: b94be6f3e2477e546b0e3eb386a1fc67

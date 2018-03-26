@@ -44,6 +44,7 @@ public class GeneralData : MonoBehaviour
     public static string path = Application.persistentDataPath + "/Saves";
     public static ProfilsID inputPlayer1, inputPlayer2;
     public static ProfileModel azertyProfileModel, qwertyProfileModel, controllerProfileModel;
+    public static string sceneName;
 
     /*-------------------*/
     /* STRUCTURES / Enum */

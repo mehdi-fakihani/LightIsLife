@@ -5,7 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using LIL.Inputs;
 
-public class MainMenu : MonoBehaviour {
+public class MainMenu : MonoBehaviour
+{
 
     public Animator animator;
     public GameObject PanelControls, PanelGame, PanelKeyBindings, PanelMovement,
@@ -13,34 +14,37 @@ public class MainMenu : MonoBehaviour {
     // campaign button sub menu
     public GameObject continueBtn, newGameBtn, loadGameBtn, singlePlayerBtn, multiPlayerBtn;
     // highlights
-    public GameObject lineGame, lineControls, lineKeyBindings, lineCombat, 
+    public GameObject lineGame, lineControls, lineKeyBindings, lineCombat,
         lineGeneral, lineMovement;
     // Mouse Sprite
     public Texture2D cursorTexture;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
+    public string sceneName = "sceneJulien";
 
     public void Awake()
     {
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
 
+        GeneralData.sceneName = sceneName;
+
         // Setting up the Azerty Model
-        GeneralData.azertyProfileModel = new ProfileModel(ProfilsID.KeyboardAZERTY, Device.Keyboard, Key.KeyboardI, Key.KeyboardK, Key.KeyboardJ, 
-            Key.KeyboardL, Key.KeyboardSpace, Key.Keyboard1, Key.Keyboard2, Key.Keyboard3, Key.Keyboard4, Key.KeyboardE, Key.KeyboardX, 
+        GeneralData.azertyProfileModel = new ProfileModel(ProfilsID.KeyboardAZERTY, Device.Keyboard, Key.KeyboardI, Key.KeyboardK, Key.KeyboardJ,
+            Key.KeyboardL, Key.KeyboardSpace, Key.Keyboard1, Key.Keyboard2, Key.Keyboard3, Key.Keyboard4, Key.KeyboardE, Key.KeyboardX,
             Key.KeyboardV, Key.KeyboardESC);
 
         //Profile.Models.Add(ProfilsID.KeyboardAZERTY, GeneralData.azertyProfileModel);
 
         // Setting up the Qwerty Model
-        GeneralData.qwertyProfileModel = new ProfileModel(ProfilsID.KeyboardQWERTY, Device.Keyboard, Key.KeyboardW, Key.KeyboardS, Key.KeyboardA, 
-            Key.KeyboardD, Key.KeyboardR, Key.KeyboardNUM8, Key.KeyboardNUM4, Key.KeyboardNUM6, Key.KeyboardNUM5, Key.KeyboardE, Key.KeyboardX, 
+        GeneralData.qwertyProfileModel = new ProfileModel(ProfilsID.KeyboardQWERTY, Device.Keyboard, Key.KeyboardW, Key.KeyboardS, Key.KeyboardA,
+            Key.KeyboardD, Key.KeyboardR, Key.KeyboardNUM8, Key.KeyboardNUM4, Key.KeyboardNUM6, Key.KeyboardNUM5, Key.KeyboardE, Key.KeyboardX,
             Key.KeyboardV, Key.KeyboardESC);
 
         //Models.Add(ProfilsID.KeyboardQWERTY, GeneralData.qwertyProfileModel);
 
         // Setting up the Controller Model
-        GeneralData.controllerProfileModel = new ProfileModel(ProfilsID.XBoxGamepad, Device.XBoxGamepad, Key.GamepadLeftJoystickUp, 
-            Key.GamepadLeftJoystickDown, Key.GamepadLeftJoystickLeft, Key.GamepadLeftJoystickRight, Key.GamepadR1, Key.GamepadA, 
+        GeneralData.controllerProfileModel = new ProfileModel(ProfilsID.XBoxGamepad, Device.XBoxGamepad, Key.GamepadLeftJoystickUp,
+            Key.GamepadLeftJoystickDown, Key.GamepadLeftJoystickLeft, Key.GamepadLeftJoystickRight, Key.GamepadR1, Key.GamepadA,
             Key.GamepadB, Key.GamepadX, Key.GamepadY, Key.GamepadL1, Key.GamepadR2, Key.GamepadL2, Key.GamepadStart);
 
         //Profile.Models.Add(ProfilsID.XBoxGamepad, GeneralData.controllerProfileModel);
@@ -89,7 +93,7 @@ public class MainMenu : MonoBehaviour {
         DisablePlayCampaign();
         GeneralData.multiplayer = false;
         GeneralData.New();
-        SceneManager.LoadScene("aubTest");
+        SceneManager.LoadScene(sceneName);
     }
 
     public void MultiPlayer()
@@ -97,7 +101,7 @@ public class MainMenu : MonoBehaviour {
         DisablePlayCampaign();
         GeneralData.multiplayer = true;
         GeneralData.New();
-        SceneManager.LoadScene("aubTest");
+        SceneManager.LoadScene(sceneName);
     }
 
     public void LoadPanel()
@@ -110,15 +114,15 @@ public class MainMenu : MonoBehaviour {
 
         List<string> files = GeneralData.FilesToLoad();
 
-        for(int i = 0; i < files.Count; i++)
+        for (int i = 0; i < files.Count; i++)
         {
-            PanelLoad.transform.GetChild(i + 2).GetComponentInChildren < Text >().text = files[i].Substring(0,files[i].Length-4);
+            PanelLoad.transform.GetChild(i + 2).GetComponentInChildren<Text>().text = files[i].Substring(0, files[i].Length - 4);
         }
-        if(files == null || files.Count == 0)
+        if (files == null || files.Count == 0)
         {
-            for(int i = 0; i < 12; i++)
+            for (int i = 0; i < 12; i++)
             {
-                PanelLoad.transform.GetChild(i+2).GetComponentInChildren<Text>().text = "EMPTY SLOT";
+                PanelLoad.transform.GetChild(i + 2).GetComponentInChildren<Text>().text = "EMPTY SLOT";
             }
         }
     }
@@ -131,10 +135,10 @@ public class MainMenu : MonoBehaviour {
     public void ContinueLastGame()
     {
         GeneralData.fileName = GeneralData.LastGamePlayed();
-        if(GeneralData.fileName != "Unkown")
+        if (GeneralData.fileName != "Unkown")
         {
             GeneralData.Load(GeneralData.LastGamePlayed());
-            SceneManager.LoadScene("aubTest");
+            SceneManager.LoadScene(sceneName);
         }
     }
 
@@ -196,11 +200,11 @@ public class MainMenu : MonoBehaviour {
         lineKeyBindings.gameObject.SetActive(true);
     }
 
-   
+
 
     public void PlayHover()
     {
-        hoverSound.GetComponent< AudioSource > ().Play();
+        hoverSound.GetComponent<AudioSource>().Play();
     }
 
     public void PlaySFXHover()
@@ -229,4 +233,5 @@ public class MainMenu : MonoBehaviour {
     {
         Application.Quit();
     }
+
 }
