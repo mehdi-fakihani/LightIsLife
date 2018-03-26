@@ -21,6 +21,7 @@ namespace LIL
         private bool alive = true;
         private Action hurtCallback  = () => { };
         private Action deathCallback = () => { };
+        public GameObject damagePopUp;
 
         /// <summary>
         /// Set the function called each time the entity takes damages.
@@ -86,6 +87,9 @@ namespace LIL
             if (isInvulnerable() || !isAlive()) return;
 
             life -= damages / protectionRatio;
+
+            damagePopUp.GetComponent<DamagePopUp>().SetTextDamage((int) (damages / protectionRatio));
+
             if (life > 0f)
                 hurtCallback.Invoke();
             else
