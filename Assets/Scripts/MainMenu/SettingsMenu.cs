@@ -12,7 +12,7 @@ public class SettingsMenu : MonoBehaviour {
     public GameObject ControllerLine1, QwertyLine1, AzertyLine1, ControllerLine2, QwertyLine2, AzertyLine2;
     public GameObject LinePlayer1, LinePlayer2, lineMovement, lineCombat, lineGeneral;
     public GameObject forwardKey, backwardsKey, leftKey, rightKey, sowrdAttackKey, skill1Key, skill2Key, skill3Key, skill4Key, pauseKey,
-        interactKey, changeTorchKey, submitKey;
+        interactKey, changeTorchKey, submitKey, cameraRightKey, cameraLeftKey;
     public GameObject PanelMovement, PanelCombat, PanelGeneral;
 
     private static int playerNum;
@@ -233,6 +233,8 @@ public class SettingsMenu : MonoBehaviour {
             backwardsKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.Down].ToString().Substring(8);
             leftKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.Left].ToString().Substring(8);
             rightKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.Right].ToString().Substring(8);
+            cameraLeftKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.CameraLeft].ToString().Substring(8);
+            cameraRightKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.CameraRight].ToString().Substring(8);
         }
         else if(inputSystem == 2)
         {
@@ -240,6 +242,8 @@ public class SettingsMenu : MonoBehaviour {
             backwardsKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.Down].ToString().Substring(7);
             leftKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.Left].ToString().Substring(7);
             rightKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.Right].ToString().Substring(7);
+            cameraLeftKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.CameraLeft].ToString().Substring(7);
+            cameraRightKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.CameraRight].ToString().Substring(7);
         }
     }
 

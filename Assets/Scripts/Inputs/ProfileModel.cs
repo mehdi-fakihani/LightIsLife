@@ -57,7 +57,7 @@ namespace LIL.Inputs
             = new Dictionary<PlayerAction, Key>();
 
         public ProfileModel(ProfilsID _id, Device _device, Key _up, Key _down, Key _left, Key _right, Key _attack, Key _skill1,
-            Key _skill2, Key _skill3, Key _skill4, Key _interaction, Key _changeTorch, Key _submit, Key _pause)
+            Key _skill2, Key _skill3, Key _skill4, Key _interaction, Key _changeTorch, Key _submit, Key _pause, Key _cameraRight, Key _cameraLeft)
         {
             id = _id;
             device = _device;
@@ -74,6 +74,8 @@ namespace LIL.Inputs
             changeTorch = _changeTorch;
             submit = _submit;
             pause = _pause;
+            cameraRight = _cameraRight;
+            cameraLeft = _cameraLeft;
 
             // Reference keys with their actions
             keys.Add(PlayerAction.Up, up);

@@ -29,3 +29,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Synchro/Sprint4/sprint4.unity
     guid: b94be6f3e2477e546b0e3eb386a1fc67
+  - enabled: 1
+    path: Assets/Scenes/Natacha/sceneMenu.unity
+    guid: 231ded3ce7fb7dc418875a9d9c365c37
+  - enabled: 0
+    path: Assets/Scenes/Natacha/sceneCamera.unity
+    guid: db83b19dc2887084dbcb7ac2b9c870ba
+  - enabled: 1
+    path: Assets/Scenes/Natacha/sprint4Natacha.unity
+    guid: d363f844ac30b1b48bac7d8bdd34238d

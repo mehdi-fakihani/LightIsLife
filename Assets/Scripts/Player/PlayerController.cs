@@ -18,8 +18,9 @@ namespace LIL
         [SerializeField] private AudioClip hurtSound;
         [SerializeField] private AudioClip deathSound;
         [SerializeField] private GameObject secondPlayer;
+        [SerializeField] private GameObject camera;
         public bool multiplayer = false;
-        public float moveCamera;
+        private float moveCamera;
 
         private Animator animator;
         private AudioSource audioSource;
@@ -134,6 +135,7 @@ namespace LIL
 
         void ControllPlayer()
         {
+            moveCamera = 0.0f;
             moveVertical = 0.0f;
             moveHorizontal = 0.0f;
 
@@ -146,6 +148,9 @@ namespace LIL
             if (profile.getKeyDown(PlayerAction.Skill4) && !inventoryActive && selectedSkills[3] != null) selectedSkills[3].tryCast();
 
 
+            if (profile.getKey(PlayerAction.CameraLeft)) moveCamera += 1.0f;
+            if (profile.getKey(PlayerAction.CameraRight)) moveCamera -= 1.0f;
+            camera.GetComponent<CameraController>().SetMoveCamera(moveCamera);
             //Debug.Log(profile);
             //Debug.Log(multiplayer);
 
