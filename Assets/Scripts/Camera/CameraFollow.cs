@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using LIL.Inputs;
 
 namespace LIL
 {
@@ -9,8 +10,10 @@ namespace LIL
         public float smoothing = 5f;        // The speed with which the camera will be following.
         public float rotateSpeed = 3.0f;
         private float x = 0;
+        private float moveCamera;
 
         Vector3 offset;                     // The initial offset from the target.
+        Profile profile = new Profile(1, 0);
 
         void Start()
         {
@@ -20,7 +23,11 @@ namespace LIL
 
         void FixedUpdate()
         {
-            x = rotateSpeed;
+            moveCamera = 0.0f;
+
+            if (profile.getKey(PlayerAction.CameraLeft)) moveCamera += 1.0f;
+            if (profile.getKey(PlayerAction.CameraRight)) moveCamera -= 1.0f;
+            x = moveCamera * rotateSpeed;
 
             offset = Quaternion.AngleAxis(x, Vector3.up) * offset;
 
