@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114711119544951540}
   - component: {fileID: 114365239372871976}
   - component: {fileID: 114131633206133390}
+  - component: {fileID: 114632516275527844}
   m_Layer: 0
   m_Name: Skills
   m_TagString: Untagged
@@ -102,6 +103,30 @@ MonoBehaviour:
   impactWidth: 1
   castEffect: {fileID: 1551265745075496, guid: 05d7a12451c0aa342b60476cab2f48b4, type: 2}
   impactEffect: {fileID: 1840895727837626, guid: 8091a1157c2b85845b54fa0477cb2ef0,
+    type: 2}
+  castSound: {fileID: 0}
+--- !u!114 &114632516275527844
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1382733029967924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09dfc28d01031a742b2d86e2001ad9b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 7
+  cooldown: 10
+  chargesCount: 1
+  maxDamages: 60
+  range: 2
+  duration: 2.5
+  slowRatio: 0.5
+  impactPeriod: 0.5
+  speedRotation: 1
+  castEffect: {fileID: 1527170671714342, guid: d6ae4a89a419cbc418ad6e820803b64d, type: 2}
+  impactEffect: {fileID: 1480476002351562, guid: 2e3134f31d173fb4fb9b05e3e153c43f,
     type: 2}
   castSound: {fileID: 0}
 --- !u!114 &114711119544951540

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 09dfc28d01031a742b2d86e2001ad9b9
+timeCreated: 1522184717
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - castEffect: {fileID: 1527170671714342, guid: d6ae4a89a419cbc418ad6e820803b64d,
+      type: 2}
+  - impactEffect: {fileID: 1480476002351562, guid: 2e3134f31d173fb4fb9b05e3e153c43f,
+      type: 2}
+  - castSound: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
