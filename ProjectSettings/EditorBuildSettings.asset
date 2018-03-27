@@ -38,3 +38,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Natacha/sprint4Natacha.unity
     guid: d363f844ac30b1b48bac7d8bdd34238d
+  - enabled: 1
+    path: Assets/Scenes/Ayoub/newMap.unity
+    guid: 05194e80ce462614a81e7c714b143606
