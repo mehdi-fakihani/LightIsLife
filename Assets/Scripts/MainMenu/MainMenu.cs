@@ -26,6 +26,7 @@ public class MainMenu : MonoBehaviour
     {
         GeneralData.mainMenuID = SceneManager.GetActiveScene().buildIndex;
 
+
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
 
         GeneralData.sceneName = sceneName;

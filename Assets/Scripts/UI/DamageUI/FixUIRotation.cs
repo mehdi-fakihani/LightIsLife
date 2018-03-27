@@ -20,8 +20,6 @@ public class FixUIRotation : MonoBehaviour {
         {
             Quaternion newCamRotation = mainCamera.transform.rotation;
             Quaternion newRotation = rotation;
-            Debug.Log("rotation y before " + cameraRotation.y + " rotation y after " + newCamRotation.y);
-            Debug.Log("rotation y of the canvas " + transform.rotation.y);
             newRotation.y += cameraRotation.y - newCamRotation.y;
             transform.rotation = newRotation;
         }
