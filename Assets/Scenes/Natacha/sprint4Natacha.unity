@@ -473,12 +473,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1491880915544872, guid: db6f1c49c7a53f14a928f20e7a8a0335,
     type: 2}
   m_PrefabInternal: {fileID: 1338942539}
---- !u!114 &889650125 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114449242980955562, guid: db6f1c49c7a53f14a928f20e7a8a0335,
-    type: 2}
-  m_PrefabInternal: {fileID: 1338942539}
-  m_Script: {fileID: 11500000, guid: 5d8c95a7d00714c4a9aa05cbbf96e30c, type: 3}
 --- !u!4 &889650127 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4946844160478084, guid: db6f1c49c7a53f14a928f20e7a8a0335,
@@ -625,28 +619,32 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114799959481754344, guid: db6f1c49c7a53f14a928f20e7a8a0335,
         type: 2}
-      propertyPath: input
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114799959481754344, guid: db6f1c49c7a53f14a928f20e7a8a0335,
-        type: 2}
-      propertyPath: multiplayer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114799959481754344, guid: db6f1c49c7a53f14a928f20e7a8a0335,
-        type: 2}
       propertyPath: secondPlayer
       value: 
       objectReference: {fileID: 170211618}
-    - target: {fileID: 1491880915544872, guid: db6f1c49c7a53f14a928f20e7a8a0335, type: 2}
-      propertyPath: m_Name
-      value: PlayerKnight1
-      objectReference: {fileID: 0}
     - target: {fileID: 114799959481754344, guid: db6f1c49c7a53f14a928f20e7a8a0335,
         type: 2}
       propertyPath: camera
       value: 
       objectReference: {fileID: 1406597780}
+    - target: {fileID: 1491880915544872, guid: db6f1c49c7a53f14a928f20e7a8a0335, type: 2}
+      propertyPath: m_Name
+      value: PlayerKnight1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224050145029353932, guid: db6f1c49c7a53f14a928f20e7a8a0335,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224050145029353932, guid: db6f1c49c7a53f14a928f20e7a8a0335,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491880915544872, guid: db6f1c49c7a53f14a928f20e7a8a0335, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db6f1c49c7a53f14a928f20e7a8a0335, type: 2}
   m_IsPrefabParent: 0
@@ -1008,7 +1006,7 @@ Prefab:
         type: 2}
       propertyPath: health
       value: 
-      objectReference: {fileID: 889650125}
+      objectReference: {fileID: 0}
     - target: {fileID: 114220126129728916, guid: 1f645dbfee80a0c42962747517ac99d7,
         type: 2}
       propertyPath: spawnPoints.Array.data[0]
@@ -1075,19 +1073,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1491880915544872, guid: db6f1c49c7a53f14a928f20e7a8a0335, type: 2}
-      propertyPath: m_Name
-      value: PlayerKnight2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1491880915544872, guid: db6f1c49c7a53f14a928f20e7a8a0335, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 114799959481754344, guid: db6f1c49c7a53f14a928f20e7a8a0335,
         type: 2}
       propertyPath: camera
       value: 
       objectReference: {fileID: 1406597780}
+    - target: {fileID: 1491880915544872, guid: db6f1c49c7a53f14a928f20e7a8a0335, type: 2}
+      propertyPath: m_Name
+      value: PlayerKnight2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db6f1c49c7a53f14a928f20e7a8a0335, type: 2}
   m_IsPrefabParent: 0

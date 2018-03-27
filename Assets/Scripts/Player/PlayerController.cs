@@ -147,21 +147,18 @@ namespace LIL
             if (profile.getKeyDown(PlayerAction.Skill3) && !inventoryActive && selectedSkills[2] != null) selectedSkills[2].tryCast();
             if (profile.getKeyDown(PlayerAction.Skill4) && !inventoryActive && selectedSkills[3] != null) selectedSkills[3].tryCast();
 
-
-            if (profile.getKey(PlayerAction.CameraLeft)) moveCamera += 1.0f;
-            if (profile.getKey(PlayerAction.CameraRight)) moveCamera -= 1.0f;
-            camera.GetComponent<CameraController>().SetMoveCamera(moveCamera);
-            //Debug.Log(profile);
-            //Debug.Log(multiplayer);
-
-
+            if(CameraFollow())
+            {
+                if (profile.getKey(PlayerAction.CameraLeft)) moveCamera += 1.0f;
+                if (profile.getKey(PlayerAction.CameraRight)) moveCamera -= 1.0f;
+                camera.GetComponent<CameraController>().SetMoveCamera(moveCamera);
+            }
 
 
             if (profile.getKeyDown(PlayerAction.Attack) && !inventoryActive) attack.tryCast();
 
             if (multiplayer)
             {
-                //Debug.Log("test");
                 if (profile.getKeyDown(PlayerAction.ChangeTorch) && !inventoryActive && !secondPlayer.GetComponent<PlayerController>().inventoryActive)
                 {
                     if (CameraFollow())
@@ -211,6 +208,8 @@ namespace LIL
                 }
             }
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+            movement = camera.transform.TransformDirection(movement);
+            movement.y = 0.0f;
             movement.Normalize();
 
             if (movement != Vector3.zero)
