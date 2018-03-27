@@ -50,6 +50,8 @@ namespace LIL
         private Skill reflect;
         private int playerNum = 1;
 
+        private bool gamePaused;
+
 
         // Added by Julien
         private Vector3 lastMove;
@@ -61,6 +63,7 @@ namespace LIL
             inventory = GUI.GetComponent<Inventory>();
             interactable = false;
             inventoryActive = false;
+            GeneralData.gamePaused = false;
 
             // get the last digit of the player name (1 / 2)
             playerNum = this.transform.name[this.transform.name.Length - 1];
@@ -142,10 +145,26 @@ namespace LIL
 
             // Modified by Sidney
 
-            if (profile.getKeyDown(PlayerAction.Skill1) && !inventoryActive && selectedSkills[0] != null) selectedSkills[0].tryCast();
-            if (profile.getKeyDown(PlayerAction.Skill2) && !inventoryActive && selectedSkills[1] != null) selectedSkills[1].tryCast();
-            if (profile.getKeyDown(PlayerAction.Skill3) && !inventoryActive && selectedSkills[2] != null) selectedSkills[2].tryCast();
-            if (profile.getKeyDown(PlayerAction.Skill4) && !inventoryActive && selectedSkills[3] != null) selectedSkills[3].tryCast();
+            if (profile.getKeyDown(PlayerAction.Skill1) && !inventoryActive && selectedSkills[0] != null && !GeneralData.gamePaused)
+                selectedSkills[0].tryCast();
+            if (profile.getKeyDown(PlayerAction.Skill2) && !inventoryActive && selectedSkills[1] != null && !GeneralData.gamePaused)
+                selectedSkills[1].tryCast();
+            if (profile.getKeyDown(PlayerAction.Skill3) && !inventoryActive && selectedSkills[2] != null && !GeneralData.gamePaused)
+                selectedSkills[2].tryCast();
+            if (profile.getKeyDown(PlayerAction.Skill4) && !inventoryActive && selectedSkills[3] != null && !GeneralData.gamePaused)
+                selectedSkills[3].tryCast();
+
+            if (profile.getKeyDown(PlayerAction.Pause))
+            {
+                if (!GeneralData.gamePaused)
+                {
+                    GUI.GetComponent<Pause>().pauseGame(playerNum);
+                }
+                else
+                {
+                    GUI.GetComponent<Pause>().Continue();
+                }
+            }
 
             if(CameraFollow())
             {
@@ -155,11 +174,11 @@ namespace LIL
             }
 
 
-            if (profile.getKeyDown(PlayerAction.Attack) && !inventoryActive) attack.tryCast();
+            if (profile.getKeyDown(PlayerAction.Attack) && !inventoryActive && !GeneralData.gamePaused) attack.tryCast();
 
             if (multiplayer)
             {
-                if (profile.getKeyDown(PlayerAction.ChangeTorch) && !inventoryActive && !secondPlayer.GetComponent<PlayerController>().inventoryActive)
+                if (profile.getKeyDown(PlayerAction.ChangeTorch) && !inventoryActive && !secondPlayer.GetComponent<PlayerController>().inventoryActive && !GeneralData.gamePaused)
                 {
                     if (CameraFollow())
                     {
@@ -175,17 +194,17 @@ namespace LIL
 
             if (movementManager.isImmobilized()) return;
 
-            if (profile.getKey(PlayerAction.Up) && !inventoryActive) moveVertical += 1.0f;
-            if (profile.getKey(PlayerAction.Down) && !inventoryActive) moveVertical -= 1.0f;
-            if (profile.getKey(PlayerAction.Left) && !inventoryActive) moveHorizontal -= 1.0f;
-            if (profile.getKey(PlayerAction.Right) && !inventoryActive) moveHorizontal += 1.0f;
+            if (profile.getKey(PlayerAction.Up) && !inventoryActive && !GeneralData.gamePaused) moveVertical += 1.0f;
+            if (profile.getKey(PlayerAction.Down) && !inventoryActive && !GeneralData.gamePaused) moveVertical -= 1.0f;
+            if (profile.getKey(PlayerAction.Left) && !inventoryActive && !GeneralData.gamePaused) moveHorizontal -= 1.0f;
+            if (profile.getKey(PlayerAction.Right) && !inventoryActive && !GeneralData.gamePaused) moveHorizontal += 1.0f;
+
 
 
             if (profile.getKey(PlayerAction.CameraLeft) && !inventoryActive) moveCamera += 1.0f;
             if (profile.getKey(PlayerAction.CameraRight) && !inventoryActive) moveCamera -= 1.0f;
 
-
-            if (profile.getKeyDown(PlayerAction.Interaction) && interactable)
+            if (profile.getKeyDown(PlayerAction.Interaction) && interactable && !GeneralData.gamePaused)
             {
                 if(!CameraFollow()) interaction.displayInteractionMsg("Use the spirit's power !");
                 else

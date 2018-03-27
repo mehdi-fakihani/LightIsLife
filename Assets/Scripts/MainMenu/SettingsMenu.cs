@@ -41,7 +41,7 @@ public class SettingsMenu : MonoBehaviour {
         if (PlayerPrefs.GetInt("Input1") == 0)
         {
             GeneralData.inputPlayer1 = ProfilsID.KeyboardAZERTY;
-            Profile.Models.Add(1, GeneralData.azertyProfileModel);
+            Profile.Models[1] = GeneralData.azertyProfileModel;
             AzertyLine1.gameObject.SetActive(true);
             QwertyLine1.gameObject.SetActive(false);
             ControllerLine1.gameObject.SetActive(false);
@@ -49,7 +49,7 @@ public class SettingsMenu : MonoBehaviour {
         else if (PlayerPrefs.GetInt("Input1") == 1)
         {
             GeneralData.inputPlayer1 = ProfilsID.KeyboardQWERTY;
-            Profile.Models.Add(1, GeneralData.qwertyProfileModel);
+            Profile.Models[1] = GeneralData.qwertyProfileModel;
             AzertyLine1.gameObject.SetActive(false);
             QwertyLine1.gameObject.SetActive(true);
             ControllerLine1.gameObject.SetActive(false);
@@ -57,7 +57,7 @@ public class SettingsMenu : MonoBehaviour {
         else if (PlayerPrefs.GetInt("Input1") == 2)
         {
             GeneralData.inputPlayer1 = ProfilsID.XBoxGamepad;
-            Profile.Models.Add(1, GeneralData.controllerProfileModel);
+            Profile.Models[1] = GeneralData.controllerProfileModel;
             AzertyLine1.gameObject.SetActive(false);
             QwertyLine1.gameObject.SetActive(false);
             ControllerLine1.gameObject.SetActive(true);
@@ -67,7 +67,7 @@ public class SettingsMenu : MonoBehaviour {
         if (PlayerPrefs.GetInt("Input2") == 0)
         {
             GeneralData.inputPlayer2 = ProfilsID.KeyboardAZERTY;
-            Profile.Models.Add(2, GeneralData.azertyProfileModel);
+            Profile.Models[2] = GeneralData.azertyProfileModel;
             AzertyLine2.gameObject.SetActive(true);
             QwertyLine2.gameObject.SetActive(false);
             ControllerLine2.gameObject.SetActive(false);
@@ -75,7 +75,7 @@ public class SettingsMenu : MonoBehaviour {
         else if (PlayerPrefs.GetInt("Input2") == 1)
         {
             GeneralData.inputPlayer2 = ProfilsID.KeyboardQWERTY;
-            Profile.Models.Add(2, GeneralData.qwertyProfileModel);
+            Profile.Models[2] = GeneralData.qwertyProfileModel;
             AzertyLine2.gameObject.SetActive(false);
             QwertyLine2.gameObject.SetActive(true);
             ControllerLine2.gameObject.SetActive(false);
@@ -83,7 +83,7 @@ public class SettingsMenu : MonoBehaviour {
         else if (PlayerPrefs.GetInt("Input2") == 2)
         {
             GeneralData.inputPlayer2 = ProfilsID.XBoxGamepad;
-            Profile.Models.Add(2, GeneralData.controllerProfileModel);
+            Profile.Models[2] = GeneralData.controllerProfileModel;
             AzertyLine2.gameObject.SetActive(false);
             QwertyLine2.gameObject.SetActive(false);
             ControllerLine2.gameObject.SetActive(true);
