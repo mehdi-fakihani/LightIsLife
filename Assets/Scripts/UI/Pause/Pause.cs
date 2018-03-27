@@ -12,8 +12,6 @@ public class Pause : MonoBehaviour {
     public void pauseGame(int _playerNum)
     {
         playerNum = _playerNum;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
         pausePanel.SetActive(true);
         this.transform.GetChild(1).GetChild(1).GetComponent<Selectable>().Select();
         GeneralData.gamePaused = true;
@@ -22,8 +20,6 @@ public class Pause : MonoBehaviour {
 
     public void Continue()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
         pausePanel.SetActive(false);
         GeneralData.gamePaused = false;
         Time.timeScale = 1f;
@@ -31,6 +27,8 @@ public class Pause : MonoBehaviour {
 
     public void MainMenu()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 1f;
         SceneManager.LoadScene(GeneralData.mainMenuID);
     }

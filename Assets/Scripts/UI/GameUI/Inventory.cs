@@ -16,7 +16,7 @@ namespace LIL
         {
             if(playerNum == 2) inventory_2.SetActive(true);
             else inventory_1.SetActive(true);
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
         }
 
         public void disable(int playerNum, float[] _pos)
@@ -29,7 +29,7 @@ namespace LIL
 
             GeneralData.Save(GeneralData.fileName);
             pos = GeneralData.getPlayerbyNum(playerNum).pos;
-            Time.timeScale = 1;
+            //Time.timeScale = 1;
         }
 
     }
