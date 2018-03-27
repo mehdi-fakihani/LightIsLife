@@ -24,7 +24,7 @@ namespace LIL
         {
             if (cooldown <= 0f) cooldown = 0.01f;
             //Assert.IsFalse(Skill.Models.ContainsKey(id), "Skill key '" + id + "' is duplicated");
-            Skill.Models.Add(id, this);
+            Skill.Models[id] = this;
         }
     }
 }

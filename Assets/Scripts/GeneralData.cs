@@ -45,6 +45,8 @@ public class GeneralData : MonoBehaviour
     public static ProfilsID inputPlayer1, inputPlayer2;
     public static ProfileModel azertyProfileModel, qwertyProfileModel, controllerProfileModel;
     public static string sceneName;
+    public static int mainMenuID;
+    public static bool gamePaused;
 
     /*-------------------*/
     /* STRUCTURES / Enum */

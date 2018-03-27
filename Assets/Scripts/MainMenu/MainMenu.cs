@@ -24,6 +24,8 @@ public class MainMenu : MonoBehaviour
 
     public void Awake()
     {
+        GeneralData.mainMenuID = SceneManager.GetActiveScene().buildIndex;
+
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
 
         GeneralData.sceneName = sceneName;
@@ -33,21 +35,16 @@ public class MainMenu : MonoBehaviour
             Key.KeyboardL, Key.KeyboardSpace, Key.Keyboard1, Key.Keyboard2, Key.Keyboard3, Key.Keyboard4, Key.KeyboardE, Key.KeyboardX,
             Key.KeyboardV, Key.KeyboardESC);
 
-        //Profile.Models.Add(ProfilsID.KeyboardAZERTY, GeneralData.azertyProfileModel);
-
         // Setting up the Qwerty Model
         GeneralData.qwertyProfileModel = new ProfileModel(ProfilsID.KeyboardQWERTY, Device.Keyboard, Key.KeyboardW, Key.KeyboardS, Key.KeyboardA,
             Key.KeyboardD, Key.KeyboardR, Key.KeyboardNUM8, Key.KeyboardNUM4, Key.KeyboardNUM6, Key.KeyboardNUM5, Key.KeyboardE, Key.KeyboardX,
             Key.KeyboardV, Key.KeyboardESC);
-
-        //Models.Add(ProfilsID.KeyboardQWERTY, GeneralData.qwertyProfileModel);
 
         // Setting up the Controller Model
         GeneralData.controllerProfileModel = new ProfileModel(ProfilsID.XBoxGamepad, Device.XBoxGamepad, Key.GamepadLeftJoystickUp,
             Key.GamepadLeftJoystickDown, Key.GamepadLeftJoystickLeft, Key.GamepadLeftJoystickRight, Key.GamepadR1, Key.GamepadA,
             Key.GamepadB, Key.GamepadX, Key.GamepadY, Key.GamepadL1, Key.GamepadR2, Key.GamepadL2, Key.GamepadStart);
 
-        //Profile.Models.Add(ProfilsID.XBoxGamepad, GeneralData.controllerProfileModel);
     }
 
     public void PlayCampaign()
