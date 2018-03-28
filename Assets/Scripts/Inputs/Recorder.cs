@@ -84,10 +84,7 @@ namespace LIL.Inputs
 
         void Awake()
         {
-           Assert.IsNull(instance, "The input recorder must be set" +
-                                    " exactly one time in the scene");
-            if(instance = null)
-                instance = this;
+            if (instance == null) instance = this;
         }
 
         private class Status

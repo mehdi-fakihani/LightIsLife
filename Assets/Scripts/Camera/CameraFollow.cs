@@ -17,7 +17,7 @@ namespace LIL
 
         void Start()
         {
-            // Calculate the initial offset.
+            // Calculate the initial offset
             offset = transform.position - target.position;
         }
 

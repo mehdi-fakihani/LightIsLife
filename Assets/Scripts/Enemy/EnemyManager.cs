@@ -7,6 +7,7 @@ namespace LIL
         public GameObject warrior;                // The enemy prefab to be spawned.
         public GameObject mage;                   // optional in case we want to spawn mage
         public GameObject support;                // optional in case we want to spawn support
+        public GameObject spawnAnimation;
         public float spawnTime = 3f;            // How long between each spawn.
         public int nbEnemies = 10;
         public Transform[] spawnPoints;         // An array of the spawn points this enemy can spawn from.
@@ -60,6 +61,8 @@ namespace LIL
             // Find a random index between zero and one less than the number of spawn points.
             int spawnPointIndex = Random.Range(0, spawnPoints.Length);
 
+            // Display an animation when an enemy spawn
+            Instantiate(spawnAnimation, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
             // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
             Instantiate(ChooseEnemy(), spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
 
