@@ -202,6 +202,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayHover()
     {
+        Debug.Log("coucou");
         hoverSound.GetComponent<AudioSource>().Play();
     }
 
