@@ -65,6 +65,8 @@ MonoBehaviour:
   speed: 1600
   range: 12
   castTime: 0.3
+  impactEffect: {fileID: 1715995965236544, guid: 9a84ed94580581440b79509b48e1aa6a,
+    type: 2}
   castSound: {fileID: 0}
 --- !u!114 &114156387040599582
 MonoBehaviour:

@@ -17,8 +17,8 @@ namespace LIL
         public float speed;
         public float range;
         public float castTime;
+        public GameObject impactEffect;
         public AudioClip castSound;
-
 
         public override void cast(SkillManager manager)
         {
@@ -41,7 +41,7 @@ namespace LIL
             caster.GetComponent<EffectManager>().addEffect(new Effects.Delayed(castTime, true, () =>
             {
                 var charge = caster.AddComponent<Charge>();
-                charge.setup(damages, stunTime, speed, range, postInvulnerabilityTime);
+                charge.setup(damages, stunTime, speed, range, postInvulnerabilityTime, impactEffect);
             }));
         }
     }
