@@ -26,11 +26,12 @@ namespace LIL.Effects
 
         protected override void apply()
         {
+            manager.GetComponent<PlayerController>().onWhirlwind = true;
             currentTime = 0f;
             castEffect = Object.Instantiate(
-                skill.impactEffect,
+                skill.castEffect,
                 manager.transform.position,
-                skill.impactEffect.transform.rotation);
+                skill.castEffect.transform.rotation);
         }
 
         protected override void update(float secs)
@@ -38,7 +39,8 @@ namespace LIL.Effects
             currentTime += secs;
             castEffect.transform.position = manager.transform.position;
 
-            manager.transform.Rotate(Vector3.up, secs * skill.speedRotation);
+            Debug.Log(manager.gameObject.name);
+            manager.transform.Rotate(Vector3.up, secs * skill.speedRotation * 500f);
 
             if (currentTime < skill.impactPeriod) return;
             currentTime -= skill.impactPeriod;
@@ -57,6 +59,7 @@ namespace LIL.Effects
 
         public override void expire(bool onDeath)
         {
+            manager.GetComponent<PlayerController>().onWhirlwind = false;
             Object.Destroy(castEffect);
         }
     }
