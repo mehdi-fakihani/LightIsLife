@@ -26,9 +26,6 @@ namespace LIL
                 var audioSource = caster.GetComponent<AudioSource>();
                 audioSource.PlayOneShot(castSound, 0.3f);
             }
-
-            var cast = Instantiate(castEffect, caster.transform.position, Quaternion.identity);
-            Destroy(cast, duration);
             
             caster.GetComponent<EffectManager>().addEffect(new Effects.Slow(duration, slowRatio));
             caster.GetComponent<EffectManager>().addEffect(new Effects.Silence(duration));
