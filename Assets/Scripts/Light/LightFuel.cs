@@ -19,11 +19,12 @@ public class LightFuel : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("LightSource"))
+        if (other.gameObject.CompareTag("Campfire"))
         {
             LightProvider provider = other.gameObject.GetComponent<LightProvider>();
             if (provider != null)
             {
+                Debug.Log("light provider");
                 FillLight(provider.GetFuelFactor());
             }
         }
