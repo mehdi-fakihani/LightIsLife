@@ -80,7 +80,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1477161197064816}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: -0.09942806, z: 3.9}
+  m_LocalPosition: {x: -0.5, y: -0.09942806, z: 14.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4431372462570414}
@@ -93,7 +93,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1511700279343898}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.57, y: -0.09942806, z: 0.72}
+  m_LocalPosition: {x: -15.8, y: -0.09942806, z: 0.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4431372462570414}
@@ -106,7 +106,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1813467624375384}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.08, y: 0, z: 11.95}
+  m_LocalPosition: {x: 55.6, y: 0, z: 105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4137076237342084}
@@ -122,7 +122,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1483393227616198}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.96, y: 5.4244943, z: 2.72}
+  m_LocalPosition: {x: -5.96, y: 5.4244943, z: -13.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4431372462570414}
@@ -142,6 +142,8 @@ MonoBehaviour:
   warrior: {fileID: 1179956212631258, guid: 811bb88b3b0dca947896b3cb73b07e87, type: 2}
   mage: {fileID: 1678166629219444, guid: 23aafe69f7b45674baa025c8bcbd9f43, type: 2}
   support: {fileID: 1641355719220448, guid: 51cde3b74aa751e4fac3db5822165c6d, type: 2}
+  spawnAnimation: {fileID: 1412282531462318, guid: f68b895db94ff33469eee2700c48776b,
+    type: 2}
   spawnTime: 5
   nbEnemies: 2
   spawnPoints:
