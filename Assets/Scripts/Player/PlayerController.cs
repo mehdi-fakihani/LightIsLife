@@ -12,6 +12,7 @@ namespace LIL
     [RequireComponent(typeof(MovementManager))]
     public class PlayerController : MonoBehaviour
     {
+        [NonSerialized] public bool onWhirlwind = false;
 
         private ProfilsID input;
         [SerializeField] private float movementSpeed = 6f;
@@ -141,10 +142,7 @@ namespace LIL
             moveCamera = 0.0f;
             moveVertical = 0.0f;
             moveHorizontal = 0.0f;
-
-
-            // Modified by Sidney
-
+            
             if (profile.getKeyDown(PlayerAction.Skill1) && !inventoryActive && selectedSkills[0] != null && !GeneralData.gamePaused)
                 selectedSkills[0].tryCast();
             if (profile.getKeyDown(PlayerAction.Skill2) && !inventoryActive && selectedSkills[1] != null && !GeneralData.gamePaused)
@@ -190,7 +188,6 @@ namespace LIL
                     }
                 }
             }
-            // Added by Sidney
 
             if (movementManager.isImmobilized()) return;
 
@@ -231,7 +228,7 @@ namespace LIL
             movement.y = 0.0f;
             movement.Normalize();
 
-            if (movement != Vector3.zero)
+            if (movement != Vector3.zero && !onWhirlwind)
             {
                 // smooth rotation only if movement is not opposed to last movement
                 if (lastMove + movement != Vector3.zero)

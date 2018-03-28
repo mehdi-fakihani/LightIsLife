@@ -32,8 +32,8 @@ public class MainMenu : MonoBehaviour
         GeneralData.sceneName = sceneName;
 
         // Setting up the Azerty Model
-        GeneralData.azertyProfileModel = new ProfileModel(ProfilsID.KeyboardAZERTY, Device.Keyboard, Key.KeyboardI, Key.KeyboardK, Key.KeyboardJ,
-            Key.KeyboardL, Key.KeyboardSpace, Key.Keyboard1, Key.Keyboard2, Key.Keyboard3, Key.Keyboard4, Key.KeyboardE, Key.KeyboardX,
+        GeneralData.azertyProfileModel = new ProfileModel(ProfilsID.KeyboardAZERTY, Device.Keyboard, Key.KeyboardZ, Key.KeyboardS, Key.KeyboardQ,
+            Key.KeyboardD, Key.KeyboardSpace, Key.Keyboard1, Key.Keyboard2, Key.Keyboard3, Key.Keyboard4, Key.KeyboardE, Key.KeyboardX,
             Key.KeyboardV, Key.KeyboardESC, Key.KeyboardLeft, Key.KeyboardRight);
 
         // Setting up the Qwerty Model
@@ -44,7 +44,7 @@ public class MainMenu : MonoBehaviour
         // Setting up the Controller Model
         GeneralData.controllerProfileModel = new ProfileModel(ProfilsID.XBoxGamepad, Device.XBoxGamepad, Key.GamepadLeftJoystickUp,
             Key.GamepadLeftJoystickDown, Key.GamepadLeftJoystickLeft, Key.GamepadLeftJoystickRight, Key.GamepadR1, Key.GamepadA,
-            Key.GamepadB, Key.GamepadX, Key.GamepadY, Key.GamepadL1, Key.GamepadR2, Key.GamepadL2, Key.GamepadStart, Key.GamepadRightJoystickDown, Key.GamepadRightJoystickUp);
+            Key.GamepadB, Key.GamepadX, Key.GamepadY, Key.GamepadL1, Key.GamepadR2, Key.GamepadL2, Key.GamepadStart, Key.GamepadRightJoystickRight, Key.GamepadRightJoystickLeft);
 
     }
 

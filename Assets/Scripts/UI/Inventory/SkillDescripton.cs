@@ -75,8 +75,7 @@ namespace LIL
                     model.keys[PlayerAction.Skill2].ToString().Substring(7),
                 model.keys[PlayerAction.Skill3].ToString().Substring(7),
                     model.keys[PlayerAction.Skill4].ToString().Substring(7) };
-
-                Debug.Log("left key : "+model.keys[PlayerAction.Left].ToString());
+                
                 browseKeys = new string[] { model.keys[PlayerAction.Left].ToString().Substring(7),
                     model.keys[PlayerAction.Up].ToString().Substring(7),
                 model.keys[PlayerAction.Down].ToString().Substring(7),

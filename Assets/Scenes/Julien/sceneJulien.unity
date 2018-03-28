@@ -1125,6 +1125,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114709833398418674, guid: 09265786403c75e48b8f8ccb80e222d6,
+        type: 2}
+      propertyPath: poisonFrequence
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114709833398418674, guid: 09265786403c75e48b8f8ccb80e222d6,
+        type: 2}
+      propertyPath: poisonAoeRange
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114504376658078240, guid: 09265786403c75e48b8f8ccb80e222d6,
+        type: 2}
+      propertyPath: initialLife
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09265786403c75e48b8f8ccb80e222d6, type: 2}
   m_IsPrefabParent: 0

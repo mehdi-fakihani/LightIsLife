@@ -4,25 +4,16 @@ using UnityEngine;
 
 public class FixUIRotation : MonoBehaviour {
 
-    Quaternion rotation;
     GameObject mainCamera;
-    Quaternion cameraRotation;
 
     void Awake()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        cameraRotation = mainCamera.transform.rotation;
-        rotation = transform.rotation;
+        transform.position += new Vector3(0, 0.7f, 0);
     }
-    void Update()
+
+    void LateUpdate()
     {
-        if(mainCamera.transform.rotation.y != cameraRotation.y)
-        {
-            Quaternion newCamRotation = mainCamera.transform.rotation;
-            Quaternion newRotation = rotation;
-            newRotation.y += cameraRotation.y - newCamRotation.y;
-            transform.rotation = newRotation;
-        }
-        else    transform.rotation = rotation;
+        transform.rotation = mainCamera.transform.rotation;
     }
 }

@@ -65,6 +65,8 @@ MonoBehaviour:
   speed: 1600
   range: 12
   castTime: 0.3
+  impactEffect: {fileID: 1715995965236544, guid: 9a84ed94580581440b79509b48e1aa6a,
+    type: 2}
   castSound: {fileID: 0}
 --- !u!114 &114156387040599582
 MonoBehaviour:
@@ -117,14 +119,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 7
-  cooldown: 10
+  cooldown: 1
   chargesCount: 1
   maxDamages: 60
   range: 2
   duration: 2.5
   slowRatio: 0.5
   impactPeriod: 0.5
-  speedRotation: 1
+  speedRotation: 3
   castEffect: {fileID: 1527170671714342, guid: d6ae4a89a419cbc418ad6e820803b64d, type: 2}
   impactEffect: {fileID: 1480476002351562, guid: 2e3134f31d173fb4fb9b05e3e153c43f,
     type: 2}

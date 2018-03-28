@@ -16,13 +16,15 @@ namespace LIL
         private float timeMax;
         private float timeElasped;
         private float invulnerabilityTime;
+        private GameObject impactEffect;
 
-        public void setup(float damages, float stunTime, float speed, float range, float invulnerabilityTime)
+        public void setup(float damages, float stunTime, float speed, float range, float invulnerabilityTime, GameObject impactEffect)
         {
             this.damages = damages;
             this.stunTime = stunTime;
             this.speed = speed;
             this.invulnerabilityTime = invulnerabilityTime;
+            this.impactEffect = impactEffect;
             timeMax = 100f * range / speed;
             timeElasped = 0f;
         }
@@ -76,6 +78,9 @@ namespace LIL
 
             if (entity.isEnemyWith(gameObject))
                 impact(entity);
+
+            var effect = Instantiate(impactEffect, collision.contacts[0].point, Quaternion.identity);
+            Destroy(effect, 1f);
 
             finish();
         }
