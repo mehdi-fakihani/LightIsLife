@@ -14,4 +14,15 @@ public class Victory : MonoBehaviour {
         //playerAnimation.SetTrigger("death");
         playerAnimation.Play("Victory");
     }
+
+    public void GoMainMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MenuDorian");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
 }

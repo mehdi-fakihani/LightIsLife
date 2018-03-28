@@ -502,7 +502,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 10
-  m_Text: VICTOIRE
+  m_Text: VICTORY
 --- !u!222 &204683127
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8175,6 +8175,46 @@ Prefab:
       propertyPath: InitialModule.startRotationY.scalar
       value: 0.0000
       objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 2}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 2}
+      propertyPath: RotationModule.curve.minScalar
+      value: -0.3491
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 2}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 20.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 2}
+      propertyPath: InitialModule.startRotationX.scalar
+      value: 0.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 2}
+      propertyPath: InitialModule.startRotationY.scalar
+      value: 0.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 2}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 2}
+      propertyPath: RotationModule.curve.minScalar
+      value: -0.3491
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 2}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 20.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 2}
+      propertyPath: InitialModule.startRotationX.scalar
+      value: 0.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 2}
+      propertyPath: InitialModule.startRotationY.scalar
+      value: 0.0000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1f7aa4d40edff6e48b549003cad031e1, type: 2}
   m_IsPrefabParent: 0
@@ -8485,7 +8525,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1130047029}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1421972631}
+        m_MethodName: GoMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1130047029
@@ -8615,7 +8666,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1282072635}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1421972631}
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1282072635
@@ -8971,7 +9033,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Vous avez sauve votre ami !
+  m_Text: You saved your friend !
 --- !u!222 &1905945228
 CanvasRenderer:
   m_ObjectHideFlags: 0
