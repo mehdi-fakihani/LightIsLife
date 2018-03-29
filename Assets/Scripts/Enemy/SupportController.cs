@@ -270,7 +270,10 @@ namespace LIL
             Vector3 barycenter = Vector3.zero;
             foreach(var t in targets)
             {
-                barycenter += t.transform.position;
+                if(t.transform != null)
+                {
+                    barycenter += t.transform.position;
+                }
             }
             barycenter /= targets.Count;
             // move the barycenter from group to the side opposite to the player

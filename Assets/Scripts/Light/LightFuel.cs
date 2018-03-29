@@ -24,7 +24,6 @@ public class LightFuel : MonoBehaviour {
             LightProvider provider = other.gameObject.GetComponent<LightProvider>();
             if (provider != null)
             {
-                Debug.Log("light provider");
                 FillLight(provider.GetFuelFactor());
             }
         }

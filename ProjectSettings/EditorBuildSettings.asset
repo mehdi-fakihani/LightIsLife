@@ -5,58 +5,58 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Dorian/PlayerChoice.unity
     guid: 9cc6aa1e8d6ee7c489d1a5021b6e5b96
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Dorian/SceneDorian2.unity
     guid: e9a3d70e0eff8b74688a2af08e4198a5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Dorian/test.unity
     guid: 3432d74ed148f1e4baad262828653ea5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Ayoub/MainMenu.unity
     guid: 547131a708eab9d4bb5732d796ed8962
-  - enabled: 1
-    path: Assets/Scenes/Ayoub/aubTest.unity
-    guid: ebf44da0f90ba0342834d9866cd60117
-  - enabled: 1
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/Julien/sceneJulien.unity
     guid: dbddbc36b74bda54982dfcde1cd6de7f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Synchro/Sprint4/MainMenu.unity
     guid: 8a3061325cfcd6142a04fc9ee006287c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Synchro/Sprint4/sprint4.unity
     guid: b94be6f3e2477e546b0e3eb386a1fc67
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Natacha/sceneMenu.unity
     guid: 231ded3ce7fb7dc418875a9d9c365c37
   - enabled: 0
     path: 
-    guid: db83b19dc2887084dbcb7ac2b9c870ba
-  - enabled: 1
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/Natacha/sprint4Natacha.unity
     guid: d363f844ac30b1b48bac7d8bdd34238d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Ayoub/newMap.unity
     guid: 05194e80ce462614a81e7c714b143606
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Sidney/Synchro/MenuSidney.unity
     guid: 766d30dd8e838564289e4d49079dd703
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Sidney/Synchro/Sidney.unity
     guid: 26f3235286b5e534eaa3dd69d5c4fd26
-  - enabled: 1
-    path: Assets/Scenes/Julien/Synchro/Julien.unity
-    guid: 9de8f286e7a39b84f9d898c086bf63b7
   - enabled: 1
     path: Assets/Scenes/Julien/Synchro/MenuJulien.unity
     guid: 280ede041c76d254ba5f6e50068b4bbc
   - enabled: 1
+    path: Assets/Scenes/Julien/Synchro/Julien.unity
+    guid: 9de8f286e7a39b84f9d898c086bf63b7
+  - enabled: 0
     path: Assets/Scenes/Dorian/Synchro/MenuDorian.unity
     guid: 8bfdef7d753664d4a855d8cda69a4c85
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Dorian/Synchro/Dorian.unity
     guid: f7480b5355b482b45ae691aa0ae1bc83
   - enabled: 1
