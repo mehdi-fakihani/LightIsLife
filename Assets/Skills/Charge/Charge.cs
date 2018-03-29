@@ -79,7 +79,7 @@ namespace LIL
             if (entity.isEnemyWith(gameObject))
                 impact(entity);
 
-            var effect = Instantiate(impactEffect, collision.transform.position, Quaternion.identity);
+            var effect = Instantiate(impactEffect, collision.contacts[0].point, Quaternion.identity);
             Destroy(effect, 1f);
 
             finish();

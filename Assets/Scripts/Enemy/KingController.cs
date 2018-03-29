@@ -77,6 +77,10 @@ namespace LIL
             health.setDeathCallback(() =>
             {
                 animator.SetTrigger("death");
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Victory");
+                Time.timeScale = 1f;
                 Destroy(gameObject, 1.5f);
             });
         }

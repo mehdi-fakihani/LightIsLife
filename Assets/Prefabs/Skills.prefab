@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114365239372871976}
   - component: {fileID: 114131633206133390}
   - component: {fileID: 114632516275527844}
+  - component: {fileID: 114416440836582140}
   m_Layer: 0
   m_Name: Skills
   m_TagString: Untagged
@@ -107,6 +108,27 @@ MonoBehaviour:
   impactEffect: {fileID: 1840895727837626, guid: 8091a1157c2b85845b54fa0477cb2ef0,
     type: 2}
   castSound: {fileID: 0}
+--- !u!114 &114416440836582140
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1382733029967924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c51d575892709d4d921a850fec1bb5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 11
+  cooldown: 5
+  chargesCount: 1
+  totalDamages: 30
+  effectDuration: 3
+  buffDuration: 3
+  impactEffect: {fileID: 1284075765239354, guid: 1915d61295c7f024498e543daaf4e348,
+    type: 2}
+  castEffect: {fileID: 1218632553947652, guid: 797593ac0c09e1c4eba6a72c02555d88, type: 2}
+  castSound: {fileID: 0}
 --- !u!114 &114632516275527844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 7
-  cooldown: 1
+  cooldown: 2
   chargesCount: 1
   maxDamages: 60
   range: 2

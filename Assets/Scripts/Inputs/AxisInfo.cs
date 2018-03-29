@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
 using UnityEngine;
 
 
@@ -28,8 +27,10 @@ namespace LIL.Inputs
         /// <returns></returns>
         public static AxisInfo From(Key key, int deviceNum)
         {
+            /*
             Assert.IsTrue(KeyGroup.IsFromAxis(key),
                 "the given key (" + key + ") does not represents an axis");
+                */
 
             var info = new AxisInfo();
             info.name = "Gamepad" + (deviceNum + 1);
