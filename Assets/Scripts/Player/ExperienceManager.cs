@@ -11,6 +11,7 @@ public class ExperienceManager : MonoBehaviour {
     {
         if (other.CompareTag("Exp"))
         {
+			Debug.Log(experience);
             Destroy(other.gameObject);
             experience++;
         }
