@@ -39,7 +39,6 @@ namespace LIL.Effects
             currentTime += secs;
             castEffect.transform.position = manager.transform.position;
 
-            Debug.Log(manager.gameObject.name);
             manager.transform.Rotate(Vector3.up, secs * skill.speedRotation * 500f);
 
             if (currentTime < skill.impactPeriod) return;
