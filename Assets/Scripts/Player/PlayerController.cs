@@ -128,7 +128,11 @@ namespace LIL
                 // Play death sound
                 audioSource.PlayOneShot(deathSound);
                 // End the game
-                Time.timeScale = 0;
+                //Time.timeScale = 0;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+                Time.timeScale = 1f;
             });
         }
 

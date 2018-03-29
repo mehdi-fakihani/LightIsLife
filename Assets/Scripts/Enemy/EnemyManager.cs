@@ -81,6 +81,7 @@ namespace LIL
                 case 0:
                     if(support != null)
                     {
+                        --nbSpawned; // do not count support
                         return support;
                     }
                     break;
