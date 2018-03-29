@@ -17541,7 +17541,7 @@ RectTransform:
   - {fileID: 1425949937}
   - {fileID: 1125498126}
   m_Father: {fileID: 1458898790}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -21515,6 +21515,7 @@ MonoBehaviour:
   warrior: {fileID: 1768532235363184, guid: 09265786403c75e48b8f8ccb80e222d6, type: 2}
   mage: {fileID: 0}
   support: {fileID: 0}
+  spawnAnimation: {fileID: 0}
   spawnTime: 0
   nbEnemies: 1
   spawnPoints:
@@ -45099,7 +45100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -58163,7 +58164,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1425949937}
-  - component: {fileID: 1425949939}
   - component: {fileID: 1425949938}
   m_Layer: 5
   m_Name: ExpSlider
@@ -58242,19 +58242,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &1425949939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114941876590649990, guid: 80d3d05207bb86444b65ba5643213eef,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1425949936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be5b27bdaed97114a9822e73e88b294b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 827357692}
 --- !u!1 &1427834999
 GameObject:
   m_ObjectHideFlags: 0
@@ -60375,7 +60362,7 @@ Prefab:
     - target: {fileID: 224943337914889278, guid: 80d3d05207bb86444b65ba5643213eef,
         type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224942287898777038, guid: 80d3d05207bb86444b65ba5643213eef,
         type: 2}
@@ -60391,6 +60378,11 @@ Prefab:
         type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224561783100388650, guid: 80d3d05207bb86444b65ba5643213eef,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80d3d05207bb86444b65ba5643213eef, type: 2}
