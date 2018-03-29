@@ -63,6 +63,8 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                     }
                 }
             }
+
+            //if(Input.GetKeyDown(KeyCode.))
         }
     }
 }
