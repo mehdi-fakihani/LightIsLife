@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-//using NUnit.Framework;
 using UnityEngine;
 
 namespace LIL.Inputs
@@ -67,10 +66,6 @@ namespace LIL.Inputs
         public Profile(int playerNum, int deviceNum)
         {
             var model = Models[playerNum];
-            
-            // There is only one keyboard available
-         // if (model.device == Device.Keyboard) Assert.Zero(deviceNum);
-
             keys = model.keys;
             axises = model.keys.Values
                 .Where(KeyGroup.IsFromAxis)
