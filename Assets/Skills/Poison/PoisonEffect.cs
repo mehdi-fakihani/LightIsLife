@@ -7,25 +7,36 @@ namespace LIL.Effects
 
     public class Poison : IEffect
     {
-        protected override float duration()
+        private readonly float time;
+        private readonly float totalDamages;
+        private readonly GameObject effectModel;
+        private GameObject effect;
+
+        public Poison(float time, float totalDamages, GameObject effectModel)
         {
-            throw new System.NotImplementedException();
+            this.time = time;
+            this.totalDamages = totalDamages;
+            this.effectModel = effectModel;
         }
+
+        protected override float duration() { return time; }
 
         protected override void apply()
         {
-            throw new System.NotImplementedException();
-        }
-
-        protected override void update(float secs)
-        {
-            throw new System.NotImplementedException();
+            effect = Object.Instantiate(effectModel, manager.transform.position, Quaternion.identity);
         }
 
         public override void expire(bool onDeath)
         {
-            throw new System.NotImplementedException();
+            Object.Destroy(effect);
         }
+
+        protected override void update(float secs)
+        {
+            manager.GetComponent<HealthManager>().harm(totalDamages * secs / time);
+            effect.transform.position = manager.transform.position + Vector3.up * 0.5f;
+        }
+
     }
 
 }

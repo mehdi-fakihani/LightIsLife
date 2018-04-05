@@ -1,11 +1,16 @@
 fileFormatVersion: 2
 guid: 8c51d575892709d4d921a850fec1bb5d
-timeCreated: 1522248171
+timeCreated: 1522332060
 licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - impactEffect: {fileID: 1284075765239354, guid: 1915d61295c7f024498e543daaf4e348,
+      type: 2}
+  - castEffect: {fileID: 1218632553947652, guid: 797593ac0c09e1c4eba6a72c02555d88,
+      type: 2}
+  - castSound: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

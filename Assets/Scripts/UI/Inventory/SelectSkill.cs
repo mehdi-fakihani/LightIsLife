@@ -212,7 +212,7 @@ namespace LIL
 
                     GeneralData.GetSkillByName(this.gameObject.name, playerNum).isUsed = false;
                 }
-                else if(!GeneralData.GetSkillByName(this.gameObject.name, playerNum).deblocked && Input.GetKeyDown(KeyCode.V))
+                else if(!GeneralData.GetSkillByName(this.gameObject.name, playerNum).deblocked && profile.getKeyDown(PlayerAction.Submit))
                 {
                     if(GeneralData.GetCapacityPoints(playerNum) >= GeneralData.GetSkillByName(this.gameObject.name, playerNum).CapPointsToUnlock)
                     {
