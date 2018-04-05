@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Ayoub/MainMenu.unity
     guid: 547131a708eab9d4bb5732d796ed8962
   - enabled: 0
-    path: 
+    path:
     guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Scenes/Julien/sceneJulien.unity
@@ -33,10 +33,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Natacha/sceneMenu.unity
     guid: 231ded3ce7fb7dc418875a9d9c365c37
   - enabled: 0
-    path: 
+    path:
     guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/Natacha/sprint4Natacha.unity
+    path:
     guid: d363f844ac30b1b48bac7d8bdd34238d
   - enabled: 0
     path: Assets/Scenes/Ayoub/newMap.unity
@@ -68,6 +68,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dorian/Synchro/Victory.unity
     guid: efab09e5ba6326446b2ca2684df71a13
+  - enabled: 1
+    path: Assets/Scenes/Synchro/PrePolish/Menu.unity
+    guid: 407618e5905e76346acdb75b71490404
   - enabled: 1
     path: Assets/Scenes/Synchro/PrePolish/PrePolish.unity
     guid: 18fd82dc9101611469e5098a36a43d73
