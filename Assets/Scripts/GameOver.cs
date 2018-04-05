@@ -18,7 +18,7 @@ public class GameOver : MonoBehaviour {
 
     public void GoMainMenu()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MenuDorian");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
     public void QuitGame()

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using LIL.Inputs;
 
@@ -28,8 +29,6 @@ namespace LIL
         // Private :
         private GameObject player;               // Sword GameObject
         private int damageAttack;               // This var is for the damage that will be caused by the fireball
-        private GameObject enemy;               // Enemys' GameObject
-        private EffectManager effects;          // Enemys' EffectManager
         Skill swordSkill;
         private Profile profile;
         private bool attack = false;
@@ -76,19 +75,33 @@ namespace LIL
 
         public void OnTriggerStay(Collider other)
         {
-
+            var enemy = other.gameObject;
             
             // We test canAttack to prevent the Enemy being hit more than once in a single attack
-            if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Sword_Attack") && other.gameObject.CompareTag("Enemy") && canAttack)
+            if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Sword_Attack") && player.isEnemyWith(enemy) && canAttack)
             {
                 Debug.Log("OK");
                 canAttack = false;
-                enemy = other.gameObject;
-                effects = enemy.GetComponent<EffectManager>();
                 var health = enemy.GetComponent<HealthManager>();
                 // Cause damage to the enemy
-                health.harm(damageAttack);      
+                health.harm(damageAttack);
                 
+                // Try applying the poison
+                var poisonBuff = player.GetComponent<EffectManager>().getEffects()
+                    .Where(e => e is Effects.PoisonBuff)
+                    .FirstOrDefault(null) as Effects.PoisonBuff;
+
+                if (poisonBuff == null) return;
+
+                var effects = enemy.GetComponent<EffectManager>();
+                var poisonEffect = effects.getEffects()
+                    .Where(e => e is Effects.Poison)
+                    .FirstOrDefault(null) as Effects.Poison;
+
+                if (poisonEffect == null)
+                    effects.addEffect(poisonBuff.makeEffect());
+                else
+                    poisonEffect.setTime(poisonBuff.effectTime);
             }
 
         }

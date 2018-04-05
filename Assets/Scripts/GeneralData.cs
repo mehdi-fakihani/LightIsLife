@@ -342,24 +342,24 @@ public class GeneralData : MonoBehaviour
         Skill Provocation = new Skill { name = "Provocation", _class = getClassByName("Warrior"), isUsed = false, deblocked = false,
                     description = "Used to get rid of the effects.\nRemoves effects on the warrior"+
                 "\nAttracts surrounding enemies for 2-3s", CapPointsToUnlock =3,
-            dependency = new List<Skill>() { Charge }, spritePath = "SkillSprite/Warrior/Provocation"
+            dependency = new List<Skill>() { Charge, Storm }, spritePath = "SkillSprite/Warrior/Provocation"
         };
         Skill Reflection = new Skill { name = "Reflect", _class = getClassByName("Warrior"), isUsed = false, deblocked = false,
                     description = "Used for protection against ranged attacks.\nFor 0.5s, returns the projectiles"+
                 "\nMakes the warrior invulnerable", CapPointsToUnlock =4,
-            dependency = new List<Skill>() { Charge, Provocation }, spritePath = "SkillSprite/Warrior/Reflect"
+            dependency = new List<Skill>() { Charge }, spritePath = "SkillSprite/Warrior/Reflect"
         };
 
         // Assassin Skills : ------------------------------------------------------------------------------------------------------
         Skill BladesDance = new Skill { name = "BladesDance", _class = getClassByName("Assassin"), isUsed = false, deblocked = false,
                     description = "An Assassin skill used to disappear and hit the enemy.\nQuality : "+
-                "Strong damage\nUseful to escape from enemies", damage = 3, CapPointsToUnlock =1, dependency = null,
+                "Strong damage\nUseful to escape from enemies", CapPointsToUnlock =1, dependency = null,
             spritePath = "SkillSprite/Assassin/BladesDance"
         };
         Skill ShadowDance = new Skill { name = "ShadowDance", _class = getClassByName("Assassin"), isUsed = false, deblocked = false,
                     description = "Used to move freely and attack violently.\nDisappear for a short while and move faster"+
                 "\nNext sword attack before the end of the effect, stuns (1s) and inflect additional damage.", CapPointsToUnlock =2,
-            dependency = new List<Skill>() { Fireball}, spritePath = "SkillSprite/Assassin/ShadowDance" };
+            dependency = null, spritePath = "SkillSprite/Assassin/ShadowDance" };
         Skill Poison = new Skill { name = "Poison", _class = getClassByName("Assassin"), isUsed = false, deblocked = false,
             description = "Used to poison enemies.\nSword attacks apply a poison that hurts the affected enemies for (4s)"
                 , CapPointsToUnlock = 3, dependency = new List<Skill>() { ShadowDance }, spritePath = "SkillSprite/Assassin/Poison" };
