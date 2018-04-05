@@ -1825,15 +1825,15 @@ GameObject:
   - component: {fileID: 114187864727671838}
   - component: {fileID: 82007732620466782}
   - component: {fileID: 136529281410186260}
-  - component: {fileID: 54234912268913980}
   - component: {fileID: 114154547712424790}
+  - component: {fileID: 54098784041065282}
   m_Layer: 0
   m_Name: PlayerKnight
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1497522065385074
 GameObject:
   m_ObjectHideFlags: 1
@@ -6280,7 +6280,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1491880915544872}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 34.7, y: 0.01, z: 27.7}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4290927614868274}
@@ -6441,7 +6441,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1932417689068914}
   m_Mesh: {fileID: 4300000, guid: db4594b430fbffc4784480d4a40e5f1b, type: 3}
---- !u!54 &54234912268913980
+--- !u!54 &54098784041065282
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

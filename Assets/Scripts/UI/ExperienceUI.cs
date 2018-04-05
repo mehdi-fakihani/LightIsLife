@@ -28,7 +28,6 @@ namespace LIL.UI
             {
                 level++;
                 player.setLevel(level);
-                Debug.Log(level);
                 ResetExperience();
             }
         }
