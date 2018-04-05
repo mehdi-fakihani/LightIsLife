@@ -19,6 +19,7 @@ namespace LIL
         [SerializeField] private AudioClip hurtSound;
         [SerializeField] private AudioClip deathSound;
         [SerializeField] private GameObject secondPlayer;
+		[SerializeField] private GameObject secondPlayerExperience;
         [SerializeField] private GameObject camera;
         public bool multiplayer = false;
         private float moveCamera;
@@ -100,7 +101,10 @@ namespace LIL
             if (GeneralData.multiplayer)
             {
                 multiplayer = true;
-                if(playerNum == 1)  secondPlayer.SetActive(true);
+				if (playerNum == 1) {
+					secondPlayer.SetActive (true);
+					secondPlayerExperience.SetActive(true);
+				}
                 else if(playerNum == 2)
                 {
                     //secondPlayer = GameObject.Find(this.transform.name.Substring(0, transform.name.Length-1)+"1");
