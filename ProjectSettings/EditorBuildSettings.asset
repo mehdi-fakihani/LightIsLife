@@ -68,3 +68,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dorian/Synchro/Victory.unity
     guid: efab09e5ba6326446b2ca2684df71a13
+  - enabled: 1
+    path: Assets/Scenes/Synchro/PrePolish/PrePolish.unity
+    guid: 18fd82dc9101611469e5098a36a43d73
