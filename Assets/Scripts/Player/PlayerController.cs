@@ -39,6 +39,7 @@ namespace LIL
         private MovementManager movementManager;
         private GameObject GUI;
         Interaction interaction;
+        Interaction interactionCampfire;
         Inventory inventory;
 
         private Skill fireball;
@@ -190,10 +191,10 @@ namespace LIL
                     {
                         SetMainPlayer(secondPlayer);
                     }
-                    else
+                    /*else
                     {
                         SetMainPlayer(this.gameObject);
-                    }
+                    }*/
                 }
             }
 
@@ -211,12 +212,12 @@ namespace LIL
 
             if (profile.getKeyDown(PlayerAction.Interaction) && interactable && !GeneralData.gamePaused)
             {
-                if(!CameraFollow()) interaction.displayInteractionMsg("Use the spirit's power !");
+                if(!CameraFollow()) interactionCampfire.displayInteractionMsg("Use the spirit's power !");
                 else
                 {
                     if (!inventoryActive)
                     {
-                        interaction.hideInteractionMsg();
+                        interactionCampfire.hideInteractionMsg();
                         animator.SetTrigger("inventoryTrigger");
                         animator.SetBool("inventory", true);
                         inventory.active(playerNum);
@@ -288,7 +289,8 @@ namespace LIL
         {
             if (other.gameObject.tag == "Campfire")
             {
-                interaction.displayInteractionMsg(playerNum);
+                interactionCampfire = other.transform.GetChild(1).GetComponent<Interaction>();
+                interactionCampfire.displayInteractionMsg(playerNum);
                 interactable = true;
             }
         }
@@ -298,7 +300,7 @@ namespace LIL
 
             if (other.gameObject.tag == "Campfire")
             {
-                interaction.hideInteractionMsg();
+                interactionCampfire.hideInteractionMsg();
                 interactable = false;
             }
         }

@@ -86,6 +86,8 @@ MonoBehaviour:
   sword_Sound: {fileID: 0}
   damageAttack: 10
   castTime: 0.5
+  range: 2.5
+  width: 2.5
 --- !u!114 &114365239372871976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 11
-  cooldown: 5
+  cooldown: 1
   chargesCount: 1
   totalDamages: 30
   effectDuration: 3
