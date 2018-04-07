@@ -55,19 +55,10 @@ namespace LIL
                         as Effects.PoisonBuff;
 
                 var hits = Physics.OverlapSphere(trans.position + trans.forward * range + Vector3.up * 0.5f, width / 2f);
-                var debug = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                Destroy(debug.GetComponent<Collider>());
-                debug.transform.position = trans.position + trans.forward * range + Vector3.up;
-                debug.transform.localScale = Vector3.one * width;
-                Destroy(debug, 1f);
                 foreach (var hit in hits)
                 {
                     if (hit.isTrigger) continue;
-                    if (!caster.isEnemyWith(hit.gameObject))
-                    {
-                        Debug.Log(hit.name + " is not an enemy");
-                        continue;
-                    }
+                    if (!caster.isEnemyWith(hit.gameObject)) continue;
 
                     var health = hit.GetComponent<HealthManager>();
                     if (!health) continue;
