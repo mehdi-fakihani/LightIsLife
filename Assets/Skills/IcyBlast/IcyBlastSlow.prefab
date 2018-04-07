@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4906881437031934}
   - component: {fileID: 198126133476212510}
   - component: {fileID: 199261526276861862}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: IcyBlastSlow
-  m_TagString: Untagged
+  m_TagString: Missile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4980533187387768}
   - component: {fileID: 198926620201659586}
   - component: {fileID: 199917374499079094}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CFX3 Rays
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4172372529255826}
   - component: {fileID: 198427657298331562}
   - component: {fileID: 199022036644293624}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CFX3 Pulse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
