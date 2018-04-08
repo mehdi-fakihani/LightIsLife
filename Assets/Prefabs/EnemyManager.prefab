@@ -50,7 +50,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1477161197064816}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: -0.09942806, z: 14.8}
+  m_LocalPosition: {x: 19.3, y: -0.09942806, z: 15.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4431372462570414}
@@ -63,7 +63,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1813467624375384}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 55.6, y: 0, z: 105}
+  m_LocalPosition: {x: 85, y: 0, z: 34.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4137076237342084}
@@ -86,8 +86,8 @@ MonoBehaviour:
   support: {fileID: 0}
   spawnAnimation: {fileID: 1412282531462318, guid: f68b895db94ff33469eee2700c48776b,
     type: 2}
-  spawnTime: 0
-  nbEnemies: 10
+  spawnTime: 2
+  nbEnemies: 2
   spawnPoints:
   - {fileID: 4137076237342084}
   soundController: {fileID: 0}

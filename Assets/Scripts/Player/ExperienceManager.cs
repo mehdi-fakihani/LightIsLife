@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class ExperienceManager : MonoBehaviour {
 
+    public AudioClip itemCollect;
+
+    private AudioSource source;
     private int experience = 0;
     private int level;
+
+    private void Start()
+    {
+        source = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Exp"))
         {
-			Debug.Log(experience);
-            Destroy(other.gameObject);
+            source.PlayOneShot(itemCollect);
             experience++;
+            Destroy(other.gameObject);
         }
     }
 
