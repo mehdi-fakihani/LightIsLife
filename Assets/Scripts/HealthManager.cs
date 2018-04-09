@@ -74,7 +74,7 @@ namespace LIL
             deathCallback.Invoke();
             if(CompareTag("Enemy"))
             {
-                Instantiate(expCollectable, transform.position, transform.rotation);
+                Instantiate(expCollectable, transform.position + new Vector3(0, 0.5f, 0), transform.rotation);
             }
         }
         /// <summary>

@@ -12,17 +12,24 @@ namespace LIL
         public float attackRange = 2f;
         public float chargeRange = 12f;
 
+        public AudioClip hurtSound;
+        public AudioClip deathSound;
+        public AudioClip appearanceSound;
+
         public GameObject poisonPrefab;
+        public AudioClip poisonSound;
         public float poisonAoeRange = 10f;
         public float poisonDamage = 10f;
         public float poisonActivationTime = 1.5f;
         public float poisonFrequence = 2f;           // make poison spawn every x seconds
 
         public GameObject invocation;
+        public AudioClip invocSound;
         public float invocationRange = 2f;
         public int nbEnemiesToInvoc = 4;
         public int nbInvocations = 4;               // boss will use InvocationSpell [nbInvocations] time 
 
+        private AudioSource source;
         private GameObject[] players;
         private WarriorAttack attacker;
         private Skill charge;
@@ -42,6 +49,7 @@ namespace LIL
 
         private void InvocationSpell()
         {
+            source.PlayOneShot(invocSound);
             for (int i = 0; i < nbEnemiesToInvoc; i++)
             {
                 Instantiate(invocation, GetRandomPosInRange(invocationRange), Quaternion.Euler(0, 0, 0));
@@ -51,6 +59,7 @@ namespace LIL
         // Use this for initialization
         void Start()
         {
+            source = GetComponent<AudioSource>();
             path = new NavMeshPath();
             players = GameObject.FindGameObjectsWithTag("Player");
             attacker = GetComponent<WarriorAttack>();
@@ -68,6 +77,7 @@ namespace LIL
             health.setHurtCallback(() =>
             {
                 animator.SetTrigger("hurt");
+                source.PlayOneShot(hurtSound);
                 if(health.getLife() <= healthRatioId * health.getInitialLife() / (nbInvocations + 1))
                 {
                     InvocationSpell();
@@ -77,6 +87,7 @@ namespace LIL
             health.setDeathCallback(() =>
             {
                 animator.SetTrigger("death");
+                source.PlayOneShot(deathSound);
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
                 UnityEngine.SceneManagement.SceneManager.LoadScene("Victory");
@@ -136,6 +147,7 @@ namespace LIL
 
         private void SpawnPoisonAoe()
         {
+            source.PlayOneShot(poisonSound);
             KingPoisonController.CreatePoisonAoe(poisonPrefab, GetRandomPosInRange(poisonAoeRange),
                                     Quaternion.Euler(0, 0, 0), poisonDamage, poisonActivationTime);
         }

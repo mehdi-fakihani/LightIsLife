@@ -9,7 +9,7 @@ namespace LIL
         public GameObject support;                // optional in case we want to spawn support
         public GameObject spawnAnimation;
         public float spawnTime = 3f;            // How long between each spawn.
-        public int nbEnemies = 10;
+        public int nbEnemies;
         public Transform[] spawnPoints;         // An array of the spawn points this enemy can spawn from.
         public AmbientMusic soundController;
 
@@ -28,15 +28,6 @@ namespace LIL
                 // Call the Spawn function after a delay of the spawnTime and then continue to call after the same amount of time.
                 InvokeRepeating("Spawn", 0, spawnTime);
                 trigger.enabled = false;
-            }
-        }
-
-        public void ActivateSpawnTrigger()
-        {
-            // do not activate the trigger when all enemies have not been spawned yet
-            if (IsAllSpawned())
-            {
-                InitializeSpawner();
             }
         }
 
@@ -65,7 +56,6 @@ namespace LIL
             Instantiate(spawnAnimation, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
             // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
             Instantiate(ChooseEnemy(), spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-
             // if all enemies have been spawned, stop spawn invoke
             if (IsAllSpawned())
             {
@@ -81,7 +71,6 @@ namespace LIL
                 case 0:
                     if(support != null)
                     {
-                        --nbSpawned; // do not count support
                         return support;
                     }
                     break;
@@ -99,12 +88,8 @@ namespace LIL
         {
             if (++nbDead == nbEnemies)
             {
-                CancelInvoke();
                 // if all enemies are spawned and dead, stop fight music
-                if(IsAllSpawned())
-                {
-                    soundController.EndFightMusic();
-                }
+                soundController.EndFightMusic();
             }
         }
 

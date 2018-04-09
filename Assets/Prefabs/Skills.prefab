@@ -68,7 +68,7 @@ MonoBehaviour:
   castTime: 0.3
   impactEffect: {fileID: 1715995965236544, guid: 9a84ed94580581440b79509b48e1aa6a,
     type: 2}
-  castSound: {fileID: 0}
+  castSound: {fileID: 8300000, guid: 4e0857b3b8ec58d4a859a744bf36442c, type: 3}
 --- !u!114 &114156387040599582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -86,6 +86,8 @@ MonoBehaviour:
   sword_Sound: {fileID: 0}
   damageAttack: 10
   castTime: 0.5
+  range: 2.5
+  width: 2.5
 --- !u!114 &114365239372871976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,15 +122,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 11
-  cooldown: 5
+  cooldown: 1
   chargesCount: 1
   totalDamages: 30
   effectDuration: 3
   buffDuration: 3
+  tickStep: 0.5
   impactEffect: {fileID: 1284075765239354, guid: 1915d61295c7f024498e543daaf4e348,
     type: 2}
   castEffect: {fileID: 1218632553947652, guid: 797593ac0c09e1c4eba6a72c02555d88, type: 2}
-  castSound: {fileID: 0}
+  castSound: {fileID: 8300000, guid: f2139bff9d5a16a4dbd89c71fc5ac511, type: 3}
 --- !u!114 &114632516275527844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,7 +155,7 @@ MonoBehaviour:
   castEffect: {fileID: 1527170671714342, guid: d6ae4a89a419cbc418ad6e820803b64d, type: 2}
   impactEffect: {fileID: 1480476002351562, guid: 2e3134f31d173fb4fb9b05e3e153c43f,
     type: 2}
-  castSound: {fileID: 0}
+  castSound: {fileID: 8300000, guid: a34f295b1f06eb44aad64fcad5252976, type: 3}
 --- !u!114 &114711119544951540
 MonoBehaviour:
   m_ObjectHideFlags: 1

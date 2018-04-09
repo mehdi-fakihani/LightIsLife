@@ -390,7 +390,7 @@ Prefab:
         type: 2}
       propertyPath: healthSlider
       value: 
-      objectReference: {fileID: 1807439963}
+      objectReference: {fileID: 0}
     - target: {fileID: 4946844160478084, guid: db6f1c49c7a53f14a928f20e7a8a0335, type: 2}
       propertyPath: m_LocalScale.x
       value: 2
@@ -425,6 +425,16 @@ Prefab:
     - target: {fileID: 114449242980955562, guid: db6f1c49c7a53f14a928f20e7a8a0335,
         type: 2}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224050145029353932, guid: db6f1c49c7a53f14a928f20e7a8a0335,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 224050145029353932, guid: db6f1c49c7a53f14a928f20e7a8a0335,
+        type: 2}
+      propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -766,6 +776,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 338176503}
   smoothing: 5
+  rotateSpeed: 3
   zoomMin: 10
   zoomMax: 20
   angle: 60
@@ -949,6 +960,11 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 224256581832133968, guid: 80d3d05207bb86444b65ba5643213eef,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80d3d05207bb86444b65ba5643213eef, type: 2}
   m_IsPrefabParent: 0
@@ -1003,12 +1019,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1f645dbfee80a0c42962747517ac99d7, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1807439963 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114377598311871384, guid: 80d3d05207bb86444b65ba5643213eef,
-    type: 2}
-  m_PrefabInternal: {fileID: 1659010091}
-  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1874504248
 Prefab:
   m_ObjectHideFlags: 0
@@ -1125,20 +1135,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114709833398418674, guid: 09265786403c75e48b8f8ccb80e222d6,
+    - target: {fileID: 224888796643074138, guid: 09265786403c75e48b8f8ccb80e222d6,
         type: 2}
-      propertyPath: poisonFrequence
-      value: 1
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114709833398418674, guid: 09265786403c75e48b8f8ccb80e222d6,
+    - target: {fileID: 224888796643074138, guid: 09265786403c75e48b8f8ccb80e222d6,
         type: 2}
-      propertyPath: poisonAoeRange
-      value: 6.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114504376658078240, guid: 09265786403c75e48b8f8ccb80e222d6,
-        type: 2}
-      propertyPath: initialLife
-      value: 100
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09265786403c75e48b8f8ccb80e222d6, type: 2}

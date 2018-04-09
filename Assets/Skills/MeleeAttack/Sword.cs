@@ -24,7 +24,9 @@ namespace LIL
 {
 
     public class Sword : MonoBehaviour
-    {
+    {/*     +---------------------------------------------------+
+            |  DEPRECATED : Sword effect applied in SwordSkill  |
+            +---------------------------------------------------+
 
         // Private :
         private GameObject player;               // Sword GameObject
@@ -104,7 +106,7 @@ namespace LIL
                     poisonEffect.setTime(poisonBuff.effectTime);
             }
 
-        }
+        }*/
 
     }
 }

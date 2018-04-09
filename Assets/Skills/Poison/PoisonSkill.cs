@@ -7,10 +7,11 @@ namespace LIL
 
     public class PoisonSkill : ISkillModel
     {
-        [SerializeField] private float totalDamages;
-        [SerializeField] private float effectDuration;
-        [SerializeField] private float buffDuration;
-        [SerializeField] private GameObject impactEffect;
+        public float totalDamages;
+        public float effectDuration;
+        public float buffDuration;
+        public float tickStep;
+        public GameObject impactEffect;
         [SerializeField] private GameObject castEffect;
         [SerializeField] private AudioClip castSound;
 
@@ -24,13 +25,17 @@ namespace LIL
                 audioSource.PlayOneShot(castSound);
             }
 
+            Debug.Log("poison skill");
+
             var effect = Instantiate(castEffect, manager.transform.position, Quaternion.identity);
             Destroy(effect, 2f);
             
             caster.GetComponent<EffectManager>().addEffect(
-                new Effects.PoisonBuff(buffDuration, effectDuration, () =>
-                new Effects.Poison(effectDuration, totalDamages, impactEffect)
-            ));
+                new Effects.PoisonBuff(
+                    buffDuration,
+                    effectDuration,
+                    () => new Effects.Poison(this))
+            );
         }
     }
 
