@@ -222,14 +222,13 @@ public class GeneralData : MonoBehaviour
     // Get the capacityPoints
     public static int GetCapacityPoints(int playerNum)
     {
-        Debug.Log(getPlayerbyNum(playerNum).experience);
-        return getPlayerbyNum(playerNum).experience;
+        return getPlayerbyNum(playerNum).capacityPoints;
     }
 
     // Add the capacityPoints
     public static void UpdateCapacitypoints(int amount, int playerNum)
     {
-        getPlayerbyNum(playerNum).experience += amount;
+        getPlayerbyNum(playerNum).capacityPoints += amount;
         Save(fileName);
     }
 
