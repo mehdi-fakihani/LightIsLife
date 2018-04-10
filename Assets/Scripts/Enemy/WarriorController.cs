@@ -24,9 +24,12 @@ namespace LIL
         private bool multiplayer = false;
         private float distance;
         private float distance1;
+        private float distance2;
         private HealthManager playerHealth;
+        private HealthManager playerHealth2;
         private float timer;                                // Timer for counting up to the next attack.
         private bool playerInRange;
+        private bool player2InRange;
         private float currentAttackDamage;
 
 
@@ -73,10 +76,11 @@ namespace LIL
                 }
                 Destroy(gameObject, 1.5f);
             });
-            if (SceneManager.getMulti())
+            if (GeneralData.multiplayer)
             {
                 multiplayer = true;
                 player2 = GameObject.FindGameObjectsWithTag("Player")[1].transform;
+                playerHealth2 = player2.GetComponent<HealthManager>();
 
             }
         }
@@ -84,10 +88,14 @@ namespace LIL
         void OnTriggerEnter(Collider other)
         {
             // If the entering collider is the player...
-            if (other.gameObject.CompareTag("Player"))
+            if (other.gameObject.Equals(player.gameObject))
             {
                 // ... the player is in range.
                 playerInRange = true;
+            }
+            else if (multiplayer && other.gameObject.Equals(player2.gameObject))
+            {
+                player2InRange = true;
             }
         }
 
@@ -95,19 +103,23 @@ namespace LIL
         void OnTriggerExit(Collider other)
         {
             // If the exiting collider is the player...
-            if (other.gameObject.CompareTag("Player"))
+            if (other.gameObject.Equals(player.gameObject))
             {
                 // ... the player is no longer in range.
                 playerInRange = false;
             }
+            if (multiplayer  && other.gameObject.Equals(player2.gameObject))
+            {
+                player2InRange = false;
+            }
         }
 
 
-        void Attack()
+        void Attack(HealthManager health)
         {
             // Reset the timer
             timer = 0f;
-            playerHealth.harm(currentAttackDamage);
+            health.harm(currentAttackDamage);
             animator.SetTrigger("attack");
         }
 
@@ -118,6 +130,7 @@ namespace LIL
 
         void Update()
         {
+            Debug.Log(multiplayer);
             timer += Time.deltaTime;
 
             //check if not dead
@@ -126,7 +139,7 @@ namespace LIL
             if (multiplayer)
             {
                 distance1 = Vector3.Distance(player.position, transform.position);
-                float distance2 = Vector3.Distance(player2.position, transform.position);
+                distance2 = Vector3.Distance(player2.position, transform.position);
 
                 distance = Mathf.Min(distance1, distance2);
             }
@@ -146,9 +159,44 @@ namespace LIL
             // update target position and walk animation
             if (playerInRange)
             {
+                nav.SetDestination(player.position);
+                moveCancelled = false;
+                Debug.Log("in range");
+                transform.LookAt(player.position);
+                nav.isStopped = true;
+                nav.velocity = Vector3.zero;
+                animator.SetBool("walk", false);
+                if(timer > timeBetweenAttacks)
+                {
+                    Attack(playerHealth);
+                }
+                
+            }
+            else if (multiplayer && player2InRange)
+            {
+                nav.SetDestination(player2.position);
+                moveCancelled = false;
+                //Debug.Log("in range");
+                transform.LookAt(player2.position);
+                nav.isStopped = true;
+                nav.velocity = Vector3.zero;
+                animator.SetBool("walk", false);
+                if (timer > timeBetweenAttacks)
+                {
+                    Attack(playerHealth2);
+                }
+            }
+            else
+            {
+                if (nav.isStopped)
+                {
+                    transform.LookAt(player.position);
+                    nav.isStopped = false;
+                }
+                animator.SetBool("walk", true);
                 if (multiplayer)
                 {
-                    if (distance == distance1)
+                    if (distance1 <= distance2)
                     {
                         nav.SetDestination(player.position);
                     }
@@ -161,27 +209,7 @@ namespace LIL
                 {
                     nav.SetDestination(player.position);
                 }
-                moveCancelled = false;
-                //Debug.Log("in range");
-                transform.LookAt(player.position);
-                nav.isStopped = true;
-                nav.velocity = Vector3.zero;
-                animator.SetBool("walk", false);
-                if(timer > timeBetweenAttacks)
-                {
-                    Attack();
-                }
-                
-            }
-            else
-            {
-                if (nav.isStopped)
-                {
-                    transform.LookAt(player.position);
-                    nav.isStopped = false;
-                }
-                animator.SetBool("walk", true);
-                nav.SetDestination(player.position);
+               
             }
         }
     }
