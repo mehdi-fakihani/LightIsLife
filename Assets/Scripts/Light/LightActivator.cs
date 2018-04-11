@@ -11,7 +11,7 @@ public class LightActivator : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         trigger = GetComponent<Collider>();
-       // DesactivateFire();
+        DesactivateFire();
     }
 
     public void DesactivateFire()

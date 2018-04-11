@@ -1957,7 +1957,7 @@ MonoBehaviour:
   appearanceSound: {fileID: 8300000, guid: 3b64a6039f83ae347be0b40592427b26, type: 3}
   poisonPrefab: {fileID: 1949938782973134, guid: ab634514578c45a4b92b4966bbff62e9,
     type: 2}
-  poisonSound: {fileID: 8300000, guid: f2139bff9d5a16a4dbd89c71fc5ac511, type: 3}
+  poisonSound: {fileID: 8300000, guid: 6daf57266be4c024faf19a95794c4368, type: 3}
   poisonAoeRange: 6.5
   poisonDamage: 10
   poisonActivationTime: 1.5
