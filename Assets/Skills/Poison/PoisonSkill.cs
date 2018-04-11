@@ -24,9 +24,7 @@ namespace LIL
                 var audioSource = caster.GetComponent<AudioSource>();
                 audioSource.PlayOneShot(castSound);
             }
-
-            Debug.Log("poison skill");
-
+            
             var effect = Instantiate(castEffect, manager.transform.position, Quaternion.identity);
             Destroy(effect, 2f);
             
