@@ -1471,8 +1471,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1768532235363184}
-  m_LocalRotation: {x: -0, y: 0.9947864, z: -0, w: 0.1019808}
-  m_LocalPosition: {x: 177.4974, y: 0.00999999, z: 194.14522}
+  m_LocalRotation: {x: -0, y: 0.9990221, z: -0, w: 0.044213306}
+  m_LocalPosition: {x: -3.8766248, y: 0, z: 13.7993355}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4826141814402888}
@@ -1656,7 +1656,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1859,7 +1859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4ded81839c4fa42a43dd7ec8ae8730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialLife: 200
+  initialLife: 100
   expCollectable: {fileID: 1804610024410126, guid: 7637478850598954f8a3d328198f50c9,
     type: 2}
   damagePopUp: {fileID: 1733254095478592}
@@ -1952,13 +1952,18 @@ MonoBehaviour:
   speed: 2
   attackRange: 2
   chargeRange: 12
+  hurtSound: {fileID: 8300000, guid: a514339826e28db49b30a72fb3546a21, type: 3}
+  deathSound: {fileID: 8300000, guid: a4c2169eecdd0194188bd13c97018d5c, type: 3}
+  appearanceSound: {fileID: 8300000, guid: 3b64a6039f83ae347be0b40592427b26, type: 3}
   poisonPrefab: {fileID: 1949938782973134, guid: ab634514578c45a4b92b4966bbff62e9,
     type: 2}
-  poisonAoeRange: 10
+  poisonSound: {fileID: 8300000, guid: f2139bff9d5a16a4dbd89c71fc5ac511, type: 3}
+  poisonAoeRange: 6.5
   poisonDamage: 10
   poisonActivationTime: 1.5
-  poisonFrequence: 2
+  poisonFrequence: 1
   invocation: {fileID: 1179956212631258, guid: 811bb88b3b0dca947896b3cb73b07e87, type: 2}
+  invocSound: {fileID: 8300000, guid: 854ca301e02a2cd44879225257b5efbd, type: 3}
   invocationRange: 2
   nbEnemiesToInvoc: 4
   nbInvocations: 4

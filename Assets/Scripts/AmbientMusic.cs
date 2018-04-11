@@ -25,7 +25,7 @@ public class AmbientMusic : MonoBehaviour {
         sources[ambientId].loop = true;
         sources[fightId].loop = false;
         sources[ambientId].clip = ambientMusic;
-        sources[fightId].clip = fightStart;
+        sources[fightId].clip = fightLoop;
         sources[ambientId].Play();
         isFighting = false;
      }
@@ -75,7 +75,7 @@ public class AmbientMusic : MonoBehaviour {
         
         fadeOut.Stop();
         fadeOut.volume = startVolumeOut;
-        sources[fightId].clip = fightStart;
+        sources[fightId].clip = fightLoop;
         sources[fightId].loop = false;
         isFighting = false;
     }
@@ -85,8 +85,9 @@ public class AmbientMusic : MonoBehaviour {
         float startVolumeOut = fadeOut.volume;
         float startVolumeIn = fadeIn.volume;
         fadeIn.volume = 0;
-        Invoke("LoopFightMusic", fightStart.length - 0.5f);
-        fadeIn.Play();
+        //Invoke("LoopFightMusic", fightStart.length - 0.5f);
+        //fadeIn.Play();
+        LoopFightMusic();
 
         while (fadeOut.volume > 0)
         {

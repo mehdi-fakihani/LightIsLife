@@ -37,7 +37,6 @@ namespace LIL
 
             var effect = new Effects.Invulnerability(invulnerabilityTime);
             GetComponent<EffectManager>().addEffect(effect);
-
             Destroy(this);
         }
 
@@ -78,7 +77,7 @@ namespace LIL
 
             if (entity.isEnemyWith(gameObject))
                 impact(entity);
-
+            
             var effect = Instantiate(impactEffect, collision.contacts[0].point, Quaternion.identity);
             Destroy(effect, 1f);
 

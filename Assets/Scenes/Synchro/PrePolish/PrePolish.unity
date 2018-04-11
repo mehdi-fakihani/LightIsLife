@@ -13787,6 +13787,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114555758657459122, guid: db6f1c49c7a53f14a928f20e7a8a0335,
+        type: 2}
+      propertyPath: skillIds.Array.size
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4946844160478084, guid: db6f1c49c7a53f14a928f20e7a8a0335, type: 2}
       propertyPath: m_LocalPosition.x
       value: 34.7
@@ -13851,6 +13856,11 @@ Prefab:
     - target: {fileID: 1491880915544872, guid: db6f1c49c7a53f14a928f20e7a8a0335, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114555758657459122, guid: db6f1c49c7a53f14a928f20e7a8a0335,
+        type: 2}
+      propertyPath: skillIds.Array.data[7]
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db6f1c49c7a53f14a928f20e7a8a0335, type: 2}
@@ -21427,7 +21437,8 @@ MonoBehaviour:
   warrior: {fileID: 1768532235363184, guid: 09265786403c75e48b8f8ccb80e222d6, type: 2}
   mage: {fileID: 0}
   support: {fileID: 0}
-  spawnAnimation: {fileID: 0}
+  spawnAnimation: {fileID: 1412282531462318, guid: f68b895db94ff33469eee2700c48776b,
+    type: 2}
   spawnTime: 0
   nbEnemies: 1
   spawnPoints:
@@ -58530,6 +58541,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114555758657459122, guid: db6f1c49c7a53f14a928f20e7a8a0335,
+        type: 2}
+      propertyPath: skillIds.Array.size
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4946844160478084, guid: db6f1c49c7a53f14a928f20e7a8a0335, type: 2}
       propertyPath: m_LocalPosition.x
       value: 128.4
@@ -58584,12 +58600,17 @@ Prefab:
     - target: {fileID: 224050145029353932, guid: db6f1c49c7a53f14a928f20e7a8a0335,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.49
       objectReference: {fileID: 0}
     - target: {fileID: 224050145029353932, guid: db6f1c49c7a53f14a928f20e7a8a0335,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114555758657459122, guid: db6f1c49c7a53f14a928f20e7a8a0335,
+        type: 2}
+      propertyPath: skillIds.Array.data[7]
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db6f1c49c7a53f14a928f20e7a8a0335, type: 2}
@@ -67316,7 +67337,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1600940502}
-  m_LocalRotation: {x: 0.2800028, y: -0.6493062, z: -0.6493062, w: -0.2800027}
+  m_LocalRotation: {x: 0.28000277, y: -0.6493061, z: -0.6493061, w: -0.28000268}
   m_LocalPosition: {x: -6.47, y: -17.77, z: 9.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -76729,7 +76750,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1809646388}
-  m_LocalRotation: {x: 0.2800028, y: -0.6493062, z: -0.6493062, w: -0.2800027}
+  m_LocalRotation: {x: 0.28000277, y: -0.6493061, z: -0.6493061, w: -0.28000268}
   m_LocalPosition: {x: -5.72, y: -17.77, z: 18.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -76840,7 +76861,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1810508542}
-  m_LocalRotation: {x: 0.2800028, y: -0.6493062, z: -0.6493062, w: -0.2800027}
+  m_LocalRotation: {x: 0.28000277, y: -0.6493061, z: -0.6493061, w: -0.28000268}
   m_LocalPosition: {x: -5.72, y: -17.77, z: 18.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -84885,7 +84906,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1990188160}
-  m_LocalRotation: {x: 0.2800028, y: -0.6493062, z: -0.6493062, w: -0.2800027}
+  m_LocalRotation: {x: 0.28000277, y: -0.6493061, z: -0.6493061, w: -0.28000268}
   m_LocalPosition: {x: -13.7, y: -17.8, z: 24.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

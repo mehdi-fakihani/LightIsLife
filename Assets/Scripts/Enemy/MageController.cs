@@ -180,10 +180,7 @@ namespace LIL
                 if (Physics.SphereCast(position, spellRadius, movement, out hit, range))
                 {
                     GameObject hitObject = hit.transform.gameObject;
-                    if (!hitObject.CompareTag("Player"))
-                    {
-                        isObstacle = !hitObject.CompareTag("Missile");
-                    }
+                    isObstacle = !hitObject.CompareTag("Player");
                 }
             }
         }

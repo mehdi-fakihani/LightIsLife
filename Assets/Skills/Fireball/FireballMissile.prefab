@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4646417679822532}
   - component: {fileID: 135409162131971970}
   - component: {fileID: 54445760067873340}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FireballMissile
   m_TagString: Missile
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4879800050281226}
   - component: {fileID: 198152708187818464}
   - component: {fileID: 199376423631653764}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4059195313898434}
   - component: {fileID: 198318548226609292}
   - component: {fileID: 199369934300450402}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: fx_fire_ball_b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4214779434588520}
   - component: {fileID: 198656117376704568}
   - component: {fileID: 199028122985280028}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

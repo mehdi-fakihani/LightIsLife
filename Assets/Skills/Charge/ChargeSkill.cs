@@ -20,6 +20,10 @@ namespace LIL
         public GameObject impactEffect;
         public AudioClip castSound;
 
+        private AudioSource audioSource;
+        private SoundManager soundManager = new SoundManager();
+        private const float fadingTime = 1.0f;
+
         public override void cast(SkillManager manager)
         {
             var caster = manager.gameObject;
@@ -27,8 +31,9 @@ namespace LIL
 
             if (castSound != null)
             {
-                var audioSource = caster.GetComponent<AudioSource>();
-                audioSource.PlayOneShot(castSound);
+                audioSource = caster.GetComponent<AudioSource>();
+                audioSource.PlayOneShot(castSound, 0.3f);
+                StartCoroutine(SoundFading());
             }
 
             // Play the attacks' animation
@@ -43,6 +48,15 @@ namespace LIL
                 var charge = caster.AddComponent<Charge>();
                 charge.setup(damages, stunTime, speed, range, postInvulnerabilityTime, impactEffect);
             }));
+        }
+
+        private IEnumerator SoundFading()
+        {
+            float duration = range / speed;
+            //wait for the end of the sound
+            yield return new WaitForSeconds(Mathf.Max(0, duration - fadingTime));
+            //make the sound faid out
+            StartCoroutine(soundManager.AudioFade(audioSource, fadingTime));
         }
     }
 }
