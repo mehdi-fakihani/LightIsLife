@@ -32,7 +32,6 @@ public class AutoTransparent : MonoBehaviour
                 m_OldMaterials[i] = rendererMat[i];
                 rendererMat[i] = new Material(rendererMat[i]);
                 rendererMat[i].shader = Shader.Find("Transparent/Diffuse");
-                Debug.Log(rendererMat[i].shader);
             }
         }
     }
@@ -57,6 +56,13 @@ public class AutoTransparent : MonoBehaviour
             Material[] rendererMat = GetComponent<Renderer>().materials;
             foreach (Material m in rendererMat)
             {
+                if (m.shader.name == "Standard")
+                {
+                    if (m.GetFloat("_Mode") == 0.0f)
+                    {
+                        m.shader = Shader.Find("Transparent/Diffuse");
+                    }
+                }
                 Color c = m.color;
                 c.a = m_Transparency;
                 m.color = c;
