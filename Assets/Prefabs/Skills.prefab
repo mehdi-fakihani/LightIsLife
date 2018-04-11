@@ -128,7 +128,7 @@ MonoBehaviour:
   effectDuration: 3
   buffDuration: 3
   tickStep: 0.5
-  impactEffect: {fileID: 1284075765239354, guid: 1915d61295c7f024498e543daaf4e348,
+  impactEffect: {fileID: 1630050115360102, guid: 1915d61295c7f024498e543daaf4e348,
     type: 2}
   castEffect: {fileID: 1218632553947652, guid: 797593ac0c09e1c4eba6a72c02555d88, type: 2}
   castSound: {fileID: 8300000, guid: 6daf57266be4c024faf19a95794c4368, type: 3}

@@ -9,7 +9,6 @@ namespace LIL.Effects
     {
         private readonly PoisonSkill skill;
         private readonly float ticksCount;
-        private GameObject effect;
         private float tickTime;
 
         public Poison(PoisonSkill skill)
@@ -18,23 +17,12 @@ namespace LIL.Effects
             ticksCount = skill.effectDuration / skill.tickStep;
         }
 
-        protected override float duration() { return skill.effectDuration; }
-
-        protected override void apply()
-        {
-            effect = Object.Instantiate(skill.impactEffect, manager.transform.position, Quaternion.identity);
-            tickTime = 0f;
-        }
-
-        public override void expire(bool onDeath)
-        {
-            Object.Destroy(effect);
-        }
+        protected override float duration()       { return skill.effectDuration; }
+        protected override void apply()           { tickTime = 0f; }
+        public override void expire(bool onDeath) { }
 
         protected override void update(float secs)
         {
-            effect.transform.position = manager.transform.position + Vector3.up * 0.5f;
-
             tickTime += secs;
             if (tickTime < skill.tickStep) return;
 

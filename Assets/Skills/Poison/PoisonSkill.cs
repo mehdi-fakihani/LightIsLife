@@ -12,7 +12,7 @@ namespace LIL
         public float buffDuration;
         public float tickStep;
         public GameObject impactEffect;
-        [SerializeField] private GameObject castEffect;
+        public GameObject castEffect;
         [SerializeField] private AudioClip castSound;
 
         public override void cast(SkillManager manager)
@@ -24,18 +24,11 @@ namespace LIL
                 var audioSource = caster.GetComponent<AudioSource>();
                 audioSource.PlayOneShot(castSound);
             }
-
-            Debug.Log("poison skill");
-
+            /*
             var effect = Instantiate(castEffect, manager.transform.position, Quaternion.identity);
-            Destroy(effect, 2f);
+            Destroy(effect, 2f);*/
             
-            caster.GetComponent<EffectManager>().addEffect(
-                new Effects.PoisonBuff(
-                    buffDuration,
-                    effectDuration,
-                    () => new Effects.Poison(this))
-            );
+            caster.GetComponent<EffectManager>().addEffect(new Effects.PoisonBuff(this));
         }
     }
 
