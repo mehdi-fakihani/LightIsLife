@@ -23,7 +23,8 @@ namespace LIL
         // Update is called once per frame
         void Update()
         {
-            if (capacityPoint != GeneralData.GetCapacityPoints(playerNum-48)) setCapacityPoint();
+           // if (capacityPoint != GeneralData.GetCapacityPoints(playerNum-48))
+           setCapacityPoint();
 
         }
 

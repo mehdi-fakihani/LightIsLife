@@ -66,10 +66,6 @@ namespace LIL.Inputs
         public Profile(int playerNum, int deviceNum)
         {
             var model = Models[playerNum];
-            
-            // There is only one keyboard available
-          //if (model.device == Device.Keyboard) Assert.Zero(deviceNum);
-
             keys = model.keys;
             axises = model.keys.Values
                 .Where(KeyGroup.IsFromAxis)
