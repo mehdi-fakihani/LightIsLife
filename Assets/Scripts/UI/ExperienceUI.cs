@@ -9,26 +9,29 @@ namespace LIL.UI
 
         private UnityEngine.UI.Slider slider;
         private UnityEngine.UI.Text text;
+        private int playerNum;
         private int level = 1;
         [SerializeField] private ExperienceManager player;
         // Use this for initialization
-        void Start()
+        void Awake()
         {
             slider = GetComponentInChildren<UnityEngine.UI.Slider>();
             text = GetComponentInChildren<UnityEngine.UI.Text>();
-            player.setLevel(level);
+            playerNum = (int)gameObject.name[gameObject.name.Length - 1] - 48;
+
         }
 
         // Update is called once per frame
         void Update()
         {
-            slider.value = player.GetExperience();
-            text.text = " level : " + player.GetLevel();
-            if (slider.value == slider.maxValue)
+            if (GeneralData.GetExperience(playerNum) % slider.maxValue != 0)
+                slider.value = GeneralData.GetExperience(playerNum) % slider.maxValue;
+
+            if (slider.value != 0 && GeneralData.GetExperience(playerNum) % slider.maxValue == 0 && GeneralData.GetExperience(playerNum)>0)
             {
-                level++;
-                player.setLevel(level);
-                ResetExperience();
+                slider.value = GeneralData.GetExperience(playerNum) % slider.maxValue;
+                GeneralData.incrLevel(playerNum);
+                //ResetExperience();
             }
         }
 

@@ -22,7 +22,8 @@ namespace LIL
         public void disable(int playerNum, float[] _pos)
         {
             float[] pos = GeneralData.getPlayerbyNum(playerNum).pos;
-            GeneralData.getPlayerbyNum(playerNum).pos= _pos;
+            GeneralData.getPlayerbyNum(1).pos= _pos;
+            GeneralData.getPlayerbyNum(2).pos = _pos;
 
             if (playerNum == 2) inventory_2.SetActive(false);
             else inventory_1.SetActive(false);

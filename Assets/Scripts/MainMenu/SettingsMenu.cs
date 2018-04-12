@@ -11,9 +11,11 @@ public class SettingsMenu : MonoBehaviour {
     public GameObject musicSlider, sfxSlider;
     public GameObject ControllerLine1, QwertyLine1, AzertyLine1, ControllerLine2, QwertyLine2, AzertyLine2;
     public GameObject LinePlayer1, LinePlayer2, lineMovement, lineCombat, lineGeneral;
-    public GameObject forwardKey, backwardsKey, leftKey, rightKey, sowrdAttackKey, skill1Key, skill2Key, skill3Key, skill4Key, pauseKey,
+    public  GameObject forwardKey, backwardsKey, leftKey, rightKey, sowrdAttackKey, skill1Key, skill2Key, skill3Key, skill4Key, pauseKey,
         interactKey, changeTorchKey, submitKey, cameraRightKey, cameraLeftKey;
-    public GameObject PanelMovement, PanelCombat, PanelGeneral;
+    public GameObject PanelMovement, PanelCombat, PanelGeneral, areYouSurePanel, PanelGame;
+    public GameObject gameBtn, controlsBtn, keyBtn, returnBtn;
+    
 
     private static int playerNum;
 
@@ -89,7 +91,8 @@ public class SettingsMenu : MonoBehaviour {
             ControllerLine2.gameObject.SetActive(true);
         }
 
-
+        ChangeKeys.InitKeys(new GameObject[] {forwardKey, backwardsKey, leftKey, rightKey, sowrdAttackKey, skill1Key, skill2Key, skill3Key, skill4Key, pauseKey,
+        interactKey, changeTorchKey, submitKey, cameraRightKey, cameraLeftKey });
     }
 	
 	// Update is called once per frame
@@ -199,6 +202,7 @@ public class SettingsMenu : MonoBehaviour {
             QwertyLine2.gameObject.SetActive(false);
             ControllerLine2.gameObject.SetActive(true);
         }
+
     }
 
     public void player1()
@@ -308,5 +312,43 @@ public class SettingsMenu : MonoBehaviour {
     public static int getPlayerNum()
     {
         return playerNum;
+    }
+
+    public void DisableButtons()
+    {
+        gameBtn.SetActive(false);
+        controlsBtn.SetActive(false);
+        keyBtn.SetActive(false);
+        returnBtn.SetActive(false);
+    }
+
+    public void ActiveButtons()
+    {
+        gameBtn.SetActive(true);
+        controlsBtn.SetActive(true);
+        keyBtn.SetActive(true);
+        returnBtn.SetActive(true);
+    }
+
+    public void AreYouSure()
+    {
+        PanelGame.SetActive(false);
+        areYouSurePanel.gameObject.SetActive(true);
+        DisableButtons();
+    }
+
+    public void No()
+    {
+        areYouSurePanel.gameObject.SetActive(false);
+        PanelGame.SetActive(true);
+        ActiveButtons();
+    }
+
+    public void Yes()
+    {
+        ResetGame();
+        areYouSurePanel.gameObject.SetActive(false);
+        PanelGame.SetActive(true);
+        ActiveButtons();
     }
 }

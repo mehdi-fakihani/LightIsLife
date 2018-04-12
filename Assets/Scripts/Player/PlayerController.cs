@@ -81,6 +81,8 @@ namespace LIL
             this.transform.position = new Vector3(pos[0], pos[1], pos[2]);
 
             profile = new Profile(playerNum, 0);
+            GeneralData.setProfile(playerNum, profile);
+
             Light light = GetComponentInChildren<Light>();
 
             cam = GameObject.Find("Main Camera").GetComponent<CameraController>();
