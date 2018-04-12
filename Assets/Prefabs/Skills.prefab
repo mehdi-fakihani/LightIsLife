@@ -58,11 +58,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 6
-  cooldown: 1
-  chargesCount: 10
-  damages: 5
-  stunTime: 1
-  postInvulnerabilityTime: 0
+  cooldown: 6
+  chargesCount: 1
+  damages: 8
+  stunTime: 1.5
+  postInvulnerabilityTime: 0.5
   speed: 1600
   range: 12
   castTime: 0.3
@@ -100,9 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 10
-  cooldown: 1
-  chargesCount: 10
-  damages: 10
+  cooldown: 5
+  chargesCount: 2
+  damages: 5
   range: 3
   castTime: 0
   impactWidth: 1
@@ -122,9 +122,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 11
-  cooldown: 1
+  cooldown: 8
   chargesCount: 1
-  totalDamages: 30
+  totalDamages: 10
   effectDuration: 3
   buffDuration: 3
   tickStep: 0.5
@@ -144,9 +144,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 7
-  cooldown: 2
+  cooldown: 8
   chargesCount: 1
-  maxDamages: 60
+  maxDamages: 25
   range: 2
   duration: 2.5
   slowRatio: 0.5
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 1
-  cooldown: 2
+  cooldown: 4
   chargesCount: 2
   fireball_Sound: {fileID: 8300000, guid: e1d4e264ceb124045ae9a91715ff29ad, type: 3}
   fireball_Prefab: {fileID: 1081694656024706, guid: eada4cfec848587428aa79ad0ae5dddf,
@@ -204,6 +204,6 @@ MonoBehaviour:
     type: 2}
   strength: 800
   range: 0.8
-  damageAttack: 10
+  damageAttack: 20
   castTime: 0.5
   ejection: 1.5
