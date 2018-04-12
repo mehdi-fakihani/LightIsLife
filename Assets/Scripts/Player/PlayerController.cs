@@ -126,14 +126,14 @@ namespace LIL
             health.setHurtCallback(() =>
             {
                 animator.SetTrigger("hurt");
-                if (!audioSource.isPlaying) audioSource.PlayOneShot(hurtSound);
+                if (hurtSound != null) audioSource.PlayOneShot(hurtSound);
             });
             health.setDeathCallback(() =>
             {
                 // Play death animation
                 animator.SetTrigger("death");
                 // Play death sound
-                audioSource.PlayOneShot(deathSound);
+                if(deathSound != null) audioSource.PlayOneShot(deathSound);
                 // End the game
                 //Time.timeScale = 0;
                 Cursor.visible = true;
