@@ -163,7 +163,7 @@ namespace LIL
             if (profile.getKeyDown(PlayerAction.Skill4) && !inventoryActive && selectedSkills[3] != null && !GeneralData.gamePaused)
                 selectedSkills[3].tryCast();
 
-            if (profile.getKeyDown(PlayerAction.Pause))
+            if (profile.getKeyDown(PlayerAction.Pause) && !inventoryActive)
             {
                 if (!GeneralData.gamePaused)
                 {
