@@ -43,11 +43,22 @@ namespace LIL
             Support = 2,
         }
 
+        public static GameObject Create(EnemyManager em, GameObject prefab, Vector3 position, Quaternion rotation)
+        {
+            GameObject o = Instantiate(prefab, position, rotation);
+            o.GetComponent<SupportController>().SetManager(em);
+            return o;
+        }
+
+        public void SetManager(EnemyManager manager)
+        {
+            em = manager;
+        }
+
         void Start()
         {
             // Set up the references.
             source = GetComponent<AudioSource>();
-            em = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>();
             player = GameObject.FindGameObjectWithTag("Player").transform;
             torchLight = GameObject.FindGameObjectWithTag("Spirit").GetComponent<LightFuel>();
             animator = GetComponent<Animator>();

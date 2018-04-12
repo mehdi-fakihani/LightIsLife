@@ -46,11 +46,23 @@ namespace LIL
         private bool isInRange;                 // try to fire
         private bool isRetreating;              // setup retreat
 
+
+        public static GameObject Create(EnemyManager em, GameObject prefab, Vector3 position, Quaternion rotation)
+        {
+            GameObject o = Instantiate(prefab, position, rotation);
+            o.GetComponent<MageController>().SetManager(em);
+            return o;
+        }
+
+        public void SetManager(EnemyManager manager)
+        {
+            em = manager;
+        }
+
         void Start()
         {
             // Set up the references.
             source = GetComponent<AudioSource>();
-            em = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>();
             player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
             torchLight = GameObject.FindGameObjectWithTag("Spirit").GetComponent<LightFuel>();
             animator = GetComponent<Animator>();
