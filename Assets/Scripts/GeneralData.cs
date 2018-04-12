@@ -44,7 +44,7 @@ public class GeneralData : MonoBehaviour
     public static string path = Application.persistentDataPath + "/Saves";
     public static ProfilsID inputPlayer1, inputPlayer2;
     public static Profile profile1, profile2;
-    public static ProfileModel azertyProfileModel, qwertyProfileModel, controllerProfileModel;
+    public static ProfileModel Keyboard1ProfileModel, Keyboard2ProfileModel, controller1ProfileModel, controller2ProfileModel;
     public static string sceneName;
     public static int mainMenuID;
     public static bool gamePaused;
