@@ -1821,7 +1821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4ded81839c4fa42a43dd7ec8ae8730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialLife: 20
+  initialLife: 40
   expCollectable: {fileID: 1804610024410126, guid: 7637478850598954f8a3d328198f50c9,
     type: 2}
   damagePopUp: {fileID: 1339065520919996}

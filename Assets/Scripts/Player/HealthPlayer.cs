@@ -23,7 +23,7 @@ namespace LIL
     public class HealthPlayer : MonoBehaviour
     {
         // Public :
-
+        
         public AudioClip soundDead, soundHurt;      // Hurt and Dead AudioClips
         public int maxHealth = 100;                 // Max health
         public Slider healthSlider;                 // The Slider of the players' health
@@ -36,7 +36,7 @@ namespace LIL
         private float currentHealth;                // The current health of the character
         private bool dead;                          // Check if dead or not
         private bool endGameReached;                // End Game reached
-
+        private int nbHeals;                       // Count each heal to make them less and less efficient
 
         //---------------------------------------------------------
         // Method called when the game starts
@@ -56,8 +56,15 @@ namespace LIL
             // Get the AudioSource of the character
             audioSource = GetComponent<AudioSource>();
 
+            nbHeals = 0;
+
         }
 
+        public void Heal(float healthRatio)
+        {
+            currentHealth = Mathf.Clamp(currentHealth * (1 + healthRatio), 0, maxHealth / ++nbHeals);
+        }
+        
 
         //---------------------------------------------------------
         // This method is called when the character is hurt

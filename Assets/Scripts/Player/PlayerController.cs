@@ -432,7 +432,7 @@ namespace LIL
         private void SetMainPlayer(GameObject player)
         {
             cam.SetTarget(player.transform);
-            spirit.SetTarget(player.transform);
+            spirit.SetTarget(player);
 
         }
 
