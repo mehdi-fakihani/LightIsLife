@@ -18,6 +18,7 @@ namespace LIL.UI
             slider = GetComponentInChildren<UnityEngine.UI.Slider>();
             text = GetComponentInChildren<UnityEngine.UI.Text>();
             playerNum = (int)gameObject.name[gameObject.name.Length - 1] - 48;
+            text.text = "level : " + GeneralData.getLevel(playerNum);
 
         }
 
@@ -31,6 +32,7 @@ namespace LIL.UI
             {
                 slider.value = GeneralData.GetExperience(playerNum) % slider.maxValue;
                 GeneralData.incrLevel(playerNum);
+                text.text = "level : " + GeneralData.getLevel(playerNum);
                 //ResetExperience();
             }
         }
