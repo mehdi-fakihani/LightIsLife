@@ -89,7 +89,6 @@ namespace LIL
 
         public void CountDeath()
         {
-            Debug.Log("dead: " + (nbDead + 1) + "; ennemies: " + nbEnemies + "; this" + gameObject);
             if (++nbDead == nbEnemies)
             {
                 // if all enemies are spawned and dead, stop fight music
@@ -97,11 +96,9 @@ namespace LIL
                 //Debug.Log(campfire.name);
                 if (campfire != null)
                 {
-                    Debug.Log("not null: " + campfire);
-                    Debug.Log(gameObject.name);
                     campfire.GetComponent<LightActivator>().ActivateFire();
                 }
-                Destroy(gameObject); ;
+                Destroy(gameObject);
             }
         }
 

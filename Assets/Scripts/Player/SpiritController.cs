@@ -8,11 +8,10 @@ namespace LIL
     public class SpiritController : MonoBehaviour
     {
 
-        public Transform player;
+        public GameObject player;
         public float speed = 2.0f;
         public float distanceToPlayer = 1;          // Distance to keep from player
         public float refreshPathTime = 2.0f;        // Time interval between 2 path calculations
-        public float verticalOndulation = 1;        // vertical ondulation movement of the spirit
 
         private NavMeshPath currentPath;
         private int currentPathIndex;
@@ -29,7 +28,7 @@ namespace LIL
         void Update()
         {
             timer += Time.deltaTime;
-            float distance = Vector3.Distance(player.position, transform.position);
+            float distance = Vector3.Distance(player.transform.position, transform.position);
             if (distance > distanceToPlayer)
             {
                 if (currentPathIndex < currentPath.corners.Length)
@@ -47,17 +46,17 @@ namespace LIL
         {
             timer = 0;
             currentPathIndex = 0;
-            Vector3 playerToSpirit = transform.position - player.position;
-            Vector3 target = player.position + playerToSpirit.normalized * distanceToPlayer;
+            Vector3 playerToSpirit = transform.position - player.transform.position;
+            Vector3 target = player.transform.position + playerToSpirit.normalized * distanceToPlayer;
             NavMesh.CalculatePath(transform.position, target, NavMesh.AllAreas, currentPath);
         }
 
         public Transform GetTarget()
         {
-            return player;
+            return player.transform;
         }
 
-        public void SetTarget(Transform p)
+        public void SetTarget(GameObject p)
         {
             player = p;
         }

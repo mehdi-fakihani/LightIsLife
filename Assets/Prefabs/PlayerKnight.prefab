@@ -6280,7 +6280,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1491880915544872}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40.09, y: 0.01, z: 28.3}
+  m_LocalPosition: {x: 128.4, y: 0.01, z: 196.5}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4290927614868274}
@@ -6870,6 +6870,7 @@ MonoBehaviour:
   secondPlayer: {fileID: 0}
   secondPlayerExperience: {fileID: 0}
   camera: {fileID: 0}
+  skillUI: {fileID: 0}
   multiplayer: 0
 --- !u!114 &114828007217374808
 MonoBehaviour:
@@ -6893,7 +6894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4ded81839c4fa42a43dd7ec8ae8730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialLife: 1000
+  initialLife: 500
   expCollectable: {fileID: 1804610024410126, guid: 7637478850598954f8a3d328198f50c9,
     type: 2}
   damagePopUp: {fileID: 1901785287803392}
