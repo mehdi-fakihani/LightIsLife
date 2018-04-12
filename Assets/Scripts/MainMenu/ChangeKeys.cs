@@ -75,12 +75,27 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                     if ((int)keyEvent.keyCode == (int)values[i])
                     {
                         newKey = values[i];
+                        PlayerAction action = (PlayerAction)Enum.Parse(typeof(PlayerAction), this.name);
                         if (!Profile.Models[playerNum].keys.ContainsValue(newKey) && newKey.ToString().StartsWith("Keyboard"))
                         {
-                            PlayerAction action = (PlayerAction)Enum.Parse(typeof(PlayerAction), this.name);
                             Profile.Models[playerNum].keys[action] = newKey;
                             this.GetComponent<Text>().text = newKey.ToString().Substring(8);
                             
+                        }
+                        else
+                        {
+                            List<PlayerAction> playerActions = new List<PlayerAction>(Profile.Models[playerNum].keys.Keys);
+
+                            foreach (PlayerAction pa in playerActions)
+                            {
+                                if ((int)Profile.Models[playerNum].keys[pa] == (int)newKey)
+                                {
+                                    Profile.Models[playerNum].keys[pa] = Profile.Models[playerNum].keys[action];
+                                    GetKeyGameObject(pa.ToString()).GetComponent<Text>().text = Profile.Models[playerNum].keys[pa].ToString().Substring(8);
+                                    Profile.Models[playerNum].keys[action] = newKey;
+                                    this.GetComponent<Text>().text = newKey.ToString().Substring(8);
+                                }
+                            }
                         }
                         break;
                     }
