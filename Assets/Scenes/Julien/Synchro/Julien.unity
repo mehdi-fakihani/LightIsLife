@@ -79637,16 +79637,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114156387040599582, guid: e258e4679c31cf04d841447926f497cc,
-        type: 2}
-      propertyPath: sword_Sound
-      value: 
-      objectReference: {fileID: 8300000, guid: ebd961cfa0917bf4c960e72b477432f8, type: 3}
-    - target: {fileID: 114365239372871976, guid: e258e4679c31cf04d841447926f497cc,
-        type: 2}
-      propertyPath: castSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 6d90f85edca8df442a3ca60875d2aec7, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e258e4679c31cf04d841447926f497cc, type: 2}
   m_IsPrefabParent: 0
