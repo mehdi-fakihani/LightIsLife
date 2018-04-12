@@ -27,10 +27,6 @@ public class SettingsMenu : MonoBehaviour {
     void Start ()
     {
         controllers = Input.GetJoystickNames();
-        for (int i = 0; i < controllers.Length; i++)
-        {
-            Debug.Log("Controller " + i + " : " + controllers[i]);
-        }
 
         // check slider values
         musicSlider.GetComponent< Slider > ().value = PlayerPrefs.GetFloat("MusicVolume");
@@ -130,21 +126,17 @@ public class SettingsMenu : MonoBehaviour {
 
     public void Controller(int playerNum)
     {
-        Debug.Log("controller : " + controllers.Length);
-        Debug.Log("controller index 0  null : " + (controllers[0] == ""));
         int controllerCount = 0;
         for(int i = 0; i < controllers.Length; i++)
         {
             if (controllers[i] != "")
                 controllerCount++;
         }
-        Debug.Log("controller count : " + controllerCount);
+
         if (playerNum == 1 && controllerCount >= 1)
         {
-            Debug.Log("controller1 : 1");
             if (PlayerPrefs.GetInt("Input2") == 1 || (PlayerPrefs.GetInt("Input2") == 2 && controllerCount >= 2))
             {
-                Debug.Log("controller1 : 2");
                 PlayerPrefs.SetInt("Input" + playerNum, 2);
                 GeneralData.inputPlayer1 = ProfilsID.XBoxGamepad;
                 Profile.Models[1] = GeneralData.controller1ProfileModel;
@@ -154,10 +146,8 @@ public class SettingsMenu : MonoBehaviour {
         }
         else if (playerNum == 2 && controllerCount >= 1)
         {
-            Debug.Log("controller2 : 1");
             if (PlayerPrefs.GetInt("Input1")==1 || (PlayerPrefs.GetInt("Input1") == 2 && controllerCount >= 2))
             {
-                Debug.Log("controller2 : 2");
                 PlayerPrefs.SetInt("Input" + playerNum, 2);
                 GeneralData.inputPlayer2 = ProfilsID.XBoxGamepad;
                 Profile.Models[2] = GeneralData.controller2ProfileModel;
@@ -165,11 +155,6 @@ public class SettingsMenu : MonoBehaviour {
                 Controller2Line.gameObject.SetActive(true);
             }
         }
-        else
-        {
-            Debug.Log("controller : " + controllers.Length);
-        }
-
     }
 
     public void player1()
