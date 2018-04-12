@@ -273,5 +273,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ambientMusic: {fileID: 8300000, guid: 63caa9184c55a2d47b28929359e3189e, type: 3}
   fightStart: {fileID: 8300000, guid: 0a7fc111064b6cd41a2af13581d63591, type: 3}
-  fightLoop: {fileID: 8300000, guid: 364b7d71e5879c34eb6a529e2ef272f8, type: 3}
+  fightLoop: {fileID: 8300000, guid: 7b66de275bd604d47b816f07e2f1d5e8, type: 3}
   fadingTime: 1.5

@@ -112,7 +112,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 847e9adce00f75649be6ce888c64a9fc, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: ac95221c4ff5b8d418f71ac3402111c9, type: 2}
 --- !u!1 &1045595
 GameObject:
   m_ObjectHideFlags: 0
@@ -13862,6 +13862,26 @@ Prefab:
       propertyPath: skillIds.Array.data[7]
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 137317510587938870, guid: db6f1c49c7a53f14a928f20e7a8a0335,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ff1870bfa308ab14f891b385c18249eb, type: 2}
+    - target: {fileID: 137340226027490746, guid: db6f1c49c7a53f14a928f20e7a8a0335,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ff1870bfa308ab14f891b385c18249eb, type: 2}
+    - target: {fileID: 137386980751863082, guid: db6f1c49c7a53f14a928f20e7a8a0335,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ff1870bfa308ab14f891b385c18249eb, type: 2}
+    - target: {fileID: 137246378064392568, guid: db6f1c49c7a53f14a928f20e7a8a0335,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28d4a9e6ad44c7d429ddc31b36abba6e, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db6f1c49c7a53f14a928f20e7a8a0335, type: 2}
   m_IsPrefabParent: 0
