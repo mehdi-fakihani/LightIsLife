@@ -110,7 +110,7 @@ public class SettingsMenu : MonoBehaviour {
 
     public void Keayboard(int playerNum)
     {
-        PlayerPrefs.SetInt("Input" + playerNum, 0);
+        PlayerPrefs.SetInt("Input" + playerNum, 1);
         if (playerNum == 1)
         {
             GeneralData.inputPlayer1 = ProfilsID.Keyboard1;
@@ -131,12 +131,18 @@ public class SettingsMenu : MonoBehaviour {
     public void Controller(int playerNum)
     {
         Debug.Log("controller : " + controllers.Length);
-        Debug.Log("controller index 1  null : " + (controllers[1] == ""));
-
-        if (playerNum == 1 && controllers.Length >= 1)
+        Debug.Log("controller index 0  null : " + (controllers[0] == ""));
+        int controllerCount = 0;
+        for(int i = 0; i < controllers.Length; i++)
+        {
+            if (controllers[i] != "")
+                controllerCount++;
+        }
+        Debug.Log("controller count : " + controllerCount);
+        if (playerNum == 1 && controllerCount >= 1)
         {
             Debug.Log("controller1 : 1");
-            if (PlayerPrefs.GetInt("Input2") == 1 || (PlayerPrefs.GetInt("Input2") == 2 && controllers.Length >= 2))
+            if (PlayerPrefs.GetInt("Input2") == 1 || (PlayerPrefs.GetInt("Input2") == 2 && controllerCount >= 2))
             {
                 Debug.Log("controller1 : 2");
                 PlayerPrefs.SetInt("Input" + playerNum, 2);
@@ -146,10 +152,10 @@ public class SettingsMenu : MonoBehaviour {
                 Controller1Line.gameObject.SetActive(true);
             }
         }
-        else if (playerNum == 2 && controllers.Length >= 1)
+        else if (playerNum == 2 && controllerCount >= 1)
         {
             Debug.Log("controller2 : 1");
-            if (PlayerPrefs.GetInt("Input1")==1 || (PlayerPrefs.GetInt("Input1") == 2 && controllers.Length >= 2))
+            if (PlayerPrefs.GetInt("Input1")==1 || (PlayerPrefs.GetInt("Input1") == 2 && controllerCount >= 2))
             {
                 Debug.Log("controller2 : 2");
                 PlayerPrefs.SetInt("Input" + playerNum, 2);
