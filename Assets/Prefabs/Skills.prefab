@@ -60,6 +60,7 @@ MonoBehaviour:
   id: 6
   cooldown: 6
   chargesCount: 1
+  skillImage: {fileID: 0}
   damages: 8
   stunTime: 1.5
   postInvulnerabilityTime: 0.5
@@ -83,6 +84,7 @@ MonoBehaviour:
   id: 0
   cooldown: 0
   chargesCount: 1
+  skillImage: {fileID: 0}
   sword_Sound: {fileID: 8300000, guid: ebd961cfa0917bf4c960e72b477432f8, type: 3}
   damageAttack: 10
   castTime: 0.5
@@ -102,6 +104,7 @@ MonoBehaviour:
   id: 10
   cooldown: 5
   chargesCount: 2
+  skillImage: {fileID: 0}
   damages: 5
   range: 3
   castTime: 0
@@ -124,7 +127,8 @@ MonoBehaviour:
   id: 11
   cooldown: 8
   chargesCount: 1
-  totalDamages: 10
+  skillImage: {fileID: 0}
+  totalDamages: 25
   effectDuration: 3
   buffDuration: 3
   tickStep: 0.5
@@ -146,6 +150,7 @@ MonoBehaviour:
   id: 7
   cooldown: 8
   chargesCount: 1
+  skillImage: {fileID: 0}
   maxDamages: 25
   range: 2
   duration: 2.5
@@ -168,9 +173,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 4
-  cooldown: 1
-  chargesCount: 10
-  damages: 3
+  cooldown: 10
+  chargesCount: 1
+  skillImage: {fileID: 0}
+  damages: 5
   missilesCount: 10
   speed: 1200
   range: 4
@@ -197,6 +203,7 @@ MonoBehaviour:
   id: 1
   cooldown: 4
   chargesCount: 2
+  skillImage: {fileID: 0}
   fireball_Sound: {fileID: 8300000, guid: e1d4e264ceb124045ae9a91715ff29ad, type: 3}
   fireball_Prefab: {fileID: 1081694656024706, guid: eada4cfec848587428aa79ad0ae5dddf,
     type: 2}
