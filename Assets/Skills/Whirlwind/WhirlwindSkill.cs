@@ -16,7 +16,6 @@ namespace LIL
         public GameObject castEffect;
         public GameObject impactEffect;
         public AudioClip castSound;
-
         private AudioSource audioSource;
         private SoundManager soundManager = new SoundManager();
         private const float fadingTime = 1.0f;

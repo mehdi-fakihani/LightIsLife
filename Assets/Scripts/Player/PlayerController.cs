@@ -19,10 +19,19 @@ namespace LIL
         [SerializeField] private AudioClip hurtSound;
         [SerializeField] private AudioClip deathSound;
         [SerializeField] private GameObject secondPlayer;
-		[SerializeField] private GameObject secondPlayerExperience;
+        [SerializeField] private GameObject secondPlayerExperience;
         [SerializeField] private GameObject camera;
+        [SerializeField] private SkillUIManager skillUI;
         public bool multiplayer = false;
         private float moveCamera;
+        private bool cooldown1 = false;
+        private bool cooldown2 = false;
+        private bool cooldown3 = false;
+        private bool cooldown4 = false;
+        private float cdTime1 = 0;
+        private float cdTime2 = 0;
+        private float cdTime3 = 0;
+        private float cdTime4 = 0;
 
         private Animator animator;
         private AudioSource audioSource;
@@ -60,7 +69,7 @@ namespace LIL
         private Vector3 lastMove;
 
         void Start()
-        { 
+        {
             GUI = GameObject.FindGameObjectWithTag("GameUI");
             interaction = GUI.GetComponent<Interaction>();
             inventory = GUI.GetComponent<Inventory>();
@@ -102,17 +111,17 @@ namespace LIL
             if (GeneralData.multiplayer)
             {
                 multiplayer = true;
-				if (playerNum == 1) {
-					secondPlayer.SetActive (true);
-					secondPlayerExperience.SetActive(true);
-				}
-                else if(playerNum == 2)
+                if (playerNum == 1) {
+                    secondPlayer.SetActive(true);
+                    secondPlayerExperience.SetActive(true);
+                }
+                else if (playerNum == 2)
                 {
                     //secondPlayer = GameObject.Find(this.transform.name.Substring(0, transform.name.Length-1)+"1");
                 }
 
             }
-            
+
 
             audioSource = GetComponent<AudioSource>();
             audioSource.volume = PlayerPrefs.GetFloat("SFXVolume");
@@ -144,6 +153,46 @@ namespace LIL
         void Update()
         {
             ControllPlayer();
+             if (cooldown1 && selectedSkills[0].chargesAvailable() < selectedSkills[0].GetChargeCount())
+             {
+                 skillUI.StartCooldown(selectedSkills[0].GetCooldown(), 0);
+                 cdTime1 += Time.deltaTime;
+             }
+             else if (cooldown1 && cdTime1 >= selectedSkills[0].GetCooldown() )
+             {
+                 cooldown1 = false;
+                 cdTime1 = 0;
+             }
+            if (cooldown2 && selectedSkills[1].chargesAvailable() < selectedSkills[1].GetChargeCount())
+            {
+                skillUI.StartCooldown(selectedSkills[1].GetCooldown(), 1);
+                cdTime2 += Time.deltaTime;
+            }
+            else if (cooldown2 && cdTime2 >= selectedSkills[1].GetCooldown())
+            {
+                cooldown2 = false;
+                cdTime2 = 0;
+            }
+            if (cooldown3 && selectedSkills[2].chargesAvailable() < selectedSkills[2].GetChargeCount())
+            {
+                skillUI.StartCooldown(selectedSkills[2].GetCooldown(), 2);
+                cdTime3 += Time.deltaTime;
+            }
+            else if (cooldown3 && cdTime3 >= selectedSkills[2].GetCooldown())
+            {
+                cooldown3 = false;
+                cdTime3 = 0;
+            }
+            if (cooldown4 && selectedSkills[3].chargesAvailable() < selectedSkills[3].GetChargeCount())
+            {
+                skillUI.StartCooldown(selectedSkills[3].GetCooldown(), 3);
+                cdTime4 += Time.deltaTime;
+            }
+            else if (cooldown4 && cdTime4 >= selectedSkills[3].GetCooldown())
+            {
+                cooldown4 = false;
+                cdTime4 = 0;
+            }
         }
 
         void ControllPlayer()
@@ -151,15 +200,29 @@ namespace LIL
             moveCamera = 0.0f;
             moveVertical = 0.0f;
             moveHorizontal = 0.0f;
-            
+
             if (profile.getKeyDown(PlayerAction.Skill1) && !inventoryActive && selectedSkills[0] != null && !GeneralData.gamePaused)
+            {
                 selectedSkills[0].tryCast();
+                cooldown1 = true;
+            }
             if (profile.getKeyDown(PlayerAction.Skill2) && !inventoryActive && selectedSkills[1] != null && !GeneralData.gamePaused)
+            {
                 selectedSkills[1].tryCast();
+                cooldown2 = true;
+            }
+ 
             if (profile.getKeyDown(PlayerAction.Skill3) && !inventoryActive && selectedSkills[2] != null && !GeneralData.gamePaused)
+            {
                 selectedSkills[2].tryCast();
+                cooldown3 = true;
+            }
+               
             if (profile.getKeyDown(PlayerAction.Skill4) && !inventoryActive && selectedSkills[3] != null && !GeneralData.gamePaused)
+            {
                 selectedSkills[3].tryCast();
+                cooldown4 = true;
+            }
 
             if (profile.getKeyDown(PlayerAction.Pause))
             {
@@ -173,7 +236,7 @@ namespace LIL
                 }
             }
 
-            if(CameraFollow())
+            if (CameraFollow())
             {
                 if (profile.getKey(PlayerAction.CameraLeft)) moveCamera += 1.0f;
                 if (profile.getKey(PlayerAction.CameraRight)) moveCamera -= 1.0f;
@@ -212,7 +275,7 @@ namespace LIL
 
             if (profile.getKeyDown(PlayerAction.Interaction) && interactable && !GeneralData.gamePaused)
             {
-                if(!CameraFollow()) interactionCampfire.displayInteractionMsg("Use the spirit's power !");
+                if (!CameraFollow()) interactionCampfire.displayInteractionMsg("Use the spirit's power !");
                 else
                 {
                     if (!inventoryActive)
@@ -255,6 +318,23 @@ namespace LIL
             float modifier = movementManager.getSpeedRatio();
             transform.Translate(movement * movementSpeed * Time.deltaTime * modifier, Space.World);
             Animating(moveHorizontal, moveVertical);
+        }
+
+
+        float ControlCooldown(bool cooldown, float timeCD, int indexSkill)
+        {
+            if (cooldown && timeCD < selectedSkills[indexSkill].GetCooldown())
+            {
+                skillUI.StartCooldown(selectedSkills[indexSkill].GetCooldown(), 0);
+                timeCD += Time.deltaTime;
+            }
+            else if (cooldown && timeCD >= selectedSkills[indexSkill].GetCooldown())
+            {
+                cooldown = false;
+                timeCD = 0;
+            }
+
+            return timeCD;
         }
 
         void Animating(float h, float v)
@@ -333,7 +413,7 @@ namespace LIL
         {
             GeneralData.Player player;
 
-            if (this.gameObject.name[this.gameObject.name.Length - 1] == '2')   player = GeneralData.getPlayerbyNum(2);
+            if (this.gameObject.name[this.gameObject.name.Length - 1] == '2') player = GeneralData.getPlayerbyNum(2);
             else player = GeneralData.getPlayerbyNum(1);
 
             for (int i = 0; i < 4; i++)
@@ -359,5 +439,9 @@ namespace LIL
             return playerNum;
         }
 
+        public Skill[] GetAllSkill()
+        {
+            return selectedSkills;
+        }
     }
 }

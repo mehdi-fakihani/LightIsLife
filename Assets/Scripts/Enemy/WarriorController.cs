@@ -130,7 +130,6 @@ namespace LIL
 
         void Update()
         {
-            Debug.Log(multiplayer);
             timer += Time.deltaTime;
 
             //check if not dead

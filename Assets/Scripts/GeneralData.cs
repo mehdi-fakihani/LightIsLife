@@ -393,7 +393,7 @@ public class GeneralData : MonoBehaviour
         if (GetCapacityPoints(playerNum) >= skill.CapPointsToUnlock)
         {
             int index = GetSkillIndexByName(skillName, playerNum);
-            UpdateCapacitypoints(-skill.CapPointsToUnlock, playerNum);
+             UpdateCapacitypoints(-skill.CapPointsToUnlock, playerNum);
             getPlayerbyNum(playerNum).skills[index].deblocked = true;
         }
 

@@ -115,6 +115,21 @@ namespace LIL {
             return model.id;
         }
 
+        public Sprite getImage()
+        {
+            return model.skillImage;
+        }
+
+        public float GetCooldown()
+        {
+            return model.cooldown;
+        }
+
+        public int GetChargeCount()
+        {
+            return model.chargesCount;
+        }
+
         /// <summary>
         /// Used by SkillManager.
         /// </summary>
