@@ -23,9 +23,7 @@ public class ExperienceManager : MonoBehaviour {
         if (other.CompareTag("Exp"))
         {
             source.PlayOneShot(itemCollect);
-            Debug.Log("before"+GeneralData.GetExperience(playerNum));
             GeneralData.IncrExperience(1, playerNum);
-            Debug.Log("after" + GeneralData.GetExperience(playerNum));
             Destroy(other.gameObject);
         }
     }
