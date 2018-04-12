@@ -43,6 +43,7 @@ public class GeneralData : MonoBehaviour
     public static string fileName;
     public static string path = Application.persistentDataPath + "/Saves";
     public static ProfilsID inputPlayer1, inputPlayer2;
+    public static Profile profile1, profile2;
     public static ProfileModel azertyProfileModel, qwertyProfileModel, controllerProfileModel;
     public static string sceneName;
     public static int mainMenuID;
@@ -75,15 +76,17 @@ public class GeneralData : MonoBehaviour
         public List<Skill> skills;
         public Skill[] usedSkills;
         public int experience;
+        public int level;
         public int capacityPoints;
         public float[] pos;
 
-        public Player(int _playerNum, List<Skill> _skills, Skill[] _usedSkills, int _experience, int _capacityPoints, float[] _pos)
+        public Player(int _playerNum, List<Skill> _skills, Skill[] _usedSkills, int _experience, int _level, int _capacityPoints, float[] _pos)
         {
             playerNum = _playerNum;
             skills = _skills;
             usedSkills = _usedSkills;
             experience = _experience;
+            level = _level;
             capacityPoints = _capacityPoints;
             pos = _pos;
         }
@@ -160,19 +163,30 @@ public class GeneralData : MonoBehaviour
     {
         players = new List<Player>();
         List<Skill> skills1 = initSkillsList();
-        Player player1 = new Player(1, skills1, new Skill[] { null, null, null, null }, 0, 10, new float[] { 30f, 0f, 26f });
+        Player player1 = new Player(1, skills1, new Skill[] { null, null, null, null }, 0, 1, 1, new float[] { 30f, 0f, 26f });
         
         players.Add(player1);
 
-        
+
         if (multiplayer)
         {
             List<Skill> skills2 = initSkillsList();
-            Player player2 = new Player(2, skills2, new Skill[] { null, null, null, null }, 0, 10, new float[] { 25f, 0f, 30f });
+            Player player2 = new Player(2, skills2, new Skill[] { null, null, null, null }, 0,1, 1, new float[] { 25f, 0f, 30f });
             
             players.Add(player2);
-
         }
+    }
+
+    public static Profile getProfile(int playerNum)
+    {
+        if (playerNum == 2) return profile2;
+        else return profile1;
+    }
+
+    public static void setProfile(int playerNum, Profile profile)
+    {
+        if (playerNum == 2)  profile2 = profile;
+        else  profile1 = profile;
     }
 
     public static Player getPlayerbyNum(int playerNum)
@@ -216,6 +230,20 @@ public class GeneralData : MonoBehaviour
         Save(fileName);
     }
 
+    // incr Level
+    public static void incrLevel(int playerNum)
+    {
+        getPlayerbyNum(playerNum).level++;
+        UpdateCapacitypoints(1, playerNum);
+    }
+
+    // Get Level
+    public static int getLevel(int playerNum)
+    {
+        return getPlayerbyNum(playerNum).level;
+    }
+
+    
 
     //---------------------------------  Capacity Points  ---------------------------------
 

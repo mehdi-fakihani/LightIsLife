@@ -32,6 +32,7 @@ namespace LIL
             }
 
             var cast = Instantiate(castEffect, caster.transform.position, Quaternion.identity);
+            cast.transform.Rotate(new Vector3(1, 0, 0), 90);
             Destroy(cast, 1.5f);
 
             // Play the attacks' animation

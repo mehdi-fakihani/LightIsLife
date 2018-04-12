@@ -90,6 +90,8 @@ namespace LIL
             this.transform.position = new Vector3(pos[0], pos[1], pos[2]);
 
             profile = new Profile(playerNum, 0);
+            GeneralData.setProfile(playerNum, profile);
+
             Light light = GetComponentInChildren<Light>();
 
             cam = GameObject.Find("Main Camera").GetComponent<CameraController>();
@@ -133,14 +135,14 @@ namespace LIL
             health.setHurtCallback(() =>
             {
                 animator.SetTrigger("hurt");
-                if (!audioSource.isPlaying) audioSource.PlayOneShot(hurtSound);
+                if (hurtSound != null) audioSource.PlayOneShot(hurtSound);
             });
             health.setDeathCallback(() =>
             {
                 // Play death animation
                 animator.SetTrigger("death");
                 // Play death sound
-                audioSource.PlayOneShot(deathSound);
+                if(deathSound != null) audioSource.PlayOneShot(deathSound);
                 // End the game
                 //Time.timeScale = 0;
                 Cursor.visible = true;
@@ -224,7 +226,7 @@ namespace LIL
                 cooldown4 = true;
             }
 
-            if (profile.getKeyDown(PlayerAction.Pause))
+            if (profile.getKeyDown(PlayerAction.Pause) && !inventoryActive)
             {
                 if (!GeneralData.gamePaused)
                 {

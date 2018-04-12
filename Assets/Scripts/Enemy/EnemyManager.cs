@@ -13,6 +13,8 @@ namespace LIL
         public Transform[] spawnPoints;         // An array of the spawn points this enemy can spawn from.
         public AmbientMusic soundController;
 
+        public GameObject campfire;
+
         private Collider trigger;
         private int nbSpawned;
         private int nbDead;
@@ -31,8 +33,9 @@ namespace LIL
             }
         }
 
-        void Start()
+        private void Start()
         {
+            //campfire = transform.parent.gameObject;
             trigger = GetComponent<Collider>();
             InitializeSpawner();
         }
@@ -45,7 +48,7 @@ namespace LIL
             trigger.enabled = true;
         }
 
-        void Spawn()
+        private void Spawn()
         {
             ++nbSpawned;
 
@@ -86,10 +89,18 @@ namespace LIL
 
         public void CountDeath()
         {
+            Debug.Log("dead: " + (nbDead + 1) + "; ennemies: " + nbEnemies + "; this" + gameObject);
             if (++nbDead == nbEnemies)
             {
                 // if all enemies are spawned and dead, stop fight music
                 soundController.EndFightMusic();
+                //Debug.Log(campfire.name);
+                if (campfire != null)
+                {
+                    Debug.Log("not null: " + campfire);
+                    Debug.Log(gameObject.name);
+                    campfire.GetComponent<LightActivator>().ActivateFire();
+                }
             }
         }
 

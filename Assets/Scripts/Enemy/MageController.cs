@@ -92,7 +92,7 @@ namespace LIL
             isObstacle = false;
             isInRange = false;
             isRetreating = false;
-            body.isKinematic = true; // start as immobile
+            //body.isKinematic = true; // start as immobile
 
             shift = UnityEngine.Random.Range(0, 2);
             if (shift == 0) shift = -1;

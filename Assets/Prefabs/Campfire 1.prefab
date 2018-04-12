@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 33670295658029954}
   - component: {fileID: 23335515160343768}
   - component: {fileID: 65822399499741048}
+  - component: {fileID: 114639347233441662}
   - component: {fileID: 114014305787193526}
   - component: {fileID: 82202250607474358}
   m_Layer: 0
@@ -124,8 +125,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1078596613652648}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 989.81, y: 506.84, z: -15.06}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 45.4, y: 0.23, z: 183.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4625101328570952}
@@ -458,6 +459,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Interaction
+--- !u!114 &114639347233441662
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1078596613652648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01b37ac4839728041802c9a7781e1418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114948690315197402
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -545,7 +557,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 785979221
+  randomSeed: 925241998
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3954,8 +3966,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.00000095367}
-  m_SizeDelta: {x: 0, y: 60.49}
+  m_AnchoredPosition: {x: 0.0000743867, y: -0.00000095367}
+  m_SizeDelta: {x: -0.000015259, y: 60.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224602079610749142
 RectTransform:

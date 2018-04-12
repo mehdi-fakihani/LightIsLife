@@ -79,7 +79,7 @@ namespace LIL
                     if (poisonEffect == null)
                         enemyEffects.addEffect(poisonBuff.makeEffect());
                     else
-                        poisonEffect.setTime(poisonBuff.effectTime);
+                        poisonEffect.setTime(poisonBuff.buffDuration());
                 }
             }));
         }

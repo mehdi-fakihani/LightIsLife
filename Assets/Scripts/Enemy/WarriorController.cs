@@ -160,7 +160,6 @@ namespace LIL
             {
                 nav.SetDestination(player.position);
                 moveCancelled = false;
-                Debug.Log("in range");
                 transform.LookAt(player.position);
                 nav.isStopped = true;
                 nav.velocity = Vector3.zero;
