@@ -390,7 +390,7 @@ public class GeneralData : MonoBehaviour
             dependency = null, spritePath = "SkillSprite/Assassin/ShadowDance" };
         Skill Poison = new Skill { name = "Poison", _class = getClassByName("Assassin"), isUsed = false, deblocked = false,
             description = "Used to poison enemies.\nSword attacks apply a poison that hurts the affected enemies for (4s)"
-                , CapPointsToUnlock = 3, dependency = new List<Skill>() { ShadowDance }, spritePath = "SkillSprite/Assassin/Poison" };
+                , CapPointsToUnlock = 2, dependency = new List<Skill>() { BladesDance }, spritePath = "SkillSprite/Assassin/Poison" };
         Skill Adrenaline = new Skill { name = "Adrenaline", _class = getClassByName("Assassin"), isUsed = false, deblocked = false,
             description = "Used to lower the reloading time.\nSword attacks mark touched enemies (max 3)" +
                 "\nHit an enemy marked with a skill lower the realoding time", CapPointsToUnlock = 4,

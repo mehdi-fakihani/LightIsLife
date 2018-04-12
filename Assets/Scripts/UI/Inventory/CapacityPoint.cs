@@ -10,7 +10,6 @@ namespace LIL
 
         private int playerNum = 1;
         private int capacityPoint;
-        [SerializeField] private ExperienceManager playerLevel;
 
         // Use this for initialization
         void Start()

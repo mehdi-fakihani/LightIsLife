@@ -58,7 +58,7 @@ public class SettingsMenu : MonoBehaviour {
             Keyboard1Line.gameObject.SetActive(false);
             Controller1Line.gameObject.SetActive(true);
         }
-        else if(PlayerPrefs.GetInt("Input1") == -1)
+        else if(PlayerPrefs.GetInt("Input1") == -1 || controllerCount.Contains(PlayerPrefs.GetInt("Input1")))
         {
             GeneralData.inputPlayer1 = ProfilsID.Keyboard1;
             Profile.Models[1] = GeneralData.Keyboard1ProfileModel;
@@ -74,7 +74,7 @@ public class SettingsMenu : MonoBehaviour {
             Keyboard2Line.gameObject.SetActive(false);
             Controller2Line.gameObject.SetActive(true);
         }
-        else if (PlayerPrefs.GetInt("Input2") == -1)
+        else if (PlayerPrefs.GetInt("Input2") == -1 || controllerCount.Contains(PlayerPrefs.GetInt("Input2")))
         {
             GeneralData.inputPlayer2 = ProfilsID.Keyboard2;
             Profile.Models[2] = GeneralData.Keyboard2ProfileModel;
