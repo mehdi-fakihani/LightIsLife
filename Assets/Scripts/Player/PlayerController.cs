@@ -88,8 +88,11 @@ namespace LIL
             // Load the previous position
             float[] pos = GeneralData.getPlayerbyNum(playerNum).pos;
             this.transform.position = new Vector3(pos[0], pos[1], pos[2]);
+            if(PlayerPrefs.GetInt("Input" + playerNum) == -1)
+                profile = new Profile(playerNum, 0);
+            else
+                profile = new Profile(playerNum, PlayerPrefs.GetInt("Input" + playerNum));
 
-            profile = new Profile(playerNum, 0);
             GeneralData.setProfile(playerNum, profile);
 
             Light light = GetComponentInChildren<Light>();
@@ -230,7 +233,7 @@ namespace LIL
             {
                 if (!GeneralData.gamePaused)
                 {
-                    GUI.GetComponent<Pause>().pauseGame(playerNum);
+                    GUI.GetComponent<Pause>().pauseGame(playerNum, profile);
                 }
                 else
                 {

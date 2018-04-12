@@ -107,12 +107,16 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
     // Update is called once per frame
     void Update()
     {
+        int keyShift = 0;
+        if (PlayerPrefs.GetInt("Input" + playerNum) !=-1)
+            keyShift = PlayerPrefs.GetInt("Input" + playerNum) * ((int)KeyCode.Joystick2Button0 - (int)KeyCode.Joystick1Button0);
+
         if (selected)
         {
             if (playerNum != SettingsMenu.getPlayerNum())
                 playerNum = SettingsMenu.getPlayerNum();
 
-            if (Input.GetKeyDown(KeyCode.Joystick1Button0))
+            if (Input.GetKeyDown((KeyCode)(KeyCode.Joystick1Button0 + keyShift)))
             {
                 PlayerAction action = (PlayerAction)Enum.Parse(typeof(PlayerAction), this.name);
                 Debug.Log("key pressed : " + Key.GamepadA.ToString());
@@ -138,7 +142,7 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Joystick1Button1))
+            if (Input.GetKeyDown((KeyCode)(KeyCode.Joystick1Button1+keyShift)))
             {
                 PlayerAction action = (PlayerAction)Enum.Parse(typeof(PlayerAction), this.name);
                 Debug.Log("key pressed : " + Key.GamepadB.ToString());
@@ -163,7 +167,7 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                     }
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Joystick1Button2))
+            if (Input.GetKeyDown((KeyCode)(KeyCode.Joystick1Button2+keyShift)))
             {
                 PlayerAction action = (PlayerAction)Enum.Parse(typeof(PlayerAction), this.name);
                 Debug.Log("key pressed : " + Key.GamepadX.ToString());
@@ -188,7 +192,7 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                     }
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Joystick1Button3))
+            if (Input.GetKeyDown((KeyCode)(KeyCode.Joystick1Button3 + keyShift)))
             {
                 PlayerAction action = (PlayerAction)Enum.Parse(typeof(PlayerAction), this.name);
                 Debug.Log("key pressed : " + Key.GamepadY.ToString());
@@ -213,7 +217,7 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                     }
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Joystick1Button4))
+            if (Input.GetKeyDown((KeyCode)(KeyCode.Joystick1Button4 + keyShift)))
             {
                 PlayerAction action = (PlayerAction)Enum.Parse(typeof(PlayerAction), this.name);
                 Debug.Log("key pressed : " + Key.GamepadL1.ToString());
@@ -240,7 +244,7 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                     }
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Joystick1Button5))
+            if (Input.GetKeyDown((KeyCode)(KeyCode.Joystick1Button5 + keyShift)))
             {
                 PlayerAction action = (PlayerAction)Enum.Parse(typeof(PlayerAction), this.name);
                 Debug.Log("key pressed : " + Key.GamepadR1.ToString());
@@ -265,7 +269,7 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                     }
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Joystick1Button6))
+            if (Input.GetKeyDown((KeyCode) (KeyCode.Joystick1Button6 + keyShift)))
             {
                 PlayerAction action = (PlayerAction)Enum.Parse(typeof(PlayerAction), this.name);
                 Debug.Log("key pressed : " + Key.GamepadBack.ToString());
@@ -290,7 +294,7 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                     }
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Joystick1Button7))
+            if (Input.GetKeyDown((KeyCode) (KeyCode.Joystick1Button7 + keyShift)))
             {
                 PlayerAction action = (PlayerAction)Enum.Parse(typeof(PlayerAction), this.name);
                 Debug.Log("key pressed : " + Key.GamepadStart.ToString());
@@ -315,7 +319,7 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                     }
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Joystick1Button8))
+            if (Input.GetKeyDown((KeyCode)(KeyCode.Joystick1Button8 + keyShift)))
             {
                 PlayerAction action = (PlayerAction)Enum.Parse(typeof(PlayerAction), this.name);
                 Debug.Log("key pressed : " + Key.GamepadLeftJoystick.ToString());
@@ -340,7 +344,7 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                     }
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Joystick1Button9))
+            if (Input.GetKeyDown((KeyCode)(KeyCode.Joystick1Button9+keyShift)))
             {
                 PlayerAction action = (PlayerAction)Enum.Parse(typeof(PlayerAction), this.name);
                 Debug.Log("key pressed : " + Key.GamepadRightJoystick.ToString());

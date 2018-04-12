@@ -22,11 +22,19 @@ public class SettingsMenu : MonoBehaviour {
     private float sliderValue = 0f;
     private float sliderValueSFX = 0f;
     private string[] controllers;
+    private List<int> controllerCount;
 
     // Use this for initialization
     void Start ()
     {
         controllers = Input.GetJoystickNames();
+        controllerCount = new List<int>();
+        for (int i = 0; i < controllers.Length; i++)
+        {
+            if (controllers[i] != "")
+                controllerCount.Add(i);
+        }
+
 
         // check slider values
         musicSlider.GetComponent< Slider > ().value = PlayerPrefs.GetFloat("MusicVolume");
@@ -42,19 +50,37 @@ public class SettingsMenu : MonoBehaviour {
             toolTipsText.GetComponent<Text>().text = "on";
         }
 
-        // Set the start system for player 1 to keayboard 1
-        PlayerPrefs.SetInt("Input1", 1);
-        GeneralData.inputPlayer1 = ProfilsID.Keyboard1;
-        Profile.Models[1] = GeneralData.Keyboard1ProfileModel;
-        Keyboard1Line.gameObject.SetActive(true);
-        Controller1Line.gameObject.SetActive(false);
+        // Set the default input system for the player 1
+        if(PlayerPrefs.GetInt("Input1") >= 0 && controllerCount.Contains(PlayerPrefs.GetInt("Input1")))
+        {
+            GeneralData.inputPlayer1 = ProfilsID.XBoxGamepad;
+            Profile.Models[1] = GeneralData.controller1ProfileModel;
+            Keyboard1Line.gameObject.SetActive(false);
+            Controller1Line.gameObject.SetActive(true);
+        }
+        else if(PlayerPrefs.GetInt("Input1") == -1)
+        {
+            GeneralData.inputPlayer1 = ProfilsID.Keyboard1;
+            Profile.Models[1] = GeneralData.Keyboard1ProfileModel;
+            Keyboard1Line.gameObject.SetActive(true);
+            Controller1Line.gameObject.SetActive(false);
+        }
 
-        // Set the start system for player 2 to keayboard 2
-        PlayerPrefs.SetInt("Input2", 1);
-        GeneralData.inputPlayer2 = ProfilsID.Keyboard2;
-        Profile.Models[2] = GeneralData.Keyboard2ProfileModel;
-        Keyboard2Line.gameObject.SetActive(true);
-        Controller2Line.gameObject.SetActive(false);
+        // Set the default input system for the player 2
+        if (PlayerPrefs.GetInt("Input2") >= 0 && controllerCount.Contains(PlayerPrefs.GetInt("Input2")))
+        {
+            GeneralData.inputPlayer2 = ProfilsID.XBoxGamepad;
+            Profile.Models[2] = GeneralData.controller2ProfileModel;
+            Keyboard2Line.gameObject.SetActive(false);
+            Controller2Line.gameObject.SetActive(true);
+        }
+        else if (PlayerPrefs.GetInt("Input2") == -1)
+        {
+            GeneralData.inputPlayer2 = ProfilsID.Keyboard2;
+            Profile.Models[2] = GeneralData.Keyboard2ProfileModel;
+            Keyboard2Line.gameObject.SetActive(true);
+            Controller2Line.gameObject.SetActive(false);
+        }
 
         ChangeKeys.InitKeys(new GameObject[] {forwardKey, backwardsKey, leftKey, rightKey, swordAttackKey, skill1Key, skill2Key, skill3Key, skill4Key, pauseKey,
         interactKey, changeTorchKey, submitKey, cameraRightKey, cameraLeftKey });
@@ -106,7 +132,7 @@ public class SettingsMenu : MonoBehaviour {
 
     public void Keayboard(int playerNum)
     {
-        PlayerPrefs.SetInt("Input" + playerNum, 1);
+        PlayerPrefs.SetInt("Input" + playerNum, -1);
         if (playerNum == 1)
         {
             GeneralData.inputPlayer1 = ProfilsID.Keyboard1;
@@ -126,29 +152,31 @@ public class SettingsMenu : MonoBehaviour {
 
     public void Controller(int playerNum)
     {
-        int controllerCount = 0;
-        for(int i = 0; i < controllers.Length; i++)
+        if (playerNum == 1 && controllerCount.Count >= 1)
         {
-            if (controllers[i] != "")
-                controllerCount++;
-        }
-
-        if (playerNum == 1 && controllerCount >= 1)
-        {
-            if (PlayerPrefs.GetInt("Input2") == 1 || (PlayerPrefs.GetInt("Input2") == 2 && controllerCount >= 2))
+            if (PlayerPrefs.GetInt("Input2") == -1 || (PlayerPrefs.GetInt("Input2") >= 0 && controllerCount.Count >= 2))
             {
-                PlayerPrefs.SetInt("Input" + playerNum, 2);
+                if(PlayerPrefs.GetInt("Input2") == -1)
+                    PlayerPrefs.SetInt("Input" + playerNum, controllerCount.ToArray()[0]);
+                else if(PlayerPrefs.GetInt("Input2") >=0 && controllerCount.Count >= 2)
+                    PlayerPrefs.SetInt("Input" + playerNum, controllerCount.ToArray()[1]);
+
+
                 GeneralData.inputPlayer1 = ProfilsID.XBoxGamepad;
                 Profile.Models[1] = GeneralData.controller1ProfileModel;
                 Keyboard1Line.gameObject.SetActive(false);
                 Controller1Line.gameObject.SetActive(true);
             }
         }
-        else if (playerNum == 2 && controllerCount >= 1)
+        else if (playerNum == 2 && controllerCount.Count >= 1)
         {
-            if (PlayerPrefs.GetInt("Input1")==1 || (PlayerPrefs.GetInt("Input1") == 2 && controllerCount >= 2))
+            if (PlayerPrefs.GetInt("Input1")== -1 || (PlayerPrefs.GetInt("Input1") >= 0 && controllerCount.Count >= 2))
             {
-                PlayerPrefs.SetInt("Input" + playerNum, 2);
+                if(PlayerPrefs.GetInt("Input1") == -1)
+                    PlayerPrefs.SetInt("Input" + playerNum, controllerCount.ToArray()[0]);
+                else if(PlayerPrefs.GetInt("Input1") >= 0 && controllerCount.Count >= 2)
+                    PlayerPrefs.SetInt("Input" + playerNum, controllerCount.ToArray()[1]);
+
                 GeneralData.inputPlayer2 = ProfilsID.XBoxGamepad;
                 Profile.Models[2] = GeneralData.controller2ProfileModel;
                 Keyboard2Line.gameObject.SetActive(false);
@@ -183,7 +211,7 @@ public class SettingsMenu : MonoBehaviour {
 
         int inputSystem = PlayerPrefs.GetInt("Input"+playerNum);
 
-        if (inputSystem <= 1)
+        if (inputSystem == -1)
         {
             forwardKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.Up].ToString().Substring(8);
             backwardsKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.Down].ToString().Substring(8);
@@ -192,7 +220,7 @@ public class SettingsMenu : MonoBehaviour {
             cameraLeftKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.CameraLeft].ToString().Substring(8);
             cameraRightKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.CameraRight].ToString().Substring(8);
         }
-        else if(inputSystem == 2)
+        else if(inputSystem >= 0)
         {
             forwardKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.Up].ToString().Substring(7);
             backwardsKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.Down].ToString().Substring(7);
@@ -215,7 +243,7 @@ public class SettingsMenu : MonoBehaviour {
 
         int inputSystem = PlayerPrefs.GetInt("Input" + playerNum);
 
-        if (inputSystem <= 1)
+        if (inputSystem == -1)
         {
             swordAttackKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.Attack].ToString().Substring(8);
             skill1Key.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.Skill1].ToString().Substring(8);
@@ -223,7 +251,7 @@ public class SettingsMenu : MonoBehaviour {
             skill3Key.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.Skill3].ToString().Substring(8);
             skill4Key.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.Skill4].ToString().Substring(8);
         }
-        else if (inputSystem == 2)
+        else if (inputSystem >= 0)
         {
             swordAttackKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.Attack].ToString().Substring(7);
             skill1Key.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.Skill1].ToString().Substring(7);
@@ -245,14 +273,14 @@ public class SettingsMenu : MonoBehaviour {
 
         int inputSystem = PlayerPrefs.GetInt("Input" + playerNum);
 
-        if (inputSystem <= 1)
+        if (inputSystem == -1)
         {
             pauseKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.Pause].ToString().Substring(8);
             changeTorchKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.ChangeTorch].ToString().Substring(8);
             interactKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.Interaction].ToString().Substring(8);
             submitKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.Submit].ToString().Substring(8);
         }
-        else if (inputSystem == 2)
+        else if (inputSystem >= 0)
         {
             pauseKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.Pause].ToString().Substring(7) ;
             changeTorchKey.GetComponent<Text>().text = Profile.Models[playerNum].keys[LIL.PlayerAction.ChangeTorch].ToString().Substring(7);

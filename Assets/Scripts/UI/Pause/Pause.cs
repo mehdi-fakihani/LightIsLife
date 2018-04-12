@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using LIL.Inputs;
 
 public class Pause : MonoBehaviour {
 
     public GameObject pausePanel;
     private int playerNum;
+    private Profile profile;
 
-    public void pauseGame(int _playerNum)
+    public void pauseGame(int _playerNum, Profile _profile)
     {
         playerNum = _playerNum;
+        profile = _profile;
         pausePanel.SetActive(true);
         this.transform.GetChild(1).GetChild(1).GetComponent<Selectable>().Select();
         GeneralData.gamePaused = true;
@@ -36,5 +39,10 @@ public class Pause : MonoBehaviour {
     public int getPlayerNum()
     {
         return playerNum;
+    }
+
+    public Profile getProfile()
+    {
+        return profile;
     }
 }

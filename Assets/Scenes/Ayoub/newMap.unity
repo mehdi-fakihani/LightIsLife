@@ -616,7 +616,7 @@ Prefab:
         type: 2}
       propertyPath: camera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1032431001}
     - target: {fileID: 1491880915544872, guid: db6f1c49c7a53f14a928f20e7a8a0335, type: 2}
       propertyPath: m_Name
       value: PlayerKnight2
