@@ -6865,8 +6865,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 6
-  hurtSound: {fileID: 0}
-  deathSound: {fileID: 0}
+  hurtSound: {fileID: 8300000, guid: a0af0766297f419449c67e03bdb845b5, type: 3}
+  deathSound: {fileID: 8300000, guid: 060cb5ce4fb505840b091e54c8180407, type: 3}
   secondPlayer: {fileID: 0}
   secondPlayerExperience: {fileID: 0}
   camera: {fileID: 0}
