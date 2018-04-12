@@ -32,6 +32,17 @@ namespace LIL
         private bool player2InRange;
         private float currentAttackDamage;
 
+        public static GameObject Create(EnemyManager em, GameObject prefab, Vector3 position, Quaternion rotation)
+        {
+            GameObject w = Instantiate(prefab, position, rotation);
+            w.GetComponent<WarriorController>().SetManager(em);
+            return w;
+        }
+
+        public void SetManager(EnemyManager manager)
+        {
+            em = manager;
+        }
 
         void Start()
         {
@@ -47,12 +58,7 @@ namespace LIL
             playerInRange = false;
             timer = timeBetweenAttacks;
 
-            GameObject emObject = GameObject.FindGameObjectWithTag("EnemyManager");
-            if (emObject != null)
-            {
-                em = emObject.GetComponent<EnemyManager>();
-            }
-            
+
             // Set hurt and death reactions
             var health = GetComponent<HealthManager>();
             health.setHurtCallback(() =>

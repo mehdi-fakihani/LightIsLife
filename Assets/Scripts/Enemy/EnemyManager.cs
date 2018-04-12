@@ -52,13 +52,11 @@ namespace LIL
         {
             ++nbSpawned;
 
-            // Find a random index between zero and one less than the number of spawn points.
             int spawnPointIndex = Random.Range(0, spawnPoints.Length);
-
+            ChooseEnemy(spawnPointIndex);
             // Display an animation when an enemy spawn
             Instantiate(spawnAnimation, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
-            // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
-            Instantiate(ChooseEnemy(), spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+            
             // if all enemies have been spawned, stop spawn invoke
             if (IsAllSpawned())
             {
@@ -66,7 +64,7 @@ namespace LIL
             }
         }
 
-        private GameObject ChooseEnemy()
+        private void ChooseEnemy(int spawnPointIndex)
         {
             int enemyType = Random.Range(0, 3);
             switch (enemyType)
@@ -74,17 +72,19 @@ namespace LIL
                 case 0:
                     if(support != null)
                     {
-                        return support;
+                        SupportController.Create(this, support, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+                        return;
                     }
                     break;
                 case 1:
                     if(mage != null)
                     {
-                        return mage;
+                        MageController.Create(this, mage, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+                        return;
                     }
                     break;
             }
-            return warrior;
+            WarriorController.Create(this, warrior, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
         }
 
         public void CountDeath()
@@ -101,6 +101,7 @@ namespace LIL
                     Debug.Log(gameObject.name);
                     campfire.GetComponent<LightActivator>().ActivateFire();
                 }
+                Destroy(gameObject); ;
             }
         }
 
