@@ -15762,6 +15762,10 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1960253813363748, guid: 80d3d05207bb86444b65ba5643213eef, type: 2}
+      propertyPath: m_Name
+      value: ExperienceUI1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80d3d05207bb86444b65ba5643213eef, type: 2}
   m_IsPrefabParent: 0
@@ -79637,11 +79641,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114156387040599582, guid: e258e4679c31cf04d841447926f497cc,
-        type: 2}
-      propertyPath: sword_Sound
-      value: 
-      objectReference: {fileID: 8300000, guid: ebd961cfa0917bf4c960e72b477432f8, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e258e4679c31cf04d841447926f497cc, type: 2}
   m_IsPrefabParent: 0

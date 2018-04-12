@@ -45,12 +45,24 @@ namespace LIL
         private bool isObstacle;
         private bool isInRange;                 // try to fire
         private bool isRetreating;              // setup retreat
+        private Vector3 lastPosition;
+
+        public static GameObject Create(EnemyManager em, GameObject prefab, Vector3 position, Quaternion rotation)
+        {
+            GameObject o = Instantiate(prefab, position, rotation);
+            o.GetComponent<MageController>().SetManager(em);
+            return o;
+        }
+
+        public void SetManager(EnemyManager manager)
+        {
+            em = manager;
+        }
 
         void Start()
         {
             // Set up the references.
             source = GetComponent<AudioSource>();
-            em = GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>();
             player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
             torchLight = GameObject.FindGameObjectWithTag("Spirit").GetComponent<LightFuel>();
             animator = GetComponent<Animator>();
@@ -92,12 +104,11 @@ namespace LIL
             isObstacle = false;
             isInRange = false;
             isRetreating = false;
-            body.isKinematic = true; // start as immobile
+            //body.isKinematic = true; // start as immobile
 
             shift = UnityEngine.Random.Range(0, 2);
             if (shift == 0) shift = -1;
             currentShiftDistance = 0;
-
         }
 
         void Update()
@@ -131,6 +142,11 @@ namespace LIL
             currentShiftDistance += nav.speed * Time.deltaTime;
             if(currentShiftDistance > shiftDistance)
             {
+                if(Vector3.Distance(transform.position, lastPosition) < shiftDistance / 2)
+                {
+                    //if mage is blocked, try turning the other way around
+                    shift *= -1;
+                }
                 currentAction = this.TryToFire;
                 currentShiftDistance = 0;
             }
@@ -138,6 +154,7 @@ namespace LIL
 
         private void TryToFire()
         {
+            lastPosition = transform.position;
             float distance = Vector3.Distance(player.position, transform.position);
             isRetreating = distance < retreatRadius;
             if (isRetreating)

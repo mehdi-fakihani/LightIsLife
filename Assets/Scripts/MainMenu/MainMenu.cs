@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour
 
     public void Awake()
     {
+
         GeneralData.mainMenuID = SceneManager.GetActiveScene().buildIndex;
 
 
@@ -31,21 +32,25 @@ public class MainMenu : MonoBehaviour
 
         GeneralData.sceneName = sceneName;
 
-        // Setting up the Azerty Model
-        GeneralData.azertyProfileModel = new ProfileModel(ProfilsID.KeyboardAZERTY, Device.Keyboard, Key.KeyboardZ, Key.KeyboardS, Key.KeyboardQ,
-            Key.KeyboardD, Key.KeyboardSpace, Key.Keyboard1, Key.Keyboard2, Key.Keyboard3, Key.Keyboard4, Key.KeyboardE, Key.KeyboardX,
-            Key.KeyboardV, Key.KeyboardESC, Key.KeyboardLeft, Key.KeyboardRight);
-
-        // Setting up the Qwerty Model
-        GeneralData.qwertyProfileModel = new ProfileModel(ProfilsID.KeyboardQWERTY, Device.Keyboard, Key.KeyboardW, Key.KeyboardS, Key.KeyboardA,
+        // Setting up the Keyboard1 Model
+        GeneralData.Keyboard1ProfileModel = new ProfileModel(ProfilsID.Keyboard1, Device.Keyboard, Key.KeyboardZ, Key.KeyboardS, Key.KeyboardQ,
             Key.KeyboardD, Key.KeyboardR, Key.KeyboardNUM8, Key.KeyboardNUM4, Key.KeyboardNUM6, Key.KeyboardNUM5, Key.KeyboardE, Key.KeyboardX,
-            Key.KeyboardV, Key.KeyboardESC, Key.KeyboardLeft, Key.KeyboardRight);
+            Key.KeyboardSpace, Key.KeyboardESC, Key.KeyboardLeft, Key.KeyboardRight);
 
-        // Setting up the Controller Model
-        GeneralData.controllerProfileModel = new ProfileModel(ProfilsID.XBoxGamepad, Device.XBoxGamepad, Key.GamepadLeftJoystickUp,
+        // Setting up the Keyboard2 Model
+        GeneralData.Keyboard2ProfileModel = new ProfileModel(ProfilsID.Keyboard2, Device.Keyboard, Key.KeyboardW, Key.KeyboardS, Key.KeyboardA,
+            Key.KeyboardD, Key.KeyboardR, Key.KeyboardNUM8, Key.KeyboardNUM4, Key.KeyboardNUM6, Key.KeyboardNUM5, Key.KeyboardE, Key.KeyboardX,
+            Key.KeyboardSpace, Key.KeyboardESC, Key.KeyboardLeft, Key.KeyboardRight);
+
+        // Setting up the Controller1 Model
+        GeneralData.controller1ProfileModel = new ProfileModel(ProfilsID.XBoxGamepad, Device.XBoxGamepad, Key.GamepadLeftJoystickUp,
             Key.GamepadLeftJoystickDown, Key.GamepadLeftJoystickLeft, Key.GamepadLeftJoystickRight, Key.GamepadR1, Key.GamepadA,
-            Key.GamepadB, Key.GamepadX, Key.GamepadY, Key.GamepadL1, Key.GamepadR2, Key.GamepadL2, Key.GamepadStart, Key.GamepadRightJoystickRight, Key.GamepadRightJoystickLeft);
+            Key.GamepadB, Key.GamepadX, Key.GamepadY, Key.GamepadL1, Key.GamepadR2, Key.GamepadA, Key.GamepadStart, Key.GamepadRightJoystickRight, Key.GamepadRightJoystickLeft);
 
+        // Setting up the Controller2 Model
+        GeneralData.controller2ProfileModel = new ProfileModel(ProfilsID.XBoxGamepad, Device.XBoxGamepad, Key.GamepadLeftJoystickUp,
+            Key.GamepadLeftJoystickDown, Key.GamepadLeftJoystickLeft, Key.GamepadLeftJoystickRight, Key.GamepadR1, Key.GamepadA,
+            Key.GamepadB, Key.GamepadX, Key.GamepadY, Key.GamepadL1, Key.GamepadR2, Key.GamepadA, Key.GamepadStart, Key.GamepadRightJoystickRight, Key.GamepadRightJoystickLeft);
     }
 
     public void PlayCampaign()

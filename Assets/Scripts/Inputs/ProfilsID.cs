@@ -10,8 +10,8 @@ namespace LIL.Inputs
     /// </summary>
     public enum ProfilsID
     {
-        KeyboardAZERTY,
-        KeyboardQWERTY,
+        Keyboard1,
+        Keyboard2,
         XBoxGamepad
     }
 }

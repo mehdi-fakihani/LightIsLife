@@ -23,14 +23,14 @@ namespace LIL
         // Update is called once per frame
         void Update()
         {
-           // if (capacityPoint != GeneralData.GetCapacityPoints(playerNum-48))
-           setCapacityPoint();
+           if (capacityPoint != GeneralData.GetCapacityPoints(playerNum - 48)) setCapacityPoint();
 
         }
 
         public void setCapacityPoint()
         {
             capacityPoint = GeneralData.GetCapacityPoints(playerNum-48);
+            //capacityPoint = playerLevel.GetLevel();
             if (capacityPoint > 1) this.GetComponent<Text>().text = "You have " + capacityPoint + " capacity Points";
             else if (capacityPoint >= 0) this.GetComponent<Text>().text = "You have " + capacityPoint + " capacity point";
         }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LIL;
 
 public class ExperienceManager : MonoBehaviour {
 
@@ -9,10 +10,12 @@ public class ExperienceManager : MonoBehaviour {
     private AudioSource source;
     private int experience = 0;
     private int level;
+    private int playerNum;
 
     private void Start()
     {
         source = GetComponent<AudioSource>();
+        playerNum = (int)gameObject.name[gameObject.name.Length - 1] - 48;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -20,7 +23,7 @@ public class ExperienceManager : MonoBehaviour {
         if (other.CompareTag("Exp"))
         {
             source.PlayOneShot(itemCollect);
-            experience++;
+            GeneralData.IncrExperience(1, playerNum);
             Destroy(other.gameObject);
         }
     }

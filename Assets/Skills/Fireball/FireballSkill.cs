@@ -34,7 +34,7 @@ namespace LIL
         public float damageAttack;              // The fireball damage
         public float castTime;                  // Time of the cast
         public float ejection;                    // ejection factor
-        
+
         public override void cast(SkillManager skillManager)
         {
             // Initialization :

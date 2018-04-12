@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 //using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace LIL
 {
@@ -14,6 +15,7 @@ namespace LIL
         [SerializeField] public SkillsID id;
         [SerializeField] public float cooldown;
         [SerializeField] public int chargesCount;
+        public Sprite skillImage;
 
         /// <summary>
         /// The effect of te skill. The skill's owner is passed as parameter.

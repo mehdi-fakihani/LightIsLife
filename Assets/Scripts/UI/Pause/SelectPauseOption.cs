@@ -17,7 +17,7 @@ namespace LIL
         {
             pause = this.transform.parent.parent.GetComponent<Pause>();
             playerNum = pause.getPlayerNum();
-            profile = new Profile(playerNum, 0);
+            profile = pause.getProfile();
         }
 
         public void OnDeselect(BaseEventData eventData)
