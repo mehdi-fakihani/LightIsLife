@@ -83,7 +83,7 @@ MonoBehaviour:
   id: 0
   cooldown: 0
   chargesCount: 1
-  sword_Sound: {fileID: 0}
+  sword_Sound: {fileID: 8300000, guid: ebd961cfa0917bf4c960e72b477432f8, type: 3}
   damageAttack: 10
   castTime: 0.5
   range: 2.5
@@ -109,7 +109,7 @@ MonoBehaviour:
   castEffect: {fileID: 1551265745075496, guid: 05d7a12451c0aa342b60476cab2f48b4, type: 2}
   impactEffect: {fileID: 1840895727837626, guid: 8091a1157c2b85845b54fa0477cb2ef0,
     type: 2}
-  castSound: {fileID: 0}
+  castSound: {fileID: 8300000, guid: 6d90f85edca8df442a3ca60875d2aec7, type: 3}
 --- !u!114 &114416440836582140
 MonoBehaviour:
   m_ObjectHideFlags: 1
