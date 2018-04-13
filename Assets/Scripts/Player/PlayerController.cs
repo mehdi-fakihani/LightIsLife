@@ -229,7 +229,7 @@ namespace LIL
                 cooldown4 = true;
             }
 
-            if (profile.getKeyDown(PlayerAction.Pause) && !inventoryActive)
+            if (profile.getKeyDown(PlayerAction.Pause) && !inventoryActive && !secondPlayer.GetComponent<PlayerController>().inventoryActive)
             {
                 if (!GeneralData.gamePaused)
                 {

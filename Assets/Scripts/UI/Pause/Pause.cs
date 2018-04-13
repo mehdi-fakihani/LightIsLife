@@ -16,7 +16,7 @@ public class Pause : MonoBehaviour {
         playerNum = _playerNum;
         profile = _profile;
         pausePanel.SetActive(true);
-        this.transform.GetChild(1).GetChild(1).GetComponent<Selectable>().Select();
+        pausePanel.transform.GetChild(1).GetComponent<Selectable>().Select();
         GeneralData.gamePaused = true;
         Time.timeScale = 0f;
     }
