@@ -10,6 +10,7 @@ namespace LIL
         public float smoothing = 5f;        // The speed with which the camera will be following.
         public float rotateSpeed = 3.0f;
         private float x = 0;
+        private float y = 0;
         private float moveCamera;
 
         Vector3 offset;                     // The initial offset from the target.
@@ -28,8 +29,10 @@ namespace LIL
             if (profile.getKey(PlayerAction.CameraLeft)) moveCamera += 1.0f;
             if (profile.getKey(PlayerAction.CameraRight)) moveCamera -= 1.0f;
             x = moveCamera * rotateSpeed;
+            //y = Input.GetAxis("Vertical") * rotateSpeed;
 
             offset = Quaternion.AngleAxis(x, Vector3.up) * offset;
+            //offset = Quaternion.AngleAxis(y, Vector3.right) * offset;
 
             // Create a postion the camera is aiming for based on the offset from the target.
             Vector3 targetCamPos = target.position + offset;
