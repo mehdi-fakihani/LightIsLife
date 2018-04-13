@@ -60,7 +60,9 @@ public class AutoTransparent : MonoBehaviour
                 {
                     if (m.GetFloat("_Mode") == 0.0f)
                     {
+                        Texture oldText = m.mainTexture;
                         m.shader = Shader.Find("Transparent/Diffuse");
+                        m.mainTexture = oldText;
                     }
                 }
                 Color c = m.color;
