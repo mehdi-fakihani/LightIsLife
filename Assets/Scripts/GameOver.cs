@@ -10,7 +10,6 @@ public class GameOver : MonoBehaviour {
     private float timer;
 	// Use this for initialization
 	void Start () {
-        Debug.Log("OK");
         playerAnimation = player.GetComponent<Animator>();
         //playerAnimation.SetTrigger("death");
         playerAnimation.Play("Death");

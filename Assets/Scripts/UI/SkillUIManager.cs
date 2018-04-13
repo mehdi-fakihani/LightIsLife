@@ -69,7 +69,6 @@ namespace LIL
                 {
                     ResetCooldown(cooldown1);
                 }
-                Debug.Log("ok");
             }
             if (indexSkill == 1)
             {
