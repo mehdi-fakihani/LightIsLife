@@ -38,11 +38,23 @@ namespace LIL
                 chargeCount1.GetComponent<Text>().text = player.GetAllSkill()[0].chargesAvailable().ToString();
                 skill1.SetActive(true);
             }
+            else
+            {
+                skill1.GetComponent<Image>().sprite = null;
+                chargeCount1.GetComponent<Text>().text = "";
+                skill1.SetActive(false);
+            }
             if (player.GetAllSkill()[1] != null)
             {
                 skill2.GetComponent<Image>().sprite = player.GetAllSkill()[1].getImage();
                 chargeCount2.GetComponent<Text>().text = player.GetAllSkill()[1].chargesAvailable().ToString();
                 skill2.SetActive(true);
+            }
+            else
+            {
+                skill2.GetComponent<Image>().sprite = null;
+                chargeCount2.GetComponent<Text>().text = "";
+                skill2.SetActive(false);
             }
             if (player.GetAllSkill()[2] != null)
             {
@@ -50,11 +62,23 @@ namespace LIL
                 chargeCount3.GetComponent<Text>().text = player.GetAllSkill()[2].chargesAvailable().ToString();
                 skill3.SetActive(true);
             }
+            else
+            {
+                skill3.GetComponent<Image>().sprite = null;
+                chargeCount3.GetComponent<Text>().text = "";
+                skill3.SetActive(false);
+            }
             if (player.GetAllSkill()[3] != null)
             {
                 skill4.GetComponent<Image>().sprite = player.GetAllSkill()[3].getImage();
                 chargeCount4.GetComponent<Text>().text = player.GetAllSkill()[3].chargesAvailable().ToString();
                 skill4.SetActive(true);
+            }
+            else
+            {
+                skill4.GetComponent<Image>().sprite = null;
+                chargeCount4.GetComponent<Text>().text = "";
+                skill4.SetActive(false);
             }
         }
 

@@ -11,13 +11,13 @@ using LIL.Inputs;
 //
 //  Name:   GeneralData.cs
 //
-//  Desc:   Manage all data and load saves
+//  Desc:   Manage all data it's the data center of the game, it's where we initilize, save and load the game.
 //
-//  Attachment :    This class is called by several other classes whenever we need data
+//  Attachment :    This class is called by several other classes whenever we need data.
 //
 //  Creation :  06/02/2018
 //
-//  Last modification : Aub Ah - 06/02/2018
+//  Last modification : Aub Ah - 13/04/2018
 //
 //------------------------------------------------------------------------
 
@@ -36,10 +36,6 @@ public class GeneralData : MonoBehaviour
     private static Skill[] usedSkills1 = new Skill[] { null, null, null, null };
     private static Skill[] usedSkills2 = new Skill[] { null, null, null, null };
     //private static List<Tuto> tutos;
-    private static int curExperience1;
-    private static int curCapacityPoints1;
-    private static int curExperience2;
-    private static int curCapacityPoints2;
     public static string fileName;
     public static string path = Application.persistentDataPath + "/Saves";
     public static ProfilsID inputPlayer1, inputPlayer2;
@@ -68,8 +64,8 @@ public class GeneralData : MonoBehaviour
 
     }
 
-        // Player
-        [System.Serializable]
+    // Player
+    [System.Serializable]
     public class Player
     {
         public int playerNum;
@@ -79,8 +75,12 @@ public class GeneralData : MonoBehaviour
         public int level;
         public int capacityPoints;
         public float[] pos;
+        public float initialLife;
+        public float currentLife;
+        public int healingRate;
 
-        public Player(int _playerNum, List<Skill> _skills, Skill[] _usedSkills, int _experience, int _level, int _capacityPoints, float[] _pos)
+        public Player(int _playerNum, List<Skill> _skills, Skill[] _usedSkills, int _experience, int _level, int _capacityPoints, float[] _pos,
+            float _initialLife, float _currentLife, int _healingRate)
         {
             playerNum = _playerNum;
             skills = _skills;
@@ -89,6 +89,9 @@ public class GeneralData : MonoBehaviour
             level = _level;
             capacityPoints = _capacityPoints;
             pos = _pos;
+            initialLife = _initialLife;
+            currentLife = _currentLife;
+            healingRate = _healingRate;
         }
 
     }
@@ -163,7 +166,7 @@ public class GeneralData : MonoBehaviour
     {
         players = new List<Player>();
         List<Skill> skills1 = initSkillsList();
-        Player player1 = new Player(1, skills1, new Skill[] { null, null, null, null }, 0, 1, 1, new float[] { 30f, 0f, 26f });
+        Player player1 = new Player(1, skills1, new Skill[] { null, null, null, null }, 0, 1, 1, new float[] { 30f, 0f, 26f }, 500, 500, 3);
         
         players.Add(player1);
 
@@ -171,7 +174,7 @@ public class GeneralData : MonoBehaviour
         if (multiplayer)
         {
             List<Skill> skills2 = initSkillsList();
-            Player player2 = new Player(2, skills2, new Skill[] { null, null, null, null }, 0,1, 1, new float[] { 25f, 0f, 30f });
+            Player player2 = new Player(2, skills2, new Skill[] { null, null, null, null }, 0,1, 1, new float[] { 25f, 0f, 30f }, 500, 500, 3);
             
             players.Add(player2);
         }
@@ -227,14 +230,28 @@ public class GeneralData : MonoBehaviour
     public static void IncrExperience(int amount, int playerNum)
     {
         getPlayerbyNum(playerNum).experience += amount;
-        Save(fileName);
+        //Save(fileName);
     }
+
+
+    //---------------------------------  Level  ---------------------------------
 
     // incr Level
     public static void incrLevel(int playerNum)
     {
         getPlayerbyNum(playerNum).level++;
         UpdateCapacitypoints(1, playerNum);
+        Debug.Log("Level up + 30 initial life and + 60 current life");
+        if (GetCurrentLife(playerNum) == GetInitialLife(playerNum) || (GetCurrentLife(playerNum) + 60) >= GetInitialLife(playerNum))
+        {
+            UpdateInitialLife(30, playerNum);
+            SetCurrentLife(GetInitialLife(playerNum), playerNum);
+        }
+        else
+        {
+            UpdateInitialLife(30, playerNum);
+            UpdateCurrentLife(60, playerNum);
+        }
     }
 
     // Get Level
@@ -243,7 +260,68 @@ public class GeneralData : MonoBehaviour
         return getPlayerbyNum(playerNum).level;
     }
 
-    
+
+    //---------------------------------  Initial Life  ---------------------------------
+
+    // Get initial life
+    public static float GetInitialLife(int playerNum)
+    {
+        return getPlayerbyNum(playerNum).initialLife;
+    }
+
+    // incr initial life
+    public static void UpdateInitialLife(float amount, int playerNum)
+    {
+        getPlayerbyNum(playerNum).initialLife += amount;
+    }
+
+
+    //---------------------------------  Current Life  ---------------------------------
+
+    // Get current life
+    public static float GetCurrentLife(int playerNum)
+    {
+        return getPlayerbyNum(playerNum).currentLife;
+    }
+
+    // incr current life
+    public static void UpdateCurrentLife(float amount, int playerNum)
+    {
+        if ((getPlayerbyNum(playerNum).currentLife + amount) <= getPlayerbyNum(playerNum).initialLife && (getPlayerbyNum(playerNum).currentLife + amount) > 0 )
+            getPlayerbyNum(playerNum).currentLife += amount;
+        else
+            getPlayerbyNum(playerNum).currentLife = getPlayerbyNum(playerNum).initialLife;
+    }
+
+    // Set current life
+    public static void SetCurrentLife(float life, int playerNum)
+    {
+        if (life <= getPlayerbyNum(playerNum).initialLife && life > 0)
+            getPlayerbyNum(playerNum).currentLife = life;
+        else if(life > getPlayerbyNum(playerNum).initialLife)
+            getPlayerbyNum(playerNum).currentLife = getPlayerbyNum(playerNum).initialLife;
+
+    }
+
+
+    //---------------------------------  Healing Rate  ---------------------------------
+
+    public static int GetHealingRate(int playerNum)
+    {
+        return getPlayerbyNum(playerNum).healingRate;
+    }
+
+    public static void UpdateHealingRate(int amount, int playerNum)
+    {
+        if (getPlayerbyNum(playerNum).healingRate + amount > 0)
+            getPlayerbyNum(playerNum).healingRate += amount; 
+    }
+
+    public static void SetHealingRate(int _healingRate, int playerNum)
+    {
+        getPlayerbyNum(playerNum).healingRate = _healingRate;
+    }
+
 
     //---------------------------------  Capacity Points  ---------------------------------
 
@@ -257,7 +335,7 @@ public class GeneralData : MonoBehaviour
     public static void UpdateCapacitypoints(int amount, int playerNum)
     {
         getPlayerbyNum(playerNum).capacityPoints += amount;
-        Save(fileName);
+        //Save(fileName);
     }
 
 
@@ -508,8 +586,4 @@ public class GeneralData : MonoBehaviour
         fileName = "Game" + (files.Length + 1) + ".sav";
         initGame();
     }
-
-   
-
-
 }

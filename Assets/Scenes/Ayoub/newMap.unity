@@ -563,7 +563,7 @@ Prefab:
     - target: {fileID: 114555758657459122, guid: db6f1c49c7a53f14a928f20e7a8a0335,
         type: 2}
       propertyPath: skillIds.Array.size
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4946844160478084, guid: db6f1c49c7a53f14a928f20e7a8a0335, type: 2}
       propertyPath: m_LocalPosition.x
@@ -947,7 +947,7 @@ Prefab:
     - target: {fileID: 114555758657459122, guid: db6f1c49c7a53f14a928f20e7a8a0335,
         type: 2}
       propertyPath: skillIds.Array.size
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4946844160478084, guid: db6f1c49c7a53f14a928f20e7a8a0335, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1181,6 +1181,10 @@ Prefab:
     - target: {fileID: 224256581832133968, guid: 80d3d05207bb86444b65ba5643213eef,
         type: 2}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960253813363748, guid: 80d3d05207bb86444b65ba5643213eef, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

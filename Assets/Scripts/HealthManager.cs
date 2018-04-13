@@ -21,6 +21,7 @@ namespace LIL
         private Action hurtCallback  = () => { };
         private Action deathCallback = () => { };
         public GameObject damagePopUp;
+        int playerNum;
 
         /// <summary>
         /// Set the function called each time the entity takes damages.
@@ -87,6 +88,9 @@ namespace LIL
 
             life -= damages / protectionRatio;
 
+            if (gameObject.tag == "Player")
+                GeneralData.SetCurrentLife(life, playerNum);
+
             damagePopUp.GetComponent<DamagePopUp>().SetTextDamage((int) (damages / protectionRatio));
 
             if (life > 0f)
@@ -137,8 +141,58 @@ namespace LIL
         }
         void Awake()
         {
-            life = initialLife;
+            if(gameObject.tag == "Player")
+            {
+                playerNum = gameObject.GetComponent<PlayerController>().getPlayerNum();
+                Debug.Log("player Num : " + playerNum);
+                Debug.Log("initial life before : " + initialLife);
+                initialLife = GeneralData.GetInitialLife(playerNum);
+                Debug.Log("initial life after : " + initialLife);
+
+                life = GeneralData.GetCurrentLife(playerNum);
+                Debug.Log("current life after : " + life);
+
+                StartCoroutine(RegenerateHealth());
+            }
+            else
+            {
+                life = initialLife;
+            }
+            
         }
-        
+        void Update()
+        {
+            if (gameObject.tag == "Player" && initialLife != GeneralData.GetInitialLife(playerNum))
+            {
+                Debug.Log("initial life update before : " + initialLife);
+                initialLife = GeneralData.GetInitialLife(playerNum);
+                Debug.Log("initial life update after : " + initialLife);
+            }
+            if (gameObject.tag == "Player" && life != GeneralData.GetCurrentLife(playerNum))
+            {
+                Debug.Log("current life update before : " + life);
+                life = GeneralData.GetCurrentLife(playerNum);
+                Debug.Log("current life update after : " + life);
+            }
+        }
+
+        IEnumerator RegenerateHealth()
+        {
+            while (true)
+            { // loops forever...
+                if (life < initialLife/2)
+                { // if current life < initialLife/2...
+                    life += GeneralData.GetHealingRate(playerNum); // increase current life and wait the specified time
+                    GeneralData.SetCurrentLife(life, playerNum);
+                    Debug.Log("healing " + life + "/"+initialLife);
+                    yield return new WaitForSeconds(1);
+                }
+                else
+                { // if current life >= initialLife/2, just yield 
+                    yield return null;
+                }
+            }
+        }
+
     }
 }

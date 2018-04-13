@@ -158,42 +158,42 @@ namespace LIL
         void Update()
         {
             ControllPlayer();
-             if (cooldown1 && selectedSkills[0].chargesAvailable() < selectedSkills[0].GetChargeCount())
+             if (selectedSkills[0]!=null && cooldown1 && selectedSkills[0].chargesAvailable() < selectedSkills[0].GetChargeCount())
              {
                  skillUI.StartCooldown(selectedSkills[0].GetCooldown(), 0);
                  cdTime1 += Time.deltaTime;
              }
-             else if (cooldown1 && cdTime1 >= selectedSkills[0].GetCooldown() )
+             else if (selectedSkills[0] != null && cooldown1 && cdTime1 >= selectedSkills[0].GetCooldown() )
              {
                  cooldown1 = false;
                  cdTime1 = 0;
              }
-            if (cooldown2 && selectedSkills[1].chargesAvailable() < selectedSkills[1].GetChargeCount())
+            if (selectedSkills[1] != null && cooldown2 && selectedSkills[1].chargesAvailable() < selectedSkills[1].GetChargeCount())
             {
                 skillUI.StartCooldown(selectedSkills[1].GetCooldown(), 1);
                 cdTime2 += Time.deltaTime;
             }
-            else if (cooldown2 && cdTime2 >= selectedSkills[1].GetCooldown())
+            else if (selectedSkills[1] != null && cooldown2 && cdTime2 >= selectedSkills[1].GetCooldown())
             {
                 cooldown2 = false;
                 cdTime2 = 0;
             }
-            if (cooldown3 && selectedSkills[2].chargesAvailable() < selectedSkills[2].GetChargeCount())
+            if (selectedSkills[2] != null && cooldown3 && selectedSkills[2].chargesAvailable() < selectedSkills[2].GetChargeCount())
             {
                 skillUI.StartCooldown(selectedSkills[2].GetCooldown(), 2);
                 cdTime3 += Time.deltaTime;
             }
-            else if (cooldown3 && cdTime3 >= selectedSkills[2].GetCooldown())
+            else if (selectedSkills[2] != null && cooldown3 && cdTime3 >= selectedSkills[2].GetCooldown())
             {
                 cooldown3 = false;
                 cdTime3 = 0;
             }
-            if (cooldown4 && selectedSkills[3].chargesAvailable() < selectedSkills[3].GetChargeCount())
+            if (selectedSkills[3] != null && cooldown4 && selectedSkills[3].chargesAvailable() < selectedSkills[3].GetChargeCount())
             {
                 skillUI.StartCooldown(selectedSkills[3].GetCooldown(), 3);
                 cdTime4 += Time.deltaTime;
             }
-            else if (cooldown4 && cdTime4 >= selectedSkills[3].GetCooldown())
+            else if (selectedSkills[3] != null && cooldown4 && cdTime4 >= selectedSkills[3].GetCooldown())
             {
                 cooldown4 = false;
                 cdTime4 = 0;

@@ -94,7 +94,7 @@ namespace LIL
         void OnTriggerEnter(Collider other)
         {
             // If the entering collider is the player...
-            if (other.gameObject.Equals(player.gameObject))
+            if (other.gameObject.tag== "Player")
             {
                 // ... the player is in range.
                 playerInRange = true;

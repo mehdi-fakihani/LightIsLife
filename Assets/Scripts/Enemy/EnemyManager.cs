@@ -96,6 +96,13 @@ namespace LIL
                 //Debug.Log(campfire.name);
                 if (campfire != null)
                 {
+                    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+                    foreach(GameObject player in players)
+                    {
+                        Debug.Log("Zone deblocked + 30 current life");
+                        GeneralData.UpdateCurrentLife(30, player.GetComponent<PlayerController>().getPlayerNum());
+                    }
+                    
                     campfire.GetComponent<LightActivator>().ActivateFire();
                 }
                 Destroy(gameObject);
