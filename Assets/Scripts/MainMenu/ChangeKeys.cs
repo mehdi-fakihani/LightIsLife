@@ -78,6 +78,7 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                         PlayerAction action = (PlayerAction)Enum.Parse(typeof(PlayerAction), this.name);
                         if (!Profile.Models[playerNum].keys.ContainsValue(newKey) && newKey.ToString().StartsWith("Keyboard"))
                         {
+                            PlayerPrefs.SetInt("Keyboard" + playerNum + "_" + this.name, (int)newKey);
                             Profile.Models[playerNum].keys[action] = newKey;
                             this.GetComponent<Text>().text = newKey.ToString().Substring(8);
                             
@@ -91,7 +92,9 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                                 if ((int)Profile.Models[playerNum].keys[pa] == (int)newKey)
                                 {
                                     Profile.Models[playerNum].keys[pa] = Profile.Models[playerNum].keys[action];
+                                    PlayerPrefs.SetInt("Keyboard" + playerNum + "_" + pa.ToString(), (int) Profile.Models[playerNum].keys[action]);
                                     GetKeyGameObject(pa.ToString()).GetComponent<Text>().text = Profile.Models[playerNum].keys[pa].ToString().Substring(8);
+                                    PlayerPrefs.SetInt("Keyboard" + playerNum + "_" + this.name, (int)newKey);
                                     Profile.Models[playerNum].keys[action] = newKey;
                                     this.GetComponent<Text>().text = newKey.ToString().Substring(8);
                                 }
@@ -123,6 +126,7 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                 if (!Profile.Models[playerNum].keys.ContainsValue(Key.GamepadA))
                 {
                     Profile.Models[playerNum].keys[action] = Key.GamepadA;
+                    PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + this.name, (int)Key.GamepadA);
                     this.GetComponent<Text>().text = Key.GamepadA.ToString().Substring(7);
                 }
                 else
@@ -134,8 +138,10 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                         if ((int)Profile.Models[playerNum].keys[pa] == (int)Key.GamepadA)
                         {
                             Profile.Models[playerNum].keys[pa] = Profile.Models[playerNum].keys[action];
+                            PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + pa.ToString(), (int)Profile.Models[playerNum].keys[action]);
                             GetKeyGameObject(pa.ToString()).GetComponent<Text>().text = Profile.Models[playerNum].keys[pa].ToString().Substring(7);
                             Profile.Models[playerNum].keys[action] = Key.GamepadA;
+                            PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + this.name, (int)Key.GamepadA);
                             this.GetComponent<Text>().text = Key.GamepadA.ToString().Substring(7);
                         }
                     }
@@ -149,6 +155,7 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                 if (!Profile.Models[playerNum].keys.ContainsValue(Key.GamepadB))
                 {
                     Profile.Models[playerNum].keys[action] = Key.GamepadB;
+                    PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + this.name, (int)Key.GamepadB);
                     this.GetComponent<Text>().text = Key.GamepadB.ToString().Substring(7);
                 }
                 else
@@ -160,8 +167,10 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                         if ((int)Profile.Models[playerNum].keys[pa] == (int)Key.GamepadB)
                         {
                             Profile.Models[playerNum].keys[pa] = Profile.Models[playerNum].keys[action];
+                            PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + pa.ToString(), (int)Profile.Models[playerNum].keys[action]);
                             GetKeyGameObject(pa.ToString()).GetComponent<Text>().text = Profile.Models[playerNum].keys[pa].ToString().Substring(7);
                             Profile.Models[playerNum].keys[action] = Key.GamepadB;
+                            PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + this.name, (int)Key.GamepadB);
                             this.GetComponent<Text>().text = Key.GamepadB.ToString().Substring(7);
                         }
                     }
@@ -174,6 +183,7 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                 if (!Profile.Models[playerNum].keys.ContainsValue(Key.GamepadX))
                 {
                     Profile.Models[playerNum].keys[action] = Key.GamepadX;
+                    PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + this.name, (int)Key.GamepadX);
                     this.GetComponent<Text>().text = Key.GamepadX.ToString().Substring(7);
                 }
                 else
@@ -185,8 +195,10 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                         if ((int) Profile.Models[playerNum].keys[pa] == (int)Key.GamepadX)
                         {
                             Profile.Models[playerNum].keys[pa] = Profile.Models[playerNum].keys[action];
+                            PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + pa.ToString(), (int)Profile.Models[playerNum].keys[action]);
                             GetKeyGameObject(pa.ToString()).GetComponent<Text>().text = Profile.Models[playerNum].keys[pa].ToString().Substring(7);
                             Profile.Models[playerNum].keys[action] = Key.GamepadX;
+                            PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + this.name, (int)Key.GamepadX);
                             this.GetComponent<Text>().text = Key.GamepadX.ToString().Substring(7);
                         }
                     }
@@ -199,6 +211,7 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                 if (!Profile.Models[playerNum].keys.ContainsValue(Key.GamepadY))
                 {
                     Profile.Models[playerNum].keys[action] = Key.GamepadY;
+                    PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + this.name, (int)Key.GamepadY);
                     this.GetComponent<Text>().text = Key.GamepadY.ToString().Substring(7);
                 }
                 else
@@ -210,8 +223,10 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                         if ((int)Profile.Models[playerNum].keys[pa] == (int)Key.GamepadY)
                         {
                             Profile.Models[playerNum].keys[pa] = Profile.Models[playerNum].keys[action];
+                            PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + pa.ToString(), (int)Profile.Models[playerNum].keys[action]);
                             GetKeyGameObject(pa.ToString()).GetComponent<Text>().text = Profile.Models[playerNum].keys[pa].ToString().Substring(7);
                             Profile.Models[playerNum].keys[action] = Key.GamepadY;
+                            PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + this.name, (int)Key.GamepadY);
                             this.GetComponent<Text>().text = Key.GamepadY.ToString().Substring(7);
                         }
                     }
@@ -224,6 +239,7 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                 if (!Profile.Models[playerNum].keys.ContainsValue(Key.GamepadL1))
                 {
                     Profile.Models[playerNum].keys[action] = Key.GamepadL1;
+                    PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + this.name, (int)Key.GamepadL1);
                     this.GetComponent<Text>().text = Key.GamepadL1.ToString().Substring(7);
                 }
                 else
@@ -235,10 +251,10 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                         if ((int)Profile.Models[playerNum].keys[pa] == (int)Key.GamepadL1)
                         {
                             Profile.Models[playerNum].keys[pa] = Profile.Models[playerNum].keys[action];
-                            Debug.Log("action : " + pa.ToString());
-                            Debug.Log("name : " + GetKeyGameObject(pa.ToString()).name);
+                            PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + pa.ToString(), (int)Profile.Models[playerNum].keys[action]);
                             GetKeyGameObject(pa.ToString()).GetComponent<Text>().text = Profile.Models[playerNum].keys[pa].ToString().Substring(7);
                             Profile.Models[playerNum].keys[action] = Key.GamepadL1;
+                            PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + this.name, (int)Key.GamepadL1);
                             this.GetComponent<Text>().text = Key.GamepadL1.ToString().Substring(7);
                         }
                     }
@@ -251,6 +267,7 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                 if (!Profile.Models[playerNum].keys.ContainsValue(Key.GamepadR1))
                 {
                     Profile.Models[playerNum].keys[action] = Key.GamepadR1;
+                    PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + this.name, (int)Key.GamepadR1);
                     this.GetComponent<Text>().text = Key.GamepadR1.ToString().Substring(7);
                 }
                 else
@@ -262,8 +279,10 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                         if ((int)Profile.Models[playerNum].keys[pa] == (int)Key.GamepadR1)
                         {
                             Profile.Models[playerNum].keys[pa] = Profile.Models[playerNum].keys[action];
+                            PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + pa.ToString(), (int)Profile.Models[playerNum].keys[action]);
                             GetKeyGameObject(pa.ToString()).GetComponent<Text>().text = Profile.Models[playerNum].keys[pa].ToString().Substring(7);
                             Profile.Models[playerNum].keys[action] = Key.GamepadR1;
+                            PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + this.name, (int)Key.GamepadR1);
                             this.GetComponent<Text>().text = Key.GamepadR1.ToString().Substring(7);
                         }
                     }
@@ -276,6 +295,7 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                 if (!Profile.Models[playerNum].keys.ContainsValue(Key.GamepadBack))
                 {
                     Profile.Models[playerNum].keys[action] = Key.GamepadBack;
+                    PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + this.name, (int)Key.GamepadBack);
                     this.GetComponent<Text>().text = Key.GamepadBack.ToString().Substring(7);
                 }
                 else
@@ -287,8 +307,10 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                         if ((int)Profile.Models[playerNum].keys[pa] == (int)Key.GamepadBack)
                         {
                             Profile.Models[playerNum].keys[pa] = Profile.Models[playerNum].keys[action];
+                            PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + pa.ToString(), (int)Profile.Models[playerNum].keys[action]);
                             GetKeyGameObject(pa.ToString()).GetComponent<Text>().text = Profile.Models[playerNum].keys[pa].ToString().Substring(7);
                             Profile.Models[playerNum].keys[action] = Key.GamepadBack;
+                            PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + this.name, (int)Key.GamepadBack);
                             this.GetComponent<Text>().text = Key.GamepadBack.ToString().Substring(7);
                         }
                     }
@@ -301,6 +323,7 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                 if (!Profile.Models[playerNum].keys.ContainsValue(Key.GamepadStart))
                 {
                     Profile.Models[playerNum].keys[action] = Key.GamepadStart;
+                    PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + this.name, (int)Key.GamepadStart);
                     this.GetComponent<Text>().text = Key.GamepadStart.ToString().Substring(7);
                 }
                 else
@@ -312,59 +335,11 @@ public class ChangeKeys : MonoBehaviour, ISelectHandler, IDeselectHandler
                         if ((int)Profile.Models[playerNum].keys[pa] == (int)Key.GamepadStart)
                         {
                             Profile.Models[playerNum].keys[pa] = Profile.Models[playerNum].keys[action];
+                            PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + pa.ToString(), (int)Profile.Models[playerNum].keys[action]);
                             GetKeyGameObject(pa.ToString()).GetComponent<Text>().text = Profile.Models[playerNum].keys[pa].ToString().Substring(7);
                             Profile.Models[playerNum].keys[action] = Key.GamepadStart;
+                            PlayerPrefs.SetInt("Gamepad" + playerNum + "_" + this.name, (int)Key.GamepadStart);
                             this.GetComponent<Text>().text = Key.GamepadStart.ToString().Substring(7);
-                        }
-                    }
-                }
-            }
-            if (Input.GetKeyDown((KeyCode)(KeyCode.Joystick1Button8 + keyShift)))
-            {
-                PlayerAction action = (PlayerAction)Enum.Parse(typeof(PlayerAction), this.name);
-                Debug.Log("key pressed : " + Key.GamepadLeftJoystick.ToString());
-                if (!Profile.Models[playerNum].keys.ContainsValue(Key.GamepadLeftJoystick))
-                {
-                    Profile.Models[playerNum].keys[action] = Key.GamepadLeftJoystick;
-                    this.GetComponent<Text>().text = Key.GamepadLeftJoystick.ToString().Substring(7);
-                }
-                else
-                {
-                    List<PlayerAction> playerActions = new List<PlayerAction>(Profile.Models[playerNum].keys.Keys);
-
-                    foreach (PlayerAction pa in playerActions)
-                    {
-                        if ((int)Profile.Models[playerNum].keys[pa] == (int)Key.GamepadLeftJoystick)
-                        {
-                            Profile.Models[playerNum].keys[pa] = Profile.Models[playerNum].keys[action];
-                            GetKeyGameObject(pa.ToString()).GetComponent<Text>().text = Profile.Models[playerNum].keys[pa].ToString().Substring(7);
-                            Profile.Models[playerNum].keys[action] = Key.GamepadLeftJoystick;
-                            this.GetComponent<Text>().text = Key.GamepadLeftJoystick.ToString().Substring(7);
-                        }
-                    }
-                }
-            }
-            if (Input.GetKeyDown((KeyCode)(KeyCode.Joystick1Button9+keyShift)))
-            {
-                PlayerAction action = (PlayerAction)Enum.Parse(typeof(PlayerAction), this.name);
-                Debug.Log("key pressed : " + Key.GamepadRightJoystick.ToString());
-                if (!Profile.Models[playerNum].keys.ContainsValue(Key.GamepadRightJoystick))
-                {
-                    Profile.Models[playerNum].keys[action] = Key.GamepadRightJoystick;
-                    this.GetComponent<Text>().text = Key.GamepadRightJoystick.ToString().Substring(7);
-                }
-                else
-                {
-                    List<PlayerAction> playerActions = new List<PlayerAction>(Profile.Models[playerNum].keys.Keys);
-
-                    foreach (PlayerAction pa in playerActions)
-                    {
-                        if ((int)Profile.Models[playerNum].keys[pa] == (int)Key.GamepadRightJoystick)
-                        {
-                            Profile.Models[playerNum].keys[pa] = Profile.Models[playerNum].keys[action];
-                            GetKeyGameObject(pa.ToString()).GetComponent<Text>().text = Profile.Models[playerNum].keys[pa].ToString().Substring(7);
-                            Profile.Models[playerNum].keys[action] = Key.GamepadRightJoystick;
-                            this.GetComponent<Text>().text = Key.GamepadRightJoystick.ToString().Substring(7);
                         }
                     }
                 }

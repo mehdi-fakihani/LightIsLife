@@ -54,12 +54,14 @@ public class GeneralData : MonoBehaviour
     public class Game
     {
         public List<Player> players;
+        public List<string> deblockedEnemyZones;
         public bool multiplayer;
 
-        public Game(bool _multiplayer, List<Player> _players)
+        public Game(bool _multiplayer, List<Player> _players, List<string> _deblockedEnemyZones)
         {
             multiplayer = _multiplayer;
             players = _players;
+            deblockedEnemyZones = _deblockedEnemyZones;
         }
 
     }
@@ -158,8 +160,24 @@ public class GeneralData : MonoBehaviour
     public static void initGame()
     {
         initPlayersList();
-        game = new Game(multiplayer, players);
+        game = new Game(multiplayer, players, new List<string>());
     }
+
+
+    //------------------------------------  Enemy Zones Deblocked  -----------------------------------
+
+    // Get deblocked enemy zones
+    public static List<string> GetDeblockedEnemyZones()
+    {
+        return game.deblockedEnemyZones;
+    }
+
+    // Add a zone as a deblocked enemy zone
+    public static void DeblockEnemyZone(string zoneName)
+    {
+        game.deblockedEnemyZones.Add(zoneName);
+    }
+
 
     //------------------------------------  Player  -----------------------------------
     public static void initPlayersList()

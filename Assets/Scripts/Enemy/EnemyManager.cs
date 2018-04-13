@@ -33,11 +33,33 @@ namespace LIL
             }
         }
 
+        private void Awake()
+        {
+            trigger = GetComponent<Collider>();
+            
+        }
+
         private void Start()
         {
-            //campfire = transform.parent.gameObject;
-            trigger = GetComponent<Collider>();
-            InitializeSpawner();
+            if (GeneralData.game.deblockedEnemyZones.Contains(gameObject.name))
+            {
+                Debug.Log("Zone " + gameObject.name + " already deblocked");
+                trigger.enabled = false;
+                soundController.EndFightMusic();
+
+                if (campfire != null)
+                    campfire.GetComponent<LightActivator>().ActivateFire();
+
+                Destroy(gameObject);
+            }
+            else
+            {
+                if(campfire != null)
+                    campfire.GetComponent<LightActivator>().DesactivateFire();
+
+                InitializeSpawner();
+            }
+
         }
 
         private void InitializeSpawner()
@@ -99,7 +121,8 @@ namespace LIL
                     GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
                     foreach(GameObject player in players)
                     {
-                        Debug.Log("Zone deblocked + 30 current life");
+                        Debug.Log("Zone " + gameObject.name + " deblocked + 30 current life");
+                        GeneralData.game.deblockedEnemyZones.Add(gameObject.name);
                         GeneralData.UpdateCurrentLife(30, player.GetComponent<PlayerController>().getPlayerNum());
                     }
                     

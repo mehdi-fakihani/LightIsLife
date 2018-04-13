@@ -7,11 +7,15 @@ public class LightActivator : MonoBehaviour
     private Collider trigger;
     private AudioSource audioSource;
 
+    private void Awake()
+    {
+        trigger = GetComponent<Collider>();
+        audioSource = GetComponent<AudioSource>();
+    }
+
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-        trigger = GetComponent<Collider>();
-        DesactivateFire();
+        //DesactivateFire();
     }
 
     public void DesactivateFire()

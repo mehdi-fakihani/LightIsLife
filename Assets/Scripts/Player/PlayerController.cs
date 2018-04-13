@@ -253,7 +253,7 @@ namespace LIL
 
             if (multiplayer)
             {
-                if (profile.getKeyDown(PlayerAction.ChangeTorch) && !inventoryActive && !secondPlayer.GetComponent<PlayerController>().inventoryActive && !GeneralData.gamePaused)
+                if (profile.getKeyDown(PlayerAction.ChangeTorch) && !interactable && !inventoryActive && !secondPlayer.GetComponent<PlayerController>().inventoryActive && !GeneralData.gamePaused)
                 {
                     if (CameraFollow())
                     {

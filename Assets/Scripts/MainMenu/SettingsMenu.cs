@@ -9,20 +9,64 @@ public class SettingsMenu : MonoBehaviour {
 
     public GameObject toolTipsText;
     public GameObject musicSlider, sfxSlider;
-    public GameObject Controller1Line, Keyboard1Line, Controller2Line, Keyboard2Line;
+    public GameObject Controller1Line, Keyboard1Line, Controller2Line, Keyboard2Line, QWERTYLine, AZERTYLine;
     public GameObject LinePlayer1, LinePlayer2, lineMovement, lineCombat, lineGeneral;
     public  GameObject forwardKey, backwardsKey, leftKey, rightKey, swordAttackKey, skill1Key, skill2Key, skill3Key, skill4Key, pauseKey,
         interactKey, changeTorchKey, submitKey, cameraRightKey, cameraLeftKey;
     public GameObject PanelMovement, PanelCombat, PanelGeneral, areYouSurePanel, PanelGame;
     public GameObject gameBtn, controlsBtn, keyBtn, returnBtn;
+    public GameObject Camera;
     
 
     private static int playerNum;
 
-    private float sliderValue = 0f;
-    private float sliderValueSFX = 0f;
+    private float sliderValue = 50f;
+    private float sliderValueSFX = 30f;
     private string[] controllers;
     private List<int> controllerCount;
+
+    private void Awake()
+    {
+        //  If not already initialized then
+        if (!PlayerPrefs.HasKey("Keyboard"))
+        {
+            initKeys();
+        }
+        else
+        {
+            // Setting up the Keyboard1 Model
+            GeneralData.Keyboard1ProfileModel = new ProfileModel(ProfilsID.Keyboard1, Device.Keyboard, (Key)PlayerPrefs.GetInt("Keyboard1_Up"),
+                (Key)PlayerPrefs.GetInt("Keyboard1_Down"), (Key)PlayerPrefs.GetInt("Keyboard1_Left"), (Key)PlayerPrefs.GetInt("Keyboard1_Right"),
+                (Key)PlayerPrefs.GetInt("Keyboard1_Attack"), (Key)PlayerPrefs.GetInt("Keyboard1_Skill1"), (Key)PlayerPrefs.GetInt("Keyboard1_Skill2"),
+                (Key)PlayerPrefs.GetInt("Keyboard1_Skill3"), (Key)PlayerPrefs.GetInt("Keyboard1_Skill4"), (Key)PlayerPrefs.GetInt("Keyboard1_Interaction"),
+                (Key)PlayerPrefs.GetInt("Keyboard1_ChangeTorch"), (Key)PlayerPrefs.GetInt("Keyboard1_Submit"), (Key)PlayerPrefs.GetInt("Keyboard1_Pause"),
+                (Key)PlayerPrefs.GetInt("Keyboard1_CameraRight"), (Key)PlayerPrefs.GetInt("Keyboard1_CameraLeft"));
+
+            // Setting up the Keyboard2 Model
+            GeneralData.Keyboard2ProfileModel = new ProfileModel(ProfilsID.Keyboard2, Device.Keyboard, (Key)PlayerPrefs.GetInt("Keyboard2_Up"),
+                (Key)PlayerPrefs.GetInt("Keyboard2_Down"), (Key)PlayerPrefs.GetInt("Keyboard2_Left"), (Key)PlayerPrefs.GetInt("Keyboard2_Right"),
+                (Key)PlayerPrefs.GetInt("Keyboard2_Attack"), (Key)PlayerPrefs.GetInt("Keyboard2_Skill1"), (Key)PlayerPrefs.GetInt("Keyboard2_Skill2"),
+                (Key)PlayerPrefs.GetInt("Keyboard2_Skill3"), (Key)PlayerPrefs.GetInt("Keyboard2_Skill4"), (Key)PlayerPrefs.GetInt("Keyboard2_Interaction"),
+                (Key)PlayerPrefs.GetInt("Keyboard2_ChangeTorch"), (Key)PlayerPrefs.GetInt("Keyboard2_Submit"), (Key)PlayerPrefs.GetInt("Keyboard2_Pause"),
+                (Key)PlayerPrefs.GetInt("Keyboard2_CameraRight"), (Key)PlayerPrefs.GetInt("Keyboard2_CameraLeft"));
+
+            // Setting up the Controller1 Model
+            GeneralData.controller1ProfileModel = new ProfileModel(ProfilsID.XBoxGamepad, Device.XBoxGamepad, (Key)PlayerPrefs.GetInt("Gamepad1_Up"),
+                (Key)PlayerPrefs.GetInt("Gamepad1_Down"), (Key)PlayerPrefs.GetInt("Gamepad1_Left"), (Key)PlayerPrefs.GetInt("Gamepad1_Right"),
+                (Key)PlayerPrefs.GetInt("Gamepad1_Attack"), (Key)PlayerPrefs.GetInt("Gamepad1_Skill1"), (Key)PlayerPrefs.GetInt("Gamepad1_Skill2"),
+                (Key)PlayerPrefs.GetInt("Gamepad1_Skill3"), (Key)PlayerPrefs.GetInt("Gamepad1_Skill4"), (Key)PlayerPrefs.GetInt("Gamepad1_Interaction"),
+                (Key)PlayerPrefs.GetInt("Gamepad1_ChangeTorch"), (Key)PlayerPrefs.GetInt("Gamepad1_Submit"), (Key)PlayerPrefs.GetInt("Gamepad1_Pause"),
+                (Key)PlayerPrefs.GetInt("Gamepad1_CameraRight"), (Key)PlayerPrefs.GetInt("Gamepad1_CameraLeft"));
+
+            // Setting up the Controller2 Model
+            GeneralData.controller2ProfileModel = new ProfileModel(ProfilsID.XBoxGamepad, Device.XBoxGamepad, (Key)PlayerPrefs.GetInt("Gamepad2_Up"),
+                (Key)PlayerPrefs.GetInt("Gamepad2_Down"), (Key)PlayerPrefs.GetInt("Gamepad2_Left"), (Key)PlayerPrefs.GetInt("Gamepad2_Right"),
+                (Key)PlayerPrefs.GetInt("Gamepad2_Attack"), (Key)PlayerPrefs.GetInt("Gamepad2_Skill1"), (Key)PlayerPrefs.GetInt("Gamepad2_Skill2"),
+                (Key)PlayerPrefs.GetInt("Gamepad2_Skill3"), (Key)PlayerPrefs.GetInt("Gamepad2_Skill4"), (Key)PlayerPrefs.GetInt("Gamepad2_Interaction"),
+                (Key)PlayerPrefs.GetInt("Gamepad2_ChangeTorch"), (Key)PlayerPrefs.GetInt("Gamepad2_Submit"), (Key)PlayerPrefs.GetInt("Gamepad2_Pause"),
+                (Key)PlayerPrefs.GetInt("Gamepad2_CameraRight"), (Key)PlayerPrefs.GetInt("Gamepad2_CameraLeft"));
+        }
+    }
 
     // Use this for initialization
     void Start ()
@@ -35,6 +79,16 @@ public class SettingsMenu : MonoBehaviour {
                 controllerCount.Add(i);
         }
 
+        if (PlayerPrefs.GetInt("Keyboard") == 0)
+        {
+            QWERTYLine.SetActive(true);
+            AZERTYLine.SetActive(false);
+        }
+        else if(PlayerPrefs.GetInt("Keyboard") == 1)
+        {
+            QWERTYLine.SetActive(false);
+            AZERTYLine.SetActive(true);
+        }
 
         // check slider values
         musicSlider.GetComponent< Slider > ().value = PlayerPrefs.GetFloat("MusicVolume");
@@ -51,14 +105,14 @@ public class SettingsMenu : MonoBehaviour {
         }
 
         // Set the default input system for the player 1
-        if(PlayerPrefs.GetInt("Input1") >= 0 && controllerCount.Contains(PlayerPrefs.GetInt("Input1")))
+        if (PlayerPrefs.GetInt("Input1") >= 0 && controllerCount.Contains(PlayerPrefs.GetInt("Input1")))
         {
             GeneralData.inputPlayer1 = ProfilsID.XBoxGamepad;
             Profile.Models[1] = GeneralData.controller1ProfileModel;
             Keyboard1Line.gameObject.SetActive(false);
             Controller1Line.gameObject.SetActive(true);
         }
-        else if(PlayerPrefs.GetInt("Input1") == -1 || controllerCount.Contains(PlayerPrefs.GetInt("Input1")))
+        else if (PlayerPrefs.GetInt("Input1") == -1 || controllerCount.Contains(PlayerPrefs.GetInt("Input1")))
         {
             GeneralData.inputPlayer1 = ProfilsID.Keyboard1;
             Profile.Models[1] = GeneralData.Keyboard1ProfileModel;
@@ -128,6 +182,35 @@ public class SettingsMenu : MonoBehaviour {
                 File.Delete(fileName);
             }
         }
+
+        PlayerPrefs.DeleteAll();
+        initKeys();
+    }
+
+    public void QWERTY()
+    {
+        PlayerPrefs.SetInt("Keyboard", 0);
+        PlayerPrefs.SetInt("Keayboard1_Up", (int)Key.KeyboardW);                        // "W" for up
+        Profile.Models[1].keys[LIL.PlayerAction.Up] = Key.KeyboardW;
+        PlayerPrefs.SetInt("Keayboard1_Left", (int)Key.KeyboardA);                      // "A" for left
+        Profile.Models[1].keys[LIL.PlayerAction.Left] = Key.KeyboardA;
+
+        GeneralData.Keyboard1ProfileModel = Profile.Models[1];
+        QWERTYLine.gameObject.SetActive(true);
+        AZERTYLine.gameObject.SetActive(false);
+    }
+
+    public void AZERTY()
+    {
+        PlayerPrefs.SetInt("Keyboard", 1);
+        PlayerPrefs.SetInt("Keayboard1_Up", (int)Key.KeyboardZ);                        // "Z" for up
+        Profile.Models[1].keys[LIL.PlayerAction.Up] = Key.KeyboardZ;
+        PlayerPrefs.SetInt("Keayboard1_Left", (int)Key.KeyboardQ);                      // "Q" for left
+        Profile.Models[1].keys[LIL.PlayerAction.Left] = Key.KeyboardQ;
+
+        GeneralData.Keyboard1ProfileModel = Profile.Models[1];
+        QWERTYLine.gameObject.SetActive(false);
+        AZERTYLine.gameObject.SetActive(true);
     }
 
     public void Keayboard(int playerNum)
@@ -330,5 +413,143 @@ public class SettingsMenu : MonoBehaviour {
         areYouSurePanel.gameObject.SetActive(false);
         PanelGame.SetActive(true);
         ActiveButtons();
+    }
+
+    // Initialize input keys
+    public void initKeys()
+    {
+        //  If not already initialized then
+        if (!PlayerPrefs.HasKey("Keyboard"))
+        {
+            // Set QWERTY as keyboard system
+            PlayerPrefs.SetInt("Keyboard", 0);
+            QWERTYLine.SetActive(true);
+            AZERTYLine.SetActive(false);
+
+            // Keyboard 1 
+            PlayerPrefs.SetInt("Keyboard1_Up", (int)Key.KeyboardW);                       // "W" for up
+            PlayerPrefs.SetInt("Keyboard1_Down", (int)Key.KeyboardS);                      // "S" for down
+            PlayerPrefs.SetInt("Keyboard1_Left", (int)Key.KeyboardA);                      // "A" for left
+            PlayerPrefs.SetInt("Keyboard1_Right", (int)Key.KeyboardD);                     // "D" for right
+            PlayerPrefs.SetInt("Keyboard1_Attack", (int)Key.KeyboardSpace);                // "space" for sword attack
+            PlayerPrefs.SetInt("Keyboard1_Skill1", (int)Key.KeyboardG);                    // "G" for skill 1
+            PlayerPrefs.SetInt("Keyboard1_Skill2", (int)Key.KeyboardH);                    // "H" for skill 2
+            PlayerPrefs.SetInt("Keyboard1_Skill3", (int)Key.KeyboardJ);                    // "J" for skill 3
+            PlayerPrefs.SetInt("Keyboard1_Skill4", (int)Key.KeyboardK);                    // "K" for skill 4
+            PlayerPrefs.SetInt("Keyboard1_Interaction", (int)Key.KeyboardE);               // "E" for interaction
+            PlayerPrefs.SetInt("Keyboard1_ChangeTorch", (int)Key.KeyboardE);               // "E" for Changing torch (interaction and changing troch could not be called together)
+            PlayerPrefs.SetInt("Keyboard1_Submit", (int)Key.KeyboardSpace);                // "space" for submit (sword attack and submit could not be called together)
+            PlayerPrefs.SetInt("Keyboard1_Pause", (int)Key.KeyboardESC);                   // "ESC" for pause
+            PlayerPrefs.SetInt("Keyboard1_CameraRight", (int)Key.KeyboardL);               // "L" for camera right
+            PlayerPrefs.SetInt("Keyboard1_CameraLeft", (int)Key.KeyboardLeftShift);        // "left Shift" for camera left
+
+            // Keyboard 2
+            PlayerPrefs.SetInt("Keyboard2_Up", (int)Key.KeyboardUp);                       // "up arrow" for up
+            PlayerPrefs.SetInt("Keyboard2_Down", (int)Key.KeyboardDown);                   // "down arrow" for down
+            PlayerPrefs.SetInt("Keyboard2_Left", (int)Key.KeyboardLeft);                   // "left arrow" for left
+            PlayerPrefs.SetInt("Keyboard2_Right", (int)Key.KeyboardRight);                 // "right arrow" for right
+            PlayerPrefs.SetInt("Keyboard2_Attack", (int)Key.KeyboardNUM0);                 // "numeric 0" for sword attack
+            PlayerPrefs.SetInt("Keyboard2_Skill1", (int)Key.KeyboardNUM8);                 // "numeric 8" for skill 1
+            PlayerPrefs.SetInt("Keyboard2_Skill2", (int)Key.KeyboardNUM4);                 // "numeric 4" for skill 2
+            PlayerPrefs.SetInt("Keyboard2_Skill3", (int)Key.KeyboardNUM6);                 // "numeric 6" for skill 3
+            PlayerPrefs.SetInt("Keyboard2_Skill4", (int)Key.KeyboardNUM5);                 // "numeric 5" for skill 4
+            PlayerPrefs.SetInt("Keyboard2_Interaction", (int)Key.KeyboardNUM1);            // "numeric 1" for interaction
+            PlayerPrefs.SetInt("Keyboard2_ChangeTorch", (int)Key.KeyboardNUM1);            // "numeric 1" for Changing torch (interaction and changing troch could not be called together)
+            PlayerPrefs.SetInt("Keyboard2_Submit", (int)Key.KeyboardNUM0);                 // "numeric 0" for submit (sword attack and submit could not be called together)
+            PlayerPrefs.SetInt("Keyboard2_Pause", (int)Key.KeyboardRightShift);            // "right shift" for pause
+            PlayerPrefs.SetInt("Keyboard2_CameraRight", (int)Key.KeyboardNUMEnter);        // "numeric enter" for camera right
+            PlayerPrefs.SetInt("Keyboard2_CameraLeft", (int)Key.KeyboardRightCtrl);        // "right ctrl" for camera left
+
+            // Gamepad 1
+            PlayerPrefs.SetInt("Gamepad1_Up", (int)Key.GamepadLeftJoystickUp);                      // "left joystick up" for up
+            PlayerPrefs.SetInt("Gamepad1_Down", (int)Key.GamepadLeftJoystickDown);                  // "left joystick down" for down
+            PlayerPrefs.SetInt("Gamepad1_Left", (int)Key.GamepadLeftJoystickLeft);                  // "left joystick left" for left
+            PlayerPrefs.SetInt("Gamepad1_Right", (int)Key.GamepadLeftJoystickRight);                // "left joystick right" for right
+            PlayerPrefs.SetInt("Gamepad1_Attack", (int)Key.GamepadR1);                              // "R1" for sword attack
+            PlayerPrefs.SetInt("Gamepad1_Skill1", (int)Key.GamepadY);                               // "Y" for skill 1
+            PlayerPrefs.SetInt("Gamepad1_Skill2", (int)Key.GamepadX);                               // "X" for skill 2
+            PlayerPrefs.SetInt("Gamepad1_Skill3", (int)Key.GamepadB);                               // "B" for skill 3
+            PlayerPrefs.SetInt("Gamepad1_Skill4", (int)Key.GamepadA);                               // "A" for skill 4
+            PlayerPrefs.SetInt("Gamepad1_Interaction", (int)Key.GamepadL1);                         // "L1" for interaction
+            PlayerPrefs.SetInt("Gamepad1_ChangeTorch", (int)Key.GamepadL1);                         // "L1" for Changing torch (interaction and changing troch could not be called together)
+            PlayerPrefs.SetInt("Gamepad1_Submit", (int)Key.GamepadR1);                              // "R1" for submit (sword attack and submit could not be called together)
+            PlayerPrefs.SetInt("Gamepad1_Pause", (int)Key.GamepadStart);                            // "start" for pause
+            PlayerPrefs.SetInt("Gamepad1_CameraRight", (int)Key.GamepadRightJoystickRight);         // "right joystick right" for camera right
+            PlayerPrefs.SetInt("Gamepad1_CameraLeft", (int)Key.GamepadLeftJoystickRight);           // "right joystick left" for camera left
+
+            // Gamepad 2
+            PlayerPrefs.SetInt("Gamepad2_Up", (int)Key.GamepadLeftJoystickUp);                      // "left joystick up" for up
+            PlayerPrefs.SetInt("Gamepad2_Down", (int)Key.GamepadLeftJoystickDown);                  // "left joystick down" for down
+            PlayerPrefs.SetInt("Gamepad2_Left", (int)Key.GamepadLeftJoystickLeft);                  // "left joystick left" for left
+            PlayerPrefs.SetInt("Gamepad2_Right", (int)Key.GamepadLeftJoystickRight);                // "left joystick right" for right
+            PlayerPrefs.SetInt("Gamepad2_Attack", (int)Key.GamepadR1);                              // "R1" for sword attack
+            PlayerPrefs.SetInt("Gamepad2_Skill1", (int)Key.GamepadY);                               // "Y" for skill 1
+            PlayerPrefs.SetInt("Gamepad2_Skill2", (int)Key.GamepadX);                               // "X" for skill 2
+            PlayerPrefs.SetInt("Gamepad2_Skill3", (int)Key.GamepadB);                               // "B" for skill 3
+            PlayerPrefs.SetInt("Gamepad2_Skill4", (int)Key.GamepadA);                               // "A" for skill 4
+            PlayerPrefs.SetInt("Gamepad2_Interaction", (int)Key.GamepadL1);                         // "L1" for interaction
+            PlayerPrefs.SetInt("Gamepad2_ChangeTorch", (int)Key.GamepadL1);                         // "L1" for Changing torch (interaction and changing troch could not be called together)
+            PlayerPrefs.SetInt("Gamepad2_Submit", (int)Key.GamepadR1);                              // "R1" for submit (sword attack and submit could not be called together)
+            PlayerPrefs.SetInt("Gamepad2_Pause", (int)Key.GamepadStart);                            // "start" for pause
+            PlayerPrefs.SetInt("Gamepad2_CameraRight", (int)Key.GamepadRightJoystickRight);         // "right joystick right" for camera right
+            PlayerPrefs.SetInt("Gamepad2_CameraLeft", (int)Key.GamepadLeftJoystickRight);           // "right joystick left" for camera left
+
+            // Setting up the Keyboard1 Model
+            GeneralData.Keyboard1ProfileModel = new ProfileModel(ProfilsID.Keyboard1, Device.Keyboard, (Key)PlayerPrefs.GetInt("Keyboard1_Up"),
+                (Key)PlayerPrefs.GetInt("Keyboard1_Down"), (Key)PlayerPrefs.GetInt("Keyboard1_Left"), (Key)PlayerPrefs.GetInt("Keyboard1_Right"),
+                (Key)PlayerPrefs.GetInt("Keyboard1_Attack"), (Key)PlayerPrefs.GetInt("Keyboard1_Skill1"), (Key)PlayerPrefs.GetInt("Keyboard1_Skill2"),
+                (Key)PlayerPrefs.GetInt("Keyboard1_Skill3"), (Key)PlayerPrefs.GetInt("Keyboard1_Skill4"), (Key)PlayerPrefs.GetInt("Keyboard1_Interaction"),
+                (Key)PlayerPrefs.GetInt("Keyboard1_ChangeTorch"), (Key)PlayerPrefs.GetInt("Keyboard1_Submit"), (Key)PlayerPrefs.GetInt("Keyboard1_Pause"),
+                (Key)PlayerPrefs.GetInt("Keyboard1_CameraRight"), (Key)PlayerPrefs.GetInt("Keyboard1_CameraLeft"));
+
+            // Setting up the Keyboard2 Model
+            GeneralData.Keyboard2ProfileModel = new ProfileModel(ProfilsID.Keyboard2, Device.Keyboard, (Key)PlayerPrefs.GetInt("Keyboard2_Up"),
+                (Key)PlayerPrefs.GetInt("Keyboard2_Down"), (Key)PlayerPrefs.GetInt("Keyboard2_Left"), (Key)PlayerPrefs.GetInt("Keyboard2_Right"),
+                (Key)PlayerPrefs.GetInt("Keyboard2_Attack"), (Key)PlayerPrefs.GetInt("Keyboard2_Skill1"), (Key)PlayerPrefs.GetInt("Keyboard2_Skill2"),
+                (Key)PlayerPrefs.GetInt("Keyboard2_Skill3"), (Key)PlayerPrefs.GetInt("Keyboard2_Skill4"), (Key)PlayerPrefs.GetInt("Keyboard2_Interaction"),
+                (Key)PlayerPrefs.GetInt("Keyboard2_ChangeTorch"), (Key)PlayerPrefs.GetInt("Keyboard2_Submit"), (Key)PlayerPrefs.GetInt("Keyboard2_Pause"),
+                (Key)PlayerPrefs.GetInt("Keyboard2_CameraRight"), (Key)PlayerPrefs.GetInt("Keyboard2_CameraLeft"));
+
+            // Setting up the Controller1 Model
+            GeneralData.controller1ProfileModel = new ProfileModel(ProfilsID.XBoxGamepad, Device.XBoxGamepad, (Key)PlayerPrefs.GetInt("Gamepad1_Up"),
+                (Key)PlayerPrefs.GetInt("Gamepad1_Down"), (Key)PlayerPrefs.GetInt("Gamepad1_Left"), (Key)PlayerPrefs.GetInt("Gamepad1_Right"),
+                (Key)PlayerPrefs.GetInt("Gamepad1_Attack"), (Key)PlayerPrefs.GetInt("Gamepad1_Skill1"), (Key)PlayerPrefs.GetInt("Gamepad1_Skill2"),
+                (Key)PlayerPrefs.GetInt("Gamepad1_Skill3"), (Key)PlayerPrefs.GetInt("Gamepad1_Skill4"), (Key)PlayerPrefs.GetInt("Gamepad1_Interaction"),
+                (Key)PlayerPrefs.GetInt("Gamepad1_ChangeTorch"), (Key)PlayerPrefs.GetInt("Gamepad1_Submit"), (Key)PlayerPrefs.GetInt("Gamepad1_Pause"),
+                (Key)PlayerPrefs.GetInt("Gamepad1_CameraRight"), (Key)PlayerPrefs.GetInt("Gamepad1_CameraLeft"));
+
+            // Setting up the Controller2 Model
+            GeneralData.controller2ProfileModel = new ProfileModel(ProfilsID.XBoxGamepad, Device.XBoxGamepad, (Key)PlayerPrefs.GetInt("Gamepad2_Up"),
+                (Key)PlayerPrefs.GetInt("Gamepad2_Down"), (Key)PlayerPrefs.GetInt("Gamepad2_Left"), (Key)PlayerPrefs.GetInt("Gamepad2_Right"),
+                (Key)PlayerPrefs.GetInt("Gamepad2_Attack"), (Key)PlayerPrefs.GetInt("Gamepad2_Skill1"), (Key)PlayerPrefs.GetInt("Gamepad2_Skill2"),
+                (Key)PlayerPrefs.GetInt("Gamepad2_Skill3"), (Key)PlayerPrefs.GetInt("Gamepad2_Skill4"), (Key)PlayerPrefs.GetInt("Gamepad2_Interaction"),
+                (Key)PlayerPrefs.GetInt("Gamepad2_ChangeTorch"), (Key)PlayerPrefs.GetInt("Gamepad2_Submit"), (Key)PlayerPrefs.GetInt("Gamepad2_Pause"),
+                (Key)PlayerPrefs.GetInt("Gamepad2_CameraRight"), (Key)PlayerPrefs.GetInt("Gamepad2_CameraLeft"));
+
+            // Set music default value
+            if (!PlayerPrefs.HasKey("MusicVolume")) PlayerPrefs.SetFloat("MusicVolume", musicSlider.GetComponent<Slider>().maxValue / 2);
+            musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
+            Camera.GetComponent<ConfigureMusicVolume>().UpdateMusicVolume();
+
+            if (!PlayerPrefs.HasKey("SFXVolume")) PlayerPrefs.SetFloat("SFXVolume", sfxSlider.GetComponent<Slider>().maxValue / 3);
+            sfxSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFXVolume");
+            Camera.GetComponent<ConfigureMusicVolume>().UpdateSFXVolume();
+
+
+            // Set the default input system for the player 1
+            if (!PlayerPrefs.HasKey("Input1")) PlayerPrefs.SetInt("Input1", -1);
+            GeneralData.inputPlayer1 = ProfilsID.Keyboard1;
+            Profile.Models[1] = GeneralData.Keyboard1ProfileModel;
+            Keyboard1Line.gameObject.SetActive(true);
+            Controller1Line.gameObject.SetActive(false);
+
+            // Set the default input system for the player 2
+            if (!PlayerPrefs.HasKey("Input2")) PlayerPrefs.SetInt("Input2", -1);
+            GeneralData.inputPlayer2 = ProfilsID.Keyboard2;
+            Profile.Models[2] = GeneralData.Keyboard2ProfileModel;
+            Keyboard2Line.gameObject.SetActive(true);
+            Controller2Line.gameObject.SetActive(false);
+
+        }
     }
 }

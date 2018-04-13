@@ -61,6 +61,7 @@ namespace LIL.Inputs
         KeyboardNUM7 = KeyCode.Keypad7,
         KeyboardNUM8 = KeyCode.Keypad8,
         KeyboardNUM9 = KeyCode.Keypad9,
+        KeyboardNUMEnter = KeyCode.KeypadEnter,
 
         KeyboardESC = KeyCode.Escape,
         
@@ -70,6 +71,11 @@ namespace LIL.Inputs
         KeyboardDown = KeyCode.DownArrow,
         KeyboardLeft = KeyCode.LeftArrow,
         KeyboardRight = KeyCode.RightArrow,
+        KeyboardReturn = KeyCode.Return,
+        KeyboardLeftShift = KeyCode.LeftShift,
+        KeyboardRightShift = KeyCode.RightShift,
+        KeyboardLeftCtrl = KeyCode.LeftControl,
+        KeyboardRightCtrl = KeyCode.RightControl,
 
         // Gamepad buttons
 
