@@ -43,7 +43,6 @@ namespace LIL
         {
             if (GeneralData.game.deblockedEnemyZones.Contains(gameObject.name))
             {
-                Debug.Log("Zone " + gameObject.name + " already deblocked");
                 trigger.enabled = false;
                 soundController.EndFightMusic();
 

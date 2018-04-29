@@ -475,7 +475,7 @@ public class SettingsMenu : MonoBehaviour {
             PlayerPrefs.SetInt("Gamepad1_Submit", (int)Key.GamepadR1);                              // "R1" for submit (sword attack and submit could not be called together)
             PlayerPrefs.SetInt("Gamepad1_Pause", (int)Key.GamepadStart);                            // "start" for pause
             PlayerPrefs.SetInt("Gamepad1_CameraRight", (int)Key.GamepadRightJoystickRight);         // "right joystick right" for camera right
-            PlayerPrefs.SetInt("Gamepad1_CameraLeft", (int)Key.GamepadLeftJoystickRight);           // "right joystick left" for camera left
+            PlayerPrefs.SetInt("Gamepad1_CameraLeft", (int)Key.GamepadRightJoystickLeft);           // "right joystick left" for camera left
 
             // Gamepad 2
             PlayerPrefs.SetInt("Gamepad2_Up", (int)Key.GamepadLeftJoystickUp);                      // "left joystick up" for up
@@ -492,7 +492,7 @@ public class SettingsMenu : MonoBehaviour {
             PlayerPrefs.SetInt("Gamepad2_Submit", (int)Key.GamepadR1);                              // "R1" for submit (sword attack and submit could not be called together)
             PlayerPrefs.SetInt("Gamepad2_Pause", (int)Key.GamepadStart);                            // "start" for pause
             PlayerPrefs.SetInt("Gamepad2_CameraRight", (int)Key.GamepadRightJoystickRight);         // "right joystick right" for camera right
-            PlayerPrefs.SetInt("Gamepad2_CameraLeft", (int)Key.GamepadLeftJoystickRight);           // "right joystick left" for camera left
+            PlayerPrefs.SetInt("Gamepad2_CameraLeft", (int)Key.GamepadRightJoystickLeft);           // "right joystick left" for camera left
 
             // Setting up the Keyboard1 Model
             GeneralData.Keyboard1ProfileModel = new ProfileModel(ProfilsID.Keyboard1, Device.Keyboard, (Key)PlayerPrefs.GetInt("Keyboard1_Up"),

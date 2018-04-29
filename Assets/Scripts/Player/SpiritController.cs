@@ -20,6 +20,8 @@ namespace LIL
         // Use this for initialization
         void Start()
         {
+            float[] pos = GeneralData.getPlayerbyNum(player.GetComponent<PlayerController>().getPlayerNum()).pos;
+            this.transform.position = new Vector3(pos[0]+2, pos[1], pos[2]);
             currentPath = new NavMeshPath();
             UpdatePath();
         }

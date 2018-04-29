@@ -14,8 +14,16 @@ namespace LIL
 
         public void active(int playerNum)
         {
-            if(playerNum == 2) inventory_2.SetActive(true);
-            else inventory_1.SetActive(true);
+            if (playerNum == 2)
+            {
+                inventory_2.SetActive(true);
+                inventory_2.transform.GetChild(4).GetChild(0).GetChild(0).GetComponent<Selectable>().Select();
+            }
+            else
+            {
+                inventory_1.SetActive(true);
+                inventory_1.transform.GetChild(4).GetChild(0).GetChild(0).GetComponent<Selectable>().Select();
+            }
             //Time.timeScale = 0;
         }
 

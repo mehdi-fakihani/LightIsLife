@@ -144,13 +144,9 @@ namespace LIL
             if(gameObject.tag == "Player")
             {
                 playerNum = gameObject.GetComponent<PlayerController>().getPlayerNum();
-                Debug.Log("player Num : " + playerNum);
-                Debug.Log("initial life before : " + initialLife);
                 initialLife = GeneralData.GetInitialLife(playerNum);
-                Debug.Log("initial life after : " + initialLife);
 
                 life = GeneralData.GetCurrentLife(playerNum);
-                Debug.Log("current life after : " + life);
 
                 StartCoroutine(RegenerateHealth());
             }
@@ -164,15 +160,11 @@ namespace LIL
         {
             if (gameObject.tag == "Player" && initialLife != GeneralData.GetInitialLife(playerNum))
             {
-                Debug.Log("initial life update before : " + initialLife);
                 initialLife = GeneralData.GetInitialLife(playerNum);
-                Debug.Log("initial life update after : " + initialLife);
             }
             if (gameObject.tag == "Player" && life != GeneralData.GetCurrentLife(playerNum))
             {
-                Debug.Log("current life update before : " + life);
                 life = GeneralData.GetCurrentLife(playerNum);
-                Debug.Log("current life update after : " + life);
             }
         }
 
