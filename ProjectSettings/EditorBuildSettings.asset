@@ -17,3 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dorian/Synchro/Victory.unity
     guid: efab09e5ba6326446b2ca2684df71a13
+  - enabled: 1
+    path: Assets/Scenes/Synchro/Final/MenuFinal.unity
+    guid: 8ea6145e2b4950e4e99093b0dee6708e
+  - enabled: 1
+    path: Assets/Scenes/Synchro/Final/GameFinal.unity
+    guid: 0354d17d739125943bece4b014b27b86
