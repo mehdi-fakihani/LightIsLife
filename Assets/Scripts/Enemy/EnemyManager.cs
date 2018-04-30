@@ -120,7 +120,6 @@ namespace LIL
                     GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
                     foreach(GameObject player in players)
                     {
-                        Debug.Log("Zone " + gameObject.name + " deblocked + 30 current life");
                         GeneralData.game.deblockedEnemyZones.Add(gameObject.name);
                         GeneralData.UpdateCurrentLife(30, player.GetComponent<PlayerController>().getPlayerNum());
                     }

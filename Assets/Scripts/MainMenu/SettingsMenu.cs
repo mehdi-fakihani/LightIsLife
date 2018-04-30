@@ -27,13 +27,12 @@ public class SettingsMenu : MonoBehaviour {
 
     private void Awake()
     {
-        //  If not already initialized then
-        if (!PlayerPrefs.HasKey("Keyboard"))
+        //  If already initialized then
+        if(PlayerPrefs.HasKey("Keyboard"))
         {
-            initKeys();
-        }
-        else
-        {
+            Debug.Log("already init");
+            Debug.Log("up : " + ((Key)PlayerPrefs.GetInt("Keyboard1_Up")).ToString());
+
             // Setting up the Keyboard1 Model
             GeneralData.Keyboard1ProfileModel = new ProfileModel(ProfilsID.Keyboard1, Device.Keyboard, (Key)PlayerPrefs.GetInt("Keyboard1_Up"),
                 (Key)PlayerPrefs.GetInt("Keyboard1_Down"), (Key)PlayerPrefs.GetInt("Keyboard1_Left"), (Key)PlayerPrefs.GetInt("Keyboard1_Right"),
@@ -66,11 +65,12 @@ public class SettingsMenu : MonoBehaviour {
                 (Key)PlayerPrefs.GetInt("Gamepad2_ChangeTorch"), (Key)PlayerPrefs.GetInt("Gamepad2_Submit"), (Key)PlayerPrefs.GetInt("Gamepad2_Pause"),
                 (Key)PlayerPrefs.GetInt("Gamepad2_CameraRight"), (Key)PlayerPrefs.GetInt("Gamepad2_CameraLeft"));
         }
-    }
+        else
+        {
+            Debug.Log("init");
+            initKeys();
+        }
 
-    // Use this for initialization
-    void Start ()
-    {
         controllers = Input.GetJoystickNames();
         controllerCount = new List<int>();
         for (int i = 0; i < controllers.Length; i++)
@@ -79,12 +79,84 @@ public class SettingsMenu : MonoBehaviour {
                 controllerCount.Add(i);
         }
 
-        if (PlayerPrefs.GetInt("Keyboard") == 0)
+        if (PlayerPrefs.GetInt("Keyboard") == -1)
         {
             QWERTYLine.SetActive(true);
             AZERTYLine.SetActive(false);
         }
-        else if(PlayerPrefs.GetInt("Keyboard") == 1)
+        else if (PlayerPrefs.GetInt("Keyboard") == -2)
+        {
+            QWERTYLine.SetActive(false);
+            AZERTYLine.SetActive(true);
+        }
+
+        // check slider values
+        musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
+        sfxSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFXVolume");
+
+        // check tool tip value
+        if (PlayerPrefs.GetInt("ToolTips") == 0)
+        {
+            toolTipsText.GetComponent<Text>().text = "off";
+        }
+        else
+        {
+            toolTipsText.GetComponent<Text>().text = "on";
+        }
+
+        // Set the default input system for the player 1
+        if (PlayerPrefs.GetInt("Input1") >= 0 && controllerCount.Contains(PlayerPrefs.GetInt("Input1")))
+        {
+            GeneralData.inputPlayer1 = ProfilsID.XBoxGamepad;
+            Profile.Models[1] = GeneralData.controller1ProfileModel;
+            Keyboard1Line.gameObject.SetActive(false);
+            Controller1Line.gameObject.SetActive(true);
+        }
+        else if (PlayerPrefs.GetInt("Input1") == -1 || controllerCount.Contains(PlayerPrefs.GetInt("Input1")))
+        {
+            GeneralData.inputPlayer1 = ProfilsID.Keyboard1;
+            Profile.Models[1] = GeneralData.Keyboard1ProfileModel;
+            Keyboard1Line.gameObject.SetActive(true);
+            Controller1Line.gameObject.SetActive(false);
+        }
+
+        // Set the default input system for the player 2
+        if (PlayerPrefs.GetInt("Input2") >= 0 && controllerCount.Contains(PlayerPrefs.GetInt("Input2")))
+        {
+            GeneralData.inputPlayer2 = ProfilsID.XBoxGamepad;
+            Profile.Models[2] = GeneralData.controller2ProfileModel;
+            Keyboard2Line.gameObject.SetActive(false);
+            Controller2Line.gameObject.SetActive(true);
+        }
+        else if (PlayerPrefs.GetInt("Input2") == -1 || controllerCount.Contains(PlayerPrefs.GetInt("Input2")))
+        {
+            GeneralData.inputPlayer2 = ProfilsID.Keyboard2;
+            Profile.Models[2] = GeneralData.Keyboard2ProfileModel;
+            Keyboard2Line.gameObject.SetActive(true);
+            Controller2Line.gameObject.SetActive(false);
+        }
+
+        ChangeKeys.InitKeys(new GameObject[] {forwardKey, backwardsKey, leftKey, rightKey, swordAttackKey, skill1Key, skill2Key, skill3Key, skill4Key, pauseKey,
+        interactKey, changeTorchKey, submitKey, cameraRightKey, cameraLeftKey });
+    }
+
+    // Use this for initialization
+    void Start ()
+    {
+       /* controllers = Input.GetJoystickNames();
+        controllerCount = new List<int>();
+        for (int i = 0; i < controllers.Length; i++)
+        {
+            if (controllers[i] != "")
+                controllerCount.Add(i);
+        }
+
+        if (PlayerPrefs.GetInt("Keyboard") == -1)
+        {
+            QWERTYLine.SetActive(true);
+            AZERTYLine.SetActive(false);
+        }
+        else if(PlayerPrefs.GetInt("Keyboard") == -2)
         {
             QWERTYLine.SetActive(false);
             AZERTYLine.SetActive(true);
@@ -137,7 +209,7 @@ public class SettingsMenu : MonoBehaviour {
         }
 
         ChangeKeys.InitKeys(new GameObject[] {forwardKey, backwardsKey, leftKey, rightKey, swordAttackKey, skill1Key, skill2Key, skill3Key, skill4Key, pauseKey,
-        interactKey, changeTorchKey, submitKey, cameraRightKey, cameraLeftKey });
+        interactKey, changeTorchKey, submitKey, cameraRightKey, cameraLeftKey });*/
     }
 	
 	// Update is called once per frame
@@ -189,10 +261,10 @@ public class SettingsMenu : MonoBehaviour {
 
     public void QWERTY()
     {
-        PlayerPrefs.SetInt("Keyboard", 0);
-        PlayerPrefs.SetInt("Keayboard1_Up", (int)Key.KeyboardW);                        // "W" for up
+        PlayerPrefs.SetInt("Keyboard", -1);
+        PlayerPrefs.SetInt("Keyboard1_Up", (int)Key.KeyboardW);                        // "W" for up
         Profile.Models[1].keys[LIL.PlayerAction.Up] = Key.KeyboardW;
-        PlayerPrefs.SetInt("Keayboard1_Left", (int)Key.KeyboardA);                      // "A" for left
+        PlayerPrefs.SetInt("Keyboard1_Left", (int)Key.KeyboardA);                      // "A" for left
         Profile.Models[1].keys[LIL.PlayerAction.Left] = Key.KeyboardA;
 
         GeneralData.Keyboard1ProfileModel = Profile.Models[1];
@@ -202,10 +274,10 @@ public class SettingsMenu : MonoBehaviour {
 
     public void AZERTY()
     {
-        PlayerPrefs.SetInt("Keyboard", 1);
-        PlayerPrefs.SetInt("Keayboard1_Up", (int)Key.KeyboardZ);                        // "Z" for up
+        PlayerPrefs.SetInt("Keyboard", -2);
+        PlayerPrefs.SetInt("Keyboard1_Up", (int)Key.KeyboardZ);                        // "Z" for up
         Profile.Models[1].keys[LIL.PlayerAction.Up] = Key.KeyboardZ;
-        PlayerPrefs.SetInt("Keayboard1_Left", (int)Key.KeyboardQ);                      // "Q" for left
+        PlayerPrefs.SetInt("Keyboard1_Left", (int)Key.KeyboardQ);                      // "Q" for left
         Profile.Models[1].keys[LIL.PlayerAction.Left] = Key.KeyboardQ;
 
         GeneralData.Keyboard1ProfileModel = Profile.Models[1];
@@ -422,7 +494,7 @@ public class SettingsMenu : MonoBehaviour {
         if (!PlayerPrefs.HasKey("Keyboard"))
         {
             // Set QWERTY as keyboard system
-            PlayerPrefs.SetInt("Keyboard", 0);
+            PlayerPrefs.SetInt("Keyboard", -1);
             QWERTYLine.SetActive(true);
             AZERTYLine.SetActive(false);
 

@@ -259,7 +259,7 @@ public class GeneralData : MonoBehaviour
     {
         getPlayerbyNum(playerNum).level++;
         UpdateCapacitypoints(1, playerNum);
-        Debug.Log("Level up + 30 initial life and + 60 current life");
+
         if (GetCurrentLife(playerNum) == GetInitialLife(playerNum) || (GetCurrentLife(playerNum) + 60) >= GetInitialLife(playerNum))
         {
             UpdateInitialLife(30, playerNum);
