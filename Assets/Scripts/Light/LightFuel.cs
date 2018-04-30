@@ -48,7 +48,7 @@ namespace LIL
         private void FillLight(float fuelFactor)
         {
             timer += lightDurability * fuelFactor;
-            //spirit.GetTarget().GetComponent<HealthPlayer>().Heal(healRatio);
+            //spirit.GetTarget().GetComponent<HealthManager>().Heal(healRatio);
         }
 
         public float GetLightRange()

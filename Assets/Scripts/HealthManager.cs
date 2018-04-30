@@ -21,7 +21,7 @@ namespace LIL
         private Action hurtCallback  = () => { };
         private Action deathCallback = () => { };
         public GameObject damagePopUp;
-        int playerNum;
+        public int playerNum;
 
         /// <summary>
         /// Set the function called each time the entity takes damages.
@@ -143,7 +143,6 @@ namespace LIL
         {
             if(gameObject.tag == "Player")
             {
-                playerNum = gameObject.GetComponent<PlayerController>().getPlayerNum();
                 initialLife = GeneralData.GetInitialLife(playerNum);
 
                 life = GeneralData.GetCurrentLife(playerNum);
@@ -176,7 +175,6 @@ namespace LIL
                 { // if current life < initialLife/2...
                     life += GeneralData.GetHealingRate(playerNum); // increase current life and wait the specified time
                     GeneralData.SetCurrentLife(life, playerNum);
-                    Debug.Log("healing " + life + "/"+initialLife);
                     yield return new WaitForSeconds(1);
                 }
                 else

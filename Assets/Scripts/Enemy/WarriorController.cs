@@ -87,14 +87,13 @@ namespace LIL
                 multiplayer = true;
                 player2 = GameObject.FindGameObjectsWithTag("Player")[1].transform;
                 playerHealth2 = player2.GetComponent<HealthManager>();
-
             }
         }
 
         void OnTriggerEnter(Collider other)
         {
             // If the entering collider is the player...
-            if (other.gameObject.tag== "Player")
+            if (other.gameObject.Equals(player.gameObject))
             {
                 // ... the player is in range.
                 playerInRange = true;

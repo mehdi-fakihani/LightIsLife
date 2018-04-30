@@ -60,12 +60,6 @@ namespace LIL
 
         }
 
-        public void Heal(float healthRatio)
-        {
-            currentHealth = Mathf.Clamp(currentHealth * (1 + healthRatio), 0, maxHealth / ++nbHeals);
-        }
-        
-
         //---------------------------------------------------------
         // This method is called when the character is hurt
         //---------------------------------------------------------

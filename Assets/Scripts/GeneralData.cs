@@ -184,7 +184,7 @@ public class GeneralData : MonoBehaviour
     {
         players = new List<Player>();
         List<Skill> skills1 = initSkillsList();
-        Player player1 = new Player(1, skills1, new Skill[] { null, null, null, null }, 0, 1, 1000, new float[] { 30f, 0f, 26f }, 500, 500, 3);
+        Player player1 = new Player(1, skills1, new Skill[] { null, null, null, null }, 0, 1, 1, new float[] { 30f, 0f, 26f }, 500, 500, 3);
         
         players.Add(player1);
 
@@ -192,7 +192,7 @@ public class GeneralData : MonoBehaviour
         if (multiplayer)
         {
             List<Skill> skills2 = initSkillsList();
-            Player player2 = new Player(2, skills2, new Skill[] { null, null, null, null }, 0,1, 1000, new float[] { 25f, 0f, 30f }, 500, 500, 3);
+            Player player2 = new Player(2, skills2, new Skill[] { null, null, null, null }, 0,1, 1, new float[] { 25f, 0f, 30f }, 500, 500, 3);
             
             players.Add(player2);
         }

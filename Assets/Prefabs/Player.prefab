@@ -1021,11 +1021,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7224536d749835a41a492b4dfec60e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: 0
   movementSpeed: 6
-  hurtSound: {fileID: 0}
+  hurtSound: {fileID: 8300000, guid: fd0e47d71526ac64b80e965a9b88860c, type: 3}
   deathSound: {fileID: 0}
   secondPlayer: {fileID: 0}
+  secondPlayerExperience: {fileID: 0}
+  camera: {fileID: 0}
+  skillUI: {fileID: 0}
+  multiplayer: 0
 --- !u!114 &114209422444595826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1037,9 +1040,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce830d55a8482084c82cfae1a34c6cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightObject: {fileID: 108060805514886442}
   lightDurability: 70
   lightFullRange: 100
+  lightMinRange: 50
+  healRatio: 0.25
 --- !u!114 &114231395182562386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1053,6 +1057,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialLife: 1000
   expCollectable: {fileID: 0}
+  damagePopUp: {fileID: 0}
 --- !u!114 &114320355358419676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1075,8 +1080,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1fd96a5d46c73540a7feeb4434db4fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: 0
-  attackTimeInterval: 0.3
 --- !u!114 &114875411776050246
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1088,8 +1091,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1fd96a5d46c73540a7feeb4434db4fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: 0
-  attackTimeInterval: 0.3
 --- !u!114 &114923968322142342
 MonoBehaviour:
   m_ObjectHideFlags: 1
